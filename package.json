@@ -1,0 +1,22 @@
+{
+  "name": "mindspark",
+  "version": "1.0.0",
+  "description": "* A community driven application to encourage and help individuals with mental and emotional health problems.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abansal98/mindSpark.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abansal98/mindSpark/issues"
+  },
+  "homepage": "https://github.com/abansal98/mindSpark#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
