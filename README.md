@@ -3,7 +3,7 @@
 
 
 Team Members:
-* Youngmin Ko (Team Lead) : https://github.com/masonkoh
-* Gia Tuong Tran : https://github.com/giatuongtran9
-* Pratik Panchani : https://github.com/PratikPanchani
-* Arnav Bansal : https://github.com/abansal98
+* Youngmin Ko (Team Lead)
+* Gia Tuong Tran
+* Pratik Panchani
+* Arnav Bansal
