@@ -5,7 +5,10 @@ import './App.css';
 class Subject extends Component {
     render() {
         return (
-            <h1>This is Subject</h1>
+            <header>
+                <h1>This is Subject</h1>
+            </header>
+
         )
     }
 }
