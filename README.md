@@ -1,9 +1,10 @@
 # MindSpark Application
 
-A community driven application to encourage and help individuals with mental and emotional health problems.
+MindSpark is a web application that let’s users share quotes that inspirit one another.
 
-Build version on Live Server
+### The build version on live server
 * http://myvmlab.senecacollege.ca:6471/mindSpark_App/react-app/build/
+
 
 Team Members:
 * Youngmin Ko (Team Lead)
