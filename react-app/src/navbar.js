@@ -35,11 +35,19 @@ class NavBar extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="#sample1">Sample1</Nav.Link>
+              {/* <Nav.Link href="#sample1">Sample1</Nav.Link>
               <Nav.Link href="#Sample2">Sample2</Nav.Link>
-              <Nav.Link href="#Sample3">Sample3</Nav.Link>
+              <Nav.Link href="#Sample3">Sample3</Nav.Link> */}
             </Nav>
             <Nav>
+              <Form inline>
+                <FormControl
+                  type="text"
+                  placeholder="Search"
+                  className="mr-sm-2"
+                />
+                <Button variant="outline-success">Search</Button>
+              </Form>
               <Navbar.Brand href="#addQuote">
                 <img
                   src={addQuote}
