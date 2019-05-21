@@ -1,68 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## HOW TO RUN THE PROJECT IN YOUR BROWSER:
 
-## Available Scripts
+1. Download or clone the project in your local directory
 
-In the project directory, you can run:
+2. Go into project directory(react-app) and run the following commands:
 
-### `npm start`
+#### 'npm install'
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To install basic node modules folder
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+#### 'npm start'
 
-### `npm test`
+To start the project
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+NOTE: If 'npm start' command doesn't work. Check the package.json file and make sure script for "start" has correct command and port number.
 
-### `npm run build`
+WINDOWS: "start": "set PORT=3006 && react-scripts start"
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+LINUX: "start": "PORT=3006 react-scripts start"
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Open [http://localhost:PORT](http://localhost:PORT) to view it in the browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## BASIC GIT COMMANDS:
 
-### `npm run eject`
+#### 'git clone https://github.com/abansal98/mindSpark.git' 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To clone/download the project
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 'git add [filename][.]'
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To add files to the index
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### 'git commit -m "Message"
 
-## Learn More
+Commit the changes to the head
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### 'git push origin [branch_name]
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+It send the changes to the branch
 
-### Code Splitting
+#### 'git status'
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+To list the changes in the files to be added or committed
 
-### Analyzing the Bundle Size
+## BASIC GIT BRANCH COMMANDS:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+#### 'git branch [branch_name]'
 
-### Making a Progressive Web App
+Creates new branch
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+#### 'git checkout [branch_name]'
 
-### Advanced Configuration
+Switch to the branch
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+#### 'git merge [branch_name]'
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Merge [branch_name] to current checked out branch (present)
