@@ -2,7 +2,7 @@
   "name": "react-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://myvmlab.senecacollege.ca:6471/mindSpark_App/react-app/build/",
+  "homepage": "http://myvmlab.senecacollege.ca:6471",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "react": "^16.8.6",
