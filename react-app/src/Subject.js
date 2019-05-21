@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import logo from "./logo.png";
 
 class Subject extends Component {
   render() {
     return (
       <header>
-        <h1>[SUBJECT AREA]</h1>
+        <span>[SUBJECT AREA]</span>
+        <img src={logo} className="App-logo" alt="logo" />
       </header>
     );
   }
