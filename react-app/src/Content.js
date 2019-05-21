@@ -5,6 +5,72 @@ class Content extends Component {
     return (
       <article>
         <div>[CONTENT AREA]</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+        <div>dummy data</div>
+
+        <div>[CONTENT AREA]</div>
       </article>
     );
   }
