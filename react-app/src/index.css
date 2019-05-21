@@ -5,11 +5,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-top: 7%;
+  padding-top: 63px;
   background-color: #f1ece5;
 }
-@media screen and (max-width: 500px) {
+
+.teamName {
+  margin-left: 5%;
+}
+
+/* @media screen and (max-width: 500px) {
   body {
     padding-top: 17%;
   }
-}
+} */
