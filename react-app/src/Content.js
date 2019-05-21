@@ -5,7 +5,7 @@ class Content extends Component {
     return (
       <article>
         <div>[CONTENT AREA]</div>
-        <div>dummy data</div>
+        <div>dummy daa</div>
         <div>dummy data</div>
         <div>dummy data</div>
         <div>dummy data</div>
