@@ -5,9 +5,9 @@ class Content extends Component {
   render() {
     return (
       <article>
-        <p>This is Start of Content</p>
+        <div>[Beginning of content area]</div>
         <img src={logo} className="App-logo" alt="logo" />
-        <p>This is End of Content</p>
+        <div>[End of content area]</div>
       </article>
     );
   }

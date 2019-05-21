@@ -4,7 +4,7 @@ class Subject extends Component {
   render() {
     return (
       <header>
-        <h1>This is Subject</h1>
+        <h1>[SUBJECT AREA]</h1>
       </header>
     );
   }
