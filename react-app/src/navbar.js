@@ -31,7 +31,7 @@ class NavBar extends Component {
               height="30"
               className="d-inline-block align-top"
             />
-            <span className="teamName">mindSpar</span>k
+            <span className="teamName">mindSpark</span>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
