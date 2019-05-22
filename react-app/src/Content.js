@@ -8,16 +8,11 @@ class Content extends Component {
   //   }
   //   return rows;
   // };
-  dummyDataLoop = () => [...Array(50)].map(x => <div>dummy data</div>);
+  dummyDataLoop = () =>
+    [...Array(50)].map(x => <div>dummy data form Content.js</div>);
 
   render() {
-    return (
-      <article>
-        <div>[CONTENT AREA START]</div>
-        {this.dummyDataLoop()}
-        <div>[CONTENT AREA END]</div>
-      </article>
-    );
+    return <article>{this.dummyDataLoop()}</article>;
   }
 }
 
