@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import QuoteBox from "./QuoteBox";
 
 class Content extends Component {
   // dummyDataLoop = () => {
@@ -8,10 +9,19 @@ class Content extends Component {
   //   }
   //   return rows;
   // };
-  dummyDataLoop = () =>
-    [...Array(5)].map(x => <div>dummy data form Content.js</div>);
+
+  // dummyDataLoop = () =>
+  //   [...Array(5)].map(x => <div>dummy data form Content.js</div>);
   render() {
-    return <article>{this.dummyDataLoop()}</article>;
+    return (
+      <article>
+        <QuoteBox quote="quote1" author="author id" rating="rating level" />
+        <QuoteBox quote="quote2" author="author id" rating="rating level" />
+        <QuoteBox quote="quote3" author="author id" rating="rating level" />
+        <QuoteBox quote="quote4" author="author id" rating="rating level" />
+        <QuoteBox quote="quote5" author="author id" rating="rating level" />
+      </article>
+    );
   }
 }
 

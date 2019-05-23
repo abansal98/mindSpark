@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import { Navbar } from "react-bootstrap";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 class SignUp extends Component {
   constructor(props) {

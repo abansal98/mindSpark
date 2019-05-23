@@ -11,7 +11,6 @@ class App extends Component {
   render() {
     return (
       <switch>
-        {/* <Route exact path="" render={() => <Home />} /> */}
         <Route exact path="/" render={() => <Home />} />
         <Route exact path="/signup" render={() => <SignUp />} />
       </switch>
