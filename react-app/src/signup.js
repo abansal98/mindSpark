@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+// import { Navbar } from "react-bootstrap";
+import Navbar from "./Navbar";
 
 class SignUp extends Component {
   constructor(props) {
@@ -69,43 +71,46 @@ class SignUp extends Component {
 
   render() {
     return (
-      <form name="createAccount" onSubmit={this.handleSubmit}>
-        <div className="form-control">
-          <label for="userName">UserName </label>
-          <input
-            onChange={this.handleUserInput.bind(this)}
-            name="username"
-            className="form-control"
-            type="text"
-            value={this.state.username}
-            placeholder="Enter Your UserName"
-          />
-          <br />
-          <label for="email">Email </label>
-          <input
-            onChange={this.handleUserInput.bind(this)}
-            name="email"
-            className="form-control"
-            type="email"
-            value={this.state.email}
-            placeholder="Enter Your Email"
-          />
-          <br />
-          <label for="password">Password </label>
-          <input
-            onChange={this.handleUserInput.bind(this)}
-            name="password"
-            className="form-control"
-            type="password"
-            value={this.state.password}
-            placeholder="Enter Your Password"
-          />
-          <br />
-          <button disabled={this.state.formValid} className="form-control">
-            Sign Up
-          </button>
-        </div>
-      </form>
+      <React.Fragment>
+        <Navbar />
+        <form name="createAccount" onSubmit={this.handleSubmit}>
+          <div className="form-control">
+            <label for="userName">UserName </label>
+            <input
+              onChange={this.handleUserInput.bind(this)}
+              name="username"
+              className="form-control"
+              type="text"
+              value={this.state.username}
+              placeholder="Enter Your UserName"
+            />
+            <br />
+            <label for="email">Email </label>
+            <input
+              onChange={this.handleUserInput.bind(this)}
+              name="email"
+              className="form-control"
+              type="email"
+              value={this.state.email}
+              placeholder="Enter Your Email"
+            />
+            <br />
+            <label for="password">Password </label>
+            <input
+              onChange={this.handleUserInput.bind(this)}
+              name="password"
+              className="form-control"
+              type="password"
+              value={this.state.password}
+              placeholder="Enter Your Password"
+            />
+            <br />
+            <button disabled={this.state.formValid} className="form-control">
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </React.Fragment>
     );
   }
 }

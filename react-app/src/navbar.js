@@ -10,6 +10,7 @@ import {
   FormControl,
   NavbarBrand
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 // hello
 
@@ -24,15 +25,17 @@ class NavBar extends Component {
           variant="dark"
           fixed="top"
         >
-          <Navbar.Brand href="#home">
-            <img
-              src={logo}
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-            />
-            <span className="teamName">mindSpark</span>
-          </Navbar.Brand>
+          <a href="/">
+            <Navbar.Brand>
+              <img
+                src={logo}
+                width="30"
+                height="30"
+                className="d-inline-block align-top"
+              />
+              <span className="teamName">mindSpark</span>
+            </Navbar.Brand>
+          </a>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -50,7 +53,7 @@ class NavBar extends Component {
                 />
                 <Button variant="outline-success">Search</Button>
               </Form>
-              <Navbar.Brand href="#addQuote">
+              <Navbar.Brand href="#userprofile">
                 <img
                   src={addQuote}
                   width="30"
@@ -59,14 +62,17 @@ class NavBar extends Component {
                 />
               </Navbar.Brand>
               <Navbar.Brand>Hi, Lorem Ipsum!</Navbar.Brand>
-              <Navbar.Brand href="#userProfile">
-                <img
-                  src={userProfile}
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
-                />
-              </Navbar.Brand>
+              <a href="/signup">
+                {" "}
+                <Navbar.Brand>
+                  <img
+                    src={userProfile}
+                    width="30"
+                    height="30"
+                    className="d-inline-block align-top"
+                  />
+                </Navbar.Brand>
+              </a>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
