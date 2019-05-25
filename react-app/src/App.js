@@ -11,11 +11,13 @@ import { BrowserRouter, Route } from "react-router-dom";
 class App extends Component {
   render() {
     return (
-      <div>
-        <Route exact path="/" render={() => <SignIn />} />
-        <Route path="/signup" render={() => <SignUp />} />
-        <Route path="/home" render={() => <Home />} />
-      </div>
+      <BrowserRouter>
+        <div>
+          <Route exact path="/" render={() => <SignIn />} />
+          <Route path="/signup" render={() => <SignUp />} />
+          <Route path="/home" render={() => <Home />} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
