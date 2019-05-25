@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Navbar } from "react-bootstrap";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 import Footer from "./Footer";
 
 class SignUp extends Component {
