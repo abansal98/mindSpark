@@ -6,18 +6,19 @@ import Footer from "./Footer";
 import SignUp from "./signup";
 import SignIn from "./signin";
 import Home from "./Home";
-import { BrowserRouter, Route } from "react-router-dom";
+import Error from "./Error";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <Switch>
           <Route exact path="/" component={SignIn} />
           <Route path="/signup" component={SignUp} />
           <Route path="/home" component={Home} />
-          <Route />
-        </div>
+          <Route component={Error} />
+        </Switch>
       </BrowserRouter>
     );
   }
