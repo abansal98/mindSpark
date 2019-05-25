@@ -73,7 +73,7 @@ class NavBar extends Component {
                     className="d-inline-block align-top"
                   />
                 </a>
-                <a href="/signup">
+                <a href="/">
                   {/* Implement logout feature here! */}
                   <img
                     src={logout}
