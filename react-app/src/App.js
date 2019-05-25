@@ -11,11 +11,11 @@ import { BrowserRouter, Route } from "react-router-dom";
 class App extends Component {
   render() {
     return (
-      <switch>
+      <div>
         <Route exact path="/" render={() => <SignIn />} />
         <Route exact path="/signup" render={() => <SignUp />} />
         <Route exact path="/home" render={() => <Home />} />
-      </switch>
+      </div>
     );
   }
 }
