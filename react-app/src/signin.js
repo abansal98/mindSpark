@@ -30,7 +30,7 @@ class SignIn extends Component {
 
     switch (fieldName) {
       case "user":
-        usrValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        usrValid = value.match();
         errors.user = usrValid ? "" : " is invalid";
         break;
       default:
@@ -51,6 +51,7 @@ class SignIn extends Component {
         this.state.userValid
     });
   }
+
 
   render() {
     return (
@@ -92,15 +93,18 @@ class SignIn extends Component {
             />
             <br />
             <button type="signin" class="btn btn-primary">Sign In</button>
-            <hr/>
-            <button type="signup" class="btn btn-secondary btn-sm">Sign Up</button>
-            <button type="button" class="btn btn-link btn-sm">Forgot Your Password?</button>
-          </div>
+            </div>
         </form>
+        <hr/>
+            <a href="/signup">
+                <button type="signup" class="btn btn-secondary btn-sm">Sign Up</button>
+                </a>
+            <button type="button" class="btn btn-link btn-sm">Forgot Your Password?</button>         
         </div>
         <div class="col-6">[IMAGE]</div>
         </div>
         </div>
+        <Footer/>
       </React.Fragment>
     );
   }
