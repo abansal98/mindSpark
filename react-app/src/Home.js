@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import Content from "./Content";
-import NavBar from "./Navbar";
+import NavBar from "./navbar";
 import Footer from "./Footer";
-import SignUp from "./SignUp";
+import SignUp from "./signup";
 import { BrowserRouter, Route } from "react-router-dom";
 
 class Home extends Component {
