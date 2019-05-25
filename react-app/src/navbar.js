@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logoIcon from "./icons/logo.png";
 import userProfileIcon from "./icons/baseline-account_circle-24px.svg";
+import addQuoteIcon from "./icons/baseline-create-24px.svg";
 import logout from "./icons/baseline-exit_to_app-24px.svg";
 import {
   Navbar,
@@ -56,7 +57,15 @@ class NavBar extends Component {
             <Nav>
               <Navbar.Brand>Hi, LoremIpsum!</Navbar.Brand>
               <Navbar.Brand>
-                <a href="/signup" className="userProfileIcon">
+                <a href="/userprofile" className="userProfileIcon">
+                  <img
+                    src={addQuoteIcon}
+                    width="30"
+                    height="30"
+                    className="d-inline-block align-top"
+                  />
+                </a>
+                <a href="/userprofile" className="userProfileIcon">
                   <img
                     src={userProfileIcon}
                     width="30"
@@ -64,7 +73,7 @@ class NavBar extends Component {
                     className="d-inline-block align-top"
                   />
                 </a>
-                <a href="/signup">
+                <a href="/">
                   {/* Implement logout feature here! */}
                   <img
                     src={logout}

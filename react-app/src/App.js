@@ -6,16 +6,20 @@ import Footer from "./Footer";
 import SignUp from "./signup";
 import SignIn from "./signin";
 import Home from "./Home";
-import { BrowserRouter, Route } from "react-router-dom";
+import Error from "./Error";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Route exact path="/" render={() => <SignIn />} />
-        <Route exact path="/signup" render={() => <SignUp />} />
-        <Route exact path="/home" render={() => <Home />} />
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/home" component={Home} />
+          <Route component={Error} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
