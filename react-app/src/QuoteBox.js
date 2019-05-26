@@ -5,9 +5,12 @@ class QuoteBox extends Component {
   render() {
     return (
       <div className="quoteBox">
-        <div>{this.props.quote}</div>
-        <div>{this.props.author}</div>
-        <div>{this.props.rating}</div>
+        <h3 className="quoteBoxQuoteH3">{this.props.quote}</h3>
+        <div className="quoteBoxAuthorStar">
+          <span>{this.props.author}</span>
+          <span> </span>
+          {this.props.rating}
+        </div>
       </div>
     );
   }
