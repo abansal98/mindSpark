@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Navbar } from "react-bootstrap";
-import Navbar from "./navbar";
+import Navbar from "./Navbar";
 import Footer from "./Footer";
 import './signup.css'
 import {Link} from 'react-router-dom';
