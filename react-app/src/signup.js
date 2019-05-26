@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+// import { Navbar } from "react-bootstrap";
+import Navbar from "./navbar";
+import Footer from "./Footer";
+import './signup.css'
+import {Link} from 'react-router-dom';
 
 class SignUp extends Component {
   constructor(props) {
@@ -69,43 +74,56 @@ class SignUp extends Component {
 
   render() {
     return (
-      <form name="createAccount" onSubmit={this.handleSubmit}>
-        <div className="form-control">
-          <label for="userName">UserName </label>
-          <input
-            onChange={this.handleUserInput.bind(this)}
-            name="username"
-            className="form-control"
-            type="text"
-            value={this.state.username}
-            placeholder="Enter Your UserName"
-          />
-          <br />
-          <label for="email">Email </label>
-          <input
-            onChange={this.handleUserInput.bind(this)}
-            name="email"
-            className="form-control"
-            type="email"
-            value={this.state.email}
-            placeholder="Enter Your Email"
-          />
-          <br />
-          <label for="password">Password </label>
-          <input
-            onChange={this.handleUserInput.bind(this)}
-            name="password"
-            className="form-control"
-            type="password"
-            value={this.state.password}
-            placeholder="Enter Your Password"
-          />
-          <br />
-          <button disabled={this.state.formValid} className="form-control">
-            Sign Up
-          </button>
+      <React.Fragment>
+        <Navbar />
+        <div className="wrapper">
+          <div className="form-wrapper">
+            <h1>Create Account</h1>
+            <form onSubmit={this.handleSubmit.bind(this)}>
+              <div className="firstName">
+                <label for="firstName">First Name</label>
+                <input placeholder="First Name"
+                        type="text"
+                        name="firstName"
+                        onChange={this.handleUserInput.bind(this)}
+                />
+              </div>
+
+              <div className="lastName">
+                <label for="lastName">Last Name</label>
+                <input placeholder="Last Name"
+                        type="text"
+                        name="lastName"
+                        onChange={this.handleUserInput.bind(this)}
+                />
+              </div>
+
+              <div className="email">
+                <label for="email">Email</label>
+                <input placeholder="Email"
+                        type="email"
+                        name="email"
+                        onChange={this.handleUserInput.bind(this)}
+                />
+              </div>
+
+              <div className="password">
+                <label for="password">Password</label>
+                <input placeholder="Password"
+                        type="password"
+                        name="password"
+                        onChange={this.handleUserInput.bind(this)}
+                />
+              </div>
+
+              <div className="createAccount">
+                <button className="btn btn-primary" type="submit">Create Account</button>
+               
+              </div>
+            </form>
+          </div>
         </div>
-      </form>
+        </React.Fragment>
     );
   }
 }
