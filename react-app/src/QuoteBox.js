@@ -5,7 +5,7 @@ class QuoteBox extends Component {
   render() {
     return (
       <div className="quoteBox">
-        <h2 className="quoteBoxQuoteH2">{this.props.quote}</h2>
+        <h3 className="quoteBoxQuoteH3">{this.props.quote}</h3>
         <div className="quoteBoxAuthorStar">
           <span>{this.props.author}</span>
           <span> </span>
