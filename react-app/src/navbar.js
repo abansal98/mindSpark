@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import logo from "./icons/logo.png";
-import userProfile from "./icons/baseline-account_circle-24px.svg";
-import addQuote from "./icons/baseline-add_circle-24px.svg";
+import logoIcon from "./icons/logo.png";
+import userProfileIcon from "./icons/baseline-account_circle-24px.svg";
+import addQuoteIcon from "./icons/baseline-create-24px.svg";
+import logout from "./icons/baseline-exit_to_app-24px.svg";
 import {
   Navbar,
   Nav,
@@ -10,8 +11,8 @@ import {
   FormControl,
   NavbarBrand
 } from "react-bootstrap";
-
-// hello
+import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 class NavBar extends Component {
   render() {
@@ -24,15 +25,17 @@ class NavBar extends Component {
           variant="dark"
           fixed="top"
         >
-          <Navbar.Brand href="#home">
-            <img
-              src={logo}
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-            />
-            <span className="teamName">mindSpark</span>
-          </Navbar.Brand>
+          <a href="/home">
+            <Navbar.Brand>
+              <img
+                src={logoIcon}
+                width="30"
+                height="30"
+                className="d-inline-block align-top"
+              />
+              <span className="teamName">mindSpark</span>
+            </Navbar.Brand>
+          </a>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -41,7 +44,7 @@ class NavBar extends Component {
               <Nav.Link href="#Sample2">Sample2</Nav.Link>
               <Nav.Link href="#Sample3">Sample3</Nav.Link> */}
             </Nav>
-            <Nav>
+            <Nav className="searchBar">
               <Form inline>
                 <FormControl
                   type="text"
@@ -50,22 +53,35 @@ class NavBar extends Component {
                 />
                 <Button variant="outline-success">Search</Button>
               </Form>
-              <Navbar.Brand href="#addQuote">
-                <img
-                  src={addQuote}
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
-                />
-              </Navbar.Brand>
-              <Navbar.Brand>Hi, Lorem Ipsum!</Navbar.Brand>
-              <Navbar.Brand href="#userProfile">
-                <img
-                  src={userProfile}
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
-                />
+            </Nav>
+            <Nav>
+              <Navbar.Brand>Hi, LoremIpsum!</Navbar.Brand>
+              <Navbar.Brand>
+                <a href="/userprofile" className="userProfileIcon">
+                  <img
+                    src={addQuoteIcon}
+                    width="30"
+                    height="30"
+                    className="d-inline-block align-top"
+                  />
+                </a>
+                <a href="/userprofile" className="userProfileIcon">
+                  <img
+                    src={userProfileIcon}
+                    width="30"
+                    height="30"
+                    className="d-inline-block align-top"
+                  />
+                </a>
+                <a href="/">
+                  {/* Implement logout feature here! */}
+                  <img
+                    src={logout}
+                    width="30"
+                    height="30"
+                    className="d-inline-block align-top"
+                  />
+                </a>
               </Navbar.Brand>
             </Nav>
           </Navbar.Collapse>
