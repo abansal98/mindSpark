@@ -2,11 +2,8 @@ import React, { Component } from "react";
 // import { Navbar } from "react-bootstrap";
 import Navbar from "./navbar";
 import Footer from "./Footer";
-<<<<<<< HEAD
 import './signup.css'
 import {Link} from 'react-router-dom';
-=======
->>>>>>> dev
 
 class SignUp extends Component {
   constructor(props) {
