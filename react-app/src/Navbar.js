@@ -25,17 +25,15 @@ class NavBar extends Component {
           variant="dark"
           fixed="top"
         >
-          <a href="/home">
-            <Navbar.Brand>
-              <img
-                src={logoIcon}
-                width="30"
-                height="30"
-                className="d-inline-block align-top"
-              />
-              <span className="teamName">mindSpark</span>
-            </Navbar.Brand>
-          </a>
+          <Navbar.Brand href="/home">
+            <img
+              src={logoIcon}
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />
+            <span className="teamName">mindSpark</span>
+          </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -57,12 +55,12 @@ class NavBar extends Component {
             <Nav>
               <Navbar.Brand>Hi, LoremIpsum!</Navbar.Brand>
               <Navbar.Brand>
-                <a href="/userprofile" className="userProfileIcon">
+                <a href="/userprofile">
                   <img
                     src={addQuoteIcon}
                     width="30"
                     height="30"
-                    className="d-inline-block align-top"
+                    className="d-inline-block align-top userProfileIcon"
                   />
                 </a>
                 <a href="/userprofile" className="userProfileIcon">
