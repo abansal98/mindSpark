@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Footer from "./Footer";
 import logo from "./icons/logo.png";
+import './signin.css'
 
 class SignIn extends Component {
   constructor(props) {
@@ -59,7 +60,7 @@ class SignIn extends Component {
         <div class="container">
         <div class="py-1 text-center">
              <img class="d-block mx-auto mb-4" src={logo} alt="" width="72" height="72" /> 
-            <h2>"mindSpark"</h2>
+            <h1>"mindSpark"</h1>
             <p class="lead">“mindSpark” is an app that encourages people through 
             quotes and messages. It helps people who are having tough time with 
             emotional problem. It also lets you share your own quotes
@@ -68,11 +69,16 @@ class SignIn extends Component {
         </div>
          <div class="container">
             <div class= "row">
-         <div class="col-6">
+         <div class="col">
+           </div>
+           <div class="col form-wrapper">
+         <div className="form-group">
+             <div class="text-center">
              <h3>Sign In</h3>
+             </div>
         <form name="signIn" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label for="userNameOrEmail">Username or Email</label>
+          
+            <h6>Username or Email</h6>
             <input
               onChange={this.handleUserInput.bind(this)}
               name="username"
@@ -82,7 +88,8 @@ class SignIn extends Component {
               placeholder="Enter Your Username or Email"
             />
             <br />
-            <label for="password">Password</label>
+            <br/>
+            <h6>Password</h6>
             <input
               onChange={this.handleUserInput.bind(this)}
               name="password"
@@ -92,16 +99,17 @@ class SignIn extends Component {
               placeholder="Enter Your Password"
             />
             <br />
+            <br />
             <button type="signin" class="btn btn-primary">Sign In</button>
+            </form>
             </div>
-        </form>
-        <hr/>
-            <a href="/signup">
-                <button type="signup" class="btn btn-secondary btn-sm">Sign Up</button>
+              <a href="/signup">
+                <button type="button" class="btn btn-secondary btn-sm">Sign Up</button>
                 </a>
             <button type="button" class="btn btn-link btn-sm">Forgot Your Password?</button>         
         </div>
-        <div class="col-6">[IMAGE]</div>
+        <div class="col">
+            </div>
         </div>
         </div>
         <Footer/>
