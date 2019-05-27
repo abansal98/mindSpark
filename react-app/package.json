@@ -5,6 +5,7 @@
   "homepage": "http://myvmlab.senecacollege.ca:6471",
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "mongoose": "^5.5.11",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",

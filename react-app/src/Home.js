@@ -23,6 +23,7 @@ class Home extends Component {
             </Col>
           </Row>
         </Container>
+        <Footer/>
       </React.Fragment>
     );
   }
