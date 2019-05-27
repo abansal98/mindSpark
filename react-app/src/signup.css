@@ -5,7 +5,6 @@
   background-color: #258ea6;
   justify-content: center;
   align-items: center;
-<<<<<<< HEAD
 }
 
 .form-wrapper {
@@ -32,26 +31,6 @@ form input.invalid
 
 
 
-=======
-}
-
-.form-wrapper {
-  width: 500px;
-  display: flex;
-  background-color: #ffffff;
-  box-shadow: 0px 10px 50px #555;
-  padding: 20px 40px;
-  border-radius: 10px;
-  flex-direction: column;
-}
-
-form {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
-
->>>>>>> origin
 h1 {
   text-align: center;
   width: 100%;
@@ -78,12 +57,8 @@ input::placeholder {
 .firstName,
 .lastName,
 .email,
-<<<<<<< HEAD
 .password,
 .confirmPassword {
-=======
-.password {
->>>>>>> origin
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
@@ -92,7 +67,6 @@ input::placeholder {
 .firstName,
 .lastName {
   width: 49%;
-<<<<<<< HEAD
 }
 
 .email
@@ -123,22 +97,6 @@ input {
   border: 1px solid #cfcfcf;
 }
 
-=======
-}
-
-.email,
-.password {
-  width: 100%;
-}
-
-input {
-  padding: 10px 10px;
-  border-radius: 5px;
-  outline: none;
-  border: 1px solid #cfcfcf;
-}
-
->>>>>>> origin
 .createAccount {
   align-items: center;
 }
