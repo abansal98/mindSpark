@@ -9,12 +9,15 @@ import {
   Button,
   Form,
   FormControl,
-  NavbarBrand
+  NavbarBrand,
+  ButtonToolbar,
+  button,
+  NavItem
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-class NavBarPure extends Component {
+class NavBarSignin extends Component {
   render() {
     return (
       <nav>
@@ -34,10 +37,24 @@ class NavBarPure extends Component {
             />
             <span className="teamName">mindSpark</span>
           </Navbar.Brand>
+
+          <Navbar.Collapse className="justify-content-end">
+            <Navbar.Text>
+              <a href="/signup">
+                <Button
+                  variant="primary"
+                  type="button"
+                  class="btn btn-secondary btn-sm"
+                >
+                  Sign Up
+                </Button>
+              </a>
+            </Navbar.Text>
+          </Navbar.Collapse>
         </Navbar>
       </nav>
     );
   }
 }
 
-export default NavBarPure;
+export default NavBarSignin;

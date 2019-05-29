@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import Footer from "./Footer";
 import logo from "./icons/logo.png";
 import "./signin.css";
-import NavBarPure from "./NavbarPure";
+import NavBarSignin from "./NavbarSignin";
 import notFoundImage from "./image/404.jpg";
+import { Button } from "react-bootstrap";
 
 class SignIn extends Component {
   constructor(props) {
@@ -57,7 +58,7 @@ class SignIn extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBarPure />
+        <NavBarSignin />
 
         {/* background image start*/}
         <div
@@ -116,16 +117,12 @@ class SignIn extends Component {
                   />
                   <br />
                   <br />
-                  <button type="signin" class="btn btn-primary">
+                  <Button type="signin" class="btn btn-primary" block>
                     Sign In
-                  </button>
+                  </Button>
                 </form>
               </div>
-              <a href="/signup">
-                <button type="button" class="btn btn-secondary btn-sm">
-                  Sign Up
-                </button>
-              </a>
+
               <button type="button" class="btn btn-link btn-sm">
                 Forgot Your Password?
               </button>
