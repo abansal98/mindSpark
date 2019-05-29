@@ -1,16 +1,20 @@
-.form-wrapper
-{
-    width:500px;
-    display: flex;
-    background-color: #ffffff;
-    box-shadow: 0px 10px 50px #555;
-    padding: 20px 40px;
-    border-radius: 10px;
-    flex-direction: column;
+.form-wrapper {
+  width: 500px;
+  display: flex;
+  background-color: #ffffff;
+  box-shadow: 0px 10px 50px #555;
+  padding: 20px 40px;
+  border-radius: 10px;
+  flex-direction: column;
+
+  margin-top: 3%;
 }
 
-.back
-{
-    background: #258ea6;
-    padding: 100px;
+.back {
+  background: #258ea6;
+  padding: 100px;
+}
+
+.mkTempName1 {
+  margin-top: 5%;
 }
