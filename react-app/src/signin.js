@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Footer from "./Footer";
 import logo from "./icons/logo.png";
-import './signin.css'
+import "./signin.css";
+import NavBarPure from "./NavbarPure";
+import notFoundImage from "./image/404.jpg";
 
 class SignIn extends Component {
   constructor(props) {
@@ -11,7 +13,7 @@ class SignIn extends Component {
       password: "",
       userValid: false,
       formValid: false,
-      error: { name: "", password: ""}
+      error: { name: "", password: "" }
     };
   }
 
@@ -40,7 +42,7 @@ class SignIn extends Component {
     this.setState(
       {
         error: errors,
-        userValid: usrValid,
+        userValid: usrValid
       },
       this.validateForm
     );
@@ -48,71 +50,90 @@ class SignIn extends Component {
 
   validateForm() {
     this.setState({
-      formValid:
-        this.state.userValid
+      formValid: this.state.userValid
     });
   }
-
 
   render() {
     return (
       <React.Fragment>
+        <NavBarPure />
+
+        {/* background image start*/}
+        <div
+          className="bg"
+          style={{ backgroundImage: "url(" + notFoundImage + ")" }}
+        />
+        {/* background image end*/}
         <div class="container">
-        <div class="py-1 text-center">
-             <img class="d-block mx-auto mb-4" src={logo} alt="" width="72" height="72" /> 
+          <div class="py-1 text-center mkTempName1">
+            <img
+              class="d-block mx-auto mb-4"
+              src={logo}
+              alt=""
+              width="100"
+              height="100"
+            />
             <h1>"mindSpark"</h1>
-            <p class="lead">“mindSpark” is an app that encourages people through 
-            quotes and messages. It helps people who are having tough time with 
-            emotional problem. It also lets you share your own quotes
-            to help community build curated ideas.</p>
+            <p class="lead">
+              MindSpark is a web application that let’s users share quotes that
+              inspirit one another.
+              {/* “mindSpark” is an app that encourages people through quotes and
+              messages. It helps people who are having tough time with emotional
+              problem. It also lets you share your own quotes to help community
+              build curated ideas. */}
+            </p>
+          </div>
         </div>
-        </div>
-         <div class="container">
-            <div class= "row">
-         <div class="col">
-           </div>
-           <div class="col form-wrapper">
-         <div className="form-group">
-             <div class="text-center">
-             <h3>Sign In</h3>
-             </div>
-        <form name="signIn" onSubmit={this.handleSubmit}>
-          
-            <h6>Username or Email</h6>
-            <input
-              onChange={this.handleUserInput.bind(this)}
-              name="username"
-              className="form-control"
-              type="text"
-              value={this.state.username}
-              placeholder="Enter Your Username or Email"
-            />
-            <br />
-            <br/>
-            <h6>Password</h6>
-            <input
-              onChange={this.handleUserInput.bind(this)}
-              name="password"
-              className="form-control"
-              type="password"
-              value={this.state.password}
-              placeholder="Enter Your Password"
-            />
-            <br />
-            <br />
-            <button type="signin" class="btn btn-primary">Sign In</button>
-            </form>
-            </div>
+        <div class="container">
+          <div class="row">
+            <div class="col" />
+            <div class="col form-wrapper">
+              <div className="form-group">
+                <div class="text-center">
+                  <h3>Sign In</h3>
+                </div>
+                <form name="signIn" onSubmit={this.handleSubmit}>
+                  <h6>Username or Email</h6>
+                  <input
+                    onChange={this.handleUserInput.bind(this)}
+                    name="username"
+                    className="form-control"
+                    type="text"
+                    value={this.state.username}
+                    placeholder="Enter Your Username or Email"
+                  />
+                  <br />
+                  <br />
+                  <h6>Password</h6>
+                  <input
+                    onChange={this.handleUserInput.bind(this)}
+                    name="password"
+                    className="form-control"
+                    type="password"
+                    value={this.state.password}
+                    placeholder="Enter Your Password"
+                  />
+                  <br />
+                  <br />
+                  <button type="signin" class="btn btn-primary">
+                    Sign In
+                  </button>
+                </form>
+              </div>
               <a href="/signup">
-                <button type="button" class="btn btn-secondary btn-sm">Sign Up</button>
-                </a>
-            <button type="button" class="btn btn-link btn-sm">Forgot Your Password?</button>         
-        </div>
-        <div class="col">
+                <button type="button" class="btn btn-secondary btn-sm">
+                  Sign Up
+                </button>
+              </a>
+              <button type="button" class="btn btn-link btn-sm">
+                Forgot Your Password?
+              </button>
             </div>
+            <div class="col" />
+          </div>
         </div>
-        </div>
-        <Footer/>
+        <Footer />
       </React.Fragment>
     );
   }
