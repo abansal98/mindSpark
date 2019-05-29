@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import logo from "./icons/logo.png";
 import "./signin.css";
 import NavBarPure from "./NavbarPure";
+import notFoundImage from "./image/404.jpg";
 
 class SignIn extends Component {
   constructor(props) {
@@ -57,6 +58,13 @@ class SignIn extends Component {
     return (
       <React.Fragment>
         <NavBarPure />
+
+        {/* background image start*/}
+        <div
+          className="bg"
+          style={{ backgroundImage: "url(" + notFoundImage + ")" }}
+        />
+        {/* background image end*/}
         <div class="container">
           <div class="py-1 text-center mkTempName1">
             <img
@@ -68,10 +76,12 @@ class SignIn extends Component {
             />
             <h1>"mindSpark"</h1>
             <p class="lead">
-              “mindSpark” is an app that encourages people through quotes and
+              MindSpark is a web application that let’s users share quotes that
+              inspirit one another.
+              {/* “mindSpark” is an app that encourages people through quotes and
               messages. It helps people who are having tough time with emotional
               problem. It also lets you share your own quotes to help community
-              build curated ideas.
+              build curated ideas. */}
             </p>
           </div>
         </div>
