@@ -62,8 +62,8 @@ class SignIn extends Component {
 
         {/* background image start*/}
         <div
-          className="bg"
-          style={{ backgroundImage: "url(" + notFoundImage + ")" }}
+          className="signinBg"
+          // style={{ backgroundImage: "url(" + notFoundImage + ")" }}
         />
         {/* background image end*/}
         <div class="container">
