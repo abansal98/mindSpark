@@ -15,16 +15,15 @@ Team Members:
 # Components explanation
 
 ### About Component
-
-| Main or Sub| Component name        | Explanation           |
-|:-----:| :-------------: |-------------| -----|
+| Main or Sub | Component name        | Explanation           |
+|:-------------:| :-------------: |-------------|
 |main| About      | It's landing page. It has introduction(who we are and what kind of service we offer) |
 |sub| Aboutteam      | sub-component of About, introduce who we are |
 |sub|SampleQuote|sub-component of About, introduce what service we offer|
 
 | Component name        | Explanation           |
 | :-------------: |-------------| -----|
-| About      | It's landing page. It has introduction(who we are and what kind of service we offer) |  |
+
 | Signin      | Let user login      |    |
 | Signup | Let user signup      |    |
 |Navbar|navigation bar which always stay on top of the website||
