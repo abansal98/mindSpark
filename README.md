@@ -13,8 +13,8 @@ Team Members:
 * Arnav Bansal - https://github.com/abansal98
 
 ## Component name changing Announcement
-Home -> Quoteboard (under Quoteboard dir)
-Content -> Quotelist (under Quoteboard dir)
+* Home -> Quoteboard (under Quoteboard dir)
+* Content -> Quotelist (under Quoteboard dir)
 
 # Components explanation
 
