@@ -13,7 +13,7 @@ Team Members:
 * Arnav Bansal - https://github.com/abansal98
 
 ## Components explanation
-##### 1. About component
+##### 1. **About** component 
 * It's landing page. It has introduction(who we are and what kind of service we offer)
 ##### 2. Signin component
 * Let user login
