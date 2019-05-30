@@ -41,7 +41,7 @@ Team Members:
 ### Userprofile Component
 |Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
-||Let user see or modify their profile||
+||Userprofile|Let user see or modify their profile|
 ### Footer Component
 |Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
