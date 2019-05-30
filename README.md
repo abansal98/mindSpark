@@ -12,8 +12,6 @@ Team Members:
 * Pratik Panchani - https://github.com/PratikPanchani
 * Arnav Bansal - https://github.com/abansal98
 
-### Componenets explanation
-# adsf
-## asdf
-#### asdf
-##### asdf
+## Componenets explanation
+### About componenet
+* It's landing page. It has introduction(who we are and what kind of service we offer)
