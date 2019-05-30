@@ -1,10 +1,15 @@
+/* .quoteBoxBg {
+  background-image: url("./image/longlandscape.jpg");
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+} */
 .quoteBox {
   margin: 1%;
   padding: 1%;
   background-color: #f8f3e6;
+
   color: #5b5b57;
 }
-
 .quoteBoxQuoteH1 {
   text-align: left;
 }
@@ -17,3 +22,7 @@
 .quoteBoxAuthorStar {
   text-align: right;
 }
+/* 
+filter: blur(8px);
+-webkit-filter: blur(8px);
+z-index: 2; */
