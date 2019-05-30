@@ -59,8 +59,8 @@ class SignIn extends Component {
       <div className="signinBody">
         <NavBarSignin />
 
-        <div class="container">
-          <div class="py-1 text-center ">
+        <div className="container">
+          <div className="py-1 text-center ">
             <img
               className="d-block mx-auto mb-4 mkTempName1"
               src={logo}
@@ -69,7 +69,7 @@ class SignIn extends Component {
               height="100"
             />
             <h1>"mindSpark"</h1>
-            <p class="lead">
+            <p className="lead">
               MindSpark is a web application that let’s users share quotes that
               inspirit one another.
               {/* “mindSpark” is an app that encourages people through quotes and
@@ -79,7 +79,7 @@ class SignIn extends Component {
             </p>
           </div>
         </div>
-        <div class="container">
+        <div className="container">
           <div class="row">
             <div class="col" />
             <div class="col form-wrapper">
