@@ -13,26 +13,17 @@ Team Members:
 * Arnav Bansal - https://github.com/abansal98
 
 ## Components explanation
-##### 1. **About** component 
-* It's landing page. It has introduction(who we are and what kind of service we offer)
-##### 2. Signin component
-* Let user login
-##### 3. Signup component
-* Let user Signup
-##### 4. Navbar component
-* navigation bar which always stay on top of the website
 
+| Component        | Explanation           | note  |
+| ------------- |:-------------:| -----:|
+| About      | It's landing page. It has introduction(who we are and what kind of service we offer) |  |
+| Signin      | Let user login      |    |
+| Signup | Let user signup      |    |
+|Navbar|navigation bar which always stay on top of the website||
+|Quotelist|It's the main feature of the website. It has 'QuoteBox component' which shows the quote(main service of us) and 'Category component' as left-side navigation bar.|(a.k.a. Home component)|
+|QuoteBox|It shows quotes, quoteAuthor, quoteRate in one box. |sub-component of Quotelist component|
+|Category|It shows categories of quotes and let user selects. Once user select a category, the Quotelist component will load corresponding quotes in QuoteBox component|sub-component of Quotelist component|
+|Userprofile|Let user see or midify their profile||
+|Footer|||
+|Error|||
 
-##### 5. Quotelist component (a.k.a. Home component)
-* It's the main feature of the website. It has 'QuoteBox component' which shows the quote(main service of us) and 'Category component' as left-side navigation bar.
-##### 6. QuoteBox component (sub-component of Quotelist component)
-* It shows quotes, quoteAuthor, quoteRate in one box. 
-##### 7. Category component (sub-component of Quotelist component)
-* It shows categories of quotes and let user selects. Once user select a category, the Quotelist component will load corresponding quotes in QuoteBox component
-
-
-##### 8. Userprofile component
-* Let user see or midify their profile
-##### 9. Footer component
-##### 10. Error component
-* Just 404 page
