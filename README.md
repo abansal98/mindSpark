@@ -12,6 +12,10 @@ Team Members:
 * Pratik Panchani - https://github.com/PratikPanchani
 * Arnav Bansal - https://github.com/abansal98
 
+## Component name changing Announcement
+Home -> Quoteboard (under Quoteboard dir)
+Content -> Quotelist (under Quoteboard dir)
+
 # Components explanation
 
 ### About Component
