@@ -1,18 +1,16 @@
 import React, { Component } from "react";
-// import "./App.css";
-import "./Home.css";
-import Content from "./Content";
-import NavBar from "./Navbar";
-import Footer from "./Footer";
-import SignUp from "./signup";
+import "./Quoteboard.css";
+import Quotelist from "./Quotelist";
+import NavBar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 import Category from "./Category";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
-class Home extends Component {
+class Quoteboard extends Component {
   render() {
     return (
-      <div className="homeBody">
+      <div className="quoteboardBody">
         <NavBar />
         <Container>
           <Row>
@@ -20,7 +18,7 @@ class Home extends Component {
               <Category />
             </Col>
             <Col md={10}>
-              <Content />
+              <Quotelist />
             </Col>
           </Row>
         </Container>
@@ -29,4 +27,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Quoteboard;

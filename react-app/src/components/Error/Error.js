@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import NavBar from "./Navbar";
-import notFoundImage from "./image/concretetree.jpg";
+import NavBar from "../Navbar/Navbar";
 import "./Error.css";
 
 class Error extends Component {
