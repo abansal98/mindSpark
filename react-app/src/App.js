@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
-import Content from "./Content";
-import NavBar from "./Navbar";
-import Footer from "./Footer";
-import SignUp from "./signup";
-import SignIn from "./signin";
-import Home from "./Home";
-import Error from "./Error";
+// import Content from "./Components/Content";
+// import NavBar from "./Components/Navbar";
+// import Footer from "./Components/Footer";
+import SignUp from "./components/Signup/signup";
+import SignIn from "./components/Signin/signin";
+import Quoteboard from "./components/Quoteboard/Quoteboard";
+import Error from "./components/Error/Error";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
         <Switch>
           <Route path="/" component={SignIn} exact />
           <Route path="/signup" component={SignUp} />
-          <Route path="/home" component={Home} />
+          <Route path="/home" component={Quoteboard} />
           <Route component={Error} />
         </Switch>
       </BrowserRouter>

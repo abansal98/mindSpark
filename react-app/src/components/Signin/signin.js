@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Footer from "./Footer";
-import logo from "./icons/logo.png";
+import Footer from "../Footer/Footer";
+import logo from "../../icons/logo.png";
 import "./signin.css";
-import NavBarSignin from "./NavbarSignin";
+import NavBarSignin from "../Navbar/NavbarSignin";
 import { Button } from "react-bootstrap";
 
 class SignIn extends Component {

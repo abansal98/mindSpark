@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import logoIcon from "./icons/logo.png";
-import userProfileIcon from "./icons/baseline-account_circle-24px.svg";
-import addQuoteIcon from "./icons/baseline-create-24px.svg";
-import logout from "./icons/baseline-exit_to_app-24px.svg";
+import logoIcon from "../../icons/logo.png";
+import userProfileIcon from "../../icons/baseline-account_circle-24px.svg";
+import addQuoteIcon from "../../icons/baseline-create-24px.svg";
+import logout from "../../icons/baseline-exit_to_app-24px.svg";
 import {
   Navbar,
   Nav,

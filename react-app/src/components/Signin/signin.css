@@ -11,7 +11,7 @@
 }
 
 .signinBody {
-  background-image: url("./image/concretetree.jpg");
+  background-image: url("../../image/concretetree.jpg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
