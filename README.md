@@ -11,3 +11,9 @@ Team Members:
 * Gia Tuong Tran - https://github.com/giatuongtran9
 * Pratik Panchani - https://github.com/PratikPanchani
 * Arnav Bansal - https://github.com/abansal98
+
+### Componenets explanation
+# adsf
+## asdf
+#### asdf
+##### asdf
