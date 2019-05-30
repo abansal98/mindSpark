@@ -3,7 +3,6 @@ import Footer from "./Footer";
 import logo from "./icons/logo.png";
 import "./signin.css";
 import NavBarSignin from "./NavbarSignin";
-import notFoundImage from "./image/404.jpg";
 import { Button } from "react-bootstrap";
 
 class SignIn extends Component {
@@ -57,19 +56,13 @@ class SignIn extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="signinBody">
         <NavBarSignin />
 
-        {/* background image start*/}
-        <div
-          className="signinBg"
-          // style={{ backgroundImage: "url(" + notFoundImage + ")" }}
-        />
-        {/* background image end*/}
         <div class="container">
-          <div class="py-1 text-center mkTempName1">
+          <div class="py-1 text-center ">
             <img
-              class="d-block mx-auto mb-4"
+              className="d-block mx-auto mb-4 mkTempName1"
               src={logo}
               alt=""
               width="100"
@@ -120,6 +113,15 @@ class SignIn extends Component {
                   <Button type="signin" class="btn btn-primary" block>
                     Sign In
                   </Button>
+                  <Button
+                    variant="primary"
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    href="/signup"
+                    block
+                  >
+                    Sign Up
+                  </Button>
                 </form>
               </div>
 
@@ -131,7 +133,7 @@ class SignIn extends Component {
           </div>
         </div>
         <Footer />
-      </React.Fragment>
+      </div>
     );
   }
 }
