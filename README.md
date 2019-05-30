@@ -14,8 +14,8 @@ Team Members:
 
 ## Components explanation
 
-| Component        | Explanation           | note  |
-| ------------- |-------------| -----|
+| Component name        | Explanation           | note  |
+| :-------------: |-------------| -----|
 | About      | It's landing page. It has introduction(who we are and what kind of service we offer) |  |
 | Signin      | Let user login      |    |
 | Signup | Let user signup      |    |
@@ -25,5 +25,5 @@ Team Members:
 |Category|It shows categories of quotes and let user selects. Once user select a category, the Quotelist component will load corresponding quotes in QuoteBox component|sub-component of Quotelist component|
 |Userprofile|Let user see or midify their profile||
 |Footer|||
-|Error|||
+|Error|Just 404 page||
 
