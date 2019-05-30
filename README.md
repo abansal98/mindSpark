@@ -15,39 +15,39 @@ Team Members:
 # Components explanation
 
 ### About Component
-| | Component name        | Explanation           |
+|Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
 || About      | It's landing page. It has introduction(who we are and what kind of service we offer) |
 |sub-component| Aboutteam      | sub-component of About, introduce who we are |
-||SampleQuote|sub-component of About, introduce what service we offer|
+|sub-component|SampleQuote|sub-component of About, introduce what service we offer|
 ### Signin Component
-| | Component name        | Explanation           |
+|Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
 ||Signin|Let user login |
 ### Signup Component
-| | Component name        | Explanation           |
+|Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
 ||Signup|Let user signup|
 ### Navbar Component
-| | Component name        | Explanation           |
+|Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
-|main|Navbar|navigation bar always stay on top|
+||Navbar|navigation bar always stay on top|
 ### Quotelist Component
-| | Component name        | Explanation           |
+|Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
-|main|Quotelist|It's the main feature of the website. It has 'QuoteBox component' which shows the quote(main service of us) and 'Category component' as left-side navigation bar|
+||Quotelist|It's the main feature of the website. It has 'QuoteBox component' which shows the quote(main service of us) and 'Category component' as left-side navigation bar|
 |sub-component|QuoteBox|It shows quotes, quoteAuthor, quoteRate in one box.|
 |sub-component|Category|It shows categories of quotes and let user selects. Once user select a category, the Quotelist component will load corresponding quotes in QuoteBox component|
 ### Userprofile Component
-| | Component name        | Explanation           |
+|Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
 ||Let user see or modify their profile||
 ### Footer Component
-| | Component name        | Explanation           |
+|Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
-|main|Footer||
+||Footer||
 ### Error Component
-| Main or Sub | Component name        | Explanation           |
+|Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
 ||Just 404 page||
 
