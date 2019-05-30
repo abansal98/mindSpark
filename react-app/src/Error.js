@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import NavBar from "./Navbar";
-import notFoundImage from "./image/404.jpg";
+import notFoundImage from "./image/concretetree.jpg";
 import "./Error.css";
 
 class Error extends Component {
   render() {
+    let className = "menu";
+    if (this.props.isActive) {
+      className += " menu-active";
+    }
     return (
-      <div className="page-container">
+      <div className={className}>
         <NavBar />
-        <div
-          className="bg"
-          style={{ backgroundImage: "url(" + notFoundImage + ")" }}
-        />
-        <h1 className="title">404</h1>
+        <h1>404</h1>
       </div>
     );
   }

@@ -6,13 +6,22 @@
   padding: 20px 40px;
   border-radius: 10px;
   flex-direction: column;
-
+  color: #555555;
   margin-top: 3%;
 }
 
-.back {
-  background: #258ea6;
-  padding: 100px;
+.signinBody {
+  background-image: url("./image/concretetree.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  margin-top: 2%;
+  color: #dddddd;
+  /* min-height: calc(100vh - 250px); */
+  min-height: 100vh;
 }
 
 .mkTempName1 {
