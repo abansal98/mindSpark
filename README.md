@@ -12,7 +12,7 @@ Team Members:
 * Pratik Panchani - https://github.com/PratikPanchani
 * Arnav Bansal - https://github.com/abansal98
 
-## Component name changing Announcement
+## Component name changing Announcement (2:25PM, THU, MAY 30 2019)
 * Home -> Quoteboard (under Quoteboard dir)
 * Content -> Quotelist (under Quoteboard dir)
 
