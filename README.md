@@ -32,11 +32,12 @@ Team Members:
 |Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
 ||Navbar|navigation bar always stay on top|
-### Quotelist Component
+### QuoteBoard Component
 |Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
-||Quotelist|It's the main feature of the website. It has 'QuoteBox component' which shows the quote(main service of us) and 'Category component' as left-side navigation bar|
-|sub-component|QuoteBox|It shows quotes, quoteAuthor, quoteRate in one box.|
+||QuoteBoard| Combination of sub-components. Category on left as left-side navigation, QuoteList on right-side.|
+|sub-component|QuoteList|It's the main feature of the website. It has list of 'QuoteBox component' which shows the quote(main service of us).|
+|sub-component|QuoteBox|It shows quotes, quoteAuthor, quoteRate in one box. It's on QuoteList component|
 |sub-component|Category|It shows categories of quotes and let user selects. Once user select a category, the Quotelist component will load corresponding quotes in QuoteBox component|
 ### Userprofile Component
 |Note| Component name        | Explanation           |
