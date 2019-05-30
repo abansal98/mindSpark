@@ -23,7 +23,7 @@ Team Members:
 |:-------------:| :-------------: |-------------|
 || About      | It's landing page. It has introduction(who we are and what kind of service we offer) |
 |sub-component| Aboutteam      | sub-component of About, introduce who we are |
-|sub-component|SampleQuote|sub-component of About, introduce what service we offer|
+|sub-component|Samplequote|sub-component of About, introduce what service we offer|
 
 ### Error Component
 |Note| Component name        | Explanation           |
