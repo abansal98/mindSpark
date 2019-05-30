@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import "./App.css";
+// import "./App.css";
+import "./Home.css";
 import Content from "./Content";
 import NavBar from "./Navbar";
 import Footer from "./Footer";
@@ -11,7 +12,7 @@ import { Container, Row, Col } from "react-bootstrap";
 class Home extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div className="homeBody">
         <NavBar />
         <Container>
           <Row>
@@ -23,7 +24,7 @@ class Home extends Component {
             </Col>
           </Row>
         </Container>
-      </React.Fragment>
+      </div>
     );
   }
 }

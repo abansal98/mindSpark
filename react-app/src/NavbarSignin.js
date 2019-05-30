@@ -38,19 +38,16 @@ class NavBarSignin extends Component {
             <span className="teamName">mindSpark</span>
           </Navbar.Brand>
 
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>
-              <a href="/signup">
-                <Button
-                  variant="primary"
-                  type="button"
-                  class="btn btn-secondary btn-sm"
-                >
-                  Sign Up
-                </Button>
-              </a>
-            </Navbar.Text>
-          </Navbar.Collapse>
+          {/* <Navbar.Collapse className="justify-content-end">
+            <Button
+              variant="primary"
+              type="button"
+              class="btn btn-secondary btn-sm"
+              href="/signup"
+            >
+              Sign Up
+            </Button>
+          </Navbar.Collapse> */}
         </Navbar>
       </nav>
     );
