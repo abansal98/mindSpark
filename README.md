@@ -20,14 +20,14 @@ Team Members:
 || About      | It's landing page. It has introduction(who we are and what kind of service we offer) |
 |sub-component| Aboutteam      | sub-component of About, introduce who we are |
 |sub-component|SampleQuote|sub-component of About, introduce what service we offer|
-### Signin Component
+### Error Component
 |Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
-||Signin|Let user login |
-### Signup Component
+||Just 404 page||
+### Footer Component
 |Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
-||Signup|Let user signup|
+||Footer||
 ### Navbar Component
 |Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
@@ -39,18 +39,19 @@ Team Members:
 |sub-component|QuoteList|It's the main feature of the website. It has list of 'QuoteBox component' which shows the quote(main service of us).|
 |sub-component|QuoteBox|It shows quotes, quoteAuthor, quoteRate in one box. It's on QuoteList component|
 |sub-component|Category|It shows categories of quotes and let user selects. Once user select a category, the Quotelist component will load corresponding quotes in QuoteBox component|
+### Signin Component
+|Note| Component name        | Explanation           |
+|:-------------:| :-------------: |-------------|
+||Signin|Let user login |
+### Signup Component
+|Note| Component name        | Explanation           |
+|:-------------:| :-------------: |-------------|
+||Signup|Let user signup|
 ### Userprofile Component
 |Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
 ||Userprofile|Let user see or modify their profile|
-### Footer Component
-|Note| Component name        | Explanation           |
-|:-------------:| :-------------: |-------------|
-||Footer||
-### Error Component
-|Note| Component name        | Explanation           |
-|:-------------:| :-------------: |-------------|
-||Just 404 page||
+
 
 
 
