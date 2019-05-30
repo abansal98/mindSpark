@@ -15,7 +15,7 @@ Team Members:
 ## Components explanation
 
 | Component        | Explanation           | note  |
-| ------------- |:-------------:| -----:|
+| ------------- |-------------| -----|
 | About      | It's landing page. It has introduction(who we are and what kind of service we offer) |  |
 | Signin      | Let user login      |    |
 | Signup | Let user signup      |    |
