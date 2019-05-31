@@ -16,6 +16,9 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import SignIn from "../Signin/signin";
+import SignUp from "../Signup/signup";
+import About from "../About/About";
 
 class NavBarSignin extends Component {
   render() {
@@ -28,7 +31,7 @@ class NavBarSignin extends Component {
           variant="dark"
           fixed="top"
         >
-          <Navbar.Brand href="/home">
+          <Navbar.Brand href="/quoteboard">
             <img
               src={logoIcon}
               width="30"
@@ -37,6 +40,14 @@ class NavBarSignin extends Component {
             />
             <span className="teamName">mindSpark</span>
           </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="/signin">Signin</Nav.Link>
+              <Nav.Link href="/signup">Signup</Nav.Link>
+              <Nav.Link href="/">About</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
 
           {/* <Navbar.Collapse className="justify-content-end">
             <Button
