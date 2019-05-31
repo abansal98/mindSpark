@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-// import Content from "./Components/Content";
-// import NavBar from "./Components/Navbar";
-// import Footer from "./Components/Footer";
 import SignUp from "./components/Signup/signup";
 import SignIn from "./components/Signin/signin";
 import Quoteboard from "./components/Quoteboard/Quoteboard";
@@ -15,10 +12,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" component={SignIn} exact />
+          <Route path="/" component={About} exact />
           <Route path="/signup" component={SignUp} />
-          <Route path="/Quoteboard" component={Quoteboard} />
-          <Route path="/about" component={About} />
+          <Route path="/quoteboard" component={Quoteboard} />
+          <Route path="/signin" component={SignIn} />
           <Route component={Error} />
         </Switch>
       </BrowserRouter>
