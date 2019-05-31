@@ -25,7 +25,7 @@ class NavBar extends Component {
           variant="dark"
           fixed="top"
         >
-          <Navbar.Brand href="/home">
+          <Navbar.Brand href="/quoteboard">
             <img
               src={logoIcon}
               width="30"
@@ -38,9 +38,9 @@ class NavBar extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              {/* <Nav.Link href="#sample1">Sample1</Nav.Link>
-              <Nav.Link href="#Sample2">Sample2</Nav.Link>
-              <Nav.Link href="#Sample3">Sample3</Nav.Link> */}
+              <Nav.Link href="/signin">Signin</Nav.Link>
+              <Nav.Link href="/signup">Signup</Nav.Link>
+              <Nav.Link href="/">About</Nav.Link>
             </Nav>
             <Nav className="searchBar">
               <Form inline>
