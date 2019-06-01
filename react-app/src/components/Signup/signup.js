@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
 //import Footer from "./Footer";
 import "./signup.css";
-//import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const passwordRegex = RegExp(/((?=.*\d)(?=.*[A-Z])(?=.*\W).{6,15})$/);
 
@@ -105,6 +105,7 @@ class SignUp extends Component {
       <React.Fragment>
         <div className="wrapper">
           <div className="form-wrapper">
+            <Link to="/signin">Sign In</Link>
             <h1>Create Account</h1>
             <form onSubmit={this.handleSubmit.bind(this)}>
               <div className="username">
@@ -120,7 +121,10 @@ class SignUp extends Component {
                 />
                 <div className="invalid-name">{this.state.error.username}</div>
               </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 
               <div className="email">
                 <label for="email">Email</label>
