@@ -121,10 +121,6 @@ class SignUp extends Component {
                 />
                 <div className="invalid-name">{this.state.error.username}</div>
               </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
 
               <div className="email">
                 <label for="email">Email</label>
