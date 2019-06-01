@@ -43,16 +43,8 @@ input::placeholder {
   font-weight: lighter;
 }
 
-.firstName {
-  margin-right: 1%;
-}
 
-.lastName {
-  margin-left: 1%;
-}
-
-.firstName,
-.lastName,
+.username,
 .email,
 .password,
 .confirmPassword {
@@ -61,9 +53,8 @@ input::placeholder {
   margin-bottom: 15px;
 }
 
-.firstName,
-.lastName {
-  width: 49%;
+.username{
+  width: 100%;
 }
 
 .email {

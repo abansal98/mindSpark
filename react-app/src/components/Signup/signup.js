@@ -13,8 +13,6 @@ class SignUp extends Component {
     this.state = {
       email: "",
       username: "",
-      firstName: "",
-      lastName: "",
       password: "",
       confirmPassword: "",
       emailValid: false,
@@ -26,8 +24,6 @@ class SignUp extends Component {
         email: "",
         password: "",
         username: "",
-        firstName: "",
-        lastName: "",
         e_confirm: ""
       }
     };
@@ -68,26 +64,8 @@ class SignUp extends Component {
         );
         break;
       case "username":
-        usrValid = value.length > 6 && value.length < 20;
+        usrValid = value.match("^[A-Za-z0-9]*$") && value.length > 6 && value.length < 20;
         errors.username = usrValid ? "" : " is too short";
-        break;
-      case "firstName":
-        usrValid =
-          value.match("^[A-Za-z]*$") && value.length >= 2 && value.length < 20;
-        errors.firstName = usrValid ? (
-          ""
-        ) : (
-          <div className="error"> is invalid</div>
-        );
-        break;
-      case "lastName":
-        usrValid =
-          value.match("^[A-Za-z]*$") && value.length >= 2 && value.length < 20;
-        errors.lastName = usrValid ? (
-          ""
-        ) : (
-          <div className="error"> is invalid</div>
-        );
         break;
       case "confirmPassword":
         confirm = this.state.confirmPassword === this.state.password;
@@ -129,33 +107,20 @@ class SignUp extends Component {
           <div className="form-wrapper">
             <h1>Create Account</h1>
             <form onSubmit={this.handleSubmit.bind(this)}>
-              <div className="firstName">
-                <label for="firstName">First Name</label>
+              <div className="username">
+                <label for="username">UserName</label>
                 <input
                   className={`form-control ${
-                    this.state.error.firstName ? "invalid" : ""
+                    this.state.error.username ? "invalid" : ""
                   }`}
-                  placeholder="First Name"
+                  placeholder="UserName"
                   type="text"
-                  name="firstName"
+                  name="username"
                   onChange={this.handleUserInput.bind(this)}
                 />
-                <div className="invalid-name">{this.state.error.firstName}</div>
+                <div className="invalid-name">{this.state.error.username}</div>
               </div>
 
-              <div className="lastName">
-                <label for="lastName">Last Name</label>
-                <input
-                  className={`form-control ${
-                    this.state.error.lastName ? "invalid" : ""
-                  }`}
-                  placeholder="Last Name"
-                  type="text"
-                  name="lastName"
-                  onChange={this.handleUserInput.bind(this)}
-                />
-                <div className="invalid-name">{this.state.error.lastName}</div>
-              </div>
 
               <div className="email">
                 <label for="email">Email</label>
