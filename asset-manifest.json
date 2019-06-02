@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/mindSpark_App/static/css/main.16f508fc.chunk.css",
+    "main.js": "/mindSpark_App/static/js/main.1d544553.chunk.js",
+    "main.js.map": "/mindSpark_App/static/js/main.1d544553.chunk.js.map",
+    "runtime~main.js": "/mindSpark_App/static/js/runtime~main.52c8c948.js",
+    "runtime~main.js.map": "/mindSpark_App/static/js/runtime~main.52c8c948.js.map",
+    "static/js/2.9e97bed7.chunk.js": "/mindSpark_App/static/js/2.9e97bed7.chunk.js",
+    "static/js/2.9e97bed7.chunk.js.map": "/mindSpark_App/static/js/2.9e97bed7.chunk.js.map",
+    "index.html": "/mindSpark_App/index.html",
+    "precache-manifest.5f13380f5333a8eb4b33941ba4f44ed3.js": "/mindSpark_App/precache-manifest.5f13380f5333a8eb4b33941ba4f44ed3.js",
+    "service-worker.js": "/mindSpark_App/service-worker.js",
+    "static/css/main.16f508fc.chunk.css.map": "/mindSpark_App/static/css/main.16f508fc.chunk.css.map",
+    "static/media/Error.css": "/mindSpark_App/static/media/404.81c0462f.jpg",
+    "static/media/baseline-account_circle-24px.svg": "/mindSpark_App/static/media/baseline-account_circle-24px.f322cb5a.svg",
+    "static/media/baseline-create-24px.svg": "/mindSpark_App/static/media/baseline-create-24px.45b30f6a.svg",
+    "static/media/baseline-exit_to_app-24px.svg": "/mindSpark_App/static/media/baseline-exit_to_app-24px.63002100.svg",
+    "static/media/SignUpSignIn.css": "/mindSpark_App/static/media/concretetree.46d99f25.jpg",
+    "static/media/logo.png": "/mindSpark_App/static/media/logo.2ed00915.png"
+  }
+}
