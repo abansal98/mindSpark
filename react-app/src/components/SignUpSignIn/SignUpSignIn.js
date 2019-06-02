@@ -52,17 +52,17 @@ class SignUpSignIn extends React.Component
     render()
     {
         const {isLoggin} = this.state;
-        const current = isLoggin ? 'Register' : 'Log In';
+        const current = isLoggin ? 'Log In' : 'Register';
         return(
             <div class="wrapper">
                 <NavBarSignIn/>
                 <div class="signupsignin">
                     <div className="container" ref={ref => (this.container = ref)}>
-                        {isLoggin && (
+                        {!isLoggin && (
                             <SignIn containerRef={ref => (this.current = ref)}/>
                         )}
 
-                        {!isLoggin && (
+                        {isLoggin && (
                             <SignUp containerRef={ref => (this.current = ref)}/>
                         )}
                     </div>
