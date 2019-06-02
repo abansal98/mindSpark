@@ -1,23 +1,26 @@
 import React, { Component } from "react";
 import Footer from "../Footer/Footer";
 import logo from "../../icons/logo.png";
-import "./signin.css";
-import NavBarSignin from "../Navbar/NavbarSignin";
+//import "./signin.css";
 import { Button } from "react-bootstrap";
+import "../Signup/signup.css";
 
 class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      username: "",
       password: "",
       userValid: false,
       formValid: false,
-      error: { name: "", password: "" }
+      error: { username: "", password: "" }
     };
   }
 
-  handleSubmit(e) {}
+  handleSubmit(e) {
+    e.prevenDefault();
+    console.log(this.state.username);
+  }
 
   handleUserInput(e) {
     const name = e.target.name;
@@ -32,9 +35,9 @@ class SignIn extends Component {
     let usrValid = this.state.userValid;
 
     switch (fieldName) {
-      case "user":
+      case "username":
         usrValid = value.match();
-        errors.user = usrValid ? "" : " is invalid";
+        errors.username = usrValid ? "" : " is invalid";
         break;
       default:
         break;
@@ -56,30 +59,31 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div className="signinBody">
-        <NavBarSignin />
+      
+        <div className="wrapper" ref={this.props.containerRef}>
+       
 
-        <div className="container">
-          <div class="row">
-            <div class="col" />
-            <div class="col form-wrapper">
+        <div className="form-wrapper">
+          <div className="header"><h1>Sign In</h1></div>
+          
+           <form onSubmit={this.handleSubmit.bind(this)}>
               <div className="form-group">
-                <div class="text-center">
-                  <h3>Sign In</h3>
-                </div>
-                <form name="signIn" onSubmit={this.handleSubmit}>
-                  <h6>Username or Email</h6>
+              
+                <div className="username">
+                  <label htmlFor="username">UserName</label>
                   <input
                     onChange={this.handleUserInput.bind(this)}
                     name="username"
                     className="form-control"
                     type="text"
                     value={this.state.username}
-                    placeholder="Enter Your Username or Email"
+                    placeholder="Enter Your Username"
                   />
-                  <br />
-                  <br />
-                  <h6>Password</h6>
+                  </div>
+                  </div>
+                  <div className="form-group">
+                    <div className="password">
+                    <label htmlFor="password">Password</label>
                   <input
                     onChange={this.handleUserInput.bind(this)}
                     name="password"
@@ -88,32 +92,30 @@ class SignIn extends Component {
                     value={this.state.password}
                     placeholder="Enter Your Password"
                   />
-                  <br />
-                  <br />
-                  <Button type="signin" class="btn btn-primary" block>
-                    Sign In
-                  </Button>
-                  <Button
-                    variant="primary"
-                    type="button"
-                    class="btn btn-secondary btn-sm"
-                    href="/signup"
-                    block
+                  </div>
+                  </div>
+                  <div class="createAccount">
+                  <button
+                    type="submit"
+                    className="btn btn-secondary btn-sm"
                   >
                     Sign Up
-                  </Button>
-                </form>
-              </div>
+                  </button>
+                  </div>
+              
 
               <button type="button" class="btn btn-link btn-sm">
                 Forgot Your Password?
               </button>
-            </div>
-            <div class="col" />
+            
+              </form>
           </div>
+          
         </div>
-        <Footer />
-      </div>
+        
+        
+    
+    
     );
   }
 }
