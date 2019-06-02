@@ -11,7 +11,7 @@ const quotes = [
 const authors = ["Thomas A. Edison", "Peter Ducker", "Steve Jobs", "Elon Musk"];
 const ratings = ["★☆☆☆☆", "★★☆☆☆", "★★★☆☆", "★★★★☆", "★★★★★"];
 
-class Content extends Component {
+class Quotelist extends Component {
   // dummyDataLoop = () => {
   //   var rows = [];
   //   for (let i = 0; i < 50;  i++) {
@@ -35,4 +35,4 @@ class Content extends Component {
   }
 }
 
-export default Content;
+export default Quotelist;

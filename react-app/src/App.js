@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
-import Content from "./Content";
-import NavBar from "./Navbar";
-import Footer from "./Footer";
-import SignUp from "./signup";
-import SignIn from "./signin";
-import Home from "./Home";
-import Error from "./Error";
+import SignUp from "./components/Signup/signup";
+import SignIn from "./components/Signin/signin";
+import Quoteboard from "./components/Quoteboard/Quoteboard";
+import Error from "./components/Error/Error";
+import About from "./components/About/About";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 class App extends Component {
@@ -14,9 +12,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={SignIn} />
+          <Route path="/" component={About} exact />
           <Route path="/signup" component={SignUp} />
-          <Route path="/home" component={Home} />
+          <Route path="/quoteboard" component={Quoteboard} />
+          <Route path="/signin" component={SignIn} />
           <Route component={Error} />
         </Switch>
       </BrowserRouter>

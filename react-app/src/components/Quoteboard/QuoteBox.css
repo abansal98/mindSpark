@@ -1,0 +1,42 @@
+.quoteBoxBg {
+  /* content: ""; */
+  position: relative;
+  max-width: 100%;
+  padding: 3%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 5);
+  overflow: hidden;
+  margin: 4%;
+  background-attachment: fixed;
+  /* filter: blur(2px); */
+
+  /* filter: blur(8px);
+  -webkit-filter: blur(8px); */
+}
+
+/* filter: blur(8px);
+  -webkit-filter: blur(8px); */
+.quoteBox {
+  margin: 1%;
+  padding: 1%;
+  /* background-color: #f8f3e6; */
+  /* color: #5b5b57; */
+}
+.quoteBoxQuoteH1 {
+  text-align: left;
+}
+.quoteBoxQuoteH2 {
+  text-align: left;
+}
+.quoteBoxQuoteH3 {
+  text-align: left;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.quoteBoxAuthorStar {
+  text-align: right;
+}
+/* 
+filter: blur(8px);
+-webkit-filter: blur(8px);
+z-index: 2; */
