@@ -1,27 +1,44 @@
 .wrapper {
-  height: 100vh;
   width: 100%;
   display: flex;
-  background-color: #258ea6;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
+  
+}
+
+.header
+{
+  color: chartreuse;
 }
 
 .form-wrapper {
-  height: 380px;
-
   display: flex;
-  background-color: #ffffff;
-  box-shadow: 0px 10px 50px #555;
-  padding: 20px 40px;
-  border-radius: 10px;
   flex-direction: column;
+  
 }
 
 form {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  
+  flex-direction: column;
+}
+
+.form-group
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+}
+
+
+
+input{
+  height: 37px;
+  transition: all 250ms ease-in-out;
 }
 
 form input.invalid {
@@ -35,7 +52,7 @@ h1 {
 }
 
 label {
-  font-size: 0.8em;
+  font-size: 20px;
   margin-bottom: 0.25em;
 }
 
@@ -43,35 +60,29 @@ input::placeholder {
   font-weight: lighter;
 }
 
-
 .username,
 .email,
 .password,
-.confirmPassword {
+.confirmPassword
+{
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
 }
 
-.username{
+.username,
+.email
+{
   width: 100%;
 }
 
-.email {
+
+.password{
   width: 100%;
+ 
 }
 
-.password {
-  margin-right: 1%;
-}
-
-.confirmPassword {
-  margin-left: 1%;
-}
-
-.password,
-.confirmPassword {
-  width: 49%;
+.confirmPassword{
+  width: 100%;
 }
 
 input {
@@ -83,6 +94,12 @@ input {
 
 .createAccount {
   align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.createAccount button{
+  width: 100%;
 }
 
 /* bakground image */
