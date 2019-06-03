@@ -3,8 +3,7 @@ import React, { Component } from "react";
 import NavbarSignin from "../Navbar/NavbarSignin";
 //import Footer from "./Footer";
 import "./signup.css";
-import {Link} from 'react-router-dom';
-import NavBarSignin from "../Navbar/NavbarSignin";
+import { Link } from "react-router-dom";
 
 const passwordRegex = RegExp(/((?=.*\d)(?=.*[A-Z])(?=.*\W).{6,15})$/);
 
@@ -68,7 +67,10 @@ class SignUp extends Component {
         );
         break;
       case "username":
-        usrValid = value.match("^[A-Za-z0-9]*$") && value.length > 6 && value.length < 20;
+        usrValid =
+          value.match("^[A-Za-z0-9]*$") &&
+          value.length > 6 &&
+          value.length < 20;
         errors.username = usrValid ? "" : " is too short";
         break;
       case "confirmPassword":
@@ -106,15 +108,13 @@ class SignUp extends Component {
 
   render() {
     return (
-     
-        <div className="wrapper" ref={this.props.containerRef}>
-          <NavBarSignin/>
-          <div className="form-wrapper">
-            <div class="header">
-              <h1>Create Account</h1>
-            </div>
-            <form onSubmit={this.handleSubmit.bind(this)}>
-              <div class="form-group">
+      <div className="wrapper" ref={this.props.containerRef}>
+        <div className="form-wrapper">
+          <div class="header">
+            <h1>Create Account</h1>
+          </div>
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <div class="form-group">
               <div className="username">
                 <label htmlFor="username">UserName</label>
                 <input
@@ -128,9 +128,9 @@ class SignUp extends Component {
                 />
                 <div className="invalid-name">{this.state.error.username}</div>
               </div>
-              </div>
-              
-              <div className="form-group">
+            </div>
+
+            <div className="form-group">
               <div className="email">
                 <label htmlFor="email">Email</label>
                 <input
@@ -144,9 +144,9 @@ class SignUp extends Component {
                 />
                 <div className="invalid-email">{this.state.error.email}</div>
               </div>
-              </div>
-              
-              <div className="form-group">
+            </div>
+
+            <div className="form-group">
               <div className="password">
                 <label htmlFor="password">Password</label>
                 <input
@@ -163,9 +163,9 @@ class SignUp extends Component {
                   {this.state.error.password}
                 </div>
               </div>
-              </div>
-              
-              <div className="form-group">
+            </div>
+
+            <div className="form-group">
               <div className="confirmPassword">
                 <label htmlFor="confirmPassword">Confirm</label>
                 <input
@@ -181,17 +181,16 @@ class SignUp extends Component {
                   {this.state.error.e_confirm}
                 </div>
               </div>
-              </div>
+            </div>
 
-              <div className="createAccount">
-                <button className="btn btn-primary" type="submit">
-                  Create Account
-                </button>
-              </div>
-            </form>
-          </div>
+            <div className="createAccount">
+              <button className="btn btn-primary" type="submit">
+                Create Account
+              </button>
+            </div>
+          </form>
         </div>
-    
+      </div>
     );
   }
 }
