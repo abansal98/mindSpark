@@ -32,21 +32,26 @@ class SignUp extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    $.ajax({
-      url: '/db/signup',
-      method: 'POST',
-      data: {
-        username: this.state.username,
-        password: this.state.password,
-        email   : this.state.email,
-      }
-    })
-    .then((msg)=>{
-      alert(msg)
-    })
-    .fail((err)=>{
-      alert(err.responseText);
-    })
+    if (this.state.formValid) {
+      $.ajax({
+        url: '/db/signup',
+        method: 'POST',
+        data: {
+          username: this.state.username,
+          password: this.state.password,
+          email: this.state.email,
+        }
+      })
+        .then((msg) => {
+          alert(msg)
+        })
+        .fail((err) => {
+          alert(err.responseText);
+        })
+    }
+    else {
+      alert("Invalid data! Please enter valid information!");
+    }
   }
 
   handleUserInput(e) {
@@ -78,8 +83,8 @@ class SignUp extends Component {
         errors.password = passValid ? (
           ""
         ) : (
-          <div className="alert alert-warning">must have 6 password</div>
-        );
+            <div className="alert alert-warning">must have 6 password</div>
+          );
         break;
       case "username":
         usrValid =
@@ -93,8 +98,8 @@ class SignUp extends Component {
         errors.e_confirm = confirm ? (
           ""
         ) : (
-          <div className="error"> not match</div>
-        );
+            <div className="error"> not match</div>
+          );
         break;
       default:
         break;
@@ -135,7 +140,7 @@ class SignUp extends Component {
                 <input
                   className={`form-control ${
                     this.state.error.username ? "invalid" : ""
-                  }`}
+                    }`}
                   placeholder="UserName"
                   type="text"
                   name="username"
@@ -151,7 +156,7 @@ class SignUp extends Component {
                 <input
                   className={`form-control ${
                     this.state.error.email ? "invalid" : ""
-                  }`}
+                    }`}
                   placeholder="Email"
                   type="email"
                   name="email"
@@ -167,7 +172,7 @@ class SignUp extends Component {
                 <input
                   className={`form-control ${
                     this.state.error.password ? "invalid" : ""
-                  }`}
+                    }`}
                   placeholder="Password"
                   type="password"
                   name="password"
@@ -186,7 +191,7 @@ class SignUp extends Component {
                 <input
                   className={`form-control ${
                     this.state.error.e_confirm ? "invalid" : ""
-                  }`}
+                    }`}
                   placeholder="Confirm"
                   type="password"
                   name="confirmPassword"

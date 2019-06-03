@@ -18,6 +18,7 @@ router.route('/signin')
 
 router.route('/signup')
 .post((req, res)=>{
+    console.log("signup route was accessed!");
     user.addUser(req.body)
     .then(()=>{
         res.status(200).send("User registration complete!");
