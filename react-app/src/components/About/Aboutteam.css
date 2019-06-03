@@ -27,8 +27,13 @@
   margin-bottom: 8%;
 }
 
-.lastheading {
-  margin-top: 10%;
+.aboutteamBody .lastheading1 {
+  margin-top: 5%;
+  text-align: center;
+}
+.aboutteamBody .lastheading2 {
+  /* margin-bottom: 5%; */
+  text-align: center;
 }
 
 /* .aboutteamBody .container . */

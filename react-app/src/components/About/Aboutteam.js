@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import logo from "../../icons/logo.png";
-import { ProgressBar, Card, Button, CardDeck } from "react-bootstrap";
+
 import "./Aboutteam.css";
-import img1 from "../../image/author_card.jpg";
 
 class Aboutteam extends Component {
   render() {
     return (
       <div className="aboutteamBody">
         <div className="container">
-          <div className="py-1 text-center ">
+          <div className="text-center ">
             <img
               className="d-block mx-auto mb-4"
               src={logo}
@@ -41,40 +40,7 @@ class Aboutteam extends Component {
               People will read, rate and suggest quotes You are not only
               listener here, you can be the speaker
             </p>
-            <h1 className="lastheading text-uppercase">
-              do you need spark in your mind?
-            </h1>
-            <h1 className="text-uppercase">Join us!</h1>
-            <CardDeck>
-              <Card style={{ width: "18rem" }}>
-                <Card.Img
-                  variant="top"
-                  src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80"
-                />
-                <Card.Body>
-                  <Card.Title>Join us!</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-              </Card>
-              <Card style={{ width: "18rem" }}>
-                <Card.Img
-                  variant="top"
-                  src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?ixlib=rb-1.2.1&auto=format&fit=crop&w=3155&q=80"
-                />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-              </Card>
-            </CardDeck>
+            <h1>What kind of service do we offer</h1>
           </div>
         </div>
       </div>

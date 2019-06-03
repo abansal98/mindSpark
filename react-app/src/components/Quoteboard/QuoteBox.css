@@ -2,10 +2,10 @@
   /* content: ""; */
   position: relative;
   max-width: 100%;
-
   box-shadow: 0 4px 35px rgba(0, 0, 0, 5);
   overflow: hidden;
-  margin: 4%;
+  margin-top: 4%;
+  margin-bottom: 4%;
   background-attachment: fixed;
   border-radius: 9px;
 

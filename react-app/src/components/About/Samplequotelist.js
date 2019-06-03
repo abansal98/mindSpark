@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Samplequotebox from "./Samplequotebox";
 import "./Samplequotelist.css";
+import "./Aboutteam.css";
 
 const quotes = [
   "I have not failed, I've just found 10,000 ways that won't work",
