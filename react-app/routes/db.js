@@ -15,4 +15,4 @@ router.route('/users')
         })
     });
 
-module.exports = router
+module.exports = router;
