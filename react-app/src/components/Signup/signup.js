@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Navbar } from "react-bootstrap";
-import Navbar from "../Navbar/Navbar";
+import NavbarSignin from "../Navbar/NavbarSignin";
 //import Footer from "./Footer";
 import "./signup.css";
 import {Link} from 'react-router-dom';
@@ -30,7 +30,10 @@ class SignUp extends Component {
     };
   }
 
-  handleSubmit(e) {}
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state.username);
+  }
 
   handleUserInput(e) {
     const name = e.target.name;
@@ -103,15 +106,17 @@ class SignUp extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <NavBarSignin/>
-        <div className="wrapper">
+     
+        <div className="wrapper" ref={this.props.containerRef}>
+          <NavBarSignin/>
           <div className="form-wrapper">
-            <Link to="/signin">Sign In</Link>
-            <h1>Create Account</h1>
+            <div class="header">
+              <h1>Create Account</h1>
+            </div>
             <form onSubmit={this.handleSubmit.bind(this)}>
+              <div class="form-group">
               <div className="username">
-                <label for="username">UserName</label>
+                <label htmlFor="username">UserName</label>
                 <input
                   className={`form-control ${
                     this.state.error.username ? "invalid" : ""
@@ -123,9 +128,11 @@ class SignUp extends Component {
                 />
                 <div className="invalid-name">{this.state.error.username}</div>
               </div>
-
+              </div>
+              
+              <div className="form-group">
               <div className="email">
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                   className={`form-control ${
                     this.state.error.email ? "invalid" : ""
@@ -137,9 +144,11 @@ class SignUp extends Component {
                 />
                 <div className="invalid-email">{this.state.error.email}</div>
               </div>
-
+              </div>
+              
+              <div className="form-group">
               <div className="password">
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                   className={`form-control ${
                     this.state.error.password ? "invalid" : ""
@@ -154,9 +163,11 @@ class SignUp extends Component {
                   {this.state.error.password}
                 </div>
               </div>
-
+              </div>
+              
+              <div className="form-group">
               <div className="confirmPassword">
-                <label for="confirmPassword">Confirm</label>
+                <label htmlFor="confirmPassword">Confirm</label>
                 <input
                   className={`form-control ${
                     this.state.error.e_confirm ? "invalid" : ""
@@ -170,6 +181,7 @@ class SignUp extends Component {
                   {this.state.error.e_confirm}
                 </div>
               </div>
+              </div>
 
               <div className="createAccount">
                 <button className="btn btn-primary" type="submit">
@@ -179,7 +191,7 @@ class SignUp extends Component {
             </form>
           </div>
         </div>
-      </React.Fragment>
+    
     );
   }
 }

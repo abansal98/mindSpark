@@ -8,6 +8,7 @@ class About extends Component {
   render() {
     return (
       <div className="aboutBody">
+        <AboutBlurBg />
         <NavBarSignin />
         <div className="aboutMain">
           <Aboutteam />
@@ -15,6 +16,12 @@ class About extends Component {
         </div>
       </div>
     );
+  }
+}
+
+class AboutBlurBg extends Component {
+  render() {
+    return <div className="aboutBlurBgBody" />;
   }
 }
 

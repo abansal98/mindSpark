@@ -22,6 +22,7 @@ var user = new Schema({
 var userModel = mongoose.model('users', user);
 
 module.exports = {
+    user,
     userModel,
 
     addUser: function(data){
@@ -63,6 +64,21 @@ module.exports = {
                 }
                 else{
                     reject("User does not exist!");
+                }
+            })
+        })
+    },
+    
+    getUsers: function(){
+        return new Promise(function(resolve, reject){
+            userModel.find({})
+            .exec()
+            .then((data)=>{
+                if(data.length > 0){
+                    resolve(data);
+                }
+                else{
+                    reject("No users available!");
                 }
             })
         })
