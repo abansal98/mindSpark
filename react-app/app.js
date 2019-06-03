@@ -3,14 +3,12 @@ const mongoose = require('mongoose');
 var app = express();
 port = normalizePort(process.env.PORT || '10002'); // setting default port
 const path = require('path');
+bodyParser = require('body-parser');
 
-//Static file declaration
+app.set('port', port);
 app.use(express.static(path.join(__dirname, '/build')));
-
-//production mode
-app.use(express.static(path.join(__dirname, '/build')));
-
-app.set('port', port)
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 mongoose.connect('mongodb://localhost:27017/mindSpark');
 var db = mongoose.connection;
