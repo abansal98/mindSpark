@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, '/build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-mongoose.connect('mongodb://localhost:27017/mindSpark');
+mongoose.connect('mongodb://localhost:10016/mindSpark');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
