@@ -4,7 +4,6 @@ import logo from "../../icons/logo.png";
 //import "./signin.css";
 import { Button } from "react-bootstrap";
 import "../Signup/signup.css";
-import common from "../../common/common.js";
 import $ from 'jquery'
 
 class SignIn extends Component {
