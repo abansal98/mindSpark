@@ -4,6 +4,8 @@ import logo from "../../icons/logo.png";
 //import "./signin.css";
 import { Button } from "react-bootstrap";
 import "../Signup/signup.css";
+import common from "../../common/common.js";
+import $ from 'jquery'
 
 class SignIn extends Component {
   constructor(props) {
@@ -18,8 +20,21 @@ class SignIn extends Component {
   }
 
   handleSubmit(e) {
-    e.prevenDefault();
-    console.log(this.state.username);
+    e.preventDefault();
+    $.ajax({
+      url: '/db/signin',
+      method: 'POST',
+      data: {
+        username: this.state.username,
+        password: this.state.password
+      }
+    })
+    .then(()=>{
+      window.location.href = '/';
+    })
+    .fail((err)=>{
+      alert(err.responseText);
+    })
   }
 
   handleUserInput(e) {
@@ -28,6 +43,10 @@ class SignIn extends Component {
     this.setState({ [name]: value }, () => {
       this.validateField(name, value);
     });
+  }
+
+  handleSignIn(e) {
+
   }
 
   validateField(fieldName, value) {
@@ -59,63 +78,62 @@ class SignIn extends Component {
 
   render() {
     return (
-      
-        <div className="wrapper" ref={this.props.containerRef}>
-       
+
+      <div className="wrapper" ref={this.props.containerRef}>
 
         <div className="form-wrapper">
           <div className="header"><h1>Sign In</h1></div>
-          
-           <form onSubmit={this.handleSubmit.bind(this)}>
-              <div className="form-group">
-              
-                <div className="username">
-                  <label htmlFor="username">UserName</label>
-                  <input
-                    onChange={this.handleUserInput.bind(this)}
-                    name="username"
-                    className="form-control"
-                    type="text"
-                    value={this.state.username}
-                    placeholder="Enter Your Username"
-                  />
-                  </div>
-                  </div>
-                  <div className="form-group">
-                    <div className="password">
-                    <label htmlFor="password">Password</label>
-                  <input
-                    onChange={this.handleUserInput.bind(this)}
-                    name="password"
-                    className="form-control"
-                    type="password"
-                    value={this.state.password}
-                    placeholder="Enter Your Password"
-                  />
-                  </div>
-                  </div>
-                  <div class="createAccount">
-                  <button
-                    type="submit"
-                    className="btn btn-secondary btn-sm"
-                  >
-                    Sign Up
-                  </button>
-                  </div>
-              
 
-              <button type="button" class="btn btn-link btn-sm">
-                Forgot Your Password?
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <div className="form-group">
+
+              <div className="username">
+                <label htmlFor="username">UserName</label>
+                <input
+                  onChange={this.handleUserInput.bind(this)}
+                  name="username"
+                  className="form-control"
+                  type="text"
+                  value={this.state.username}
+                  placeholder="Enter Your Username"
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="password">
+                <label htmlFor="password">Password</label>
+                <input
+                  onChange={this.handleUserInput.bind(this)}
+                  name="password"
+                  className="form-control"
+                  type="password"
+                  value={this.state.password}
+                  placeholder="Enter Your Password"
+                />
+              </div>
+            </div>
+            <div class="createAccount">
+              <button
+                type="submit"
+                className="btn btn-secondary btn-sm"
+              >
+                Sign In
+                  </button>
+            </div>
+
+            <button type="button" class="btn btn-link btn-sm">
+              Forgot Your Password?
               </button>
-            
-              </form>
-          </div>
-          
+
+          </form>
+          <br />
         </div>
-        
-        
-    
-    
+
+      </div>
+
+
+
+
     );
   }
 }

@@ -4,6 +4,7 @@ import NavbarSignin from "../Navbar/NavbarSignin";
 //import Footer from "./Footer";
 import "./signup.css";
 import { Link } from "react-router-dom";
+import $ from 'jquery'
 
 const passwordRegex = RegExp(/((?=.*\d)(?=.*[A-Z])(?=.*\W).{6,15})$/);
 
@@ -31,7 +32,21 @@ class SignUp extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.username);
+    $.ajax({
+      url: '/db/signup',
+      method: 'POST',
+      data: {
+        username: this.state.username,
+        password: this.state.password,
+        email   : this.state.email,
+      }
+    })
+    .then((msg)=>{
+      alert(msg)
+    })
+    .fail((err)=>{
+      alert(err.responseText);
+    })
   }
 
   handleUserInput(e) {
