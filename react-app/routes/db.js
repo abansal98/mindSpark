@@ -9,7 +9,6 @@ router.route('/signin')
 .post((req, res)=>{
     user.userLogin(req.body)
     .then(()=>{
-        console.log("redirecting");
         res.status(200).redirect('/');
     })
     .catch((err)=>{
@@ -19,7 +18,6 @@ router.route('/signin')
 
 router.route('/signup')
 .post((req, res)=>{
-    console.log(req.body);
     user.addUser(req.body)
     .then(()=>{
         res.status(200).send("User registration complete!");

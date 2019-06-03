@@ -53,8 +53,6 @@ module.exports = {
                     if (err) {
                         reject("There was an error encrypting the password")
                     } else {
-                        // TODO: Store the resulting "hash" value in the DB 
-                        console.log(hash);
                         var user_data = new userModel({
                             username: data.username,
                             password: hash,
@@ -63,7 +61,6 @@ module.exports = {
                             dob: data.dob,
                             role: data.role
                         });
-                        console.log(user_data);
                         user_data.save((err) => {
                             if (err) {
                                 if (err.code == 11000) {
@@ -89,8 +86,6 @@ module.exports = {
                 .exec()
                 .then((user) => {
                     if (user) {
-                        console.log(data.password)
-                        console.log(user.password)
                         bcrypt.compare(data.password, user.password)
                             .then((res) => {
                                 if (res)
