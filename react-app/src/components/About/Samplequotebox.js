@@ -6,11 +6,10 @@ class Samplequotebox extends Component {
     return (
       <div className="quoteBoxBg">
         <div className="quoteBox">
-          <h3 className="quoteBoxQuoteH3">{this.props.quote}</h3>
+          <h3>{this.props.quote}</h3>
           <div className="quoteBoxAuthorStar">
             <span>{this.props.author}</span>
-            <span> </span>
-            {this.props.rating}
+            <span> {this.props.rating} </span>
           </div>
         </div>
       </div>

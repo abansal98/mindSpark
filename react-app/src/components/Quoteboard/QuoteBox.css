@@ -2,11 +2,14 @@
   /* content: ""; */
   position: relative;
   max-width: 100%;
-  padding: 3%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 5);
+  box-shadow: 0 4px 35px rgba(0, 0, 0, 5);
   overflow: hidden;
-  margin: 4%;
+  margin-top: 4%;
+  margin-bottom: 4%;
   background-attachment: fixed;
+  border-radius: 9px;
+
+  /* opacity: 0.5; */
   /* filter: blur(2px); */
 
   /* filter: blur(8px);
@@ -16,26 +19,29 @@
 /* filter: blur(8px);
   -webkit-filter: blur(8px); */
 .quoteBox {
-  margin: 1%;
-  padding: 1%;
-  /* background-color: #f8f3e6; */
+  padding: 5%;
+  /* background-color: #ffffff; */
+  /* opacity: 0.5; */
   /* color: #5b5b57; */
 }
-.quoteBoxQuoteH1 {
+
+.quoteBox h1,
+.quoteBox h2,
+.quoteBox h3 {
   text-align: left;
-}
-.quoteBoxQuoteH2 {
-  text-align: left;
-}
-.quoteBoxQuoteH3 {
-  text-align: left;
+  opacity: 1;
   position: relative;
   text-transform: uppercase;
   z-index: 2;
+  color: #ffffff;
 }
 .quoteBoxAuthorStar {
   text-align: right;
 }
+.quoteBox .quoteBoxAuthorStar span {
+  color: #ffffff;
+}
+
 /* 
 filter: blur(8px);
 -webkit-filter: blur(8px);
