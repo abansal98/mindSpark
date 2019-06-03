@@ -38,7 +38,7 @@ form input.invalid {
   border-color: red;
 }
 
-h1 {
+.header h1 {
   text-align: center;
   width: 100%;
   font-weight: lighter;

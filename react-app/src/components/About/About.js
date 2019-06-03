@@ -3,6 +3,7 @@ import "./About.css";
 import NavBarSignin from "../Navbar/NavbarSignin";
 import Aboutteam from "./Aboutteam";
 import Samplequotelist from "./Samplequotelist";
+import Aboutcard from "./Aboutcard";
 
 class About extends Component {
   render() {
@@ -13,6 +14,7 @@ class About extends Component {
         <div className="aboutMain">
           <Aboutteam />
           <Samplequotelist />
+          <Aboutcard />
         </div>
       </div>
     );
