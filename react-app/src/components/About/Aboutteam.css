@@ -1,6 +1,34 @@
 .aboutteamBody {
   position: relative;
-  left: 0vw;
-  top: 5vh;
+  top: 8vh;
+  /* margin-top: 5%; */
   /* border: 2px solid white; */
 }
+.aboutteamBody h1 {
+  width: 100%;
+  font-weight: lighter;
+  /* font-size: */
+}
+.aboutteamBody h2,
+.aboutteamBody h3,
+.aboutteamBody h4,
+.aboutteamBody h5 {
+  width: 100%;
+  font-weight: 200;
+}
+
+.aboutteamBody p {
+  padding-left: 17%;
+  padding-right: 17%;
+  margin-bottom: 5%;
+}
+
+.aboutteamBody .lead {
+  margin-bottom: 8%;
+}
+
+.lastheading {
+  margin-top: 10%;
+}
+
+/* .aboutteamBody .container . */
