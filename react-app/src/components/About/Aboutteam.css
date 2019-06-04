@@ -39,22 +39,12 @@
   text-align: center;
 }
 
-.my-container {
-  border: 1px solid white;
-}
-.my-container .my-row {
-  border: 2px solid blue;
-}
-
-.my-col {
-  border: 3px solid red;
-  align-content: center;
-  align-items: center;
-  align-self: center;
-}
-
 .aboutteamBody .firstRow {
   margin-bottom: 3%;
+}
+
+.cardcol {
+  padding: 3%;
 }
 
 /* .aboutteamBody .container . */
