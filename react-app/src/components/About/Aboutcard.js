@@ -15,16 +15,18 @@ class Aboutcard extends Component {
     return (
       <React.Fragment>
         <Container className="aboutteamBody">
-          <Row className="firstRow">
-            <h1 className="lastheading1 text-uppercase">
+          <Row className="justify-content-center">
+            <h1 className="text-uppercase text-center p-2">
               do you need spark in your mind?
             </h1>
-            <h1 className="lastheading2 text-uppercase ">Join us!</h1>
+          </Row>
+          <Row className="justify-content-center">
+            <h1 className="text-uppercase ">Join us!</h1>
           </Row>
           <Row>
             <Container className="justify-content-center">
-              <Row className="justify-content-center">
-                <Col md="justify-content-md-center" className="cardcol">
+              <Row className="d-flex justify-content-center">
+                <Col md="justify-content-md-center" className="p-4">
                   <Card style={{ width: "18rem" }} bg="success">
                     <Card.Img
                       variant="top"
@@ -42,7 +44,7 @@ class Aboutcard extends Component {
                     </Card.Body>
                   </Card>
                 </Col>
-                <Col md="justify-content-md-center" className="cardcol">
+                <Col md="justify-content-md-center" className="p-4">
                   <Card style={{ width: "18rem" }} bg="dark">
                     <Card.Img
                       variant="top"

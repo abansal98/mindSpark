@@ -29,17 +29,12 @@ class Aboutteam extends Component {
               problem. It also lets you share your own quotes to help community
               build curated ideas. */}
           </p>
-          <p className="lead text-center">
-            It helps people who are having tough time with emotional problem. It
-            also lets you upload your own quotes which can be shared to help
-            other people.
-          </p>
         </Row>
         <Row className="text-center">
           <h3 className="text-uppercase">Inspirit yourself</h3>
         </Row>
-        <div className="container">
-          <div className="text-center ">
+        <Row>
+          <div className="text-center">
             <p>
               Classified quotes will help you to be motivated based on your
               mind-state and mood
@@ -51,11 +46,13 @@ class Aboutteam extends Component {
             </p>
             <h3 className="text-uppercase">unique experience</h3>
             <p>
-              People will read, rate and suggest quotes You are not only
-              listener here, you can be the speaker
+              It helps people who are having tough time with emotional problem.
+              It also lets you upload your own quotes which can be shared to
+              help other people. People will read, rate and suggest quotes You
+              are not only listener here, you can be the speaker
             </p>
           </div>
-        </div>
+        </Row>
       </Container>
     );
   }
