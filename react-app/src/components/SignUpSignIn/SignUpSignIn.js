@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import SignUp from "../Signup/signup";
 import SignIn from "../Signin/signin";
-import ForgotPassword from "../ForgotPassword/ForgotPassoword"
+import ForgotPassword from "../ForgotPassword/ForgotPassoword";
 import "./SignUpSignIn.css";
 import NavBarSignIn from "../Navbar/NavbarSignin";
 import Footer from "../Footer/Footer";
@@ -14,8 +14,12 @@ import {
   NavbarBrand,
   Tab,
   Tabs,
-  Sonnet
+  Sonnet,
+  Container
 } from "react-bootstrap";
+import Aboutteam from "../About/Aboutteam";
+import Samplequotelist from "../About/Samplequotelist";
+import Aboutcard from "../About/Aboutcard";
 
 // const RightSide = props => {
 //   return (
@@ -31,7 +35,66 @@ import {
 //   );
 // };
 
-class ControlledTabs extends React.Component {
+class SignUpSignIn extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isLoggin: true };
+  }
+
+  // componentDidMount() {
+  //   this.rightside.classList.add("right");
+  // }
+
+  // changeState() {
+  //   const { isLoggin } = this.state;
+
+  //   if (isLoggin) {
+  //     this.rightside.classList.remove("right");
+  //     this.rightside.classList.add("left");
+  //   } else {
+  //     this.rightside.classList.remove("left");
+  //     this.rightside.classList.add("right");
+  //   }
+
+  //   this.setState(prevState => ({ isLoggin: !prevState.isLoggin }));
+  // }
+
+  render() {
+    // const { isLoggin } = this.state;
+    // const current = isLoggin ? "Log In" : "Register";
+
+    return (
+      <div className="signupsigninbody">
+        {/* <div class="signupsigninBody"> */}
+        <SignupsigninBlurBg />
+        <NavBarSignIn />
+        <div class="container">
+          {/* <Aboutteam /> */}
+          <ControlledTabs />
+
+          {/* <div class="signupsignin">
+            <div className="container" ref={ref => (this.container = ref)}>
+              {!isLoggin && (
+                <SignIn containerRef={ref => (this.current = ref)} />
+              )}
+
+              {isLoggin && (
+                <SignUp containerRef={ref => (this.current = ref)} />
+              )}
+            </div>
+            <RightSide
+              current={current}
+              containerRef={ref => (this.rightside = ref)}
+              onClick={this.changeState.bind(this)}
+            />
+          </div> */}
+        </div>
+      </div>
+    );
+  }
+}
+
+class ControlledTabs extends Component {
   // componentDidMount() {
   //   this.rightside.classList.add("right");
   // }
@@ -66,82 +129,38 @@ class ControlledTabs extends React.Component {
 
   render() {
     return (
-      <Tabs
-        id="controlled-tab-example"
-        activeKey={this.state.key}
-        onSelect={key => this.setState({ key })}
-      >
-        <Tab eventKey="signup" title="Sign Up">
-          <SignUp />
-          {/* <Sonnet /> */}
-        </Tab>
-        <Tab eventKey="login" title="Login">
-          <SignIn />
-          {/* <Sonnet /> */}
-        </Tab>
-        <Tab eventKey="forgotpassword" title="Forgot Password?">
-          <ForgotPassword />
-          {/* <Sonnet /> */}
-        </Tab>
-      </Tabs>
-    );
-  }
-}
-
-class SignUpSignIn extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isLoggin: true };
-  }
-
-  // componentDidMount() {
-  //   this.rightside.classList.add("right");
-  // }
-
-  // changeState() {
-  //   const { isLoggin } = this.state;
-
-  //   if (isLoggin) {
-  //     this.rightside.classList.remove("right");
-  //     this.rightside.classList.add("left");
-  //   } else {
-  //     this.rightside.classList.remove("left");
-  //     this.rightside.classList.add("right");
-  //   }
-
-  //   this.setState(prevState => ({ isLoggin: !prevState.isLoggin }));
-  // }
-
-  render() {
-    // const { isLoggin } = this.state;
-    // const current = isLoggin ? "Log In" : "Register";
-
-    return (
-      <div class="signupsigninBody">
-        <NavBarSignIn />
-        <div class="container">
-          {/* <div class="signupsignin">
-            <div className="container" ref={ref => (this.container = ref)}>
-              {!isLoggin && (
-                <SignIn containerRef={ref => (this.current = ref)} />
-              )}
-
-              {isLoggin && (
-                <SignUp containerRef={ref => (this.current = ref)} />
-              )}
-            </div>
-            <RightSide
-              current={current}
-              containerRef={ref => (this.rightside = ref)}
-              onClick={this.changeState.bind(this)}
-            />
-          </div> */}
-          <ControlledTabs />
+      <div className="signtabbody">
+        <div className="samplequoteBoxBg">
+          <div className="signtabcontentbody">
+            <Tabs
+              id="controlled-tab-example"
+              activeKey={this.state.key}
+              onSelect={key => this.setState({ key })}
+              className="justify-content-center"
+            >
+              <Tab eventKey="signup" title="SignUp">
+                <SignUp />
+                {/* <Sonnet /> */}
+              </Tab>
+              <Tab eventKey="login" title="Login">
+                <SignIn />
+                {/* <Sonnet /> */}
+              </Tab>
+              <Tab eventKey="forgotpassword" title="Forgot Password?">
+                <ForgotPassword />
+                {/* <Sonnet /> */}
+              </Tab>
+            </Tabs>
+          </div>
         </div>
-        {/* <Footer /> */}
       </div>
     );
   }
 }
 
+class SignupsigninBlurBg extends Component {
+  render() {
+    return <div className="SignupsigninBlurBgBody" />;
+  }
+}
 export default SignUpSignIn;

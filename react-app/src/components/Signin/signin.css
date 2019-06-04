@@ -1,0 +1,90 @@
+/* .signinBody .wrapper {
+  width: 100%;
+  display: block;
+  align-items: center;
+  flex-direction: column;
+
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
+.signinBody .wrapper .form-wrapper .header {
+  color: chartreuse;
+}
+
+.signinBody .wrapper .form-wrapper .header h1 {
+  font-weight: lighter;
+}
+
+.signinBody .createAccount button {
+  width: 100%;
+} */
+
+.signinBody .wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signinBody .wrapper .form-wrapper .header {
+  color: chartreuse;
+}
+
+.signinBody .wrapper .form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.signinBody form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  flex-direction: column;
+}
+
+.signinBody .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.signinBody input {
+  height: 37px;
+  transition: all 250ms ease-in-out;
+}
+
+.signinBody form input.invalid {
+  border-color: red;
+}
+
+.signinBody .header h1 {
+  text-align: center;
+  width: 100%;
+  font-weight: lighter;
+}
+
+.signinBody label {
+  margin-bottom: 0.25em;
+}
+
+.signinBody input::placeholder {
+  font-weight: lighter;
+}
+
+.signinBody .username,
+.signinBody .password {
+  display: flex;
+  flex-direction: column;
+}
+
+.signinBody .createAccount {
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.signinBody .createAccount button {
+  width: 100%;
+}

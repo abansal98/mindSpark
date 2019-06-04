@@ -11,7 +11,7 @@ class About extends Component {
       <div className="aboutBody">
         <AboutBlurBg />
         <NavBarSignin />
-        <div className="aboutMain">
+        <div>
           <Aboutteam />
           <Samplequotelist />
           <Aboutcard />

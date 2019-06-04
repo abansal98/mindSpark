@@ -45,7 +45,6 @@
 }
 
 .signupBody label {
-  font-size: 20px;
   margin-bottom: 0.25em;
 }
 
@@ -92,7 +91,7 @@
 }
 
 /* bakground image */
-.signupBody .bg {
+/* .signupBody .bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -102,4 +101,4 @@
   background-size: cover;
   mix-blend-mode: overlay;
   background-blend-mode: darken;
-}
+} */
