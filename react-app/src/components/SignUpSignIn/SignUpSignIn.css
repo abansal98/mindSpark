@@ -1,16 +1,19 @@
-.wrapper {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  font-family: "Open Sans", sans-serif;
+.signupsigninBody {
+  padding-top: 10%;
+}
+.signupsigninBody {
   background-image: url("../../image/concretetree.jpg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-family: "Open Sans", sans-serif;
 }
 
-.signupsignin {
+.signupsigninBody .signupsignin {
   width: 27em;
   height: 40em;
   display: flex;
@@ -19,12 +22,12 @@
   position: relative;
 }
 
-.signupsignin .container {
+.signupsigninBody .signupsignin .container {
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0px 0px 12px 2px rgba(15, 15, 15, 0.2);
-  border-radius: 4px;
+  border-radius: 9px;
   position: relative;
   background-color: #fff;
   width: 100%;
@@ -32,7 +35,7 @@
   z-index: 99;
 }
 
-.right-side {
+.signupsigninBody .right-side {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,17 +51,17 @@
   box-shadow: 0px 0px 12px 2px rgba(15, 15, 15, 0.281);
 }
 
-.right {
+.signupsigninBody .right {
   right: -40%;
   align-items: flex-end;
 }
 
-.left {
+.signupsigninBody .left {
   right: 40%;
   align-items: flex-start;
 }
 
-.text {
+.signupsigninBody .text {
   font-size: 21px;
   font-weight: 500;
   color: #fff;
@@ -66,7 +69,7 @@
   margin-left: 3em;
 }
 
-.btn {
+.signupsigninBody .btn {
   font-size: 21px;
   padding: 5px 20px;
   border: 0;
