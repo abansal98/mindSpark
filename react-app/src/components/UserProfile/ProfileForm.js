@@ -30,11 +30,12 @@ class ProfileForm extends Component {
                                     />
                                 </div>
                             </div>
-                            <div className="createAccount">
                                 <button className="btn btn-primary" type="submit">
                                     Update
-        </button>
-                            </div>
+                                </button>
+                                <button className="btn btn-primary" type="submit">
+                                    Reset Password
+                                </button>
                         </form>
                     </div>
                 </div>

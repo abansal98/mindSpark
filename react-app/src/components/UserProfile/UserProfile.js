@@ -5,12 +5,13 @@ import $ from "jquery";
 import ProfileForm from "./ProfileForm";
 import PersonalQuote from "./PersonalQuote";
 import ReminderForm from "./ReminderForm";
+import "./UserProfile.css";
 
 class UserProfile extends Component {
     render() {
         return (
-            <div class="row">
-                {/* <NavBar /> */}
+            <div class="row b">
+                <NavBar />
                 <div class="col">
                     <ProfileForm />
                 </div>
