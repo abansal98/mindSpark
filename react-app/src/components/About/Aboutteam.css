@@ -3,14 +3,12 @@
 }
 .aboutteamBody {
   position: relative;
-  top: 8vh;
+  top: 5vh;
   /* margin-top: 5%; */
   /* border: 2px solid white; */
 }
 .aboutteamBody h1 {
-  width: 100%;
   font-weight: lighter;
-  /* font-size: */
 }
 .aboutteamBody h2,
 .aboutteamBody h3,
