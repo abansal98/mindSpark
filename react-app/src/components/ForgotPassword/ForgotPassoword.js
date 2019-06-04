@@ -4,91 +4,74 @@ import logo from "../../icons/logo.png";
 import { Button } from "react-bootstrap";
 import "../Signup/signup.css";
 import $ from 'jquery'
+import axios from 'axios';
 
-class SignIn extends Component {
+class ForgotPassword extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: "",
-            password: "",
+            email:"",
             userValid: false,
             formValid: false,
-            error: { username: "", password: "" }
+            error: { username: "", email: "" }
         };
     }
 
-    handleSubmit(e) {
+    handleChange = name => event => {
+        this.setStat({
+            [name]: event.target.value,
+        });
+    }
+
+    sendEmail = async (e) => {
         e.preventDefault();
-        $.ajax({
-            url: '/db/signin',
-            method: 'POST',
-            data: {
-                username: this.state.username,
-                password: this.state.password
+        const { email } = this.state;
+        if (email === '') {
+          this.setState({
+            showError: false,
+            messageFromServer: '',
+            showNullError: true,
+          });
+        } else {
+          try {
+            const response = await axios.post(
+              'http://localhost:3003/forgotPassword',
+              {
+                email,
+              },
+            );
+            console.log(response.data);
+            if (response.data === 'recovery email sent') {
+              this.setState({
+                showError: false,
+                messageFromServer: 'recovery email sent',
+                showNullError: false,
+              });
             }
-        })
-            .then(() => {
-                window.location.href = '/';
-            })
-            .fail((err) => {
-                alert(err.responseText);
-            })
-    }
-
-    handleUserInput(e) {
-        const name = e.target.name;
-        const value = e.target.value;
-        this.setState({ [name]: value }, () => {
-            this.validateField(name, value);
-        });
-    }
-
-    handleSignIn(e) {
-
-    }
-
-    validateField(fieldName, value) {
-        let errors = this.state.error;
-        let usrValid = this.state.userValid;
-
-        switch (fieldName) {
-            case "username":
-                usrValid = value.match();
-                errors.username = usrValid ? "" : " is invalid";
-                break;
-            default:
-                break;
+          } catch (error) {
+            console.error(error.response.data);
+            if (error.response.data === 'email not in db') {
+              this.setState({
+                showError: true,
+                messageFromServer: '',
+                showNullError: false,
+              });
+            }
+          }
         }
-        this.setState(
-            {
-                error: errors,
-                userValid: usrValid
-            },
-            this.validateForm
-        );
-    }
-
-    validateForm() {
-        this.setState({
-            formValid: this.state.userValid
-        });
-    }
+      };
 
     render() {
         return (
-
             <div className="wrapper" ref={this.props.containerRef}>
-
                 <div className="form-wrapper">
-                    <div className="header"><h1>Sign In</h1></div>
-
-                    <form onSubmit={this.handleSubmit.bind(this)}>
+                    <div className="header"></div>
+                    <form>
                         <div className="form-group">
-
                             <div className="username">
                                 <label htmlFor="username">UserName</label>
                                 <input
-                                    onChange={this.handleUserInput.bind(this)}
                                     name="username"
                                     className="form-control"
                                     type="text"
@@ -100,22 +83,13 @@ class SignIn extends Component {
                         <div class="createAccount">
                             <button
                                 type="submit"
-                                className="btn btn-secondary btn-sm"
-                            >
-                                Send Verification Email                  </button>
-                        </div>
-
+                                className="btn btn-secondary btn-sm">Send Verification Email </button></div>
                     </form>
                     <br />
                 </div>
-
             </div>
-
-
-
-
         );
     }
 }
 
-export default SignIn;
+export default ForgotPassword;
