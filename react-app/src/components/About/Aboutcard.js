@@ -22,9 +22,9 @@ class Aboutcard extends Component {
             <h1 className="lastheading2 text-uppercase ">Join us!</h1>
           </Row>
           <Row>
-            <Container>
-              <Row className="justify-content-md-center">
-                <Col md="auto">
+            <Container className="justify-content-center">
+              <Row className="justify-content-center">
+                <Col md="justify-content-md-center" className="cardcol">
                   <Card style={{ width: "18rem" }} bg="success">
                     <Card.Img
                       variant="top"
@@ -42,7 +42,7 @@ class Aboutcard extends Component {
                     </Card.Body>
                   </Card>
                 </Col>
-                <Col md="auto">
+                <Col md="justify-content-md-center" className="cardcol">
                   <Card style={{ width: "18rem" }} bg="dark">
                     <Card.Img
                       variant="top"
