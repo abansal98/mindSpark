@@ -6,75 +6,21 @@ import { Button } from "react-bootstrap";
 import "./ForgotPassword.css";
 import $ from "jquery";
 
-class SignIn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: "",
-      userValid: false,
-      formValid: false,
-      error: { username: "", password: "" }
-    };
-  }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    $.ajax({
-      url: "/db/signin",
-      method: "POST",
-      data: {
-        username: this.state.username,
-        password: this.state.password
-      }
-    })
-      .then(() => {
-        window.location.href = "/";
-      })
-      .fail(err => {
-        alert(err.responseText);
-      });
-  }
-
-  handleUserInput(e) {
-    const name = e.target.name;
-    const value = e.target.value;
-    this.setState({ [name]: value }, () => {
-      this.validateField(name, value);
-    });
-  }
-
-  handleSignIn(e) {}
-
-  validateField(fieldName, value) {
-    let errors = this.state.error;
-    let usrValid = this.state.userValid;
-
-    switch (fieldName) {
-      case "username":
-        usrValid = value.match();
-        errors.username = usrValid ? "" : " is invalid";
-        break;
-      default:
-        break;
+class ForgotPassword extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            email:"",
+            userValid: false,
+            formValid: false,
+            error: { username: "", email: "" }
+        };
     }
-    this.setState(
-      {
-        error: errors,
-        userValid: usrValid
-      },
-      this.validateForm
-    );
-  }
-
-  validateForm() {
-    this.setState({
-      formValid: this.state.userValid
-    });
-  }
 
   render() {
-    return (
+   return (
       <div className="forgotpasswordBody">
         <div className="wrapper" ref={this.props.containerRef}>
           <div className="form-wrapper">
@@ -102,12 +48,12 @@ class SignIn extends Component {
                 </button>
               </div>
             </form>
-            <br />
-          </div>
-        </div>
-      </div>
-    );
-  }
+                    <br />
+                </div>
+            </div>
+        );
+    }
+
 }
 
-export default SignIn;
+export default ForgotPassword;
