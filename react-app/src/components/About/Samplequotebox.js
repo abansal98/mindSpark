@@ -1,18 +1,23 @@
 import React, { Component } from "react";
-import "../Quoteboard/QuoteBox.css";
+import { Container, Row } from "react-bootstrap";
+import "./Samplequotebox.css";
 
 class Samplequotebox extends Component {
   render() {
     return (
-      <div className="quoteBoxBg">
-        <div className="quoteBox">
-          <h3>{this.props.quote}</h3>
-          <div className="quoteBoxAuthorStar">
-            <span>{this.props.author}</span>
-            <span> {this.props.rating} </span>
+      <Container className="samplequoteboxContainer">
+        <div className="samplequoteBoxBg">
+          <div className="samplequoteBox">
+            <Row>
+              <h3>{this.props.quote}</h3>
+            </Row>
+            <Row className="samplequoteBoxAuthorStar justify-content-end">
+              <span>{this.props.author}</span>
+              <span> {this.props.rating} </span>
+            </Row>
           </div>
         </div>
-      </div>
+      </Container>
     );
   }
 }

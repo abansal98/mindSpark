@@ -3,14 +3,12 @@
 }
 .aboutteamBody {
   position: relative;
-  top: 8vh;
+  top: 7vh;
   /* margin-top: 5%; */
   /* border: 2px solid white; */
 }
 .aboutteamBody h1 {
-  width: 100%;
   font-weight: lighter;
-  /* font-size: */
 }
 .aboutteamBody h2,
 .aboutteamBody h3,
@@ -23,28 +21,11 @@
 .aboutteamBody p {
   padding-left: 17%;
   padding-right: 17%;
-  margin-bottom: 5%;
-}
-
-.aboutteamBody .lead {
-  /* margin-bottom: 8%; */
-}
-
-.aboutteamBody .lastheading1 {
-  margin-top: 5%;
-  text-align: center;
-}
-.aboutteamBody .lastheading2 {
-  /* margin-bottom: 5%; */
-  text-align: center;
-}
-
-.aboutteamBody .firstRow {
   margin-bottom: 3%;
 }
 
 .cardcol {
-  padding: 3%;
+  /* padding: 3%; */
 }
 
 /* .aboutteamBody .container . */

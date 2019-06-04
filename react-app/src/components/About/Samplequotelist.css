@@ -1,6 +1,27 @@
 .samplequotelistBody {
   /* outline: 2px solid white; */
-  margin-top: 20%;
+  margin-top: 10em;
   padding-left: 27%;
   padding-right: 27%;
+}
+
+@media only screen and (max-width: 1400px) {
+  .samplequotelistBody {
+    padding-left: 23%;
+    padding-right: 23%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .samplequotelistBody {
+    padding-left: 19%;
+    padding-right: 19%;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .samplequotelistBody {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
 }
