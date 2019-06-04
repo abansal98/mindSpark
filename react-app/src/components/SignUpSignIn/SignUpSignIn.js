@@ -1,6 +1,7 @@
 import React from "react";
 import SignUp from "../Signup/signup";
 import SignIn from "../Signin/signin";
+import ForgotPassword from "../ForgotPassword/ForgotPassoword"
 import "./SignUpSignIn.css";
 import NavBarSignIn from "../Navbar/NavbarSignin";
 import Footer from "../Footer/Footer";
@@ -76,6 +77,10 @@ class ControlledTabs extends React.Component {
         </Tab>
         <Tab eventKey="login" title="Login">
           <SignIn />
+          {/* <Sonnet /> */}
+        </Tab>
+        <Tab eventKey="forgotpassword" title="Forgot Password?">
+          <ForgotPassword />
           {/* <Sonnet /> */}
         </Tab>
       </Tabs>
