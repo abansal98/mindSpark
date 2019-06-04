@@ -127,7 +127,7 @@ class SignUp extends Component {
         <div className="wrapper" ref={this.props.containerRef}>
           <div className="form-wrapper">
             <div className="header">
-              <h1>Create Account</h1>
+              <h1 className="mt-2 text-center">Create Account</h1>
             </div>
             <form onSubmit={this.handleSubmit.bind(this)}>
               <div class="form-group">
@@ -202,7 +202,7 @@ class SignUp extends Component {
               </div>
 
               <div className="createAccount">
-                <button className="btn btn-primary" type="submit">
+                <button className="btn btn-primary mb-2" type="submit">
                   Create Account
                 </button>
               </div>
