@@ -3,7 +3,7 @@
   position: relative;
   max-width: 100%;
   box-shadow: 0 4px 35px rgba(0, 0, 0, 5);
-  overflow: hidden;
+  /* overflow: hidden; */
   margin-top: 4%;
   margin-bottom: 4%;
   background-attachment: fixed;
