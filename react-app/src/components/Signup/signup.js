@@ -4,7 +4,7 @@ import NavbarSignin from "../Navbar/NavbarSignin";
 //import Footer from "./Footer";
 import "./signup.css";
 import { Link } from "react-router-dom";
-import $ from 'jquery'
+import $ from "jquery";
 
 const passwordRegex = RegExp(/((?=.*\d)(?=.*[A-Z])(?=.*\W).{6,15})$/);
 
@@ -33,20 +33,20 @@ class SignUp extends Component {
   handleSubmit(e) {
     e.preventDefault();
     $.ajax({
-      url: '/db/signup',
-      method: 'POST',
+      url: "/db/signup",
+      method: "POST",
       data: {
         username: this.state.username,
         password: this.state.password,
-        email   : this.state.email,
+        email: this.state.email
       }
     })
-    .then((msg)=>{
-      alert(msg)
-    })
-    .fail((err)=>{
-      alert(err.responseText);
-    })
+      .then(msg => {
+        alert(msg);
+      })
+      .fail(err => {
+        alert(err.responseText);
+      });
   }
 
   handleUserInput(e) {
@@ -123,87 +123,91 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="wrapper" ref={this.props.containerRef}>
-        <div className="form-wrapper">
-          <div class="header">
-            <h1>Create Account</h1>
+      <div className="signupBody">
+        <div className="wrapper" ref={this.props.containerRef}>
+          <div className="form-wrapper">
+            <div className="header">
+              <h1>Create Account</h1>
+            </div>
+            <form onSubmit={this.handleSubmit.bind(this)}>
+              <div class="form-group">
+                <div className="username">
+                  <label htmlFor="username">UserName</label>
+                  <input
+                    className={`form-control ${
+                      this.state.error.username ? "invalid" : ""
+                    }`}
+                    placeholder="UserName"
+                    type="text"
+                    name="username"
+                    onChange={this.handleUserInput.bind(this)}
+                  />
+                  <div className="invalid-name">
+                    {this.state.error.username}
+                  </div>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <div className="email">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    className={`form-control ${
+                      this.state.error.email ? "invalid" : ""
+                    }`}
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    onChange={this.handleUserInput.bind(this)}
+                  />
+                  <div className="invalid-email">{this.state.error.email}</div>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <div className="password">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    className={`form-control ${
+                      this.state.error.password ? "invalid" : ""
+                    }`}
+                    placeholder="Password"
+                    type="password"
+                    name="password"
+                    onChange={this.handleUserInput.bind(this)}
+                    onBlur={this.validateField.bind(this)}
+                  />
+                  <div className="invalid-password">
+                    {this.state.error.password}
+                  </div>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <div className="confirmPassword">
+                  <label htmlFor="confirmPassword">Confirm</label>
+                  <input
+                    className={`form-control ${
+                      this.state.error.e_confirm ? "invalid" : ""
+                    }`}
+                    placeholder="Confirm"
+                    type="password"
+                    name="confirmPassword"
+                    onChange={this.handleUserInput.bind(this)}
+                  />
+                  <div className="invalid-confirm">
+                    {this.state.error.e_confirm}
+                  </div>
+                </div>
+              </div>
+
+              <div className="createAccount">
+                <button className="btn btn-primary" type="submit">
+                  Create Account
+                </button>
+              </div>
+            </form>
           </div>
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <div class="form-group">
-              <div className="username">
-                <label htmlFor="username">UserName</label>
-                <input
-                  className={`form-control ${
-                    this.state.error.username ? "invalid" : ""
-                  }`}
-                  placeholder="UserName"
-                  type="text"
-                  name="username"
-                  onChange={this.handleUserInput.bind(this)}
-                />
-                <div className="invalid-name">{this.state.error.username}</div>
-              </div>
-            </div>
-
-            <div className="form-group">
-              <div className="email">
-                <label htmlFor="email">Email</label>
-                <input
-                  className={`form-control ${
-                    this.state.error.email ? "invalid" : ""
-                  }`}
-                  placeholder="Email"
-                  type="email"
-                  name="email"
-                  onChange={this.handleUserInput.bind(this)}
-                />
-                <div className="invalid-email">{this.state.error.email}</div>
-              </div>
-            </div>
-
-            <div className="form-group">
-              <div className="password">
-                <label htmlFor="password">Password</label>
-                <input
-                  className={`form-control ${
-                    this.state.error.password ? "invalid" : ""
-                  }`}
-                  placeholder="Password"
-                  type="password"
-                  name="password"
-                  onChange={this.handleUserInput.bind(this)}
-                  onBlur={this.validateField.bind(this)}
-                />
-                <div className="invalid-password">
-                  {this.state.error.password}
-                </div>
-              </div>
-            </div>
-
-            <div className="form-group">
-              <div className="confirmPassword">
-                <label htmlFor="confirmPassword">Confirm</label>
-                <input
-                  className={`form-control ${
-                    this.state.error.e_confirm ? "invalid" : ""
-                  }`}
-                  placeholder="Confirm"
-                  type="password"
-                  name="confirmPassword"
-                  onChange={this.handleUserInput.bind(this)}
-                />
-                <div className="invalid-confirm">
-                  {this.state.error.e_confirm}
-                </div>
-              </div>
-            </div>
-
-            <div className="createAccount">
-              <button className="btn btn-primary" type="submit">
-                Create Account
-              </button>
-            </div>
-          </form>
         </div>
       </div>
     );
