@@ -120,10 +120,6 @@ class SignIn extends Component {
                   </button>
             </div>
 
-            <button type="button" class="btn btn-link btn-sm">
-              Forgot Your Password?
-              </button>
-
           </form>
           <br />
         </div>
