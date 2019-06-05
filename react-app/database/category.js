@@ -1,35 +1,52 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 var category = new Schema({
-    "categoryID"  : String,
-    "categoryName": String,
-    "description" : String,
+  categoryID: String,
+  categoryName: String,
+  description: String
 });
 
-var categoryModel = mongoose.model('category', category);
+var categoryModel = mongoose.model("category", category);
 
 module.exports = {
-    categoryModel,
+  categoryModel,
 
-    addCategory: function(data){
-        return new Promise(function(resolve, reject){
-            var category_data = new categoryModel({
-                categoryID: data.categoryID,
-                categoryName: data.categoryName,
-                description: data.description
-            });
-            category_data.save((err)=>{
-                if(err){
-                    if(err.code == 11000){
-                        reject("Quote already exists!");
-                    } else {
-                        resolve();
-                    }
-                }
-            })
-        })
-    },
+  addCategory: function(data) {
+    return new Promise(function(resolve, reject) {
+      var category_data = new categoryModel({
+        categoryID: data.categoryID,
+        categoryName: data.categoryName,
+        description: data.description
+      });
+      category_data.save(err => {
+        if (err) {
+          if (err.code == 11000) {
+            reject("Quote already exists!");
+          } else {
+            resolve();
+          }
+        } else {
+          resolve("New category added!");
+        }
+      });
+    });
+  },
 
-    removeCategory: function(categoryID){}
-}
+  removeCategory: function(categoryID) {},
+
+  fetchCategoryList: function() {
+    return new Promise(function(resolve, reject) {
+      categoryModel
+        .find({})
+        .exec()
+        .then(data => {
+          if (data.length > 0) {
+            resolve(data);
+          } else {
+            reject("No categories found!");
+          }
+        });
+    });
+  }
+};
