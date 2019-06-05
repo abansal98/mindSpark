@@ -8,6 +8,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
 import QuoteBox from "./QuoteBox";
 import Quoteboardguide from "../Quoteboard/Quoteboardguide";
+import $ from "jquery";
 
 const categories = [
   "Depressed",
@@ -45,6 +46,45 @@ const authors = [
 const ratings = ["★☆☆☆☆", "★★☆☆☆", "★★★☆☆", "★★★★☆", "★★★★★"];
 
 class Quoteboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      category: "",
+      categories: []
+    };
+  }
+
+  getCategories() {
+    $.ajax({
+      url: "/db/categories",
+      method: "GET"
+    }).then(data => {
+      this.setState({
+        categories: data
+      });
+      console.log(this.state.categories);
+    });
+  }
+
+  populateCategories() {
+    var htmlText = "";
+    for (var index = 0; index < this.state.categories.length; index++) {
+      htmlText =
+        htmlText +
+        "<ListGroup.Item action href=#" +
+        this.state.categories[index].categoryID +
+        " variant='success'>" +
+        this.state.categories[index].categoryName +
+        "</ListGroup.Item>";
+    }
+    console.log(htmlText);
+    return htmlText;
+  }
+
+  componentDidMount() {
+    this.getCategories();
+  }
+
   render() {
     return (
       <div className="quoteboardBody">
@@ -63,6 +103,9 @@ class Quoteboard extends Component {
                   <ListGroup.Item action href="#categoryHome">
                     Home
                   </ListGroup.Item>
+
+                  {this.populateCategories()}
+
                   <ListGroup.Item action href="#category0" variant="success">
                     {categories[0]}
                   </ListGroup.Item>
