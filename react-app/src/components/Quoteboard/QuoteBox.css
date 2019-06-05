@@ -1,25 +1,22 @@
 .quoteBoxBg {
-  /* content: ""; */
   position: relative;
+  box-shadow: 0 4px 35px rgba(0, 0, 0, 5);
+  background-attachment: fixed;
+  border-radius: 9px;
+  /* position: relative;
   max-width: 100%;
   box-shadow: 0 4px 35px rgba(0, 0, 0, 5);
-  /* overflow: hidden; */
   margin-top: 4%;
   margin-bottom: 4%;
   background-attachment: fixed;
-  border-radius: 9px;
-
-  /* opacity: 0.5; */
-  /* filter: blur(2px); */
-
-  /* filter: blur(8px);
-  -webkit-filter: blur(8px); */
+  border-radius: 9px; */
 }
 
 /* filter: blur(8px);
   -webkit-filter: blur(8px); */
 .quoteBox {
-  padding: 5%;
+  margin-bottom: 4%;
+  padding: 2.1em;
   /* background-color: #ffffff; */
   /* opacity: 0.5; */
   /* color: #5b5b57; */
@@ -28,12 +25,12 @@
 .quoteBox h1,
 .quoteBox h2,
 .quoteBox h3 {
-  text-align: left;
   opacity: 1;
   position: relative;
   text-transform: uppercase;
   z-index: 2;
   color: #ffffff;
+  font-size: 1.7em;
 }
 .quoteBoxAuthorStar {
   text-align: right;
