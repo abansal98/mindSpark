@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import "./Quoteboard.css";
 import Quotelist from "./Quotelist";
 import NavBar from "../Navbar/Navbar";
+import NavBarSignIn from "../Navbar/NavbarSignin";
 import Footer from "../Footer/Footer";
 import Category from "./Category";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
 import QuoteBox from "./QuoteBox";
 import Aboutteam from "../About/Aboutteam";
+import $ from "jquery";
 
 const categories = [
   "Depressed",
@@ -45,12 +47,44 @@ const authors = [
 const ratings = ["★☆☆☆☆", "★★☆☆☆", "★★★☆☆", "★★★★☆", "★★★★★"];
 
 class Quoteboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      isLoggedIn: false
+    };
+  }
+
+  navbarSelect(props) {
+    const isLoggedIn = props;
+    $.ajax({
+      url: "/db/ensureLogin",
+      method: "GET"
+    })
+      .then((user) => {
+        this.setState({
+          username: user,
+          isLoggedIn: true
+        })
+        isLoggedIn = this.state.isLoggedIn;
+      })
+      .fail({
+      });
+
+    if (isLoggedIn) {
+      console.log("this happened!");
+      return <NavBar />;
+    }
+    console.log("this never happened!");
+    return <NavBarSignIn />;
+  }
+
   render() {
     return (
       <div className="quoteboardBody">
         <Container fluid={true}>
           <Row>
-            <NavBar />
+            <navbarSelect isLoggedIn={this.state.isLoggedIn} />,
           </Row>
           <Tab.Container
             id="list-group-tabs-example"
