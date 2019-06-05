@@ -14,8 +14,7 @@
   /* position: fixed;
   width: 100%;
   height: 100%; */
-  background-image: url("../../image/concretetree.jpg");
-  /* background-color: yellow; */
+  background-color: #dddddd;
   background-position: center;
   /* background-size: cover; */
   /* background-attachment: fixed; */
@@ -28,6 +27,16 @@
 }
 
 .quoteboardrightside {
-  background-color: #dddddd;
+  /* background-color: #dddddd; */
+  background-image: url("../../image/blurforest.jpg");
+  background-position: center;
+
   /* min-height: 100vh; */
+}
+
+@media only screen and (max-width: 767px) {
+  .quoteboardleftside {
+    min-height: 100%;
+    padding-bottom: 5%;
+  }
 }
