@@ -7,6 +7,7 @@ import Category from "./Category";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
 import QuoteBox from "./QuoteBox";
+import Aboutteam from "../About/Aboutteam";
 
 const categories = [
   "Depressed",
@@ -51,11 +52,17 @@ class Quoteboard extends Component {
           <Row>
             <NavBar />
           </Row>
-          <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
+          <Tab.Container
+            id="list-group-tabs-example"
+            defaultActiveKey="#categoryHome"
+          >
             <Row>
-              <Col md={3} className="quoteboardleftside pt-5">
+              <Col md={2} className="quoteboardleftside pt-5">
                 {/* <Category /> */}
                 <ListGroup>
+                  <ListGroup.Item action href="#categoryHome">
+                    Home
+                  </ListGroup.Item>
                   <ListGroup.Item action href="#category0">
                     {categories[0]}
                   </ListGroup.Item>
@@ -82,9 +89,12 @@ class Quoteboard extends Component {
                   </ListGroup.Item>
                 </ListGroup>
               </Col>
-              <Col md={9} className="quoteboardrightside pt-5">
+              <Col md={10} className="quoteboardrightside pt-5">
                 {/* <Quotelist /> */}
                 <Tab.Content>
+                  <Tab.Pane eventKey="#categoryHome">
+                    <Aboutteam />
+                  </Tab.Pane>
                   <Tab.Pane eventKey="#category0">
                     <QuoteBox
                       quote={quotes[0]}

@@ -12,8 +12,9 @@ class Samplequotebox extends Component {
               <h3>{this.props.quote}</h3>
             </Row>
             <Row className="samplequoteBoxAuthorStar justify-content-end">
-              <span>{this.props.author}</span>
-              <span> {this.props.rating} </span>
+              <span>{this.props.author} </span>
+              <span>&nbsp;</span>
+              <span>{this.props.rating} </span>
             </Row>
           </div>
         </div>
