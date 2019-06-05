@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Category.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, ListGroup } from "react-bootstrap";
 
 const categories = [
   "Depressed",
@@ -17,14 +17,32 @@ class Category extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="categoryName">{categories[0]}</div>
-        <div className="categoryName">{categories[1]}</div>
-        <div className="categoryName">{categories[2]}</div>
-        <div className="categoryName">{categories[3]}</div>
-        <div className="categoryName">{categories[4]}</div>
-        <div className="categoryName">{categories[5]}</div>
-        <div className="categoryName">{categories[6]}</div>
-        <div className="categoryName">{categories[7]}</div>
+        <ListGroup className="categoryName mt-5">
+          <ListGroup.Item as="li" active>
+            {categories[0]}
+          </ListGroup.Item>
+          <ListGroup.Item as="li" active>
+            {categories[1]}
+          </ListGroup.Item>
+          <ListGroup.Item as="li" active>
+            {categories[2]}
+          </ListGroup.Item>
+          <ListGroup.Item as="li" active>
+            {categories[3]}
+          </ListGroup.Item>
+          <ListGroup.Item as="li" active>
+            {categories[4]}
+          </ListGroup.Item>
+          <ListGroup.Item as="li" active>
+            {categories[5]}
+          </ListGroup.Item>
+          <ListGroup.Item as="li" active>
+            {categories[6]}
+          </ListGroup.Item>
+          <ListGroup.Item as="li" active>
+            {categories[7]}
+          </ListGroup.Item>
+        </ListGroup>
       </React.Fragment>
     );
   }
