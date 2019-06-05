@@ -7,7 +7,7 @@ import Category from "./Category";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
 import QuoteBox from "./QuoteBox";
-import Aboutteam from "../About/Aboutteam";
+import Quoteboardguide from "../Quoteboard/Quoteboardguide";
 
 const categories = [
   "Depressed",
@@ -93,7 +93,7 @@ class Quoteboard extends Component {
                 {/* <Quotelist /> */}
                 <Tab.Content>
                   <Tab.Pane eventKey="#categoryHome">
-                    <Aboutteam />
+                    <Quoteboardguide />
                   </Tab.Pane>
                   <Tab.Pane eventKey="#category0">
                     <QuoteBox
