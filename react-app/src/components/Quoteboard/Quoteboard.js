@@ -63,28 +63,28 @@ class Quoteboard extends Component {
                   <ListGroup.Item action href="#categoryHome">
                     Home
                   </ListGroup.Item>
-                  <ListGroup.Item action href="#category0">
+                  <ListGroup.Item action href="#category0" variant="success">
                     {categories[0]}
                   </ListGroup.Item>
-                  <ListGroup.Item action href="#category1">
+                  <ListGroup.Item action href="#category1" variant="success">
                     {categories[1]}
                   </ListGroup.Item>
-                  <ListGroup.Item action href="#category2">
+                  <ListGroup.Item action href="#category2" variant="success">
                     {categories[2]}
                   </ListGroup.Item>
-                  <ListGroup.Item action href="#category3">
+                  <ListGroup.Item action href="#category3" variant="success">
                     {categories[3]}
                   </ListGroup.Item>
-                  <ListGroup.Item action href="#category4">
+                  <ListGroup.Item action href="#category4" variant="success">
                     {categories[4]}
                   </ListGroup.Item>
-                  <ListGroup.Item action href="#category5">
+                  <ListGroup.Item action href="#category5" variant="success">
                     {categories[5]}
                   </ListGroup.Item>
-                  <ListGroup.Item action href="#category6">
+                  <ListGroup.Item action href="#category6" variant="success">
                     {categories[6]}
                   </ListGroup.Item>
-                  <ListGroup.Item action href="#category7">
+                  <ListGroup.Item action href="#category7" variant="success">
                     {categories[7]}
                   </ListGroup.Item>
                 </ListGroup>
