@@ -13,6 +13,7 @@ class QuoteBox extends Component {
             </Row>
             <Row className="quoteBoxAuthorStar justify-content-end">
               <span>{this.props.author}</span>
+              <span>&nbsp;</span>
               <span>{this.props.rating} </span>
             </Row>
           </div>
