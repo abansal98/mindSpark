@@ -1,11 +1,33 @@
 .quoteboardBody {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-top: 63px;
+  padding-top: 3.5em;
+
   /* background-color: #f1ece5; */
-  background-color: #ffffff;
+  background-color: #ff0000;
+}
+
+.quoteboardleftside {
+  /* position: fixed;
+  width: 100%;
+  height: 100%; */
+  background-image: url("../../image/concretetree.jpg");
+  /* background-color: yellow; */
+  background-position: center;
+  /* background-size: cover; */
+  /* background-attachment: fixed; */
+  /* filter: blur(9px); */
+  /* -webkit-filter: blur(9px); */
+  /* background-repeat: no-repeat; */
+  /* min-height: 100vh; */
+  /* transform: scale(1.04); */
+  min-height: 100vh;
+}
+
+.quoteboardrightside {
+  background-color: #dddddd;
+  /* min-height: 100vh; */
 }
