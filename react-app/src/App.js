@@ -7,6 +7,7 @@ import Quoteboard from "./components/Quoteboard/Quoteboard";
 import Error from "./components/Error/Error";
 import About from "./components/About/About";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           <Route path="/signup" component={SignUpSignIn} />
           <Route path="/quoteboard" component={Quoteboard} />
           <Route path="/signin" component={SignIn} />
+          <Route path="/userProfile" component={UserProfile} />
           <Route component={Error} />
         </Switch>
       </BrowserRouter>

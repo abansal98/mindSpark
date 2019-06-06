@@ -1,0 +1,41 @@
+.samplequoteBoxBg {
+  position: relative;
+  box-shadow: 0 4px 35px rgba(0, 0, 0, 5);
+  background-attachment: fixed;
+  border-radius: 9px;
+  /* opacity: 0.5; */
+  /* filter: blur(2px); */
+
+  /* filter: blur(8px);
+    -webkit-filter: blur(8px); */
+}
+
+/* filter: blur(8px);
+    -webkit-filter: blur(8px); */
+.samplequoteBox {
+  margin-bottom: 4%;
+  padding: 2.1em;
+  /* background-color: #ffffff; */
+  /* opacity: 0.5; */
+  /* color: #5b5b57; */
+}
+
+.samplequoteBox h1,
+.samplequoteBox h2,
+.samplequoteBox h3 {
+  opacity: 1;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 1.7em;
+}
+
+.samplequoteBox .samplequoteBoxAuthorStar span {
+  color: #ffffff;
+}
+
+/* 
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  z-index: 2; */

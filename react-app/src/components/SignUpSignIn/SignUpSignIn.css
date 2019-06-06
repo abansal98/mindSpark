@@ -1,16 +1,45 @@
-.wrapper {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  font-family: "Open Sans", sans-serif;
+.signupsigninBody {
+  position: relative;
+  top: 10em;
+}
+.signtabbody {
+  position: relative;
+  top: 5em;
+  padding-left: 27%;
+  padding-right: 27%;
+  color: #dddddd;
+}
+.signtabcontentbody {
+  padding: 2.1em;
+}
+.SignupsigninBlurBgBody {
+  position: fixed;
+  width: 100%;
+  height: 100%;
   background-image: url("../../image/concretetree.jpg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
+  filter: blur(9px);
+  -webkit-filter: blur(9px);
   background-repeat: no-repeat;
+  /* min-height: 100vh; */
+  transform: scale(1.04);
 }
 
-.signupsignin {
+.signupsigninBody {
+  /* background-image: url("../../image/concretetree.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-family: "Open Sans", sans-serif; */
+}
+
+.signupsigninBody .signupsignin {
   width: 27em;
   height: 40em;
   display: flex;
@@ -19,12 +48,12 @@
   position: relative;
 }
 
-.signupsignin .container {
+.signupsigninBody .container {
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0px 0px 12px 2px rgba(15, 15, 15, 0.2);
-  border-radius: 4px;
+  border-radius: 9px;
   position: relative;
   background-color: #fff;
   width: 100%;
@@ -32,7 +61,7 @@
   z-index: 99;
 }
 
-.right-side {
+.signupsigninBody .right-side {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,17 +77,17 @@
   box-shadow: 0px 0px 12px 2px rgba(15, 15, 15, 0.281);
 }
 
-.right {
+.signupsigninBody .right {
   right: -40%;
   align-items: flex-end;
 }
 
-.left {
+.signupsigninBody .left {
   right: 40%;
   align-items: flex-start;
 }
 
-.text {
+.signupsigninBody .text {
   font-size: 21px;
   font-weight: 500;
   color: #fff;
@@ -66,7 +95,7 @@
   margin-left: 3em;
 }
 
-.btn {
+.signupsigninBody .btn {
   font-size: 21px;
   padding: 5px 20px;
   border: 0;
@@ -76,4 +105,18 @@
   border-radius: 3px;
   transition: all 250ms ease-in-out;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 1000px) {
+  .signtabbody {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .signtabbody {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
 }

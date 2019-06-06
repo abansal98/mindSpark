@@ -1,20 +1,20 @@
-.wrapper {
+.signupBody .wrapper {
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-.header {
+.signupBody .wrapper .form-wrapper .header {
   color: chartreuse;
 }
 
-.form-wrapper {
+.signupBody .wrapper .form-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-form {
+.signupBody form {
   width: 100%;
   display: flex;
   align-items: center;
@@ -22,77 +22,76 @@ form {
   flex-direction: column;
 }
 
-.form-group {
+.signupBody .form-group {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
-input {
+.signupBody input {
   height: 37px;
   transition: all 250ms ease-in-out;
 }
 
-form input.invalid {
+.signupBody form input.invalid {
   border-color: red;
 }
 
-.header h1 {
+.signupBody .header h1 {
   text-align: center;
   width: 100%;
   font-weight: lighter;
 }
 
-label {
-  font-size: 20px;
+.signupBody label {
   margin-bottom: 0.25em;
 }
 
-input::placeholder {
+.signupBody input::placeholder {
   font-weight: lighter;
 }
 
-.username,
-.email,
-.password,
-.confirmPassword {
+.signupBody .username,
+.signupBody .email,
+.signupBody .password,
+.signupBody .confirmPassword {
   display: flex;
   flex-direction: column;
 }
 
-.username,
-.email {
+.signupBody .username,
+.signupBody .email {
   width: 100%;
 }
 
-.password {
+.signupBody .password {
   width: 100%;
 }
 
-.confirmPassword {
+.signupBody .confirmPassword {
   width: 100%;
 }
 
-input {
+.signupBody input {
   padding: 10px 10px;
   border-radius: 5px;
   outline: none;
   border: 1px solid #cfcfcf;
 }
 
-.createAccount {
+.signupBody .createAccount {
   align-items: center;
   flex-direction: column;
   width: 100%;
 }
 
-.createAccount button {
+.signupBody .createAccount button {
   width: 100%;
 }
 
 /* bakground image */
-.bg {
+/* .signupBody .bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -102,4 +101,4 @@ input {
   background-size: cover;
   mix-blend-mode: overlay;
   background-blend-mode: darken;
-}
+} */

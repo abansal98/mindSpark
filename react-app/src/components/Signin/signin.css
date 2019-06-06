@@ -1,29 +1,90 @@
-.form-wrapper {
-  width: 500px;
-  display: flex;
-  background-color: #ffffff;
-  box-shadow: 0px 10px 50px #555;
-  padding: 20px 40px;
-  border-radius: 10px;
-  flex-direction: column;
-  color: #555555;
-  margin-top: 3%;
-}
-
-.signinBody {
-  background-image: url("../../image/concretetree.jpg");
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
+/* .signinBody .wrapper {
   width: 100%;
-  height: 100%;
-  background-repeat: no-repeat;
-  padding-top: 2%;
-  color: #dddddd;
-  /* min-height: calc(100vh - 250px); */
-  min-height: 100vh;
+  display: block;
+  align-items: center;
+  flex-direction: column;
+
+  padding-left: 5em;
+  padding-right: 5em;
 }
 
-.mkTempName1 {
-  margin-top: 5%;
+.signinBody .wrapper .form-wrapper .header {
+  color: chartreuse;
+}
+
+.signinBody .wrapper .form-wrapper .header h1 {
+  font-weight: lighter;
+}
+
+.signinBody .createAccount button {
+  width: 100%;
+} */
+
+.signinBody .wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signinBody .wrapper .form-wrapper .header {
+  color: chartreuse;
+}
+
+.signinBody .wrapper .form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.signinBody form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  flex-direction: column;
+}
+
+.signinBody .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.signinBody input {
+  height: 37px;
+  transition: all 250ms ease-in-out;
+}
+
+.signinBody form input.invalid {
+  border-color: red;
+}
+
+.signinBody .header h1 {
+  text-align: center;
+  width: 100%;
+  font-weight: lighter;
+}
+
+.signinBody label {
+  margin-bottom: 0.25em;
+}
+
+.signinBody input::placeholder {
+  font-weight: lighter;
+}
+
+.signinBody .username,
+.signinBody .password {
+  display: flex;
+  flex-direction: column;
+}
+
+.signinBody .createAccount {
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.signinBody .createAccount button {
+  width: 100%;
 }

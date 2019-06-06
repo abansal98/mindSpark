@@ -3,8 +3,9 @@ import Footer from "../Footer/Footer";
 import logo from "../../icons/logo.png";
 //import "./signin.css";
 import { Button } from "react-bootstrap";
-import "../Signup/signup.css";
-import $ from 'jquery'
+// import "../Signup/signup.css";
+import "./signin.css";
+import $ from "jquery";
 
 class SignIn extends Component {
   constructor(props) {
@@ -21,19 +22,19 @@ class SignIn extends Component {
   handleSubmit(e) {
     e.preventDefault();
     $.ajax({
-      url: '/db/signin',
-      method: 'POST',
+      url: "/db/signin",
+      method: "POST",
       data: {
         username: this.state.username,
         password: this.state.password
       }
     })
-    .then(()=>{
-      window.location.href = '/';
-    })
-    .fail((err)=>{
-      alert(err.responseText);
-    })
+      .then(() => {
+        window.location.href = "/";
+      })
+      .fail(err => {
+        alert(err.responseText);
+      });
   }
 
   handleUserInput(e) {
@@ -44,9 +45,7 @@ class SignIn extends Component {
     });
   }
 
-  handleSignIn(e) {
-
-  }
+  handleSignIn(e) {}
 
   validateField(fieldName, value) {
     let errors = this.state.error;
@@ -77,62 +76,52 @@ class SignIn extends Component {
 
   render() {
     return (
+      <div className="signinBody">
+        <div className="wrapper" ref={this.props.containerRef}>
+          <div className="form-wrapper">
+            <div className="header">
+              <h1 className="mt-2 text-center">Login</h1>
+            </div>
 
-      <div className="wrapper" ref={this.props.containerRef}>
-
-        <div className="form-wrapper">
-          <div className="header"><h1>Sign In</h1></div>
-
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <div className="form-group">
-
-              <div className="username">
-                <label htmlFor="username">UserName</label>
-                <input
-                  onChange={this.handleUserInput.bind(this)}
-                  name="username"
-                  className="form-control"
-                  type="text"
-                  value={this.state.username}
-                  placeholder="Enter Your Username"
-                />
+            <form onSubmit={this.handleSubmit.bind(this)}>
+              <div className="form-group">
+                <div className="username">
+                  <label htmlFor="username">UserName</label>
+                  <input
+                    onChange={this.handleUserInput.bind(this)}
+                    name="username"
+                    className="form-control"
+                    type="text"
+                    value={this.state.username}
+                    placeholder="Enter Your Username"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="form-group">
-              <div className="password">
-                <label htmlFor="password">Password</label>
-                <input
-                  onChange={this.handleUserInput.bind(this)}
-                  name="password"
-                  className="form-control"
-                  type="password"
-                  value={this.state.password}
-                  placeholder="Enter Your Password"
-                />
+              <div className="form-group">
+                <div className="password">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    onChange={this.handleUserInput.bind(this)}
+                    name="password"
+                    className="form-control"
+                    type="password"
+                    value={this.state.password}
+                    placeholder="Enter Your Password"
+                  />
+                </div>
               </div>
-            </div>
-            <div class="createAccount">
-              <button
-                type="submit"
-                className="btn btn-secondary btn-sm"
-              >
-                Sign In
-                  </button>
-            </div>
 
-            <button type="button" class="btn btn-link btn-sm">
-              Forgot Your Password?
-              </button>
+              <div class="createAccount">
+                <button className="btn btn-primary mb-2" type="submit">
+                  Login
+                </button>
+              </div>
+            </form>
+            <br />
+          </div>
 
-          </form>
-          <br />
         </div>
-
       </div>
-
-
-
-
     );
   }
 }

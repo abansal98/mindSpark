@@ -1,0 +1,29 @@
+.QuoteboardguideBody {
+  position: relative;
+  top: 4em;
+  /* margin-top: 5%; */
+  /* border: 2px solid white; */
+  color: #dddddd;
+}
+.QuoteboardguideBody h1 {
+  font-weight: lighter;
+}
+.QuoteboardguideBody h2,
+.QuoteboardguideBody h3,
+.QuoteboardguideBody h4,
+.QuoteboardguideBody h5 {
+  width: 100%;
+  font-weight: 200;
+}
+
+.QuoteboardguideBody p {
+  /* padding-left: 17%;
+  padding-right: 17%; */
+  /* margin-bottom: 5%; */
+}
+
+.cardcol {
+  /* padding: 3%; */
+}
+
+/* .aboutteamBody .container . */

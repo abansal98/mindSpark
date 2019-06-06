@@ -38,7 +38,6 @@ class NavBar extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="/signin">Signin</Nav.Link>
               <Nav.Link href="/signup">Signup</Nav.Link>
               <Nav.Link href="/">About</Nav.Link>
             </Nav>
@@ -53,7 +52,7 @@ class NavBar extends Component {
               </Form>
             </Nav>
             <Nav>
-              <Navbar.Brand>Hi, LoremIpsum!</Navbar.Brand>
+              {/* <Navbar.Brand>Hi, LoremIpsum!</Navbar.Brand> */}
               <Navbar.Brand>
                 <a href="/userprofile">
                   <img
@@ -72,6 +71,7 @@ class NavBar extends Component {
                   />
                 </a>
                 <a href="/">
+                  {/* <Button variant="light">LOGOUT</Button> */}
                   {/* Implement logout feature here! */}
                   <img
                     src={logout}

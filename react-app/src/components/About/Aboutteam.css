@@ -1,13 +1,11 @@
 .aboutteamBody {
   position: relative;
-  top: 8vh;
+  top: 4em;
   /* margin-top: 5%; */
   /* border: 2px solid white; */
 }
 .aboutteamBody h1 {
-  width: 100%;
   font-weight: lighter;
-  /* font-size: */
 }
 .aboutteamBody h2,
 .aboutteamBody h3,
@@ -20,20 +18,11 @@
 .aboutteamBody p {
   padding-left: 17%;
   padding-right: 17%;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
 }
 
-.aboutteamBody .lead {
-  margin-bottom: 8%;
-}
-
-.aboutteamBody .lastheading1 {
-  margin-top: 5%;
-  text-align: center;
-}
-.aboutteamBody .lastheading2 {
-  /* margin-bottom: 5%; */
-  text-align: center;
+.cardcol {
+  /* padding: 3%; */
 }
 
 /* .aboutteamBody .container . */
