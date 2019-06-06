@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import QuoteBox from "./QuoteBox";
 import "./Quotelist.css";
+import $ from "jquery";
 
 const quotes = [
   "I have not failed, I've just found 10,000 ways that won't work",
@@ -27,20 +28,35 @@ const authors = [
 const ratings = ["★☆☆☆☆", "★★☆☆☆", "★★★☆☆", "★★★★☆", "★★★★★"];
 
 class Quotelist extends Component {
-  // dummyDataLoop = () => {
-  //   var rows = [];
-  //   for (let i = 0; i < 50;  i++) {
-  //     rows.push(<div>dummy data</div>);
-  //   }
-  //   return rows;
-  // };
+  constructor(props) {
+    super(props);
+    this.state = {
+      category: "",
+      quotes: []
+    };
+  }
 
-  // dummyDataLoop = () =>
-  //   [...Array(5)].map(x => <div>dummy data form Content.js</div>);
+  getQuotes() {
+    $.ajax({
+      url: "/db/getQuotes/" + this.props.category,
+      method: "GET"
+    }).then(data => {
+      this.setState({
+        quotes: data
+      });
+      console.log(this.state.quotes);
+    });
+  }
+
+  componentDidMount() {
+    console.log(this.props);
+    this.getQuotes();
+  }
+
   render() {
     return (
       <div className="quotelistBody mt-5">
-        <QuoteBox quote={quotes[0]} author={authors[0]} rating={ratings[2]} />
+        {/* <QuoteBox quote={quotes[0]} author={authors[0]} rating={ratings[2]} />
         <QuoteBox quote={quotes[1]} author={authors[1]} rating={ratings[3]} />
         <QuoteBox quote={quotes[2]} author={authors[2]} rating={ratings[1]} />
         <QuoteBox quote={quotes[3]} author={authors[2]} rating={ratings[4]} />
@@ -49,7 +65,7 @@ class Quotelist extends Component {
         <QuoteBox quote={quotes[6]} author={authors[5]} rating={ratings[0]} />
         <QuoteBox quote={quotes[7]} author={authors[6]} rating={ratings[0]} />
         <QuoteBox quote={quotes[8]} author={authors[6]} rating={ratings[4]} />
-        <QuoteBox quote={quotes[9]} author={authors[7]} rating={ratings[0]} />
+        <QuoteBox quote={quotes[9]} author={authors[7]} rating={ratings[0]} /> */}
       </div>
     );
   }

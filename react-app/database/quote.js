@@ -21,7 +21,6 @@ module.exports = {
   addQuote: function(data) {
     return new Promise(function(resolve, reject) {
       var quote_data = new quoteModel({
-        // quoteID: DataCue.quoteID,
         quoteID: data.quoteID,
         text: data.text,
         author: data.author,
@@ -40,6 +39,24 @@ module.exports = {
           resolve("New quote added!");
         }
       });
+    });
+  },
+
+  fetchQuoteList: function(categoryName) {
+    // console.log(categoryName);
+    return new Promise(function(resolve, reject) {
+      quoteModel
+        .find({
+          category: categoryName
+        })
+        .exec()
+        .then(data => {
+          if (data.length > 0) {
+            resolve(data);
+          } else {
+            reject("No quotes found with category " + categoryName + "!");
+          }
+        });
     });
   },
 
