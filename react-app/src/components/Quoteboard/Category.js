@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./Category.css";
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
 import $ from "jquery";
+import Quotelist from "./Quotelist";
+import Quoteboardguide from "../Quoteboard/Quoteboardguide";
 
 class Category extends Component {
   constructor(props) {
@@ -30,55 +32,44 @@ class Category extends Component {
   }
   render() {
     return (
-      this.state.something,
       (
         <React.Fragment>
-          {/* temporary for CATEGORY HOME */}
-          <ListGroup>
-            <ListGroup.Item action href="#categoryHome" variant="success">
-              Home
+          <Col md={2} className="quoteboardleftside pt-5">
+            <ListGroup>
+              <ListGroup.Item action href="#categoryHome" variant="success">
+                Home
             </ListGroup.Item>
-          </ListGroup>
-          {/* temporary for CATEGORY HOME */}
-          <ListGroup>
-            {this.state.categories.map((value, index) => {
-              return (
-                <ListGroup.Item
-                  action
-                  href={`#${value.categoryID}`}
-                  variant="success"
-                >
-                  {value.categoryName}
-                </ListGroup.Item>
-              );
-            })}
-          </ListGroup>
-          {/* <ListGroup className="categoryName mt-5">          
-          <ListGroup.Item as="li" active>
-            {categories[0]}
-          </ListGroup.Item>
-          <ListGroup.Item as="li" active>
-            {categories[1]}
-          </ListGroup.Item>
-          <ListGroup.Item as="li" active>
-            {categories[2]}
-          </ListGroup.Item>
-          <ListGroup.Item as="li" active>
-            {categories[3]}
-          </ListGroup.Item>
-          <ListGroup.Item as="li" active>
-            {categories[4]}
-          </ListGroup.Item>
-          <ListGroup.Item as="li" active>
-            {categories[5]}
-          </ListGroup.Item>
-          <ListGroup.Item as="li" active>
-            {categories[6]}
-          </ListGroup.Item>
-          <ListGroup.Item as="li" active>
-            {categories[7]}
-          </ListGroup.Item>
-        </ListGroup> */}
+            </ListGroup>
+            {/* temporary for CATEGORY HOME */}
+            <ListGroup>
+              {this.state.categories.map((value, index) => {
+                return (
+                  <ListGroup.Item
+                    action
+                    href={`#${value.categoryID}`}
+                    variant="success"
+                  >
+                    {value.categoryName}
+                  </ListGroup.Item>
+                );
+              })}
+            </ListGroup>
+          </Col>
+          <Col md={10} className="quoteboardrightside pt-5">
+            {/* <Quotelist /> */}
+            <Tab.Content>
+              <Tab.Pane eventKey="#categoryHome">
+                <Quoteboardguide />
+              </Tab.Pane>
+              {this.state.categories.map((value, index) => {
+                return (
+                  <Tab.Pane eventKey={`#${value.categoryID}`}>
+                    <Quotelist category={value.categoryName} />
+                  </Tab.Pane>
+                );
+              })}
+            </Tab.Content>
+          </Col>
         </React.Fragment>
       )
     );

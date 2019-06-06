@@ -29,11 +29,12 @@ class Quoteboard extends Component {
             defaultActiveKey="#categoryHome"
           >
             <Row>
-              <Col md={2} className="quoteboardleftside pt-5">
+              <Category />
+              {/* <Col md={2} className="quoteboardleftside pt-5">
                 <Category />
               </Col>
               <Col md={10} className="quoteboardrightside pt-5">
-                {/* <Quotelist /> */}
+                {/* <Quotelist />
                 <Tab.Content>
                   <Tab.Pane eventKey="#categoryHome">
                     <Quoteboardguide />
@@ -47,7 +48,7 @@ class Quoteboard extends Component {
                     />
                   </Tab.Pane>
                 </Tab.Content>
-              </Col>
+              </Col> */}
             </Row>
           </Tab.Container>
         </Container>
