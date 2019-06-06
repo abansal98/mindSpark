@@ -26,9 +26,22 @@ router.route("/signup").post((req, res) => {
     });
 });
 
-router.route("/categories").get((req, res) => {
+router.route("/getCategories").get((req, res) => {
   category
     .fetchCategoryList()
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/getQuotes/:categoryName").get((req, res) => {
+  // console.log(req.params.categoryName);
+  // var temp = req.params.categoryName.toString().toLowerCase();
+  quote
+    .fetchQuoteList(req.params.categoryName)
     .then(data => {
       res.status(200).send(data);
     })
