@@ -49,4 +49,16 @@ router.route("/addCategory").post((req, res) => {
     });
 });
 
+router.route("/addQuote").post((req, res) => {
+  console.log(req.body);
+  quote
+    .addQuote(req.body)
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
 module.exports = router;
