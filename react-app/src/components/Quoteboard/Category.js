@@ -36,6 +36,10 @@ class Category extends Component {
     });
   }
 
+  mkTestFunction() {
+    console.log("I'm function from Category.js");
+  }
+
   componentDidMount() {
     this.getCategories();
   }
