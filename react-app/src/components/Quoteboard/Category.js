@@ -3,17 +3,6 @@ import "./Category.css";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import $ from "jquery";
 
-const categories = [
-  "Depressed",
-  "Weariness",
-  "Laziness",
-  "Loneliness",
-  "Stress",
-  "Nervousness",
-  "Nostalgia",
-  "Grief"
-];
-
 class Category extends Component {
   constructor(props) {
     super(props);

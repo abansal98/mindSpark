@@ -9,50 +9,12 @@ import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
 import QuoteBox from "./QuoteBox";
 import Quoteboardguide from "../Quoteboard/Quoteboardguide";
 
-const categories = [
-  "Depressed",
-  "Weariness",
-  "Laziness",
-  "Loneliness",
-  "Stress",
-  "Nervousness",
-  "Nostalgia",
-  "Grief"
-];
-
-const quotes = [
-  "I have not failed, I've just found 10,000 ways that won't work",
-  "The best way to predict future is to create it",
-  "Creativity is just connecting things",
-  "Let's go invent tomorrow instead of worrying about what happened yesterday",
-  "I could either watch it happen or be a part of it",
-  "Go big or Go home",
-  "Formal education will make you a living, Self-education will make you a fortune",
-  "Be fearful when others are greedy and greedy when others are fearful",
-  "Risk comes from not knowing what you're doing",
-  "If you can't do great things, do small things in a great way"
-];
-const authors = [
-  "Thomas A. Edison",
-  "Peter Ducker",
-  "Steve Jobs",
-  "Elon Musk",
-  "Eliza Dushku",
-  "Jim Rohn",
-  "Warren Buffett",
-  "Napoleon Hill"
-];
-const ratings = ["★☆☆☆☆", "★★☆☆☆", "★★★☆☆", "★★★★☆", "★★★★★"];
-
 class Quoteboard extends Component {
   constructor(props, context) {
     super(props, context);
   }
 
   componentDidMount() {
-    var temp = <Category />;
-    console.log("Category starts here!");
-    console.log(temp);
   }
 
   render() {

@@ -8,10 +8,12 @@ import Error from "./components/Error/Error";
 import About from "./components/About/About";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import UserProfile from "./components/UserProfile/UserProfile";
+import Footer from "./components/Footer/Footer"
 
 class App extends Component {
   render() {
     return (
+      <div id="root">
       <BrowserRouter>
         <Switch>
           <Route path="/" component={About} exact />
@@ -22,6 +24,8 @@ class App extends Component {
           <Route component={Error} />
         </Switch>
       </BrowserRouter>
+      {/* <Footer/> */}
+      </div>
     );
   }
 }
