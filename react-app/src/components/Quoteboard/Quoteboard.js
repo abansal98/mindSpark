@@ -52,8 +52,7 @@ class Quoteboard extends Component {
   componentDidMount() {
     var temp = <Category />;
     console.log("Category starts here!");
-    console.log(<Category />);
-    // console.log(temp);
+    console.log(temp);
   }
 
   render() {

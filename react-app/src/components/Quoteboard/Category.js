@@ -19,7 +19,8 @@ class Category extends Component {
     super(props);
     this.state = {
       category: "",
-      categories: []
+      categories: [],
+      something: "This is something"
     };
   }
 
@@ -40,7 +41,7 @@ class Category extends Component {
   }
   render() {
     return (
-      something,
+      this.state.something,
       (
         <React.Fragment>
           {/* temporary for CATEGORY HOME */}
