@@ -1,6 +1,30 @@
 import React, { Component } from "react";
+import $ from "jquery";
 
 class ReminderForm extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          categories: [],
+        };
+      }
+
+      getCategories() {
+        $.ajax({
+          url: "/db/getCategories",
+          method: "GET"
+        }).then(data => {
+          this.setState({
+            categories: data
+          });
+          console.log(this.state.categories);
+        });
+      }
+      componentDidMount() {
+        this.getCategories();
+      }
+
     render() {
         return (
             <React.Fragment>
@@ -12,10 +36,14 @@ class ReminderForm extends Component {
                         <form>
                         <div class="form-group">
                             <label for="sel1">Select Category:</label>
-                            <select multiple class="form-control" id="sel1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <select multiple class="form-control" id="sel1">
+                                    {this.state.categories.map((value, index) => {
+                                        return (
+                                            <option>
+                                                {value.categoryName}
+                                            </option>
+                                        );
+                                    })}
                             </select>
                             </div>
                             <div class="form-group">
