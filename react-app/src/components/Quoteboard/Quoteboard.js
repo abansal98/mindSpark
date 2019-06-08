@@ -8,7 +8,6 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
 import QuoteBox from "./QuoteBox";
 import Quoteboardguide from "../Quoteboard/Quoteboardguide";
-import $ from "jquery";
 
 const categories = [
   "Depressed",
@@ -46,43 +45,14 @@ const authors = [
 const ratings = ["★☆☆☆☆", "★★☆☆☆", "★★★☆☆", "★★★★☆", "★★★★★"];
 
 class Quoteboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      category: "",
-      categories: []
-    };
-  }
-
-  getCategories() {
-    $.ajax({
-      url: "/db/categories",
-      method: "GET"
-    }).then(data => {
-      this.setState({
-        categories: data
-      });
-      console.log(this.state.categories);
-    });
-  }
-
-  populateCategories() {
-    var htmlText = "";
-    for (var index = 0; index < this.state.categories.length; index++) {
-      htmlText =
-        htmlText +
-        "<ListGroup.Item action href=#" +
-        this.state.categories[index].categoryID +
-        " variant='success'>" +
-        this.state.categories[index].categoryName +
-        "</ListGroup.Item>";
-    }
-    console.log(htmlText);
-    return htmlText;
+  constructor(props, context) {
+    super(props, context);
   }
 
   componentDidMount() {
-    this.getCategories();
+    var temp = <Category />;
+    console.log("Category starts here!");
+    console.log(temp);
   }
 
   render() {
@@ -98,39 +68,7 @@ class Quoteboard extends Component {
           >
             <Row>
               <Col md={2} className="quoteboardleftside pt-5">
-                {/* <Category /> */}
-                <ListGroup>
-                  <ListGroup.Item action href="#categoryHome">
-                    Home
-                  </ListGroup.Item>
-
-                  {this.populateCategories()}
-
-                  <ListGroup.Item action href="#category0" variant="success">
-                    {categories[0]}
-                  </ListGroup.Item>
-                  <ListGroup.Item action href="#category1" variant="success">
-                    {categories[1]}
-                  </ListGroup.Item>
-                  <ListGroup.Item action href="#category2" variant="success">
-                    {categories[2]}
-                  </ListGroup.Item>
-                  <ListGroup.Item action href="#category3" variant="success">
-                    {categories[3]}
-                  </ListGroup.Item>
-                  <ListGroup.Item action href="#category4" variant="success">
-                    {categories[4]}
-                  </ListGroup.Item>
-                  <ListGroup.Item action href="#category5" variant="success">
-                    {categories[5]}
-                  </ListGroup.Item>
-                  <ListGroup.Item action href="#category6" variant="success">
-                    {categories[6]}
-                  </ListGroup.Item>
-                  <ListGroup.Item action href="#category7" variant="success">
-                    {categories[7]}
-                  </ListGroup.Item>
-                </ListGroup>
+                <Category />
               </Col>
               <Col md={10} className="quoteboardrightside pt-5">
                 {/* <Quotelist /> */}
@@ -139,121 +77,7 @@ class Quoteboard extends Component {
                     <Quoteboardguide />
                   </Tab.Pane>
                   <Tab.Pane eventKey="#category0">
-                    <QuoteBox
-                      quote={quotes[0]}
-                      author={authors[0]}
-                      rating={ratings[2]}
-                    />
-                    <QuoteBox
-                      quote={quotes[1]}
-                      author={authors[1]}
-                      rating={ratings[3]}
-                    />
-                    <QuoteBox
-                      quote={quotes[3]}
-                      author={authors[2]}
-                      rating={ratings[4]}
-                    />
-                    <QuoteBox
-                      quote={quotes[4]}
-                      author={authors[3]}
-                      rating={ratings[0]}
-                    />
-                  </Tab.Pane>
-
-                  <Tab.Pane eventKey="#category1">
-                    <QuoteBox
-                      quote={quotes[9]}
-                      author={authors[4]}
-                      rating={ratings[1]}
-                    />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="#category2">
-                    <QuoteBox
-                      quote={quotes[2]}
-                      author={authors[2]}
-                      rating={ratings[1]}
-                    />
-                    <QuoteBox
-                      quote={quotes[5]}
-                      author={authors[5]}
-                      rating={ratings[0]}
-                    />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="#category3">
-                    <QuoteBox
-                      quote={quotes[0]}
-                      author={authors[0]}
-                      rating={ratings[2]}
-                    />
-                    <QuoteBox
-                      quote={quotes[9]}
-                      author={authors[7]}
-                      rating={ratings[0]}
-                    />
-                    <QuoteBox
-                      quote={quotes[3]}
-                      author={authors[2]}
-                      rating={ratings[4]}
-                    />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="#category4">
-                    <QuoteBox
-                      quote={quotes[8]}
-                      author={authors[6]}
-                      rating={ratings[4]}
-                    />
-                    <QuoteBox
-                      quote={quotes[6]}
-                      author={authors[5]}
-                      rating={ratings[0]}
-                    />
-                    <QuoteBox
-                      quote={quotes[9]}
-                      author={authors[7]}
-                      rating={ratings[0]}
-                    />
-                    <QuoteBox
-                      quote={quotes[0]}
-                      author={authors[0]}
-                      rating={ratings[2]}
-                    />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="#category5">
-                    <QuoteBox
-                      quote={quotes[2]}
-                      author={authors[2]}
-                      rating={ratings[1]}
-                    />
-                    <QuoteBox
-                      quote={quotes[5]}
-                      author={authors[3]}
-                      rating={ratings[0]}
-                    />
-                    <QuoteBox
-                      quote={quotes[0]}
-                      author={authors[0]}
-                      rating={ratings[2]}
-                    />
-                    <QuoteBox
-                      quote={quotes[9]}
-                      author={authors[7]}
-                      rating={ratings[0]}
-                    />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="#category6">
-                    <QuoteBox
-                      quote={quotes[9]}
-                      author={authors[7]}
-                      rating={ratings[0]}
-                    />
-                    <QuoteBox
-                      quote={quotes[7]}
-                      author={authors[6]}
-                      rating={ratings[0]}
-                    />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="#category7">
+                    <Quotelist category={"Stress"} />
                     <QuoteBox
                       quote={quotes[0]}
                       author={authors[0]}

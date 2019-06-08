@@ -24,7 +24,7 @@ module.exports = {
           if (err.code == 11000) {
             reject("Quote already exists!");
           } else {
-            resolve();
+            resolve("New category added!");
           }
         } else {
           resolve("New category added!");
