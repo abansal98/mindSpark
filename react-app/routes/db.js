@@ -26,7 +26,6 @@ router.route("/signup").post((req, res) => {
     });
 });
 
-<<<<<<< HEAD
 router.route("/quote").post((req, res) => {
     console.log(req.body);
     quote
@@ -40,9 +39,6 @@ router.route("/quote").post((req, res) => {
   });
 
 router.route("/categories").get((req, res) => {
-=======
-router.route("/getCategories").get((req, res) => {
->>>>>>> 769c5feff253b16224470f79c06909606e5c79b8
   category
     .fetchCategoryList()
     .then(data => {
