@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 var quote = new Schema({
     "quoteID"   : {
         type: String,
-        unique: false
+        unique: true
     },
     "quoteContent": String,
     "author"    : String,
@@ -19,11 +19,11 @@ module.exports = {
   quoteModel,
 
     addQuote: function(data){
-        console.log(data);
+        // console.log(data);
         return new Promise(function(resolve, reject){
             var quote_data = new quoteModel({
                 quoteID: "quote",
-                quoteContent: data.text,
+                quoteContent: data.quote,
                 author: data.author,
                 datePosted: data.datePosted,
                 rating: data.rating,
@@ -36,6 +36,8 @@ module.exports = {
                     } else {
                         resolve();
                     }
+                } else {
+                  resolve();
                 }
             })
         })
