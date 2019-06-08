@@ -45,30 +45,29 @@ class Category extends Component {
   }
   render() {
     return (
-      this.state.something,
-      (
-        <React.Fragment>
-          {/* temporary for CATEGORY HOME */}
-          <ListGroup>
-            <ListGroup.Item action href="#categoryHome" variant="success">
-              Home
-            </ListGroup.Item>
-          </ListGroup>
-          {/* temporary for CATEGORY HOME */}
-          <ListGroup>
-            {this.state.categories.map((value, index) => {
-              return (
-                <ListGroup.Item
-                  action
-                  href={`#${value.categoryID}`}
-                  variant="success"
-                >
-                  {value.categoryName}
-                </ListGroup.Item>
-              );
-            })}
-          </ListGroup>
-          {/* <ListGroup className="categoryName mt-5">          
+      // this.state.something,
+      <React.Fragment>
+        {/* temporary for CATEGORY HOME */}
+        <ListGroup>
+          <ListGroup.Item action href="#categoryHome" variant="success">
+            Home
+          </ListGroup.Item>
+        </ListGroup>
+        {/* temporary for CATEGORY HOME */}
+        <ListGroup>
+          {this.state.categories.map((value, index) => {
+            return (
+              <ListGroup.Item
+                action
+                href={`#${value.categoryID}`}
+                variant="success"
+              >
+                {value.categoryName}
+              </ListGroup.Item>
+            );
+          })}
+        </ListGroup>
+        {/* <ListGroup className="categoryName mt-5">          
           <ListGroup.Item as="li" active>
             {categories[0]}
           </ListGroup.Item>
@@ -94,8 +93,7 @@ class Category extends Component {
             {categories[7]}
           </ListGroup.Item>
         </ListGroup> */}
-        </React.Fragment>
-      )
+      </React.Fragment>
     );
   }
 }
