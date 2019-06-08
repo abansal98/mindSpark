@@ -26,6 +26,18 @@ router.route("/signup").post((req, res) => {
     });
 });
 
+router.route("/quote").post((req, res) => {
+    console.log(req.body);
+    quote
+      .addQuote(req.body)
+      .then(() => {
+        res.status(200).send("Quote Added!");
+      })
+      .catch(err => {
+        res.status(301).send(err);
+      });
+  });
+
 router.route("/categories").get((req, res) => {
   category
     .fetchCategoryList()
