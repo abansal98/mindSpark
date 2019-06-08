@@ -38,7 +38,7 @@ router.route("/quote").post((req, res) => {
       });
   });
 
-router.route("/categories").get((req, res) => {
+router.route("/getCategories").get((req, res) => {
   category
     .fetchCategoryList()
     .then(data => {
