@@ -4,6 +4,7 @@ class ProfileForm extends Component {
     render() {
         return (
             <React.Fragment>
+                <h2> User Information </h2>
                 <div className="wrapper" ref={this.props.containerRef}>
                     <div className="form-wrapper">
                         <div className="header">
