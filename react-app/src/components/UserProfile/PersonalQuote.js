@@ -33,7 +33,7 @@ class PersonalQuote extends Component
                         return (
                             <ListGroupItem key={index}>
                                 {value.text}
-                                <h4>- {value.author}</h4>
+                                <h3>- {value.author}</h3>
                             </ListGroupItem>
                             
                         )
