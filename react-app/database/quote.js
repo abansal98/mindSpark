@@ -22,12 +22,7 @@ module.exports = {
         // console.log(data);
         return new Promise(function(resolve, reject){
             var quote_data = new quoteModel({
-                quoteID: "quote",
                 quoteContent: data.quote,
-                author: data.author,
-                datePosted: data.datePosted,
-                rating: data.rating,
-                category: data.category
             });
             quote_data.save((err)=>{
                 if(err){
