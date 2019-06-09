@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./Category.css";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import $ from "jquery";
+import { connect } from "react-redux";
+import store from "../../store/index";
+import { addArticle } from "../../actions/index";
 
 const categories = [
   "Depressed",
@@ -43,6 +46,7 @@ class Category extends Component {
   componentDidMount() {
     this.getCategories();
   }
+
   render() {
     return (
       // this.state.something,
@@ -66,6 +70,7 @@ class Category extends Component {
               </ListGroup.Item>
             );
           })}
+          <ListGroup.Item>asdf</ListGroup.Item>
         </ListGroup>
         {/* <ListGroup className="categoryName mt-5">          
           <ListGroup.Item as="li" active>
