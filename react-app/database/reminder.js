@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var reminder = new Schema({
-    "username" : {
-        type: String,
-        unique: true,
-        required: true
-    },
+    // "username" : {
+    //     type: String,
+    //     unique: true,
+    //     required: true
+    // },
     "categoriesId" : {
         type: Array,
         required : true,
@@ -30,7 +30,7 @@ module.exports = {
     submitReminder: function (data) {
         return new Promise((resolve, reject) => {
             var reminder_data = new reminderModel({
-                username: data.loggedUser,
+              //  username: data.loggedUser,
                 categoriesId: data.selectedCategories,
                 reminderDays: data.selectedDays,
                 timeStamp: data.selectedTimeStamp
