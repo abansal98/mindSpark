@@ -26,11 +26,7 @@ module.exports = {
             });
             quote_data.save((err)=>{
                 if(err){
-                    if(err.code == 11000){
                         reject("Quote already exists!");
-                    } else {
-                        resolve();
-                    }
                 } else {
                   resolve();
                 }

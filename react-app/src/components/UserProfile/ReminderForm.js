@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import $ from "jquery";
+import TimeField from 'react-simple-timefield';
 
 class ReminderForm extends Component {
 
@@ -9,9 +10,11 @@ class ReminderForm extends Component {
           categories: [],
           selectedCategories: [],
           selectedDays: [],
-          selectedTimeStamp: "",
-          loggedUser: "a2"
+          selectedTimeStamp: '00:00',
+          loggedUser: ""
         };
+
+        this.onTimeChange = this.onTimeChange.bind(this);
       }
 
       getAllCategories() {
@@ -50,6 +53,38 @@ class ReminderForm extends Component {
           })
       }
 
+      handleChangeDay = (event) => {
+        let opts = [], opt;
+    
+        for (let i = 0, len = event.target.options.length; i < len; i++) {
+          opt = event.target.options[i];
+    
+          if (opt.selected) {
+            opts.push(opt.value);
+          }
+        }
+        // console.log('opts: ', opts);
+        this.setState({selectedDays: opts});
+      };
+
+      handleChangeCategories = (event) => {
+        let opts = [], opt;
+    
+        for (let i = 0, len = event.target.options.length; i < len; i++) {
+          opt = event.target.options[i];
+    
+          if (opt.selected) {
+            opts.push(opt.value);
+          }
+        }
+        // console.log('opts: ', opts);
+        this.setState({selectedCategories: opts});
+      };
+
+      onTimeChange(time) {
+        this.setState({selectedTimeStamp: time});
+      }
+
     render() {
         return (
             <React.Fragment>
@@ -61,10 +96,10 @@ class ReminderForm extends Component {
                         <form onSubmit={this.handleSubmit.bind(this)}>
                         <div class="form-group">
                             <label for="sel1">Select Category:</label>
-                                <select multiple class="form-control" id="sel1">
+                                <select multiple={true} class="form-control" id="sel1" value={this.state.selectedCategories} onChange={this.handleChangeCategories}>
                                     {this.state.categories.map((value, index) => {
                                         return (
-                                            <option>
+                                            <option value={value.categoryName}>
                                                 {value.categoryName}
                                             </option>
                                         );
@@ -73,21 +108,19 @@ class ReminderForm extends Component {
                             </div>
                             <div class="form-group">
                             <label for="sel1">Select Days:</label>
-                            <select multiple class="form-control" id="sel1">
-                                <option>Monday</option>
-                                <option>Tuesday</option>
-                                <option>Wednesday</option>
-                                <option>Thursday</option>
-                                <option>Friday</option>
-                                <option>Saturday</option>
-                                <option>Sunday</option>
+                            <select multiple={true} class="form-control" value={this.state.selectedDays} onChange={this.handleChangeDay}>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
                             </select>
                             </div>
-                            <div className="form-group">
-                                <div className="email">
-                                    <label htmlFor="email">Time</label>
-                                    <input type="time" id="appt" name="appt" value={this.state.selectedTime} required/>
-                                </div>
+                            <div class="form-group">
+                            <label for="sel1">Select Time:</label>
+                            <TimeField value={this.state.selectedTimeStamp} onChange={this.onTimeChange} />
                             </div>
                             <button className="btn btn-primary" type="submit">
                                 Set Reminder
