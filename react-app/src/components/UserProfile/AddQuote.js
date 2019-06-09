@@ -22,10 +22,10 @@ class AddQuote extends Component
     {
         e.preventDefault();
         $.ajax({
-            url: "/db/quote",
+            url: "/db/addQuote",
             method: "POST",
             data: {
-                quote: this.state.quote
+                text: this.state.quote
       }
     })
       .then(msg => {
