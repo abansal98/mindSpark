@@ -27,7 +27,7 @@ router.route("/signup").post((req, res) => {
     });
 });
 
-router.route("/quote").post((req, res) => {
+router.route("/addQuote").post((req, res) => {
    // console.log(req.body);
     quote
       .addQuote(req.body)
