@@ -7,10 +7,14 @@ class ReminderForm extends Component {
         super(props);
         this.state = {
           categories: [],
+          selectedCategories: [],
+          selectedDays: [],
+          selectedTimeStamp: "",
+          loggedUser: "a2"
         };
       }
 
-      getCategories() {
+      getAllCategories() {
         $.ajax({
           url: "/db/getCategories",
           method: "GET"
@@ -21,8 +25,29 @@ class ReminderForm extends Component {
           console.log(this.state.categories);
         });
       }
+
       componentDidMount() {
-        this.getCategories();
+        this.getAllCategories();
+      }
+
+      handleSubmit(e){
+          e.preventDefault();
+          $.ajax({
+              url: "/db/submitReminder",
+              method: "POST",
+              data: {
+                loggedUser: this.state.loggedUser,
+                selectedCategories: this.state.selectedCategories,
+                selectedDays: this.state.selectedDays,
+                selectedTimeStamp: this.state.selectedTimeStamp
+              }
+          })
+          .then(msg => {
+              alert(msg);
+          })
+          .fail(err =>{
+              alert(err.responseText);
+          })
       }
 
     render() {
@@ -33,7 +58,7 @@ class ReminderForm extends Component {
                     <div className="form-wrapper">
                         <div className="header">
                         </div>
-                        <form>
+                        <form onSubmit={this.handleSubmit.bind(this)}>
                         <div class="form-group">
                             <label for="sel1">Select Category:</label>
                                 <select multiple class="form-control" id="sel1">
@@ -61,7 +86,7 @@ class ReminderForm extends Component {
                             <div className="form-group">
                                 <div className="email">
                                     <label htmlFor="email">Time</label>
-                                    <input type="time" id="appt" name="appt" required/>
+                                    <input type="time" id="appt" name="appt" value={this.state.selectedTime} required/>
                                 </div>
                             </div>
                             <button className="btn btn-primary" type="submit">

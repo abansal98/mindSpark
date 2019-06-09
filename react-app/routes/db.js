@@ -2,7 +2,8 @@ const express = require("express"),
   router = express.Router(),
   category = require("../database/category"),
   user = require("../database/users"),
-  quote = require("../database/quote");
+  quote = require("../database/quote"),
+  reminder = require("../database/reminder");
 
 router.route("/signin").post((req, res) => {
   user
@@ -74,12 +75,12 @@ router.route("/addCategory").post((req, res) => {
     });
 });
 
-router.route("/addQuote").post((req, res) => {
+router.route("/submitReminder").post((req, res) => {
   console.log(req.body);
-  quote
-    .addQuote(req.body)
+  reminder
+    .submitReminder(req.body)
     .then(data => {
-      res.status(200).send(data);
+      res.status(200).send("Reminder set successfully!");
     })
     .catch(err => {
       res.status(301).send(err);
