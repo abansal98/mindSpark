@@ -77,6 +77,7 @@ validateForm() {
     render() {
         return (
             <div className="upload">
+              <h2> AddQuote</h2>
             <form onSubmit={this.handleSubmit.bind(this)}>
 
                 <textarea
