@@ -6,7 +6,7 @@ var quote = new Schema({
         type: String,
         unique: true
     },
-    "quoteContent": String,
+    "text": String,
     "author"    : String,
     "datePosted": Date,
     "rating"    : Number,
@@ -32,6 +32,23 @@ module.exports = {
                 }
             })
         })
+    },
+
+    fetchQuote: function() {
+      return new Promise(function(resolve, reject) {
+        quoteModel.find({})
+      
+      .exec()
+      .then(data => {
+        if (data.length > 0) {
+          resolve(data);
+        }
+        else
+        {
+          reject("No quote bro");
+        }
+      });
+    });
     },
 
   fetchQuoteList: function(categoryName) {
