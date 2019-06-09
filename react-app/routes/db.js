@@ -39,6 +39,16 @@ router.route("/quote").post((req, res) => {
       });
   });
 
+router.route("/quoteList").get((req, res) => {
+  quote.fetchQuote()
+  .then(data => {
+    res.status(200).send(data);
+  })
+  .catch(err => {
+    res.status(301).send(err);
+  })
+})
+
 router.route("/getCategories").get((req, res) => {
   category
     .fetchCategoryList()
