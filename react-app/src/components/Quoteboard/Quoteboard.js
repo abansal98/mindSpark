@@ -24,37 +24,10 @@ class Quoteboard extends Component {
   componentDidMount() {
   }
 
-  navbarSelect(props) {
-    const isLoggedIn = props;
-    $.ajax({
-      url: "/db/ensureLogin",
-      method: "GET"
-    })
-      .then((user) => {
-        this.setState({
-          username: user,
-          isLoggedIn: true
-        })
-        isLoggedIn = this.state.isLoggedIn;
-      })
-      .fail({
-      });
-
-    if (isLoggedIn) {
-      console.log("this happened!");
-      return <NavBar />;
-    }
-    console.log("this never happened!");
-    return <NavBarSignIn />;
-  }
-
   render() {
     return (
       <div className="quoteboardBody">
         <Container fluid={true}>
-          <Row>
-            <navbarSelect isLoggedIn={this.state.isLoggedIn} />,
-          </Row>
           <Tab.Container
             id="list-group-tabs-example"
             defaultActiveKey="#categoryHome"

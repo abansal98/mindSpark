@@ -67,7 +67,6 @@ class SignUpSignIn extends Component {
       <div className="signupsigninbody">
         {/* <div class="signupsigninBody"> */}
         <SignupsigninBlurBg />
-        <NavBarSignIn />
         <div class="container">
           {/* <Aboutteam /> */}
           <ControlledTabs />

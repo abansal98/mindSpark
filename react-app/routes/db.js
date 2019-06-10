@@ -40,12 +40,12 @@ router.route('/logout')
   });
 
 router.route('/ensureLogin')
-  .get((req, res) => {
-    if (req.session.user)
-      res.status(200).send(req.session.user.username);
-    else
-      res.status(301).send(0);
-  })
+    .get((req, res) => {
+        if (req.session.user)
+            res.status(200).send(req.session.user.username);
+        else
+            res.status(401).send('0');
+    })
 
 router.route("/addQuote").post((req, res) => {
   // console.log(req.body);

@@ -12,7 +12,6 @@ class Error extends Component {
       // <div className={className}>
       <div className="errorBody">
         <div className="menu ">
-          <NavBar />
           <h1>404</h1>
         </div>
       </div>

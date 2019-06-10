@@ -10,7 +10,6 @@ class About extends Component {
     return (
       <div className="aboutBody">
         <AboutBlurBg />
-        <NavBarSignin />
         <div>
           <Aboutteam />
           <Samplequotelist />
