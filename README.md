@@ -5,6 +5,21 @@ MindSpark is a web application that let users share quotes that inspirit one ano
 ### The build version on live server (usually updated once a week)
 * http://myvmlab.senecacollege.ca:6475/
 
+### FOR DEVELOPERS!!!
+#### When you deploy new update on VM
+
+1. git clone … / git pull …
+2. npm install
+3. npm run build // do this @reactfolder
+4. forever start app.js // do this @reactfolder
+
+* forever (run background)
+
+* forever list (display all the forever script running)
+
+* forever stop #(number!!!)
+
+
 
 Team Members:
 * Youngmin Ko (Team Lead) - https://github.com/masonkoh

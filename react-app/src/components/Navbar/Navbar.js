@@ -52,7 +52,7 @@ class NavBar extends Component {
               </Form>
             </Nav>
             <Nav>
-              <Navbar.Brand>Hi, LoremIpsum!</Navbar.Brand>
+              {/* <Navbar.Brand>Hi, LoremIpsum!</Navbar.Brand> */}
               <Navbar.Brand>
                 <a href="/userprofile">
                   <img
@@ -71,6 +71,7 @@ class NavBar extends Component {
                   />
                 </a>
                 <a href="/">
+                  {/* <Button variant="light">LOGOUT</Button> */}
                   {/* Implement logout feature here! */}
                   <img
                     src={logout}
