@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import $ from "jquery";
 import ProfileForm from "./ProfileForm";
 import PersonalQuote from "./PersonalQuote";
+import AddQuote from "./AddQuote";
 import ReminderForm from "./ReminderForm";
 import "./UserProfile.css";
 
@@ -15,6 +16,7 @@ class UserProfile extends Component {
                     <ProfileForm />
                 </div>
                 <div class="col">
+                    <AddQuote />
                     <PersonalQuote />
                 </div>
                 <div class="col">

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import $ from "jquery";
 import Button from "react-bootstrap/Button";
+import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 class PersonalQuote extends Component
 {
@@ -8,53 +9,36 @@ class PersonalQuote extends Component
     {
         super(props);
         this.state = {
-            quote: "",
+            quote: []
         }
-
-
-    };
-
-    handleInput(e)
-    {
-        this.setState({quote: e.target.value});
     }
 
-    addQuote(e)
+    componentDidMount()
     {
-        e.preventDefault();
-        console.log(this.state.quote);
         $.ajax({
-            url: "/db/quote",
-            method: "POST",
-            data: {
-                text: this.state.quote
-      }
-    })
-      .then(msg => {
-        alert(msg);
-    
-      })
-      .fail(err => {
-        alert(err.responseText);
-      });
-      
+            url: "db/quoteList",
+            method: "GET"
+        })
+        .then(data => {
+           
+            this.setState({quote: data});
+            console.log(this.state.quote);
+        })
     }
-
     render() {
         return (
-            <div className="upload">
-            <form onSubmit={this.addQuote.bind(this)}>
-
-                <textarea onChange={this.handleInput.bind(this)}
-                name="quote"
-                placeholder = "Enter Quote"
-                value = {this.state.quote}/>
-       
-            <button 
-                className="submit"
-                type="submit">Submit
-            </button>   
-            </form> 
+            <div className="container">
+                <ListGroup>
+                    {this.state.quote.map((value, index) => {
+                        return (
+                            <ListGroupItem key={index}>
+                                {value.text}
+                                <h3>- {value.author}</h3>
+                            </ListGroupItem>
+                            
+                        )
+                    })}
+                </ListGroup>
             </div>
          );
     }

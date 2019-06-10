@@ -1,9 +1,9 @@
-const
-    express = require('express'),
-    router = express.Router(),
-    category = require('../database/category'),
-    user = require('../database/users'),
-    quote = require('../database/quote');
+const express = require("express"),
+  router = express.Router(),
+  category = require("../database/category"),
+  user = require("../database/users"),
+  quote = require("../database/quote"),
+  reminder = require("../database/reminder");
 
 router.route('/signin')
     .post((req, res) => {
@@ -47,6 +47,28 @@ router.route('/ensureLogin')
             res.status(401).send('0');
     })
 
+router.route("/addQuote").post((req, res) => {
+   // console.log(req.body);
+    quote
+      .addQuote(req.body)
+      .then(() => {
+        res.status(200).send("Quote Added!");
+      })
+      .catch(err => {
+        res.status(301).send(err);
+      });
+  });
+
+router.route("/quoteList").get((req, res) => {
+  quote.fetchQuote()
+  .then(data => {
+    res.status(200).send(data);
+  })
+  .catch(err => {
+    res.status(301).send(err);
+  })
+})
+
 router.route("/getCategories").get((req, res) => {
   category
     .fetchCategoryList()
@@ -83,12 +105,12 @@ router.route("/addCategory").post((req, res) => {
     });
 });
 
-router.route("/addQuote").post((req, res) => {
+router.route("/submitReminder").post((req, res) => {
   console.log(req.body);
-  quote
-    .addQuote(req.body)
+  reminder
+    .submitReminder(req.body)
     .then(data => {
-      res.status(200).send(data);
+      res.status(200).send("Reminder set successfully!");
     })
     .catch(err => {
       res.status(301).send(err);
