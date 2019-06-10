@@ -44,7 +44,7 @@ router.route('/ensureLogin')
         if (req.session.user)
             res.status(200).send(req.session.user.username);
         else
-            res.status(301).send(0);
+            res.status(401).send('0');
     })
 
 router.route("/getCategories").get((req, res) => {

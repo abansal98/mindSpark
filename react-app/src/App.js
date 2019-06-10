@@ -9,22 +9,66 @@ import About from "./components/About/About";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import UserProfile from "./components/UserProfile/UserProfile";
 import Footer from "./components/Footer/Footer"
+import NavBarSignIn from "./components/Navbar/NavbarSignin";
+import $ from 'jquery';
+import NavBar from "./components/Navbar/Navbar";
 
 class App extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      username: "",
+      isLoggedIn: false
+    };
+  }
+
+  navbarSelect() {
+    if (this.state.isLoggedIn) {
+      return <NavBar />;
+    }
+    else {
+      return <NavBarSignIn />;
+    }
+  }
+
+  getLoginStatus() {
+    $.ajax({
+      url: "/db/ensureLogin",
+      method: "GET"
+    })
+      .then((user) => {
+        this.setState({
+          username: user,
+          isLoggedIn: true
+        })
+      })
+      .fail((err) => {
+        this.setState({
+          username: "",
+          isLoggedIn: false
+        })
+      });
+  }
+
+  componentDidMount() {
+    this.getLoginStatus();
+  }
+
   render() {
     return (
       <div id="root">
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" component={About} exact />
-          <Route path="/signup" component={SignUpSignIn} />
-          <Route path="/quoteboard" component={Quoteboard} />
-          <Route path="/signin" component={SignIn} />
-          <Route path="/userProfile" component={UserProfile} />
-          <Route component={Error} />
-        </Switch>
-      </BrowserRouter>
-      {/* <Footer/> */}
+        {this.navbarSelect()}
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" component={About} exact />
+            <Route path="/signup" component={SignUpSignIn} />
+            <Route path="/quoteboard" component={Quoteboard} />
+            {/* <Route path="/signin" component={SignUpSignIn} /> */}
+            <Route path="/userProfile" component={UserProfile} />
+            <Route component={Error} />
+          </Switch>
+        </BrowserRouter>
+        <Footer />
       </div>
     );
   }

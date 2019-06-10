@@ -11,7 +11,6 @@ class UserProfile extends Component {
     render() {
         return (
             <div class="row b">
-                <NavBar />
                 <div class="col">
                     <ProfileForm />
                 </div>
