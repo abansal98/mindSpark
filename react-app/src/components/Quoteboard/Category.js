@@ -4,6 +4,20 @@ import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
 import $ from "jquery";
 import Quotelist from "./Quotelist";
 import Quoteboardguide from "../Quoteboard/Quoteboardguide";
+import { connect } from "react-redux";
+import store from "../../store/index";
+import { addArticle } from "../../actions/index";
+
+const categories = [
+  "Depressed",
+  "Weariness",
+  "Laziness",
+  "Loneliness",
+  "Stress",
+  "Nervousness",
+  "Nostalgia",
+  "Grief"
+];
 
 class Category extends Component {
   constructor(props) {
@@ -27,51 +41,39 @@ class Category extends Component {
     });
   }
 
+  mkTestFunction() {
+    console.log("I'm function from Category.js");
+  }
+
   componentDidMount() {
     this.getCategories();
   }
+
   render() {
     return (
-      (
-        <React.Fragment>
-          <Col md={2} className="quoteboardleftside pt-5">
-            <ListGroup>
-              <ListGroup.Item action href="#categoryHome" variant="success">
-                Home
-            </ListGroup.Item>
-            </ListGroup>
-            {/* temporary for CATEGORY HOME */}
-            <ListGroup>
-              {this.state.categories.map((value, index) => {
-                return (
-                  <ListGroup.Item
-                    action
-                    href={`#${value.categoryID}`}
-                    variant="success"
-                  >
-                    {value.categoryName}
-                  </ListGroup.Item>
-                );
-              })}
-            </ListGroup>
-          </Col>
-          <Col md={10} className="quoteboardrightside pt-5">
-            {/* <Quotelist /> */}
-            <Tab.Content>
-              <Tab.Pane eventKey="#categoryHome">
-                <Quoteboardguide />
-              </Tab.Pane>
-              {this.state.categories.map((value, index) => {
-                return (
-                  <Tab.Pane eventKey={`#${value.categoryID}`}>
-                    <Quotelist category={value.categoryName} />
-                  </Tab.Pane>
-                );
-              })}
-            </Tab.Content>
-          </Col>
-        </React.Fragment>
-      )
+      <React.Fragment>
+        {/* temporary for CATEGORY HOME */}
+        <ListGroup>
+          <ListGroup.Item action href="#categoryHome" variant="success">
+            Home
+          </ListGroup.Item>
+        </ListGroup>
+        {/* temporary for CATEGORY HOME */}
+        <ListGroup>
+          {this.state.categories.map((value, index) => {
+            return (
+              <ListGroup.Item
+                action
+                href={`#${value.categoryID}`}
+                variant="success"
+              >
+                {value.categoryName}
+              </ListGroup.Item>
+            );
+          })}
+          <ListGroup.Item>asdf</ListGroup.Item>
+        </ListGroup>
+      </React.Fragment>
     );
   }
 }
