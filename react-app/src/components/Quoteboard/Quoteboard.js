@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import "./Quoteboard.css";
-import Quotelist from "./Quotelist";
-import NavBar from "../Navbar/Navbar";
-import NavBarSignIn from "../Navbar/NavbarSignin";
-import Footer from "../Footer/Footer";
 import Category from "./Category";
-import { BrowserRouter, Route } from "react-router-dom";
 import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
-import QuoteBox from "./QuoteBox";
-import Aboutteam from "../About/Aboutteam";
-import $ from "jquery";
-import Quoteboardguide from "../Quoteboard/Quoteboardguide";
+import AddQuote from "../UserProfile/AddQuote"
 
 class Quoteboard extends Component {
   constructor(props, context) {
