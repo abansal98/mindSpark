@@ -31,7 +31,7 @@ class NavBarSignin extends Component {
           variant="dark"
           fixed="top"
         >
-          <Navbar.Brand href="/quoteboard">
+          <Navbar.Brand href="/signup">
             <img
               src={logoIcon}
               width="30"
