@@ -13,8 +13,13 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import $ from "jQuery";
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <nav>
@@ -53,6 +58,8 @@ class NavBar extends Component {
             </Nav>
             <Nav>
               {/* <Navbar.Brand>Hi, LoremIpsum!</Navbar.Brand> */}
+
+              <Navbar.Brand>Hello, {this.props.username}</Navbar.Brand>
               <Navbar.Brand>
                 <a href="/userprofile">
                   <img
@@ -70,7 +77,7 @@ class NavBar extends Component {
                     className="d-inline-block align-top"
                   />
                 </a>
-                <a href="/">
+                <a href="/db/logout">
                   {/* <Button variant="light">LOGOUT</Button> */}
                   {/* Implement logout feature here! */}
                   <img
