@@ -8,9 +8,9 @@ import Error from "./components/Error/Error";
 import About from "./components/About/About";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import UserProfile from "./components/UserProfile/UserProfile";
-import Footer from "./components/Footer/Footer"
+import Footer from "./components/Footer/Footer";
 import NavBarSignIn from "./components/Navbar/NavbarSignin";
-import $ from 'jquery';
+import $ from "jquery";
 import NavBar from "./components/Navbar/Navbar";
 
 class App extends Component {
@@ -24,9 +24,8 @@ class App extends Component {
 
   navbarSelect() {
     if (this.state.isLoggedIn) {
-      return <NavBar />;
-    }
-    else {
+      return <NavBar username={this.state.username} />;
+    } else {
       return <NavBarSignIn />;
     }
   }
@@ -36,17 +35,17 @@ class App extends Component {
       url: "/db/ensureLogin",
       method: "GET"
     })
-      .then((user) => {
+      .then(user => {
         this.setState({
           username: user,
           isLoggedIn: true
-        })
+        });
       })
-      .fail((err) => {
+      .fail(err => {
         this.setState({
           username: "",
           isLoggedIn: false
-        })
+        });
       });
   }
 
