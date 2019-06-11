@@ -2,76 +2,43 @@ import React, { Component } from "react";
 import "./Quoteboard.css";
 import Quotelist from "./Quotelist";
 import NavBar from "../Navbar/Navbar";
+import NavBarSignIn from "../Navbar/NavbarSignin";
 import Footer from "../Footer/Footer";
 import Category from "./Category";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
 import QuoteBox from "./QuoteBox";
+import Aboutteam from "../About/Aboutteam";
+import $ from "jquery";
 import Quoteboardguide from "../Quoteboard/Quoteboardguide";
-
-const categories = [
-  "Depressed",
-  "Weariness",
-  "Laziness",
-  "Loneliness",
-  "Stress",
-  "Nervousness",
-  "Nostalgia",
-  "Grief"
-];
-
-const quotes = [
-  "I have not failed, I've just found 10,000 ways that won't work",
-  "The best way to predict future is to create it",
-  "Creativity is just connecting things",
-  "Let's go invent tomorrow instead of worrying about what happened yesterday",
-  "I could either watch it happen or be a part of it",
-  "Go big or Go home",
-  "Formal education will make you a living, Self-education will make you a fortune",
-  "Be fearful when others are greedy and greedy when others are fearful",
-  "Risk comes from not knowing what you're doing",
-  "If you can't do great things, do small things in a great way"
-];
-const authors = [
-  "Thomas A. Edison",
-  "Peter Ducker",
-  "Steve Jobs",
-  "Elon Musk",
-  "Eliza Dushku",
-  "Jim Rohn",
-  "Warren Buffett",
-  "Napoleon Hill"
-];
-const ratings = ["★☆☆☆☆", "★★☆☆☆", "★★★☆☆", "★★★★☆", "★★★★★"];
 
 class Quoteboard extends Component {
   constructor(props, context) {
     super(props, context);
+    this.state = {
+      username: "",
+      isLoggedIn: false
+    };
   }
 
   componentDidMount() {
-    var temp = <Category />;
-    console.log("Category starts here!");
-    console.log(temp);
   }
 
   render() {
     return (
       <div className="quoteboardBody">
         <Container fluid={true}>
-          <Row>
-            <NavBar />
-          </Row>
           <Tab.Container
             id="list-group-tabs-example"
             defaultActiveKey="#categoryHome"
           >
             <Row>
-              <Col md={2} className="quoteboardleftside pt-5">
+              <Category />
+              {/* <Col md={2} className="quoteboardleftside pt-5">
                 <Category />
               </Col>
               <Col md={10} className="quoteboardrightside pt-5">
-                {/* <Quotelist /> */}
+                {/* <Quotelist />
                 <Tab.Content>
                   <Tab.Pane eventKey="#categoryHome">
                     <Quoteboardguide />
@@ -85,7 +52,7 @@ class Quoteboard extends Component {
                     />
                   </Tab.Pane>
                 </Tab.Content>
-              </Col>
+              </Col> */}
             </Row>
           </Tab.Container>
         </Container>

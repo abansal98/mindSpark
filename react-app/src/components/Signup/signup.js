@@ -78,8 +78,8 @@ class SignUp extends Component {
         errors.password = passValid ? (
           ""
         ) : (
-          <div className="alert alert-warning">must have 6 password</div>
-        );
+            <div className="alert alert-warning">must have 6 password</div>
+          );
         break;
       case "username":
         usrValid =
@@ -93,8 +93,8 @@ class SignUp extends Component {
         errors.e_confirm = confirm ? (
           ""
         ) : (
-          <div className="error"> not match</div>
-        );
+            <div className="error"> not match</div>
+          );
         break;
       default:
         break;
