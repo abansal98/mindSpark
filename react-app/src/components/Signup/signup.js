@@ -67,7 +67,7 @@ class SignUp extends Component {
     switch (fieldName) {
       case "email":
         emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        errors.email = emailValid ? "" : " is invalid";
+        errors.email = emailValid ? "" : "Email is invalid";
         break;
       case "password":
         // contain at least 1 special character
@@ -78,22 +78,30 @@ class SignUp extends Component {
         errors.password = passValid ? (
           ""
         ) : (
-            <div className="alert alert-warning">must have 6 password</div>
+            <div className="alert alert-warning">Password must have 6 characters, capital letter & 1 special character</div>
           );
+
+          confirm = this.state.confirmPassword === this.state.password;
+          errors.e_confirm = confirm ? (
+            ""
+          ) : (
+              <div className="error">Passwords do not match</div>
+            );
+
         break;
       case "username":
         usrValid =
           value.match("^[A-Za-z0-9]*$") &&
           value.length > 6 &&
-          value.length < 20;
-        errors.username = usrValid ? "" : " is too short";
+          value.length < 20 &&
+        errors.username === usrValid ? "" : "Username is too short";
         break;
       case "confirmPassword":
         confirm = this.state.confirmPassword === this.state.password;
         errors.e_confirm = confirm ? (
           ""
         ) : (
-            <div className="error"> not match</div>
+            <div className="error">Passwords do not match</div>
           );
         break;
       default:
@@ -185,7 +193,7 @@ class SignUp extends Component {
 
               <div className="form-group">
                 <div className="confirmPassword">
-                  <label htmlFor="confirmPassword">Confirm</label>
+                  <label htmlFor="confirmPassword">Confirm Password</label>
                   <input
                     className={`form-control ${
                       this.state.error.e_confirm ? "invalid" : ""
@@ -202,7 +210,7 @@ class SignUp extends Component {
               </div>
 
               <div className="createAccount">
-                <button className="btn btn-primary mb-2" type="submit">
+                <button disabled={!this.state.formValid} className="btn btn-primary mb-2" type="submit">
                   Create Account
                 </button>
               </div>
