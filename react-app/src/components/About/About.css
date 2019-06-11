@@ -21,8 +21,8 @@
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  /* filter: blur(9px); */
-  /* -webkit-filter: blur(9px); */
+  /* filter: blur(9px);
+  -webkit-filter: blur(9px); */
   background-repeat: no-repeat;
   /* min-height: 100vh; */
   /* transform: scale(1.04); */
