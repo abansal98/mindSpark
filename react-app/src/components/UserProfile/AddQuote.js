@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import $ from "jquery";
 import Button from "react-bootstrap/Button";
 
-const quoteRegex = RegExp(/^[a-z]{3,250}$/);
+const quoteRegex = RegExp(/^[a-z0-9#,!?_. ]{5,750}$/);
 
 class AddQuote extends Component
 {
@@ -53,7 +53,7 @@ validateField(fieldName, value) {
     switch (fieldName) {
       case "quote":
         quoteValid = quoteRegex.test(value);
-        errors.quote = quoteValid ? "" : " has a limit of 250 characters.";
+        errors.quote = quoteValid ? "" : " Quote has a limit of 5 to 750 characters.";
         break;
       default:
         break;
@@ -93,6 +93,7 @@ validateForm() {
                   </div>
        
             <button 
+            disabled={!this.state.formValid}
                 className="submit"
                 type="submit">Submit
             </button>   
