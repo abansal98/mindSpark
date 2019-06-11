@@ -22,6 +22,16 @@ class App extends Component {
     };
   }
 
+  quoteboardAccess() {
+    if (this.state.isLoggedIn) {
+      // this.quoteboardOrSignup = "Quoteboard";
+      return Quoteboard;
+    } else {
+      // this.quoteboardOrSignup = "SignUpSignIn";
+      return SignUpSignIn;
+    }
+  }
+
   navbarSelect() {
     if (this.state.isLoggedIn) {
       return <NavBar username={this.state.username} />;
@@ -51,6 +61,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getLoginStatus();
+    // this.quoteboardAccess();
   }
 
   render() {
@@ -61,7 +72,8 @@ class App extends Component {
           <Switch>
             <Route path="/" component={About} exact />
             <Route path="/signup" component={SignUpSignIn} />
-            <Route path="/quoteboard" component={Quoteboard} />
+
+            <Route path="/quoteboard" component={this.quoteboardAccess()} />
             {/* <Route path="/signin" component={SignUpSignIn} /> */}
             <Route path="/userProfile" component={UserProfile} />
             <Route component={Error} />
