@@ -13,7 +13,6 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import $ from "jQuery";
 
 class NavBar extends Component {
   constructor(props) {
