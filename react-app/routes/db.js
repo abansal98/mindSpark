@@ -80,6 +80,17 @@ router.route("/getCategories").get((req, res) => {
     });
 });
 
+router.route("/getUserInfo/:username").get((req, res) => {
+  user
+    .getUser(req.params.username)
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
 router.route("/getQuotes/:categoryName").get((req, res) => {
   // console.log(req.params.categoryName);
   // var temp = req.params.categoryName.toString().toLowerCase();
