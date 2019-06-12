@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import logoIcon from "../../icons/logo.png";
-import userProfileIcon from "../../icons/baseline-account_circle-24px.svg";
+import userProfileIcon from "../../icons/baseline-account_box-24px.svg";
 import addQuoteIcon from "../../icons/baseline-create-24px.svg";
 import logout from "../../icons/baseline-exit_to_app-24px.svg";
 import {
@@ -60,14 +60,14 @@ class NavBar extends Component {
 
               <Navbar.Brand>Hello, {this.props.username}</Navbar.Brand>
               <Navbar.Brand>
-                <a href="/userprofile">
+                {/* <a href="/userprofile">
                   <img
                     src={addQuoteIcon}
                     width="30"
                     height="30"
                     className="d-inline-block align-top userProfileIcon"
                   />
-                </a>
+                </a> */}
                 <a href="/userprofile" className="userProfileIcon">
                   <img
                     src={userProfileIcon}
