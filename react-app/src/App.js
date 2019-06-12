@@ -75,7 +75,7 @@ class App extends Component {
 
             <Route path="/quoteboard" component={this.quoteboardAccess()} />
             {/* <Route path="/signin" component={SignUpSignIn} /> */}
-            <Route path="/userProfile" component={UserProfile} />
+            <Route path="/userProfile" component={() => <UserProfile username={this.state.username}/>}/>
             <Route component={Error} />
           </Switch>
         </BrowserRouter>
