@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import logoIcon from "../../icons/logo.png";
-import userProfileIcon from "../../icons/baseline-account_circle-24px.svg";
+import userProfileIcon from "../../icons/baseline-account_box-24px.svg";
 import addQuoteIcon from "../../icons/baseline-create-24px.svg";
 import logout from "../../icons/baseline-exit_to_app-24px.svg";
 import {
@@ -15,6 +15,10 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <nav>
@@ -53,15 +57,17 @@ class NavBar extends Component {
             </Nav>
             <Nav>
               {/* <Navbar.Brand>Hi, LoremIpsum!</Navbar.Brand> */}
+
+              <Navbar.Brand>Hello, {this.props.username}</Navbar.Brand>
               <Navbar.Brand>
-                <a href="/userprofile">
+                {/* <a href="/userprofile">
                   <img
                     src={addQuoteIcon}
                     width="30"
                     height="30"
                     className="d-inline-block align-top userProfileIcon"
                   />
-                </a>
+                </a> */}
                 <a href="/userprofile" className="userProfileIcon">
                   <img
                     src={userProfileIcon}
@@ -70,7 +76,7 @@ class NavBar extends Component {
                     className="d-inline-block align-top"
                   />
                 </a>
-                <a href="/">
+                <a href="/db/logout">
                   {/* <Button variant="light">LOGOUT</Button> */}
                   {/* Implement logout feature here! */}
                   <img
