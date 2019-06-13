@@ -34,6 +34,13 @@ class Category extends Component {
     console.log("I'm function from Category.js");
   }
 
+  setCategory(categoryID){
+    store.dispatch({
+      type: "category",
+      categoryName: categoryID
+    })
+  }
+
   componentDidMount() {
     this.getCategories();
   }
@@ -71,7 +78,7 @@ class Category extends Component {
               </Tab.Pane>
               {this.state.categories.map((value, index) => {
                 return (
-                  <Tab.Pane eventKey={`#${value.categoryID}`}>
+                  <Tab.Pane eventKey={`#${value.categoryID}`} onClick={this.setCategory(value.categoryID)}>
                     <Quotelist category={value.categoryName} />
                   </Tab.Pane>
                 );
