@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import $ from "jquery";
 import Button from "react-bootstrap/Button";
 
-const quoteRegex = RegExp(/^[a-z]{0,10}$/);
+const quoteRegex = RegExp(/^[a-z0-9#,!?_. ]{5,750}$/);
 
 class AddQuote extends Component
 {
@@ -25,8 +25,8 @@ class AddQuote extends Component
             url: "/db/addQuote",
             method: "POST",
             data: {
-                text: this.state.quote
-      }
+                quote: this.state.quote
+                    }
     })
       .then(msg => {
         alert(msg);
@@ -53,7 +53,7 @@ validateField(fieldName, value) {
     switch (fieldName) {
       case "quote":
         quoteValid = quoteRegex.test(value);
-        errors.quote = quoteValid ? "" : " has a limit of 10 characters.";
+        errors.quote = quoteValid ? "" : " Quote has a limit of 5 to 750 characters.";
         break;
       default:
         break;
@@ -79,7 +79,6 @@ validateForm() {
             <div className="upload">
               <h2> AddQuote</h2>
             <form onSubmit={this.handleSubmit.bind(this)}>
-
                 <textarea
                 className={`form-control ${
                     this.state.error.quote ? "invalid" : ""
@@ -94,6 +93,7 @@ validateForm() {
                   </div>
        
             <button 
+            disabled={!this.state.formValid}
                 className="submit"
                 type="submit">Submit
             </button>   

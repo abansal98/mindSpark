@@ -13,7 +13,7 @@ class UserProfile extends Component {
         return (
             <div class="row b">
                 <div class="col">
-                    <ProfileForm />
+                    <ProfileForm username={this.props.username}/>
                 </div>
                 <div class="col">
                     <AddQuote />

@@ -21,9 +21,14 @@ class Quoteboard extends Component {
     };
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
+  handleOnClick = id => {
+    console.log(`You click ${id}`);
+    //set the state of QuoteBoard so that it gets re-rendered with the updated data
+    // if I select "Laziness" this would gather the data and setState with new Quotes
+    // once that gets updated your component will be rerendered by reacts lifecycle hooks
+  };
   render() {
     return (
       <div className="quoteboardBody">
@@ -33,7 +38,7 @@ class Quoteboard extends Component {
             defaultActiveKey="#categoryHome"
           >
             <Row>
-              <Category />
+              <Category onClick={this.handleOnClick} />
               {/* <Col md={2} className="quoteboardleftside pt-5">
                 <Category />
               </Col>

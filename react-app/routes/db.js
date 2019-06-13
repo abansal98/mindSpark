@@ -106,7 +106,7 @@ router.route("/addCategory").post((req, res) => {
 });
 
 router.route("/submitReminder").post((req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   reminder
     .submitReminder(req.body)
     .then(data => {
