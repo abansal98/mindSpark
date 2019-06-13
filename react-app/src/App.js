@@ -31,6 +31,15 @@ class App extends Component {
       return SignUpSignIn;
     }
   }
+  signupAccess() {
+    if (this.state.isLoggedIn) {
+      // this.quoteboardOrSignup = "Quoteboard";
+      return Quoteboard;
+    } else {
+      // this.quoteboardOrSignup = "SignUpSignIn";
+      return SignUpSignIn;
+    }
+  }
 
   navbarSelect() {
     if (this.state.isLoggedIn) {
@@ -71,11 +80,17 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route path="/" component={About} exact />
-            <Route path="/signup" component={SignUpSignIn} />
+            <Route path="/signup" component={this.signupAccess()} />
 
             <Route path="/quoteboard" component={this.quoteboardAccess()} />
-            {/* <Route path="/signin" component={SignUpSignIn} /> */}
-            <Route path="/userProfile" component={() => <UserProfile username={this.state.username}/>}/>
+            <Route
+              path="/signin"
+              component={() => <SignUpSignIn key={"login"} />}
+            />
+            <Route
+              path="/userProfile"
+              component={() => <UserProfile username={this.state.username} />}
+            />
             <Route component={Error} />
           </Switch>
         </BrowserRouter>
