@@ -114,5 +114,22 @@ module.exports = {
                     }
                 })
         })
-    }
+    },
+
+    getUser: function (data) {
+        return new Promise(function (resolve, reject) {
+            userModel.find({
+                username: data
+            })
+                .exec()
+                .then((data) => {
+                    if (data.length > 0) {
+                        resolve(data);
+                    }
+                    else {
+                        reject("No users available!");
+                    }
+                })
+        })
+    },
 }
