@@ -8,9 +8,9 @@ import Error from "./components/Error/Error";
 import About from "./components/About/About";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import UserProfile from "./components/UserProfile/UserProfile";
-import Footer from "./components/Footer/Footer"
+import Footer from "./components/Footer/Footer";
 import NavBarSignIn from "./components/Navbar/NavbarSignin";
-import $ from 'jquery';
+import $ from "jquery";
 import NavBar from "./components/Navbar/Navbar";
 
 class App extends Component {
@@ -18,15 +18,34 @@ class App extends Component {
     super(props, context);
     this.state = {
       username: "",
-      isLoggedIn: false
+      isLoggedIn: false,
+      email: ""
     };
+  }
+
+  quoteboardAccess() {
+    if (this.state.isLoggedIn) {
+      // this.quoteboardOrSignup = "Quoteboard";
+      return Quoteboard;
+    } else {
+      // this.quoteboardOrSignup = "SignUpSignIn";
+      return SignUpSignIn;
+    }
+  }
+  signupAccess() {
+    if (this.state.isLoggedIn) {
+      // this.quoteboardOrSignup = "Quoteboard";
+      return Quoteboard;
+    } else {
+      // this.quoteboardOrSignup = "SignUpSignIn";
+      return SignUpSignIn;
+    }
   }
 
   navbarSelect() {
     if (this.state.isLoggedIn) {
-      return <NavBar />;
-    }
-    else {
+      return <NavBar username={this.state.username} />;
+    } else {
       return <NavBarSignIn />;
     }
   }
@@ -36,22 +55,41 @@ class App extends Component {
       url: "/db/ensureLogin",
       method: "GET"
     })
-      .then((user) => {
+      .then(user => {
         this.setState({
           username: user,
-          isLoggedIn: true
-        })
+          isLoggedIn: true,
+        });
       })
-      .fail((err) => {
+      .fail(err => {
         this.setState({
           username: "",
           isLoggedIn: false
-        })
+        });
+      });
+  }
+
+  getUserInfo() {
+    $.ajax({
+      url: "/db/getUserInfo/" + this.state.username,
+      method: "GET"
+    })
+      .then(data => {
+        this.setState({
+          email: data
+        });
+      })
+      .fail(err => {
+        this.setState({
+          email: "",
+        });
       });
   }
 
   componentDidMount() {
     this.getLoginStatus();
+    this.getUserInfo();
+    // this.quoteboardAccess();
   }
 
   render() {
@@ -61,10 +99,17 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route path="/" component={About} exact />
-            <Route path="/signup" component={SignUpSignIn} />
-            <Route path="/quoteboard" component={Quoteboard} />
-            {/* <Route path="/signin" component={SignUpSignIn} /> */}
-            <Route path="/userProfile" component={UserProfile} />
+            <Route path="/signup" component={this.signupAccess()} />
+
+            <Route path="/quoteboard" component={this.quoteboardAccess()} />
+            <Route
+              path="/signin"
+              component={() => <SignUpSignIn signValue="signin" />}
+            />
+            <Route
+              path="/userProfile"
+              component={() => <UserProfile username={this.state.username} />}
+            />
             <Route component={Error} />
           </Switch>
         </BrowserRouter>

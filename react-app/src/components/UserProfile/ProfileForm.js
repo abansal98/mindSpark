@@ -33,11 +33,12 @@ class ProfileForm extends Component {
                         <form>
                             <div class="form-group">
                                 <div className="username">
-                                    <label htmlFor="username">UserName</label>
+                                    <label htmlFor="username">UserName:</label>
                                     <input
                                         placeholder="UserName"
                                         type="text"
                                         name="username"
+                                        value= {this.props.username}
                                     />
                                 </div>
                             </div>

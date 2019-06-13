@@ -80,7 +80,7 @@ class SignIn extends Component {
         <div className="wrapper" ref={this.props.containerRef}>
           <div className="form-wrapper">
             <div className="header">
-              <h1 className="mt-2 text-center">Login</h1>
+              <h1 className="mt-2 text-center">Sign In</h1>
             </div>
 
             <form onSubmit={this.handleSubmit.bind(this)}>
@@ -119,7 +119,6 @@ class SignIn extends Component {
             </form>
             <br />
           </div>
-
         </div>
       </div>
     );

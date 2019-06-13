@@ -47,46 +47,47 @@ class Category extends Component {
 
   render() {
     return (
-      (
-        <React.Fragment>
-          <Col md={2} className="quoteboardleftside pt-5">
-            <ListGroup>
-              <ListGroup.Item action href="#categoryHome" variant="success">
-                Home
+      <React.Fragment>
+        <Col md={2} className="quoteboardleftside pt-5">
+          <ListGroup>
+            <ListGroup.Item action href="#categoryHome" variant="success">
+              Home
             </ListGroup.Item>
-            </ListGroup>
-            {/* temporary for CATEGORY HOME */}
-            <ListGroup>
-              {this.state.categories.map((value, index) => {
-                return (
-                  <ListGroup.Item
-                    action
-                    href={`#${value.categoryID}`}
-                    variant="success"
-                  >
-                    {value.categoryName}
-                  </ListGroup.Item>
-                );
-              })}
-            </ListGroup>
-          </Col>
-          <Col md={10} className="quoteboardrightside pt-5">
-            {/* <Quotelist /> */}
-            <Tab.Content>
-              <Tab.Pane eventKey="#categoryHome">
-                <Quoteboardguide />
-              </Tab.Pane>
-              {this.state.categories.map((value, index) => {
-                return (
-                  <Tab.Pane eventKey={`#${value.categoryID}`} onClick={this.setCategory(value.categoryID)}>
-                    <Quotelist category={value.categoryName} />
-                  </Tab.Pane>
-                );
-              })}
-            </Tab.Content>
-          </Col>
-        </React.Fragment>
-      )
+          </ListGroup>
+          {/* temporary for CATEGORY HOME */}
+          <ListGroup>
+            {this.state.categories.map((value, index) => {
+              return (
+                <ListGroup.Item
+                  action
+                  href={`#${value.categoryID}`}
+                  variant="success"
+                >
+                  {value.categoryName}
+                </ListGroup.Item>
+              );
+              // return (
+              //   <button onClick={() => {this.props.onClick(value.categoryID)}}/>
+              // )
+            })}
+          </ListGroup>
+        </Col>
+        <Col md={10} className="quoteboardrightside pt-5">
+          {/* <Quotelist /> */}
+          <Tab.Content>
+            <Tab.Pane eventKey="#categoryHome">
+              <Quoteboardguide />
+            </Tab.Pane>
+            {this.state.categories.map((value, index) => {
+              return (
+                <Tab.Pane eventKey={`#${value.categoryID}`}>
+                  <Quotelist category={value.categoryName} />
+                </Tab.Pane>
+              );
+            })}
+          </Tab.Content>
+        </Col>
+      </React.Fragment>
     );
   }
 }
