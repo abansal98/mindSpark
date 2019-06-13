@@ -85,7 +85,7 @@ class App extends Component {
             <Route path="/quoteboard" component={this.quoteboardAccess()} />
             <Route
               path="/signin"
-              component={() => <SignUpSignIn key={"login"} />}
+              component={() => <SignUpSignIn signValue="signin" />}
             />
             <Route
               path="/userProfile"
