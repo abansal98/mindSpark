@@ -114,16 +114,23 @@ class ControlledTabs extends Component {
 
   constructor(props, context) {
     super(props, context);
-    var userKey = "signup";
-    var isLoggin = SignUpSignIn.isLoggin;
-    if (isLoggin) {
-      userKey = "login";
-    } else {
-      userKey = "signup";
-    }
+    // var userKey = "signup";
+    // var isLoggin = SignUpSignIn.isLoggin;
+    // if (isLoggin) {
+    //   userKey = "login";
+    // } else {
+    //   userKey = "signup";
+    // }
     this.state = {
-      key: userKey
+      key: ""
     };
+  }
+
+  componentDidMount() {
+    this.setState({
+      key: this.props.key
+    });
+    console.log(this.props);
   }
 
   render() {
@@ -137,11 +144,11 @@ class ControlledTabs extends Component {
               onSelect={key => this.setState({ key })}
               className="justify-content-center"
             >
-              <Tab eventKey="signup" title="SignUp">
+              <Tab eventKey="signup" title="Register">
                 <SignUp />
                 {/* <Sonnet /> */}
               </Tab>
-              <Tab eventKey="login" title="Login">
+              <Tab eventKey="login" title="Sign In">
                 <SignIn />
                 {/* <Sonnet /> */}
               </Tab>
