@@ -18,7 +18,8 @@ class App extends Component {
     super(props, context);
     this.state = {
       username: "",
-      isLoggedIn: false
+      isLoggedIn: false,
+      email: ""
     };
   }
 
@@ -57,7 +58,7 @@ class App extends Component {
       .then(user => {
         this.setState({
           username: user,
-          isLoggedIn: true
+          isLoggedIn: true,
         });
       })
       .fail(err => {
@@ -68,8 +69,26 @@ class App extends Component {
       });
   }
 
+  getUserInfo() {
+    $.ajax({
+      url: "/db/getUserInfo/" + this.state.username,
+      method: "GET"
+    })
+      .then(data => {
+        this.setState({
+          email: data
+        });
+      })
+      .fail(err => {
+        this.setState({
+          email: "",
+        });
+      });
+  }
+
   componentDidMount() {
     this.getLoginStatus();
+    this.getUserInfo();
     // this.quoteboardAccess();
   }
 
