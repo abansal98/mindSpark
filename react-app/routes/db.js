@@ -12,13 +12,11 @@ router.route('/signin')
                 req.session.user = {
                     username: req.body.username
                 }
-                console.log(req.session);
                 res.status(200).redirect('/');
             })
             .catch((err) => {
                 res.status(301).send(err);
             })
-        console.log(req.session);
     });
 
 router.route('/signup')
@@ -35,8 +33,7 @@ router.route('/signup')
 router.route('/logout')
     .get((req, res) => {
         req.session.reset();
-        console.log(req.session);
-        res.redirect('/signup');
+        res.redirect('/signin');
     });
 
 router.route('/ensureLogin')
@@ -48,7 +45,6 @@ router.route('/ensureLogin')
     })
 
 router.route("/addQuote").post((req, res) => {
-   // console.log(req.body);
     quote
       .addQuote(req.body)
       .then(() => {
@@ -92,8 +88,6 @@ router.route("/getUserInfo/:username").get((req, res) => {
 });
 
 router.route("/getQuotes/:categoryName").get((req, res) => {
-  // console.log(req.params.categoryName);
-  // var temp = req.params.categoryName.toString().toLowerCase();
   quote
     .fetchQuoteList(req.params.categoryName)
     .then(data => {
@@ -105,7 +99,6 @@ router.route("/getQuotes/:categoryName").get((req, res) => {
 });
 
 router.route("/addCategory").post((req, res) => {
-  console.log(req.body);
   category
     .addCategory(req.body)
     .then(data => {
@@ -117,7 +110,6 @@ router.route("/addCategory").post((req, res) => {
 });
 
 router.route("/submitReminder").post((req, res) => {
-  // console.log(req.body);
   reminder
     .submitReminder(req.body)
     .then(data => {

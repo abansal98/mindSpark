@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import logoIcon from "../../icons/logo.png";
 import { Navbar, Nav } from "react-bootstrap";
-
 import "./Navbar.css";
 
 class NavBar extends Component {
@@ -35,16 +34,7 @@ class NavBar extends Component {
               <Nav.Link href="/quoteboard">Quotes</Nav.Link>
               <Nav.Link href="/">About</Nav.Link>
             </Nav>
-            {/* <Nav className="searchBar">
-              <Form inline>
-                <FormControl
-                  type="text"
-                  placeholder="Search"
-                  className="mr-sm-2"
-                />
-                <Button variant="outline-success">Search</Button>
-              </Form>
-            </Nav> */}
+            
           </Navbar.Collapse>
           <Navbar.Collapse
             id="responsive-navbar-nav"

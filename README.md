@@ -11,7 +11,7 @@ MindSpark is a web application that let users share quotes that inspirit one ano
 1. git clone … / git pull …
 2. npm install
 3. npm run build // do this @reactfolder
-4. forever start app.js // do this @reactfolder
+4. forever start app.js [PROD/DEV]// do this @reactfolder
 
 * forever (run background)
 

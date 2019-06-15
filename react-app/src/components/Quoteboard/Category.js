@@ -4,9 +4,7 @@ import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
 import $ from "jquery";
 import Quotelist from "./Quotelist";
 import Quoteboardguide from "../Quoteboard/Quoteboardguide";
-import { connect } from "react-redux";
 import store from "../../store/index";
-import { addArticle } from "../../actions/index";
 
 class Category extends Component {
   constructor(props) {
@@ -32,6 +30,13 @@ class Category extends Component {
 
   mkTestFunction() {
     console.log("I'm function from Category.js");
+  }
+
+  setCategory(categoryID){
+    store.dispatch({
+      type: "category",
+      categoryName: categoryID
+    })
   }
 
   componentDidMount() {

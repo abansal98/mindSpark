@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import SignUp from "./components/Signup/signup";
-import SignIn from "./components/Signin/signin";
 import SignUpSignIn from "./components/SignUpSignIn/SignUpSignIn";
 import Quoteboard from "./components/Quoteboard/Quoteboard";
 import Error from "./components/Error/Error";
@@ -100,16 +98,9 @@ class App extends Component {
           <Switch>
             <Route path="/" component={About} exact />
             <Route path="/signup" component={this.signupAccess()} />
-
             <Route path="/quoteboard" component={this.quoteboardAccess()} />
-            <Route
-              path="/signin"
-              component={() => <SignUpSignIn signValue="signin" />}
-            />
-            <Route
-              path="/userProfile"
-              component={() => <UserProfile username={this.state.username} />}
-            />
+            <Route path="/signin" component={() => <SignUpSignIn signValue="signin" />} />
+            <Route path="/userProfile" component={() => <UserProfile username={this.state.username} />} />
             <Route component={Error} />
           </Switch>
         </BrowserRouter>

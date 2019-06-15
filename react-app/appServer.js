@@ -1,20 +1,33 @@
-var express = require("express");
+const express = require("express");
 const mongoose = require("mongoose");
-var app = express();
-port = normalizePort(process.env.PORT || '10002'); // setting default port
+const app = express();
 const path = require('path');
-bodyParser = require('body-parser');
 const clientSessions = require("client-sessions");
+const bodyParser = require('body-parser');
+const args = process.argv.slice(2)
+
+port = normalizePort(process.env.PORT || '10002'); // setting default port
 
 app.set("port", port);
 app.use(express.static(path.join(__dirname, "/build")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect(
-  "mongodb://admin:admin123@ds133187.mlab.com:33187/mindsparkdb"
-);
-//mongoose.connect("mongodb://localhost:10016/mindSpark");
+if (args[0] == 'PROD' || args[0] == 'prod') {
+  console.log("Application will be deployed in PRODUCTION mode!");
+  mongoose.connect(
+    "mongodb://localhost:10016/mindSpark",
+    { useNewUrlParser: true }
+  );
+}
+else {
+  console.log("Application will be deployed in DEVELOPMENT mode!");
+  mongoose.connect(
+    "mongodb://admin:admin123@ds133187.mlab.com:33187/mindsparkdb",
+    { useNewUrlParser: true }
+  );
+}
+
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function callback() {
@@ -23,10 +36,10 @@ db.once("open", function callback() {
 
 // Setup client-sessions
 app.use(clientSessions({
-    cookieName: "session", // this is the object name that will be added to 'req'
-    secret: "17gnirtselbasseugnugnolasisihtlol2018", // this is a long un-guessable string.
-    duration: 5 * 60 * 1000, // duration of the session in milliseconds (5 minutes)
-    activeDuration: 1000 * 60 // the session will be extended by this many ms each request (1 minute)
+  cookieName: "session", // this is the object name that will be added to 'req'
+  secret: "17gnirtselbasseugnugnolasisihtlol2018", // this is a long un-guessable string.
+  duration: 5 * 60 * 1000, // duration of the session in milliseconds (5 minutes)
+  activeDuration: 1000 * 60 // the session will be extended by this many ms each request (1 minute)
 }));
 
 // top level routes, for more detail, see ./routes

@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import NavBar from "../Navbar/Navbar";
-import { Link } from "react-router-dom";
-import $ from "jquery";
 import ProfileForm from "./ProfileForm";
 import PersonalQuote from "./PersonalQuote";
 import AddQuote from "./AddQuote";
