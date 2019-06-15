@@ -11,18 +11,6 @@ class SignUpSignIn extends Component {
     this.state = {
       signValue: this.props.signValue
     };
-    {
-      console.log("from SignUpSignIn 1 state");
-    }
-    {
-      console.log("from SignUpSignIn 1 prop");
-    }
-    {
-      console.log(this.props.signValue);
-    }
-    {
-      console.log(this.state.signValue);
-    }
   }
   render() {
     return (
@@ -30,8 +18,6 @@ class SignUpSignIn extends Component {
         <SignupsigninBlurBg />
         <div class="container">
           <ControlledTabs signValue={this.props.signValue} />
-          {console.log("from SignUpSignIn 2")}
-          {console.log(this.state.signValue)}
         </div>
       </div>
     );
@@ -41,31 +27,10 @@ class SignUpSignIn extends Component {
 class ControlledTabs extends Component {
   constructor(props, context) {
     super(props, context);
-
-    // var userKey = "signup";
-    // var isLoggin = SignUpSignIn.isLoggin;
-    // if (isLoggin) {
-    //   userKey = "login";
-    // } else {
-    //   userKey = "signup";
-    // }
-
     this.state = {
       signValue: this.props.signValue
     };
-    console.log("CONTROLTABS props...");
-    console.log(this.props.signValue);
-    console.log("CONTROLTABS state...");
-    console.log(this.state.signValue);
   }
-
-  // componentDidMount() {
-  //   this.setState({
-  //     key: this.props.key
-  //   });
-  //   console.log(this.props.key);
-  // }
-
   render() {
     return (
       <div className="signtabbody">
@@ -77,10 +42,6 @@ class ControlledTabs extends Component {
               onSelect={key => this.setState({ signValue: key })}
               className="justify-content-center"
             >
-              {console.log("From Tabs prop...")}
-              {console.log(this.props.signValue)}
-              {console.log("From Tabs state...")}
-              {console.log(this.state.signValue)}
               <Tab eventKey="signup" title="Register">
                 <SignUp />
               </Tab>
