@@ -94,26 +94,48 @@ module.exports = {
                     if (user) {
                         bcrypt.compare(data.password, user.password)
                             .then((res) => {
-                                if (res)
-                                {
-                                    console.log(user.active);
-                                    if(user.active === "true")
-                                    {
+                                if (res) {
+                                    //console.log(user.active);
+                                    if (user.active) {
                                         resolve();
                                     }
-                                    else
-                                    {                                       
+                                    else {
                                         reject("Please verify the email first!");
                                     }
                                 }
-                                else
-                                {
+                                else {
                                     reject("Username or Password incorrect!");
                                 }
                             });
                     }
                     else {
                         reject("User does not exist!");
+                    }
+                })
+        })
+    },
+
+    verifyToken: function (data) {
+        // console.log(data);
+        return new Promise(function (resolve, reject) {
+            userModel.findOne({
+                secretToken: data.secretToken
+            })
+                .exec()
+                .then((user) => {
+                    if (user) {
+                        //console.log(user.active);
+                        user.active = true;
+                        user.save((err) => {
+                            if (err) {
+                                reject("Cannot save verification: " + err.message);
+                            } else {
+                                resolve();
+                            }
+                        });
+                    }
+                    else {
+                        reject("Incorrect Token!");
                     }
                 })
         })

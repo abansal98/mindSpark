@@ -120,4 +120,17 @@ router.route("/submitReminder").post((req, res) => {
     });
 });
 
+router.route('/verify')
+    .post((req, res) => {
+     // console.log(req.body);
+        user.verifyToken(req.body)
+            .then(() => {
+                res.status(200).send('User verified successfully');
+                res.redirect('/signin')
+            })
+            .catch((err) => {
+                res.status(301).send(err);
+            })
+    });
+
 module.exports = router;

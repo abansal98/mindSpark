@@ -1,30 +1,59 @@
 import React, { Component } from "react";
-import "./signin.css";
 import $ from "jquery";
 
-class SignIn extends Component {
+class Verify extends Component {
   constructor(props) {
     super(props);
     this.state = {
       secretToken: "",
+      secretTokenValid: false,
+      error: { secretToken: ""},
+      formValid: false
     };
   }
 
   handleSubmit(e) {
     e.preventDefault();
     $.ajax({
-      url: "/db/signin",
+      url: "/db/verify",
       method: "POST",
       data: {
-        secretToken: this.state.secretToken,
+        secretToken: this.state.secretToken
       }
     })
-      .then(() => {
-        window.location.href = "/";
+    .then(msg => {
+        alert(msg);
       })
       .fail(err => {
         alert(err.responseText);
       });
+  }
+
+  handleUserInput(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({ [name]: value }, () => {
+      this.validateField(name, value);
+    });
+  }
+
+  handleSignIn(e) {}
+
+  validateField(fieldName, value) {
+    let errors = this.state.error;
+
+    this.setState(
+      {
+        error: errors,
+      },
+      this.validateForm
+    );
+  }
+
+  validateForm() {
+    this.setState({
+      formValid: this.state.secretTokenValid
+    });
   }
 
   render() {
@@ -38,20 +67,20 @@ class SignIn extends Component {
 
             <form onSubmit={this.handleSubmit.bind(this)}>
               <div className="form-group">
-                <div className="username">
-                  <label htmlFor="username">Secret Token:</label>
+                <div className="secretToken">
+                  <label htmlFor="secretToken">Secret Token:</label>
                   <input
-                    onChange={this.handleUserInput.bind(this)}
-                    name="username"
+                    name="secretToken"
                     className="form-control"
                     type="text"
+                    placeholder="Enter Your Secret Token"
                     value={this.state.secretToken}
-                    placeholder="Enter Your Username"
+                    onChange={this.handleUserInput.bind(this)}
                   />
                 </div>
               </div>
 
-              <div class="createAccount">
+              <div class="verifyToken">
                 <button className="btn btn-primary mb-2" type="submit">
                   Verify Secret Token
                 </button>
@@ -65,4 +94,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default Verify;
