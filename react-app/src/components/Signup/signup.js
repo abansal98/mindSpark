@@ -21,6 +21,8 @@ class SignUp extends Component {
       passwordValid: false,
       confirm: false,
       formValid: false,
+      active: false,
+      secretToken : "",
       error: {
         email: "",
         password: "",
@@ -38,7 +40,9 @@ class SignUp extends Component {
       data: {
         username: this.state.username,
         password: this.state.password,
-        email: this.state.email
+        email: this.state.email,
+        active: this.state.active,
+        secretToken: this.state.secretToken
       }
     })
       .then(msg => {
