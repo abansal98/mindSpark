@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import NavBarSignIn from "./components/Navbar/NavbarSignin";
 import $ from "jquery";
 import NavBar from "./components/Navbar/Navbar";
+import Verify from "./components/Signup/verify"
 
 class App extends Component {
   constructor(props, context) {
@@ -98,6 +99,7 @@ class App extends Component {
           <Switch>
             <Route path="/" component={About} exact />
             <Route path="/signup" component={this.signupAccess()} />
+            <Route path="/verify" component={Verify} exact/>
             <Route path="/quoteboard" component={this.quoteboardAccess()} />
             <Route path="/signin" component={() => <SignUpSignIn signValue="signin" />} />
             <Route path="/userProfile" component={() => <UserProfile username={this.state.username} />} />
