@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import $ from "jquery";
-import Button from "react-bootstrap/Button";
 
-const quoteRegex = RegExp(/^[a-z0-9#,!?_. ]{5,750}$/);
+const quoteRegex = RegExp(/^[a-zA-Z0-9#,!?_. ]{10,500}$/);
 
 class AddQuote extends Component
 {

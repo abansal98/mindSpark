@@ -36,7 +36,7 @@ router.route('/logout')
     .get((req, res) => {
         req.session.reset();
         console.log(req.session);
-        res.redirect('/signup');
+        res.redirect('/signin');
     });
 
 router.route('/ensureLogin')

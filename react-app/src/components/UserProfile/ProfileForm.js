@@ -16,11 +16,11 @@ class ProfileForm extends Component {
 
     handleClose() {
         this.setState({ show: false });
-      }
-    
-      handleShow() {
+    }
+
+    handleShow() {
         this.setState({ show: true });
-      }
+    }
 
     render() {
         return (
@@ -38,7 +38,7 @@ class ProfileForm extends Component {
                                         placeholder="UserName"
                                         type="text"
                                         name="username"
-                                        value= {this.props.username}
+                                        value={this.props.username}
                                     />
                                 </div>
                             </div>
@@ -53,33 +53,33 @@ class ProfileForm extends Component {
                                     />
                                 </div>
                             </div>
-                                <button className="btn btn-primary" type="submit">
-                                    Update
+                            <button className="btn btn-primary" type="submit">
+                                Update
                                 </button>
-                                </form>
-                                <button className="btn btn-primary" type="submit" onClick={this.handleShow}>
-                                    Reset Password
+                        </form>
+                        <button className="btn btn-primary" type="submit" onClick={this.handleShow}>
+                            Reset Password
                                 </button>
 
-                                <Modal show={this.state.show} onHide={this.handleClose}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Modal heading</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="secondary" onClick={this.handleClose}>
+                        <Modal show={this.state.show} onHide={this.handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Modal heading</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={this.handleClose}>
                                     Close
                                     </Button>
-                                    <Button variant="primary" onClick={this.handleClose}>
+                                <Button variant="primary" onClick={this.handleClose}>
                                     Save Changes
                                     </Button>
-                                </Modal.Footer>
-                                </Modal>
-                        
+                            </Modal.Footer>
+                        </Modal>
+
                     </div>
                 </div>
-      </React.Fragment >
-      );
+            </React.Fragment >
+        );
     }
 }
 

@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import Footer from "../Footer/Footer";
-import logo from "../../icons/logo.png";
-import { Button } from "react-bootstrap";
-// import "../Signup/signup.css";
 import "./ForgotPassword.css";
-import $ from "jquery";
 
 class ForgotPassword extends Component {
   constructor(props) {
