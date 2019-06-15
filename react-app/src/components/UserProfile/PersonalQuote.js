@@ -1,29 +1,25 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import $ from "jquery";
-import Button from "react-bootstrap/Button";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
-class PersonalQuote extends Component
-{
-    constructor(props)
-    {
+class PersonalQuote extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             quote: []
         }
     }
 
-    componentDidMount()
-    {
+    componentDidMount() {
         $.ajax({
             url: "db/quoteList",
             method: "GET"
         })
-        .then(data => {
-           
-            this.setState({quote: data});
-            console.log(this.state.quote);
-        })
+            .then(data => {
+
+                this.setState({ quote: data });
+                console.log(this.state.quote);
+            })
     }
     render() {
         return (
@@ -35,12 +31,12 @@ class PersonalQuote extends Component
                                 {value.text}
                                 <h3>- {value.author}</h3>
                             </ListGroupItem>
-                            
+
                         )
                     })}
                 </ListGroup>
             </div>
-         );
+        );
     }
 }
 

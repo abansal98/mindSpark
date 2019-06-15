@@ -39,7 +39,7 @@ class ReminderForm extends Component {
               url: "/db/submitReminder",
               method: "POST",
               data: {
-                loggedUser: this.state.loggedUser,
+               // loggedUser: this.state.loggedUser,
                 selectedCategories: this.state.selectedCategories,
                 selectedDays: this.state.selectedDays,
                 selectedTimeStamp: this.state.selectedTimeStamp
@@ -99,7 +99,7 @@ class ReminderForm extends Component {
                                 <select multiple={true} class="form-control" id="sel1" value={this.state.selectedCategories} onChange={this.handleChangeCategories}>
                                     {this.state.categories.map((value, index) => {
                                         return (
-                                            <option value={value.categoryName}>
+                                            <option value={value.categoryID}>
                                                 {value.categoryName}
                                             </option>
                                         );

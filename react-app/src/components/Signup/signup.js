@@ -1,12 +1,9 @@
-import React, { Component } from "react";
-// import { Navbar } from "react-bootstrap";
-import NavbarSignin from "../Navbar/NavbarSignin";
-//import Footer from "./Footer";
+import React, { Button, Component } from "react";
 import "./signup.css";
-import { Link } from "react-router-dom";
 import $ from "jquery";
 
 const passwordRegex = RegExp(/((?=.*\d)(?=.*[A-Z])(?=.*\W).{6,15})$/);
+const usernameRegex = RegExp(/^[A-Za-z0-9_]{6,24}$/);
 
 class SignUp extends Component {
   constructor(props) {
@@ -67,7 +64,7 @@ class SignUp extends Component {
     switch (fieldName) {
       case "email":
         emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        errors.email = emailValid ? "" : " is invalid";
+        errors.email = emailValid ? "" : "Email is invalid";
         break;
       case "password":
         // contain at least 1 special character
@@ -78,22 +75,34 @@ class SignUp extends Component {
         errors.password = passValid ? (
           ""
         ) : (
-            <div className="alert alert-warning">must have 6 password</div>
+            <div className="alert alert-warning">Password must have atleast 6 characters, a capital letter, a numeric & a special character</div>
           );
+
+        confirm = this.state.confirmPassword === this.state.password;
+        errors.e_confirm = confirm ? (
+          ""
+        ) : (
+            <div className="error">Passwords do not match</div>
+          );
+
         break;
       case "username":
-        usrValid =
-          value.match("^[A-Za-z0-9]*$") &&
-          value.length > 6 &&
-          value.length < 20;
-        errors.username = usrValid ? "" : " is too short";
+        usrValid = usernameRegex.test(value);
+        errors.username = usrValid ? (
+          ""
+        ) : (
+            <div className="alert alert-warning">Username must be atleast 6 characters. Only 1 special character, '_' is allowed.</div>
+          );
+        // usrValid =
+        //   value.match("^[A-Za-z0-9_]{6,24}$") &&
+        //     errors.username === usrValid ? "" : "Username is too short";
         break;
       case "confirmPassword":
         confirm = this.state.confirmPassword === this.state.password;
         errors.e_confirm = confirm ? (
           ""
         ) : (
-            <div className="error"> not match</div>
+            <div className="error">Passwords do not match</div>
           );
         break;
       default:
@@ -121,6 +130,7 @@ class SignUp extends Component {
     });
   }
 
+
   render() {
     return (
       <div className="signupBody">
@@ -134,9 +144,10 @@ class SignUp extends Component {
                 <div className="username">
                   <label htmlFor="username">UserName</label>
                   <input
+                    id="signupUserName"
                     className={`form-control ${
                       this.state.error.username ? "invalid" : ""
-                    }`}
+                      }`}
                     placeholder="UserName"
                     type="text"
                     name="username"
@@ -154,7 +165,7 @@ class SignUp extends Component {
                   <input
                     className={`form-control ${
                       this.state.error.email ? "invalid" : ""
-                    }`}
+                      }`}
                     placeholder="Email"
                     type="email"
                     name="email"
@@ -168,9 +179,10 @@ class SignUp extends Component {
                 <div className="password">
                   <label htmlFor="password">Password</label>
                   <input
+                    id="signupPassword"
                     className={`form-control ${
                       this.state.error.password ? "invalid" : ""
-                    }`}
+                      }`}
                     placeholder="Password"
                     type="password"
                     name="password"
@@ -185,11 +197,11 @@ class SignUp extends Component {
 
               <div className="form-group">
                 <div className="confirmPassword">
-                  <label htmlFor="confirmPassword">Confirm</label>
+                  <label htmlFor="confirmPassword">Confirm Password</label>
                   <input
                     className={`form-control ${
                       this.state.error.e_confirm ? "invalid" : ""
-                    }`}
+                      }`}
                     placeholder="Confirm"
                     type="password"
                     name="confirmPassword"
@@ -202,7 +214,7 @@ class SignUp extends Component {
               </div>
 
               <div className="createAccount">
-                <button className="btn btn-primary mb-2" type="submit">
+                <button disabled={!this.state.formValid} className="btn btn-primary mb-2" type="submit">
                   Create Account
                 </button>
               </div>

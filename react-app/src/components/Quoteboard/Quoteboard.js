@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Quoteboard.css";
 import Category from "./Category";
 import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
-import AddQuote from "../UserProfile/AddQuote"
 
 class Quoteboard extends Component {
   constructor(props, context) {
@@ -13,9 +12,14 @@ class Quoteboard extends Component {
     };
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
+  handleOnClick = id => {
+    console.log(`You click ${id}`);
+    //set the state of QuoteBoard so that it gets re-rendered with the updated data
+    // if I select "Laziness" this would gather the data and setState with new Quotes
+    // once that gets updated your component will be rerendered by reacts lifecycle hooks
+  };
   render() {
     return (
       <div className="quoteboardBody">
@@ -25,26 +29,7 @@ class Quoteboard extends Component {
             defaultActiveKey="#categoryHome"
           >
             <Row>
-              <Category />
-              {/* <Col md={2} className="quoteboardleftside pt-5">
-                <Category />
-              </Col>
-              <Col md={10} className="quoteboardrightside pt-5">
-                {/* <Quotelist />
-                <Tab.Content>
-                  <Tab.Pane eventKey="#categoryHome">
-                    <Quoteboardguide />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="#category0">
-                    <Quotelist category={"Stress"} />
-                    <QuoteBox
-                      quote={quotes[0]}
-                      author={authors[0]}
-                      rating={ratings[2]}
-                    />
-                  </Tab.Pane>
-                </Tab.Content>
-              </Col> */}
+              <Category onClick={this.handleOnClick} />
             </Row>
           </Tab.Container>
         </Container>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./About.css";
-import NavBarSignin from "../Navbar/NavbarSignin";
 import Aboutteam from "./Aboutteam";
 import Samplequotelist from "./Samplequotelist";
 import Aboutcard from "./Aboutcard";
