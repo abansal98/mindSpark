@@ -32,11 +32,11 @@ class Category extends Component {
     console.log("I'm function from Category.js");
   }
 
-  setCategory(categoryID){
+  setCategory(categoryID) {
     store.dispatch({
       type: "category",
       categoryName: categoryID
-    })
+    });
   }
 
   componentDidMount() {
@@ -46,7 +46,7 @@ class Category extends Component {
   render() {
     return (
       <React.Fragment>
-        <Col md={2} className="quoteboardleftside pt-5">
+        <Col md={2} className="quoteboardleftside">
           <ListGroup>
             <ListGroup.Item action href="#categoryHome" variant="success">
               Home

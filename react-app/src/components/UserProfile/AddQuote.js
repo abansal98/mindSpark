@@ -72,7 +72,7 @@ class AddQuote extends Component {
   render() {
     return (
       <div className="upload">
-        <h2> AddQuote</h2>
+        <h2>AddQuote</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <textarea
             className={`form-control ${
