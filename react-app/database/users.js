@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 const randomstring = require('randomstring');
+const crypto = require("crypto");
 
 var user = new Schema({
     "username": {
@@ -22,6 +23,10 @@ var user = new Schema({
     },
     "dob": Date,
     "secretToken": String,
+    "resetPasswordToken": {
+        type: String,
+        default: ""
+    },
     "active": false,
     "role": {
         type: String,
@@ -66,7 +71,8 @@ module.exports = {
                             dob: data.dob,
                             role: data.role,
                             secretToken: foo,
-                            active: data.active
+                            active: data.active,
+                            resetPasswordToken: data.resetPasswordToken,
                         });
                         user_data.save((err) => {
                             if (err) {
@@ -83,8 +89,8 @@ module.exports = {
                                 Token: ${foo}
                                 <br/>
                                 <a href="http://myvmlab.senecacollege.ca:6475/verify" > http://myvmlab.senecacollege.ca:6475/verify </a>`;
-                                console.log(user_data.email);
-                                console.log(foo);
+                                //console.log(user_data.email);
+                               // console.log(foo);
                                 mailer.sendEmail("donotreply@mindspark.com", user_data.email, "MindSpark email verification", html);
                                 resolve();
                             }
@@ -147,6 +153,42 @@ module.exports = {
                     }
                     else {
                         reject("Incorrect Token!");
+                    }
+                })
+        })
+    },
+
+    forgotPassword: function (data) {
+         console.log(data);
+        return new Promise(function (resolve, reject) {
+            userModel.findOne({
+                email: data.email
+            })
+                .exec()
+                .then((user) => {
+                    if (user) {
+                        user.save((err) => {
+                            if (err) {
+                                reject("Cannot submit: " + err.message);
+                            } else {
+                                    crypto.randomBytes(20, function(err, buf) {
+                                      var token = buf.toString('hex');
+                                      console.log(token);
+                                      user.resetPasswordToken = token;
+                                      user.save((err) => {
+                                        if (err) {
+                                            reject("Cannot save token: " + err.message);
+                                        } else {
+                                            resolve();
+                                        }
+                                    });
+                                    });
+                                resolve();
+                            }
+                        });
+                    }
+                    else {
+                        reject("Email Address Not Found!");
                     }
                 })
         })
