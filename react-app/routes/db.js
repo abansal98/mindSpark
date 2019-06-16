@@ -134,4 +134,17 @@ router.route('/verify')
             })
     });
 
+    router.route('/forgotPassword')
+    .post((req, res) => {
+      console.log(req.body);
+        user.forgotPassword(req.body)
+            .then(() => {
+                res.status(200).send('Forgot Password verfication sent');
+              //  res.redirect('/signin')
+            })
+            .catch((err) => {
+                res.status(301).send(err);
+            })
+    });
+
 module.exports = router;
