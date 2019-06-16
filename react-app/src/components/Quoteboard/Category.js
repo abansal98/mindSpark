@@ -70,7 +70,7 @@ class Category extends Component {
             })}
           </ListGroup>
         </Col>
-        <Col md={10} className="quoteboardrightside pt-5">
+        <Col md={10} className="quoteboardrightside">
           {/* <Quotelist /> */}
           <Tab.Content>
             <Tab.Pane eventKey="#categoryHome">
