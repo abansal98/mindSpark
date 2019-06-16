@@ -31,17 +31,16 @@ class Quotelist extends Component {
 
   render() {
     return (
-      <div className="quotelistBody mt-5">
-        {
-          this.state.quotes.map((quoteObj, index) => {
-            return (
-              <QuoteBox
-                quote={quoteObj.text}
-                author={quoteObj.author}
-                rating={quoteObj.rating} />
-            )
-          })
-        }
+      <div className="quotelistBody">
+        {this.state.quotes.map((quoteObj, index) => {
+          return (
+            <QuoteBox
+              quote={quoteObj.text}
+              author={quoteObj.author}
+              rating={quoteObj.rating}
+            />
+          );
+        })}
         {/* <QuoteBox quote={quotes[0]} author={authors[0]} rating={ratings[2]} /> */}
       </div>
     );
