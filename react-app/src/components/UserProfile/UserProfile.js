@@ -65,7 +65,7 @@ class UserProfile extends Component {
             <Col sm={10} className="up_rightside">
               <Tab.Content>
                 <Tab.Pane eventKey="#addquote">
-                  <AddQuote />
+                  <AddQuote username={this.props.username}/>
                   <PersonalQuote />
                 </Tab.Pane>
                 <Tab.Pane eventKey="#userinformation">
