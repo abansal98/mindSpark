@@ -1,3 +1,4 @@
+const mailer = require("../appServer");
 const mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
@@ -75,6 +76,16 @@ module.exports = {
                                     reject("Cannot create a new user: " + err.message);
                                 }
                             } else {
+                                const html = `Welcome to "MindSpark"
+                                <br/>
+                                Please verify your email by using the following token:
+                                <br/>
+                                Token: ${foo}
+                                <br/>
+                                <a href="http://myvmlab.senecacollege.ca:6475/verify" > http://myvmlab.senecacollege.ca:6475/verify </a>`;
+                                console.log(user_data.email);
+                                console.log(foo);
+                                mailer.sendEmail("donotreply@mindspark.com", user_data.email, "MindSpark email verification", html);
                                 resolve();
                             }
                         });
@@ -96,7 +107,7 @@ module.exports = {
                             .then((res) => {
                                 if (res) {
                                     //console.log(user.active);
-                                    if (user.active) {
+                                    if (user.active === "true") {
                                         resolve();
                                     }
                                     else {
@@ -125,7 +136,7 @@ module.exports = {
                 .then((user) => {
                     if (user) {
                         //console.log(user.active);
-                        user.active = true;
+                        user.active = "true";
                         user.save((err) => {
                             if (err) {
                                 reject("Cannot save verification: " + err.message);

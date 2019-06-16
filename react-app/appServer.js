@@ -5,6 +5,7 @@ const path = require('path');
 const clientSessions = require("client-sessions");
 const bodyParser = require('body-parser');
 const args = process.argv.slice(2)
+const nodemailer = require("nodemailer");
 
 port = normalizePort(process.env.PORT || '10002'); // setting default port
 
@@ -63,3 +64,41 @@ function normalizePort(val) {
 
   return false;
 }
+
+const transport = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'mindspark3@gmail.com',
+    pass: 'Admin@123'
+  }
+});
+
+  function sendEmail(from, to, subject, html){
+      transport.sendMail({from, subject, to, html}, (err, info)=>{
+        if(err) 
+        {
+          reject(err);
+        }
+        else
+        {
+          resolve(info);
+        }
+      });
+  }
+  module.exports.sendEmail = sendEmail;
+
+// var mailOptions = {
+//   from: 'youremail@gmail.com',
+//   to: 'ppanchani98@gmail.com',
+//   subject: 'Sending Email using Node.js',
+//   text: 'That was easy!',
+//   html: '<b>That was easy!</b>'
+// };
+
+// transport.sendMail(mailOptions, function(error, info){
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log('Email sent: ' + info.response);
+//   }
+// }); 
