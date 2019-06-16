@@ -13,12 +13,13 @@ class Verify extends Component {
   }
 
   handleSubmit(e) {
+      var trimmedsecretToken = this.state.secretToken.trim();
     e.preventDefault();
     $.ajax({
       url: "/db/verify",
       method: "POST",
       data: {
-        secretToken: this.state.secretToken
+        secretToken: trimmedsecretToken
       }
     })
     .then(msg => {
@@ -68,12 +69,12 @@ class Verify extends Component {
             <form onSubmit={this.handleSubmit.bind(this)}>
               <div className="form-group">
                 <div className="secretToken">
-                  <label htmlFor="secretToken">Secret Token:</label>
+                  <label htmlFor="secretToken">Enter Your Token:</label>
                   <input
                     name="secretToken"
                     className="form-control"
                     type="text"
-                    placeholder="Enter Your Secret Token"
+                    placeholder="Enter Your Token"
                     value={this.state.secretToken}
                     onChange={this.handleUserInput.bind(this)}
                   />
@@ -82,7 +83,7 @@ class Verify extends Component {
 
               <div class="verifyToken">
                 <button className="btn btn-primary mb-2" type="submit">
-                  Verify Secret Token
+                  Verify Your Account
                 </button>
               </div>
             </form>

@@ -4,6 +4,7 @@ const express = require("express"),
   user = require("../database/users"),
   quote = require("../database/quote"),
   reminder = require("../database/reminder");
+  
 
 router.route('/signin')
     .post((req, res) => {
@@ -23,7 +24,7 @@ router.route('/signup')
     .post((req, res) => {
         user.addUser(req.body)
             .then(() => {
-                res.status(200).send("User registration complete!");
+                res.status(200).send("User registration complete, please check your email for verification!");
             })
             .catch((err) => {
                 res.status(301).send(err);
@@ -126,7 +127,7 @@ router.route('/verify')
         user.verifyToken(req.body)
             .then(() => {
                 res.status(200).send('User verified successfully');
-                res.redirect('/signin')
+              //  res.redirect('/signin')
             })
             .catch((err) => {
                 res.status(301).send(err);
