@@ -22,7 +22,8 @@ module.exports = {
         // console.log(data);
         return new Promise(function(resolve, reject){
             var quote_data = new quoteModel({
-                quoteContent: data.quote,
+                text: data.quote,
+                author: data.author
             });
             quote_data.save((err)=>{
                 if(err){
@@ -34,9 +35,11 @@ module.exports = {
         })
     },
 
-    fetchQuote: function() {
+    fetchQuote: function(authorName) {
       return new Promise(function(resolve, reject) {
-        quoteModel.find({})
+        quoteModel.find({
+          quote: authorName
+        })
       
       .exec()
       .then(data => {
