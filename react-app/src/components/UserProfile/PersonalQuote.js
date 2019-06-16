@@ -16,7 +16,7 @@ class PersonalQuote extends Component {
       method: "GET"
     }).then(data => {
       this.setState({ quote: data });
-      console.log(this.state.quote);
+   
     });
   }
   render() {
@@ -25,7 +25,7 @@ class PersonalQuote extends Component {
         <ListGroup>
           {this.state.quote.map((value, index) => {
             return (
-              <ListGroupItem key={index}>
+              <ListGroupItem key={value.author}>
                 {value.text}
                 <h3>- {value.author}</h3>
               </ListGroupItem>
