@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 var category = new Schema({
   categoryID: String,
-  categoryName: String,
+  category: [],
   description: String
 });
 
@@ -12,8 +12,8 @@ var categoryModel = mongoose.model("category", category);
 module.exports = {
   categoryModel,
 
-  addCategory: function(data) {
-    return new Promise(function(resolve, reject) {
+  addCategory: function (data) {
+    return new Promise(function (resolve, reject) {
       var category_data = new categoryModel({
         categoryID: data.categoryID,
         categoryName: data.categoryName,
@@ -33,10 +33,10 @@ module.exports = {
     });
   },
 
-  removeCategory: function(categoryID) {},
+  removeCategory: function (categoryID) { },
 
-  fetchCategoryList: function() {
-    return new Promise(function(resolve, reject) {
+  fetchCategoryList: function () {
+    return new Promise(function (resolve, reject) {
       categoryModel
         .find({})
         .exec()

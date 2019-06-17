@@ -5,6 +5,7 @@ import AddQuote from "./AddQuote";
 import ReminderForm from "./ReminderForm";
 import "./UserProfile.css";
 import { Tab, Row, Col, ListGroup } from "react-bootstrap";
+import Quotelist from "../Quoteboard/Quotelist";
 
 class UserProfile extends Component {
   render() {
@@ -66,7 +67,7 @@ class UserProfile extends Component {
               <Tab.Content>
                 <Tab.Pane eventKey="#addquote">
                   <AddQuote username={this.props.username}/>
-                  <PersonalQuote />
+                  <PersonalQuote username={this.props.username}/>
                 </Tab.Pane>
                 <Tab.Pane eventKey="#userinformation">
                   <ProfileForm username={this.props.username} />

@@ -56,8 +56,8 @@ router.route("/addQuote").post((req, res) => {
       });
   });
 
-router.route("/quoteList").get((req, res) => {
-  quote.fetchQuote()
+router.route("/quoteList/:authorName").get((req, res) => {
+  quote.fetchQuote(req.params.authorName)
   .then(data => {
     res.status(200).send(data);
   })

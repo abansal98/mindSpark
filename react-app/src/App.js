@@ -104,7 +104,7 @@ class App extends Component {
             <Route path="/quoteboard" component={this.quoteboardAccess()} />
             <Route path="/signin" component={() => <SignUpSignIn signValue="signin" />} />
             <Route path="/userProfile" component={() => <UserProfile username={this.state.username} />} />
-            <Route path="/reset/:token" component={ResetPassword} excat/>} />
+            <Route path="/reset/:token" component={ResetPassword} exact/>} />
             <Route component={Error} />
           </Switch>
         </BrowserRouter>
