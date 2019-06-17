@@ -7,6 +7,7 @@ class AddQuote extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      author: "",
       quote: "",
       quoteValid: false,
       error: {
@@ -21,7 +22,8 @@ class AddQuote extends Component {
       url: "/db/addQuote",
       method: "POST",
       data: {
-        quote: this.state.quote
+        quote: this.state.quote,
+        author: this.state.author
       }
     })
       .then(msg => {
@@ -69,10 +71,17 @@ class AddQuote extends Component {
     });
   }
 
+  componentDidMount(){
+    console.log(this.props.username);
+    this.setState({
+        author: this.props.username
+    })
+  }
+
   render() {
     return (
       <div className="upload">
-        <h2> AddQuote</h2>
+        <h2>AddQuote</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <textarea
             className={`form-control ${
@@ -84,7 +93,7 @@ class AddQuote extends Component {
             value={this.state.quote}
           />
           <div className="invalid-name">{this.state.error.quote}</div>
-
+            <h1>{this.props.username}</h1>
           <button
             disabled={!this.state.formValid}
             className="submit"

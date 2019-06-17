@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./ForgotPassword.css";
 import $ from "jquery";
 
-class ForgotPassword extends Component {
+class ResetPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -92,4 +92,4 @@ validateForm() {
   }
 }
 
-export default ForgotPassword;
+export default ResetPassword;

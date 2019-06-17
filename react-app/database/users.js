@@ -1,6 +1,9 @@
+const mailer = require("../appServer");
 const mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
+const randomstring = require('randomstring');
+const crypto = require("crypto");
 
 var user = new Schema({
     "username": {
@@ -19,26 +22,32 @@ var user = new Schema({
         required: true
     },
     "dob": Date,
+    "secretToken": String,
+    "resetPasswordToken": {
+        type: String,
+        default: ""
+    },
+    "active": false,
     "role": {
         type: String,
         enum: ['admin', 'user']
     }
 });
 
-function encrpytPass(pass) {
-    console.log("This function was called for password encryption!");
-    bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(pass, salt, function (err, hash) {
-            console.log(hash);
-        });
-    });
-}
+// function encrpytPass(pass) {
+//     console.log("This function was called for password encryption!");
+//     bcrypt.genSalt(10, function (err, salt) {
+//         bcrypt.hash(pass, salt, function (err, hash) {
+//             console.log(hash);
+//         });
+//     });
+// }
 
-function comparePass(pass, hash) {
-    bcrypt.compare(pass, hash).then((res) => {
-        return res;
-    });
-}
+// function comparePass(pass, hash) {
+//     bcrypt.compare(pass, hash).then((res) => {
+//         return res;
+//     });
+// }
 
 var userModel = mongoose.model('users', user);
 
@@ -53,13 +62,17 @@ module.exports = {
                     if (err) {
                         reject("There was an error encrypting the password")
                     } else {
+                        var foo = randomstring.generate(data.secretToken)
                         var user_data = new userModel({
                             username: data.username,
                             password: hash,
                             name: data.name,
                             email: data.email,
                             dob: data.dob,
-                            role: data.role
+                            role: data.role,
+                            secretToken: foo,
+                            active: data.active,
+                            resetPasswordToken: data.resetPasswordToken,
                         });
                         user_data.save((err) => {
                             if (err) {
@@ -69,6 +82,16 @@ module.exports = {
                                     reject("Cannot create a new user: " + err.message);
                                 }
                             } else {
+                                const html = `Welcome to "MindSpark"
+                                <br/>
+                                Please verify your email by using the following token:
+                                <br/>
+                                Token: ${foo}
+                                <br/>
+                                <a href="http://myvmlab.senecacollege.ca:6475/verify" > http://myvmlab.senecacollege.ca:6475/verify </a>`;
+                                //console.log(user_data.email);
+                               // console.log(foo);
+                                mailer.sendEmail("donotreply@mindspark.com", user_data.email, "MindSpark email verification", html);
                                 resolve();
                             }
                         });
@@ -88,14 +111,84 @@ module.exports = {
                     if (user) {
                         bcrypt.compare(data.password, user.password)
                             .then((res) => {
-                                if (res)
-                                    resolve();
-                                else
-                                    reject("Password incorrect!");
+                                if (res) {
+                                    //console.log(user.active);
+                                    if (user.active === "true") {
+                                        resolve();
+                                    }
+                                    else {
+                                        reject("Please verify the email first!");
+                                    }
+                                }
+                                else {
+                                    reject("Username or Password incorrect!");
+                                }
                             });
                     }
                     else {
                         reject("User does not exist!");
+                    }
+                })
+        })
+    },
+
+    verifyToken: function (data) {
+        // console.log(data);
+        return new Promise(function (resolve, reject) {
+            userModel.findOne({
+                secretToken: data.secretToken
+            })
+                .exec()
+                .then((user) => {
+                    if (user) {
+                        //console.log(user.active);
+                        user.active = "true";
+                        user.save((err) => {
+                            if (err) {
+                                reject("Cannot save verification: " + err.message);
+                            } else {
+                                resolve();
+                            }
+                        });
+                    }
+                    else {
+                        reject("Incorrect Token!");
+                    }
+                })
+        })
+    },
+
+    forgotPassword: function (data) {
+         console.log(data);
+        return new Promise(function (resolve, reject) {
+            userModel.findOne({
+                email: data.email
+            })
+                .exec()
+                .then((user) => {
+                    if (user) {
+                        user.save((err) => {
+                            if (err) {
+                                reject("Cannot submit: " + err.message);
+                            } else {
+                                    crypto.randomBytes(20, function(err, buf) {
+                                      var token = buf.toString('hex');
+                                      console.log(token);
+                                      user.resetPasswordToken = token;
+                                      user.save((err) => {
+                                        if (err) {
+                                            reject("Cannot save token: " + err.message);
+                                        } else {
+                                            resolve();
+                                        }
+                                    });
+                                    });
+                                resolve();
+                            }
+                        });
+                    }
+                    else {
+                        reject("Email Address Not Found!");
                     }
                 })
         })

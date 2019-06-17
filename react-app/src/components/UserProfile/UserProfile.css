@@ -1,3 +1,16 @@
-.b {
-  padding-top: 65px;
+.userprofileBody {
+  /* padding-top: 4.5rem; */
+  /* padding-left: 1rem; */
+  background-color: #0000ff;
+}
+.up_leftside {
+  padding-top: 4.5rem;
+  padding-left: 1.7rem;
+  min-height: 100vh;
+  background-color: #e6ecf0;
+}
+.up_rightside {
+  padding-top: 4.5rem;
+  min-height: 100vh;
+  background-color: #e6ecf0;
 }
