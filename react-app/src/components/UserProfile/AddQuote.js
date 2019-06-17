@@ -9,6 +9,7 @@ class AddQuote extends Component {
     this.state = {
       author: "",
       quote: "",
+      currentDate: new Date(),
       quoteValid: false,
       error: {
         quote: ""
@@ -23,7 +24,9 @@ class AddQuote extends Component {
       method: "POST",
       data: {
         quote: this.state.quote,
-        author: this.state.author
+        author: this.state.author,
+        currentDate:  this.state.currentDate.getFullYear() + '-' + ( this.state.currentDate.getMonth()+1) + '-' +  this.state.currentDate.getDate() +' '+  this.state.currentDate.getHours()+':'+  this.state.currentDate.getMinutes()+':'+  this.state.currentDate.getSeconds()
+ 
       }
     })
       .then(msg => {

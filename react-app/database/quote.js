@@ -23,7 +23,8 @@ module.exports = {
     return new Promise(function (resolve, reject) {
       var quote_data = new quoteModel({
         text: data.quote,
-        author: data.author
+        author: data.author,
+        datePosted: data.currentDate
       });
       quote_data.save((err) => {
         if (err) {
@@ -36,10 +37,11 @@ module.exports = {
   },
 
   fetchQuote: function (authorName) {
+    var sortDate = { datePosted: -1};
     return new Promise(function (resolve, reject) {
       quoteModel.find({
         author: authorName
-      })
+      }).sort(sortDate)
         .exec()
         .then(data => {
           if (data.length > 0) {
