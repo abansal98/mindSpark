@@ -227,6 +227,39 @@ module.exports = {
     });
   },
 
+  updatePassword: function(data) {
+    //console.log(data);
+    return new Promise(function(resolve, reject) {
+      userModel
+        .findOne({
+          resetPasswordToken: data.resetPasswordToken
+        })
+        .exec()
+        .then(user => {
+          if (user) {
+            bcrypt.genSalt(10, function(err, salt) {
+              bcrypt.hash(data.password, salt, function(err, hash) {
+                if (err) {
+                  reject("There was an error encrypting the password");
+                } else {
+                  user.password = hash;
+                  user.save(err => {
+                    if (err) {
+                      reject("Cannot update password: " + err.message);
+                    } else {
+                      resolve();
+                    }
+                  });
+                }
+              });
+            });
+          } else {
+            reject("Incorrect Token!");
+          }
+        });
+    });
+  },
+
   getUsers: function() {
     return new Promise(function(resolve, reject) {
       userModel

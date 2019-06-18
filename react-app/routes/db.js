@@ -160,4 +160,17 @@ router.route("/checkToken").post((req, res) => {
     });
 });
 
+router.route("/updatePassword").post((req, res) => {
+  console.log(req.body);
+  user
+    .updatePassword(req.body)
+    .then(() => {
+      res.status(200).send("Password Updated successfully!");
+      //res.status(200).redirect("/reset");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
 module.exports = router;
