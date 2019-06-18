@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-import Footer from "../Footer/Footer";
-import logo from "../../icons/logo.png";
-import { Button } from "react-bootstrap";
-// import "../Signup/signup.css";
 import "./ForgotPassword.css";
 import $ from "jquery";
 
@@ -10,12 +6,53 @@ class ForgotPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
       email: "",
-      userValid: false,
+      emailValid: false,
       formValid: false,
       error: { username: "", email: "" }
     };
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    $.ajax({
+      url: "/db/forgotPassword",
+      method: "POST",
+      data: {
+        email: this.state.email
+      }
+    })
+      .then(msg => {
+        alert(msg);
+      })
+      .fail(err => {
+        alert(err.responseText);
+      });
+  }
+
+  handleUserInput(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({ [name]: value }, () => {
+      this.validateField(name, value);
+    });
+  }
+
+  validateField(fieldName, value) {
+    let errors = this.state.error;
+
+    this.setState(
+      {
+        error: errors
+      },
+      this.validateForm
+    );
+  }
+
+  validateForm() {
+    this.setState({
+      formValid: this.state.email
+    });
   }
 
   render() {
@@ -27,24 +64,23 @@ class ForgotPassword extends Component {
               <h1>Recover Password</h1>
             </div>
 
-            {/* <form onSubmit={this.handleSubmit.bind(this)}> */}
-            <form>
+            <form onSubmit={this.handleSubmit.bind(this)}>
               <div className="form-group">
-                <div className="username">
-                  <label htmlFor="username">UserName</label>
+                <div className="email">
+                  <label htmlFor="email">Email</label>
                   <input
-                    // onChange={this.handleUserInput.bind(this)}
-                    name="username"
+                    name="email"
                     className="form-control"
                     type="text"
-                    value={this.state.username}
-                    placeholder="Enter Your Username or Email"
+                    value={this.state.email}
+                    onChange={this.handleUserInput.bind(this)}
+                    placeholder="Enter Your Email"
                   />
                 </div>
               </div>
               <div class="createAccount">
                 <button type="submit" className="btn btn-primary btn-sm">
-                  Send Verification Email{" "}
+                  Send Verification Email
                 </button>
               </div>
             </form>

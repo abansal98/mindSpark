@@ -5,50 +5,46 @@ const express = require("express"),
   quote = require("../database/quote"),
   reminder = require("../database/reminder");
 
-router.route('/signin')
-  .post((req, res) => {
-    user.userLogin(req.body)
-      .then(() => {
-        req.session.user = {
-          username: req.body.username
-        }
-        console.log(req.session);
-        res.status(200).redirect('/');
-      })
-      .catch((err) => {
-        res.status(301).send(err);
-      })
-    console.log(req.session);
-  });
-
-router.route('/signup')
-  .post((req, res) => {
-    user.addUser(req.body)
-      .then(() => {
-        res.status(200).send("User registration complete!");
-      })
-      .catch((err) => {
-        res.status(301).send(err);
-      })
-  });
-
-router.route('/logout')
-  .get((req, res) => {
-    req.session.reset();
-    console.log(req.session);
-    res.redirect('/signup');
-  });
-
-router.route('/ensureLogin')
-    .get((req, res) => {
-        if (req.session.user)
-            res.status(200).send(req.session.user.username);
-        else
-            res.status(401).send('0');
+router.route("/signin").post((req, res) => {
+  user
+    .userLogin(req.body)
+    .then(() => {
+      req.session.user = {
+        username: req.body.username
+      };
+      res.status(200).redirect("/");
     })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/signup").post((req, res) => {
+  user
+    .addUser(req.body)
+    .then(() => {
+      res
+        .status(200)
+        .send(
+          "User registration complete, please check your email for verification!"
+        );
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/logout").get((req, res) => {
+  req.session.reset();
+  res.redirect("/signin");
+});
+
+router.route("/ensureLogin").get((req, res) => {
+  if (req.session.user) res.status(200).send(req.session.user.username);
+  else res.status(401).send("0");
+});
 
 router.route("/addQuote").post((req, res) => {
-  // console.log(req.body);
   quote
     .addQuote(req.body)
     .then(() => {
@@ -59,15 +55,16 @@ router.route("/addQuote").post((req, res) => {
     });
 });
 
-router.route("/quoteList").get((req, res) => {
-  quote.fetchQuote()
+router.route("/quoteList/:authorName").get((req, res) => {
+  quote
+    .fetchQuote(req.params.authorName)
     .then(data => {
       res.status(200).send(data);
     })
     .catch(err => {
       res.status(301).send(err);
-    })
-})
+    });
+});
 
 router.route("/getCategories").get((req, res) => {
   category
@@ -80,9 +77,18 @@ router.route("/getCategories").get((req, res) => {
     });
 });
 
+router.route("/getUserInfo/:username").get((req, res) => {
+  user
+    .getUser(req.params.username)
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
 router.route("/getQuotes/:categoryName").get((req, res) => {
-  // console.log(req.params.categoryName);
-  // var temp = req.params.categoryName.toString().toLowerCase();
   quote
     .fetchQuoteList(req.params.categoryName)
     .then(data => {
@@ -94,7 +100,6 @@ router.route("/getQuotes/:categoryName").get((req, res) => {
 });
 
 router.route("/addCategory").post((req, res) => {
-  console.log(req.body);
   category
     .addCategory(req.body)
     .then(data => {
@@ -106,11 +111,62 @@ router.route("/addCategory").post((req, res) => {
 });
 
 router.route("/submitReminder").post((req, res) => {
-  console.log(req.body);
   reminder
     .submitReminder(req.body)
     .then(data => {
       res.status(200).send("Reminder set successfully!");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/forgotPassword").post((req, res) => {
+  //console.log(req.body);
+  user
+    .forgotPassword(req.body)
+    .then(() => {
+      res.status(200).send("Forgot Password verfication sent");
+      //  res.redirect('/signin')
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/checkToken").post((req, res) => {
+  //console.log(req.body);
+  user
+    .checkForgotPasswordToken(req.body)
+    .then(() => {
+      res.status(200).send("Token exist");
+      //res.status(200).redirect("/reset");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/checkRegistrationToken").post((req, res) => {
+  // console.log(req.body);
+  user
+    .checkRegistrationToken(req.body)
+    .then(() => {
+      res.status(200).send("Token exist");
+      //res.status(200).redirect("/reset");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/updatePassword").post((req, res) => {
+  //console.log(req.body);
+  user
+    .updatePassword(req.body)
+    .then(() => {
+      res.status(200).send("Password Updated successfully!");
+      //res.status(200).redirect("/reset");
     })
     .catch(err => {
       res.status(301).send(err);

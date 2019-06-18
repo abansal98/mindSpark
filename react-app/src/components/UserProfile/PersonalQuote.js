@@ -1,47 +1,46 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import $ from "jquery";
-import Button from "react-bootstrap/Button";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
+import QuoteBox from "../Quoteboard/QuoteBox";
 
-class PersonalQuote extends Component
-{
-    constructor(props)
-    {
-        super(props);
-        this.state = {
-            quote: []
-        }
-    }
+class PersonalQuote extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quote: []
+    };
+  }
 
-    componentDidMount()
-    {
-        $.ajax({
-            url: "db/quoteList",
-            method: "GET"
-        })
-        .then(data => {
-           
-            this.setState({quote: data});
-            console.log(this.state.quote);
-        })
-    }
-    render() {
-        return (
-            <div className="container">
-                <ListGroup>
-                    {this.state.quote.map((value, index) => {
-                        return (
-                            <ListGroupItem key={index}>
-                                {value.text}
-                                <h3>- {value.author}</h3>
-                            </ListGroupItem>
-                            
-                        )
-                    })}
-                </ListGroup>
-            </div>
-         );
-    }
+  fetchPersonalQuotes(author) {
+    $.ajax({
+      url: "db/quoteList/" + author,
+      method: "GET"
+    }).then(data => {
+      this.setState({ quote: data });
+    });
+  }
+
+  componentDidMount() {
+    console.log(this.props.username)
+    this.fetchPersonalQuotes(this.props.username);
+  }
+
+  render() {
+    return (
+      <div className="quotelistBody">
+        {this.state.quote.map((quoteObj, index) => {
+          return (
+            <QuoteBox
+              quote={quoteObj.text}
+              author={quoteObj.author}
+              rating={quoteObj.rating}
+            />
+          );
+        })}
+        {/* <QuoteBox quote={quotes[0]} author={authors[0]} rating={ratings[2]} /> */}
+      </div>
+    );
+  }
 }
 
 export default PersonalQuote;

@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-// import { Navbar } from "react-bootstrap";
-import Navbar from "./Navbar";
-//import Footer from "./Footer";
 import './signup.css'
-//import {Link} from 'react-router-dom';
-import Footer from "./Footer";
 
 const passwordRegex = RegExp
 (
@@ -181,7 +176,6 @@ class SignUp extends Component {
             </form>
           </div>
         </div>
-        <Footer/>
         </React.Fragment>
     );
   }

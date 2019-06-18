@@ -1,9 +1,4 @@
 import React, { Component } from "react";
-import Footer from "../Footer/Footer";
-import logo from "../../icons/logo.png";
-//import "./signin.css";
-import { Button } from "react-bootstrap";
-// import "../Signup/signup.css";
 import "./signin.css";
 import $ from "jquery";
 
@@ -80,7 +75,7 @@ class SignIn extends Component {
         <div className="wrapper" ref={this.props.containerRef}>
           <div className="form-wrapper">
             <div className="header">
-              <h1 className="mt-2 text-center">Login</h1>
+              <h1 className="mt-2 text-center">Sign In</h1>
             </div>
 
             <form onSubmit={this.handleSubmit.bind(this)}>
@@ -88,6 +83,7 @@ class SignIn extends Component {
                 <div className="username">
                   <label htmlFor="username">UserName</label>
                   <input
+                    id="signinUserName"
                     onChange={this.handleUserInput.bind(this)}
                     name="username"
                     className="form-control"
@@ -101,6 +97,7 @@ class SignIn extends Component {
                 <div className="password">
                   <label htmlFor="password">Password</label>
                   <input
+                    id="signinPassword"
                     onChange={this.handleUserInput.bind(this)}
                     name="password"
                     className="form-control"
@@ -119,7 +116,6 @@ class SignIn extends Component {
             </form>
             <br />
           </div>
-
         </div>
       </div>
     );
