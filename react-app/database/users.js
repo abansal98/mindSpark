@@ -179,6 +179,7 @@ module.exports = {
 
   forgotPassword: function(data) {
     console.log(data);
+    var token;
     return new Promise(function(resolve, reject) {
       userModel
         .findOne({
@@ -192,7 +193,7 @@ module.exports = {
                 reject("Cannot submit: " + err.message);
               } else {
                 crypto.randomBytes(20, function(err, buf) {
-                  var token = buf.toString("hex");
+                  token = buf.toString("hex");
                   console.log(token);
                   user.resetPasswordToken = token;
                   user.save(err => {
@@ -203,6 +204,23 @@ module.exports = {
                     }
                   });
                 });
+                const html = `Please follow the instructions to change Password:
+                                <br/>
+                                Use the following link to change password:
+                                <br/>
+                                <a href="http://myvmlab.senecacollege.ca:6475/reset/${
+                                  user.resetPasswordToken
+                                }" > http://myvmlab.senecacollege.ca:6475/reset/${
+                  user.resetPasswordToken
+                } </a>`;
+                //console.log(user_data.email);
+                // console.log(foo);
+                mailer.sendEmail(
+                  "donotreply@mindspark.com",
+                  user.email,
+                  "MindSpark Password Change Request",
+                  html
+                );
                 resolve();
               }
             });
