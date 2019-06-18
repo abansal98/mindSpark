@@ -42,6 +42,7 @@ class ResetPassword extends Component {
   }
 
   handleSubmit(e) {
+    this.state.resetPasswordToken = this.props.match.params.token;
     e.preventDefault();
     $.ajax({
       url: "/db/updatePassword",
