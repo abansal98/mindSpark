@@ -2,24 +2,51 @@ import React, { Component } from "react";
 import "./Quoteboard.css";
 import Category from "./Category";
 import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
+import $ from 'jquery';
 
 class Quoteboard extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
       username: "",
+      category: "",
+      categories: [],
       isLoggedIn: false
     };
   }
 
-  componentDidMount() {}
+  getCategories() {
+    $.ajax({
+      url: "/db/getCategories",
+      method: "GET"
+    }).then(data => {
+      this.setState({
+        categories: data
+      });
+    });
+  }
 
+  componentDidMount() {
+    this.getCategories();
+  }
+
+  //set the state of QuoteBoard so that it gets re-rendered with the updated data
+  // if I select "Laziness" this would gather the data and setState with new Quotes
+  // once that gets updated your component will be rerendered by reacts lifecycle hooks
   handleOnClick = id => {
-    console.log(`You click ${id}`);
-    //set the state of QuoteBoard so that it gets re-rendered with the updated data
-    // if I select "Laziness" this would gather the data and setState with new Quotes
-    // once that gets updated your component will be rerendered by reacts lifecycle hooks
+    this.handleOnClick.preventDefault();
+    this.setState({
+      category: id
+    })
+    console.log(this.state);
   };
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log('Component did update!!');
+  //   console.log(prevProps);
+  //   console.log(prevState);
+  // }
+
   render() {
     return (
       <div className="quoteboardBody">
@@ -29,7 +56,21 @@ class Quoteboard extends Component {
             defaultActiveKey="#categoryHome"
           >
             <Row>
-              <Category onClick={this.handleOnClick} />
+              <Col md={2} className="quoteboardleftside">
+                <ListGroup>
+                  <ListGroup.Item action href="#categoryHome" variant="success">
+                    Home
+                  </ListGroup.Item>
+                  {/* </ListGroup> */}
+                  {/* temporary for CATEGORY HOME */}
+                  {/* <ListGroup> */}
+                  {this.state.categories.map((value, index) => {
+                    return (
+                      <Category categoryName={value.categoryName} categoryID={value.categoryID} onClick={this.handleOnClick.bind(this)} />
+                    );
+                  })}
+                </ListGroup>
+              </Col>
             </Row>
           </Tab.Container>
         </Container>

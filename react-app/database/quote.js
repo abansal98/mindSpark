@@ -37,7 +37,7 @@ module.exports = {
   },
 
   fetchQuote: function (authorName) {
-    var sortDate = { datePosted: -1};
+    var sortDate = { datePosted: -1 };
     return new Promise(function (resolve, reject) {
       quoteModel.find({
         author: authorName
@@ -45,6 +45,7 @@ module.exports = {
         .exec()
         .then(data => {
           if (data.length > 0) {
+            console.log(data.length);
             resolve(data);
           }
           else {
