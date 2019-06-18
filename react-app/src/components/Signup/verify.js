@@ -1,97 +1,53 @@
 import React, { Component } from "react";
 import $ from "jquery";
+import Error from "../Error/Error";
 
 class Verify extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      secretToken: "",
-      secretTokenValid: false,
-      error: { secretToken: ""},
-      formValid: false
+      trueToken: "false"
     };
   }
 
-  handleSubmit(e) {
-      var trimmedsecretToken = this.state.secretToken.trim();
-    e.preventDefault();
+  checkRegistrationToken(e) {
+    e = this.props.match.params.token;
+    // console.log(e);
+    //e.preventDefault();
     $.ajax({
-      url: "/db/verify",
+      url: "/db/checkRegistrationToken",
       method: "POST",
       data: {
-        secretToken: trimmedsecretToken
+        secretToken: e
       }
     })
-    .then(msg => {
-        alert(msg);
+      .then(msg => {
+        // alert(msg);
+        this.state.trueToken = "true";
+        //console.log(this.state.trueToken + "then");
       })
       .fail(err => {
-        alert(err.responseText);
+        this.state.trueToken = "false";
+        return <Error />;
       });
   }
 
-  handleUserInput(e) {
-    const name = e.target.name;
-    const value = e.target.value;
-    this.setState({ [name]: value }, () => {
-      this.validateField(name, value);
-    });
-  }
-
-  handleSignIn(e) {}
-
-  validateField(fieldName, value) {
-    let errors = this.state.error;
-
-    this.setState(
-      {
-        error: errors,
-      },
-      this.validateForm
-    );
-  }
-
-  validateForm() {
-    this.setState({
-      formValid: this.state.secretTokenValid
-    });
+  componentDidMount() {
+    this.checkRegistrationToken();
   }
 
   render() {
-    return (
-      <div className="signinBody">
-        <div className="wrapper" ref={this.props.containerRef}>
-          <div className="form-wrapper">
-            <div className="header">
-              <h1 className="mt-2 text-center">Verify Email</h1>
-            </div>
-
-            <form onSubmit={this.handleSubmit.bind(this)}>
-              <div className="form-group">
-                <div className="secretToken">
-                  <label htmlFor="secretToken">Enter Your Token:</label>
-                  <input
-                    name="secretToken"
-                    className="form-control"
-                    type="text"
-                    placeholder="Enter Your Token"
-                    value={this.state.secretToken}
-                    onChange={this.handleUserInput.bind(this)}
-                  />
-                </div>
-              </div>
-
-              <div class="verifyToken">
-                <button className="btn btn-primary mb-2" type="submit">
-                  Verify Your Account
-                </button>
-              </div>
-            </form>
-            <br />
-          </div>
+    if (this.state.trueToken === "true") {
+      return (
+        <div className="header mt-2">
+          <br />
+          <br />
+          <h1>Account Verified Successfully</h1>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <Error />;
+    }
   }
 }
 
