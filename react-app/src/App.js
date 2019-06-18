@@ -19,8 +19,27 @@ class App extends Component {
     this.state = {
       username: "",
       isLoggedIn: false,
-      email: ""
+      email: "",
+      didLoad: false
     };
+  }
+
+  UNSAFE_componentWillMount() {
+    //make a request
+    this.getLoginStatus();
+    this.getUserInfo();
+    console.log("componentWillMount called");
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.username !== prevState.username) {
+      console.log("getSnapshotBeforeUpdate called");
+      this.setState(prevState => {
+        return {
+          didLoad: !prevState.didLoad
+        };
+      });
+    }
   }
 
   quoteboardAccess() {
@@ -87,31 +106,36 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getLoginStatus();
-    this.getUserInfo();
+    // this.getLoginStatus();
+    // this.getUserInfo();
     // this.quoteboardAccess();
   }
 
   render() {
+    console.log("render called");
     return (
       <div id="root">
         {this.navbarSelect()}
         <BrowserRouter>
           <Switch>
-            <Route path="/" component={About} exact />
-            <Route path="/signup" component={this.signupAccess()} />
-            {/* <Route path="/verify" component={Verify} exact /> */}
-            <Route path="/quoteboard" component={this.quoteboardAccess()} />
-            <Route
-              path="/signin"
-              component={() => <SignUpSignIn signValue="signin" />}
-            />
-            <Route
-              path="/userProfile"
-              component={() => <UserProfile username={this.state.username} />}
-            />
-            <Route path="/reset/:token" component={ResetPassword} />} />
-            <Route path="/verify/:token" component={Verify} />
+            (this.state.didLoad &&
+            <>
+              <Route path="/" component={About} exact />
+              <Route path="/signup" component={this.signupAccess()} />
+              <Route path="/verify" component={Verify} exact />
+              <Route path="/quoteboard" component={this.quoteboardAccess()} />
+              <Route
+                path="/signin"
+                component={() => <SignUpSignIn signValue="signin" />}
+              />
+              <Route
+                path="/userProfile"
+                component={() => <UserProfile username={this.state.username} />}
+              />
+              <Route path="/reset/:token" component={ResetPassword} />} />
+              <Route path="/verify/:token" component={Verify} />
+            </>
+            )
             <Route component={Error} />
           </Switch>
         </BrowserRouter>

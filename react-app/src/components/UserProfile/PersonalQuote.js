@@ -12,16 +12,23 @@ class PersonalQuote extends Component {
   }
 
   fetchPersonalQuotes(author) {
+    console.log(author);
     $.ajax({
       url: "db/quoteList/" + author,
       method: "GET"
-    }).then(data => {
-      this.setState({ quote: data });
-    });
+    })
+      .then(data => {
+        this.setState({ quote: data });
+      })
+      .fail(err => {
+        this.setState({
+          quote: []
+        });
+      });
   }
 
   componentDidMount() {
-    console.log(this.props.username)
+    //debugger;
     this.fetchPersonalQuotes(this.props.username);
   }
 

@@ -2,15 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 var quote = new Schema({
-  "quoteID": {
-    type: String,
-    unique: true
-  },
-  "text": String,
-  "author": String,
-  "datePosted": Date,
-  "rating": Number,
-  "category": String
+  text: String,
+  author: String,
+  datePosted: Date,
+  rating: Number,
+  category: []
 });
 
 var quoteModel = mongoose.model("quotes", quote);
@@ -24,16 +20,17 @@ module.exports = {
       var quote_data = new quoteModel({
         text: data.quote,
         author: data.author,
-        datePosted: data.currentDate
+        datePosted: data.currentDate,
+        category: data.category
       });
-      quote_data.save((err) => {
+      quote_data.save(err => {
         if (err) {
           reject("Quote already exists!");
         } else {
           resolve();
         }
-      })
-    })
+      });
+    });
   },
 
   fetchQuote: function (authorName) {
@@ -47,8 +44,7 @@ module.exports = {
           if (data.length > 0) {
             console.log(data.length);
             resolve(data);
-          }
-          else {
+          } else {
             reject("No quote bro");
           }
         });

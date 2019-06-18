@@ -25,8 +25,19 @@ class AddQuote extends Component {
       data: {
         quote: this.state.quote,
         author: this.state.author,
-        currentDate:  this.state.currentDate.getFullYear() + '-' + ( this.state.currentDate.getMonth()+1) + '-' +  this.state.currentDate.getDate() +' '+  this.state.currentDate.getHours()+':'+  this.state.currentDate.getMinutes()+':'+  this.state.currentDate.getSeconds()
- 
+        currentDate:
+          this.state.currentDate.getFullYear() +
+          "-" +
+          (this.state.currentDate.getMonth() + 1) +
+          "-" +
+          this.state.currentDate.getDate() +
+          " " +
+          this.state.currentDate.getHours() +
+          ":" +
+          this.state.currentDate.getMinutes() +
+          ":" +
+          this.state.currentDate.getSeconds(),
+        category: ""
       }
     })
       .then(msg => {
@@ -74,11 +85,10 @@ class AddQuote extends Component {
     });
   }
 
-  componentDidMount(){
-    console.log(this.props.username);
+  componentDidMount() {
     this.setState({
-        author: this.props.username
-    })
+      author: this.props.username
+    });
   }
 
   render() {
@@ -96,7 +106,7 @@ class AddQuote extends Component {
             value={this.state.quote}
           />
           <div className="invalid-name">{this.state.error.quote}</div>
-            <h1>{this.props.username}</h1>
+          <h1>{this.props.username}</h1>
           <button
             disabled={!this.state.formValid}
             className="submit"
