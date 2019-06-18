@@ -10,7 +10,7 @@ class ResetPassword extends Component {
       email: "",
       emailValid: false,
       formValid: false,
-      trueToken: false,
+      trueToken: "false",
       error: { username: "", email: "" }
     };
   }
@@ -27,13 +27,13 @@ class ResetPassword extends Component {
       }
     })
       .then(msg => {
-        alert(msg);
-        this.state.trueToken = true;
+        // alert(msg);
+        this.state.trueToken = "true";
         console.log(this.state.trueToken + "then");
       })
       .fail(err => {
-        this.state.trueToken = false;
-        console.log(this.state.trueToken + "fail");
+        this.state.trueToken = "false";
+        return <Error />;
       });
   }
 
@@ -84,7 +84,7 @@ class ResetPassword extends Component {
   }
 
   render() {
-    if ((this.state.trueToken = true)) {
+    if (this.state.trueToken === "true") {
       return (
         <div className="forgotpasswordBody">
           <div className="wrapper" ref={this.props.containerRef}>
