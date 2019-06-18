@@ -20,12 +20,10 @@ class Quotelist extends Component {
       this.setState({
         quotes: data
       });
-      console.log(this.state.quotes);
     });
   }
 
   componentDidMount() {
-    console.log(this.props);
     this.getQuotes();
   }
 

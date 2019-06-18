@@ -25,7 +25,6 @@ class ReminderForm extends Component {
           this.setState({
             categories: data
           });
-          console.log(this.state.categories);
         });
       }
 

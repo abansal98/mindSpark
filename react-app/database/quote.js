@@ -42,7 +42,6 @@ module.exports = {
         .exec()
         .then(data => {
           if (data.length > 0) {
-            console.log(data.length);
             resolve(data);
           } else {
             reject("No quote bro");

@@ -12,7 +12,6 @@ class PersonalQuote extends Component {
   }
 
   fetchPersonalQuotes(author) {
-    console.log(author);
     $.ajax({
       url: "db/quoteList/" + author,
       method: "GET"

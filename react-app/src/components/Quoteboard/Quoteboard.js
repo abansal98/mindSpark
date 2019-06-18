@@ -41,8 +41,6 @@ class Quoteboard extends Component {
     // this.setState({
     //   category: id
     // });
-
-    console.log(this.state);
   };
 
   // componentDidUpdate(prevProps, prevState) {
