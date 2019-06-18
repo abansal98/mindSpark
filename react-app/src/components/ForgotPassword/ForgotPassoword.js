@@ -14,46 +14,46 @@ class ForgotPassword extends Component {
   }
 
   handleSubmit(e) {
-  e.preventDefault();
-  $.ajax({
-    url: "/db/forgotPassword",
-    method: "POST",
-    data: {
-      email: this.state.email
-    }
-  })
-  .then(msg => {
-      alert(msg);
+    e.preventDefault();
+    $.ajax({
+      url: "/db/forgotPassword",
+      method: "POST",
+      data: {
+        email: this.state.email
+      }
     })
-    .fail(err => {
-      alert(err.responseText);
+      .then(msg => {
+        alert(msg);
+      })
+      .fail(err => {
+        alert(err.responseText);
+      });
+  }
+
+  handleUserInput(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({ [name]: value }, () => {
+      this.validateField(name, value);
     });
-}
+  }
 
-handleUserInput(e) {
-  const name = e.target.name;
-  const value = e.target.value;
-  this.setState({ [name]: value }, () => {
-    this.validateField(name, value);
-  });
-}
+  validateField(fieldName, value) {
+    let errors = this.state.error;
 
-validateField(fieldName, value) {
-  let errors = this.state.error;
+    this.setState(
+      {
+        error: errors
+      },
+      this.validateForm
+    );
+  }
 
-  this.setState(
-    {
-      error: errors,
-    },
-    this.validateForm
-  );
-}
-
-validateForm() {
-  this.setState({
-    formValid: this.state.email
-  });
-}
+  validateForm() {
+    this.setState({
+      formValid: this.state.email
+    });
+  }
 
   render() {
     return (
