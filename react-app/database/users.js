@@ -84,11 +84,9 @@ module.exports = {
               } else {
                 const html = `Welcome to "MindSpark"
                                 <br/>
-                                Please verify your email by using the following token:
+                                Please verify your email by using the following link:
                                 <br/>
-                                Token: ${foo}
-                                <br/>
-                                <a href="http://myvmlab.senecacollege.ca:6475/verify" > http://myvmlab.senecacollege.ca:6475/verify </a>`;
+                                <a href="http://myvmlab.senecacollege.ca:6475/verify/${foo}" > http://myvmlab.senecacollege.ca:6475/verify/${foo} </a>`;
                 //console.log(user_data.email);
                 // console.log(foo);
                 mailer.sendEmail(
@@ -151,8 +149,8 @@ module.exports = {
     });
   },
 
-  verifyToken: function(data) {
-    // console.log(data);
+  checkRegistrationToken: function(data) {
+    //console.log(data);
     return new Promise(function(resolve, reject) {
       userModel
         .findOne({
@@ -161,8 +159,8 @@ module.exports = {
         .exec()
         .then(user => {
           if (user) {
-            //console.log(user.active);
             user.active = "true";
+            // console.log(user.active);
             user.save(err => {
               if (err) {
                 reject("Cannot save verification: " + err.message);
@@ -170,12 +168,39 @@ module.exports = {
                 resolve();
               }
             });
+            resolve();
           } else {
             reject("Incorrect Token!");
           }
         });
     });
   },
+
+  // verifyToken: function(data) {
+  //   // console.log(data);
+  //   return new Promise(function(resolve, reject) {
+  //     userModel
+  //       .findOne({
+  //         secretToken: data.secretToken
+  //       })
+  //       .exec()
+  //       .then(user => {
+  //         if (user) {
+  //           //console.log(user.active);
+  //           user.active = "true";
+  //           user.save(err => {
+  //             if (err) {
+  //               reject("Cannot save verification: " + err.message);
+  //             } else {
+  //               resolve();
+  //             }
+  //           });
+  //         } else {
+  //           reject("Incorrect Token!");
+  //         }
+  //       });
+  //   });
+  // },
 
   forgotPassword: function(data) {
     console.log(data);

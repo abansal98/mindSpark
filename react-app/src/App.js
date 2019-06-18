@@ -100,7 +100,7 @@ class App extends Component {
           <Switch>
             <Route path="/" component={About} exact />
             <Route path="/signup" component={this.signupAccess()} />
-            <Route path="/verify" component={Verify} exact />
+            {/* <Route path="/verify" component={Verify} exact /> */}
             <Route path="/quoteboard" component={this.quoteboardAccess()} />
             <Route
               path="/signin"
@@ -111,6 +111,7 @@ class App extends Component {
               component={() => <UserProfile username={this.state.username} />}
             />
             <Route path="/reset/:token" component={ResetPassword} />} />
+            <Route path="/verify/:token" component={Verify} />
             <Route component={Error} />
           </Switch>
         </BrowserRouter>
