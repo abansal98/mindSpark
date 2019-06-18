@@ -10,8 +10,8 @@ import Footer from "./components/Footer/Footer";
 import NavBarSignIn from "./components/Navbar/NavbarSignin";
 import $ from "jquery";
 import NavBar from "./components/Navbar/Navbar";
-import Verify from "./components/Signup/verify"
-import ResetPassword from "./components/ForgotPassword/reset";
+import Verify from "./components/Signup/verify";
+import ResetPassword from "./components/ForgotPassword/ResetPassword";
 
 class App extends Component {
   constructor(props, context) {
@@ -58,7 +58,7 @@ class App extends Component {
       .then(user => {
         this.setState({
           username: user,
-          isLoggedIn: true,
+          isLoggedIn: true
         });
       })
       .fail(err => {
@@ -81,7 +81,7 @@ class App extends Component {
       })
       .fail(err => {
         this.setState({
-          email: "",
+          email: ""
         });
       });
   }
@@ -100,11 +100,18 @@ class App extends Component {
           <Switch>
             <Route path="/" component={About} exact />
             <Route path="/signup" component={this.signupAccess()} />
-            <Route path="/verify" component={Verify} exact/>
+            {/* <Route path="/verify" component={Verify} exact /> */}
             <Route path="/quoteboard" component={this.quoteboardAccess()} />
-            <Route path="/signin" component={() => <SignUpSignIn signValue="signin" />} />
-            <Route path="/userProfile" component={() => <UserProfile username={this.state.username} />} />
-            <Route path="/reset/:token" component={ResetPassword} exact/>} />
+            <Route
+              path="/signin"
+              component={() => <SignUpSignIn signValue="signin" />}
+            />
+            <Route
+              path="/userProfile"
+              component={() => <UserProfile username={this.state.username} />}
+            />
+            <Route path="/reset/:token" component={ResetPassword} />} />
+            <Route path="/verify/:token" component={Verify} />
             <Route component={Error} />
           </Switch>
         </BrowserRouter>
