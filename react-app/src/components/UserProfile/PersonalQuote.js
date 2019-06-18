@@ -21,7 +21,8 @@ class PersonalQuote extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.username)
+    //debugger;
+    console.log(this.props.username);
     this.fetchPersonalQuotes(this.props.username);
   }
 
