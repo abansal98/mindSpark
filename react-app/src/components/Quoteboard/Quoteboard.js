@@ -11,17 +11,20 @@ class Quoteboard extends Component {
       username: "",
       category: "",
       categories: [],
-      isLoggedIn: false
+      isLoggedIn: false,
+      didLoad: false,
     };
   }
 
   getCategories() {
-    $.ajax({
+    // this.setState((prevState) => {didLoad: !prevState.didLoad});
+     $.ajax({
       url: "/db/getCategories",
       method: "GET"
     }).then(data => {
       this.setState({
-        categories: data
+        categories: data,
+        didLoad: true
       });
     });
   }
@@ -34,10 +37,11 @@ class Quoteboard extends Component {
   // if I select "Laziness" this would gather the data and setState with new Quotes
   // once that gets updated your component will be rerendered by reacts lifecycle hooks
   handleOnClick = id => {
-    this.handleOnClick.preventDefault();
-    this.setState({
-      category: id
-    })
+    this.getCategories(id);
+    // this.setState({
+    //   category: id
+    // });
+
     console.log(this.state);
   };
 

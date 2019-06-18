@@ -13,7 +13,7 @@ class Category extends Component {
         action
         href={`#${this.props.categoryID}`}
         variant="success"
-        onClick={this.props.onClick(this.props.categoryName)}
+        onClick={() => { this.props.onClick(this.props.categoryName) }}
       >
         {this.props.categoryName}
       </ListGroup.Item>
