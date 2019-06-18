@@ -40,7 +40,9 @@ class Verify extends Component {
     if (this.state.trueToken === "true") {
       return (
         <div className="header mt-2">
-          <h1>Recover Password</h1>
+          <br />
+          <br />
+          <h1>Account Verified Successfully</h1>
         </div>
       );
     } else {
