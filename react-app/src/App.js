@@ -11,7 +11,7 @@ import NavBarSignIn from "./components/Navbar/NavbarSignin";
 import $ from "jquery";
 import NavBar from "./components/Navbar/Navbar";
 import Verify from "./components/Signup/verify";
-import ResetPassword from "./components/ForgotPassword/reset";
+import ResetPassword from "./components/ForgotPassword/ResetPassword";
 
 class App extends Component {
   constructor(props, context) {
