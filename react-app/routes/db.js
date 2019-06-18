@@ -121,19 +121,6 @@ router.route("/submitReminder").post((req, res) => {
     });
 });
 
-router.route("/verify").post((req, res) => {
-  // console.log(req.body);
-  user
-    .verifyToken(req.body)
-    .then(() => {
-      res.status(200).send("User verified successfully");
-      //  res.redirect('/signin')
-    })
-    .catch(err => {
-      res.status(301).send(err);
-    });
-});
-
 router.route("/forgotPassword").post((req, res) => {
   //console.log(req.body);
   user
@@ -148,7 +135,7 @@ router.route("/forgotPassword").post((req, res) => {
 });
 
 router.route("/checkToken").post((req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   user
     .checkForgotPasswordToken(req.body)
     .then(() => {
@@ -160,8 +147,21 @@ router.route("/checkToken").post((req, res) => {
     });
 });
 
+router.route("/checkRegistrationToken").post((req, res) => {
+  // console.log(req.body);
+  user
+    .checkRegistrationToken(req.body)
+    .then(() => {
+      res.status(200).send("Token exist");
+      //res.status(200).redirect("/reset");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
 router.route("/updatePassword").post((req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   user
     .updatePassword(req.body)
     .then(() => {
