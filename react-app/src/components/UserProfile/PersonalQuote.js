@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import $ from "jquery";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
-import QuoteBox from "../Quoteboard/QuoteBox";
+import PersonalQuoteBox from "./PersonalQuoteBox";
 
 class PersonalQuote extends Component {
   constructor(props) {
@@ -33,18 +33,22 @@ class PersonalQuote extends Component {
 
   render() {
     return (
-      <div className="quotelistBody">
-        {this.state.quote.map((quoteObj, index) => {
-          return (
-            <QuoteBox
-              quote={quoteObj.text}
-              author={quoteObj.author}
-              rating={quoteObj.rating}
-            />
-          );
-        })}
-        {/* <QuoteBox quote={quotes[0]} author={authors[0]} rating={ratings[2]} /> */}
-      </div>
+      <React.Fragment>
+        <div className="personalquoteBody">
+          <div className="quotelistBody">
+            {this.state.quote.map((quoteObj, index) => {
+              return (
+                <PersonalQuoteBox
+                  quote={quoteObj.text}
+                  author={quoteObj.author}
+                  rating={quoteObj.rating}
+                />
+              );
+            })}
+            {/* <QuoteBox quote={quotes[0]} author={authors[0]} rating={ratings[2]} /> */}
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

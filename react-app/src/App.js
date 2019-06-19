@@ -132,7 +132,7 @@ class App extends Component {
                 path="/userProfile"
                 component={() => <UserProfile username={this.state.username} />}
               />
-              <Route path="/reset/:token" component={ResetPassword} />} />
+              <Route path="/reset/:token" component={ResetPassword} />
               <Route path="/verify/:token" component={Verify} />
             </>
             )

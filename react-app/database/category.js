@@ -11,8 +11,8 @@ var categoryModel = mongoose.model("category", category);
 module.exports = {
   categoryModel,
 
-  addCategory: function (data) {
-    return new Promise(function (resolve, reject) {
+  addCategory: function(data) {
+    return new Promise(function(resolve, reject) {
       var category_data = new categoryModel({
         categoryName: data.categoryName,
         description: data.description
@@ -31,10 +31,10 @@ module.exports = {
     });
   },
 
-  removeCategory: function (categoryID) { },
+  removeCategory: function(categoryID) {},
 
-  fetchCategoryList: function () {
-    return new Promise(function (resolve, reject) {
+  fetchCategoryList: function() {
+    return new Promise(function(resolve, reject) {
       categoryModel
         .find({})
         .exec()

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import $ from "jquery";
+import { Form } from "react-bootstrap";
+import "./AddQuote.css";
 
 const quoteRegex = RegExp(/^[a-zA-Z0-9#,!?_. ]{10,500}$/);
 
@@ -13,8 +15,21 @@ class AddQuote extends Component {
       quoteValid: false,
       error: {
         quote: ""
-      }
+      },
+      categories: [],
+      selectedCategories: []
     };
+  }
+
+  getAllCategories() {
+    $.ajax({
+      url: "/db/getCategories",
+      method: "GET"
+    }).then(data => {
+      this.setState({
+        categories: data
+      });
+    });
   }
 
   handleSubmit(e) {
@@ -37,7 +52,7 @@ class AddQuote extends Component {
           this.state.currentDate.getMinutes() +
           ":" +
           this.state.currentDate.getSeconds(),
-        category: ""
+        categories: this.state.selectedCategories
       }
     })
       .then(msg => {
@@ -89,24 +104,92 @@ class AddQuote extends Component {
     this.setState({
       author: this.props.username
     });
+    this.getAllCategories();
   }
 
   render() {
     return (
-      <div className="upload">
+      <div className="addquoteBody">
         <h2>AddQuote</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <textarea
             className={`form-control ${
               this.state.error.quote ? "invalid" : ""
             }`}
+            className="addquoteTextareaBody"
             onChange={this.handleUserInput.bind(this)}
             name="quote"
             placeholder="Enter Quote"
             value={this.state.quote}
           />
           <div className="invalid-name">{this.state.error.quote}</div>
-          <h1>{this.props.username}</h1>
+          <div className="addquoteUserId">
+            <h1>by... {this.props.username}</h1>
+          </div>
+
+          {/* categories */}
+          {/* <h1>Select categories</h1>
+          <Form>
+            {["checkbox"].map(type => (
+              <div key={`default-${type}`} className="mb-3">
+                <Form.Check
+                  type={type}
+                  id={this.state.categories}
+                  label={`Depressed`}
+                />
+                <Form.Check
+                  type={type}
+                  // id={`default-${type}`}
+                  label={`Weariness`}
+                />
+                <Form.Check
+                  type={type}
+                  // id={`default-${type}`}
+                  label={`Laziness`}
+                />
+                <Form.Check
+                  type={type}
+                  // id={`default-${type}`}
+                  label={`Loneliness`}
+                />
+                <Form.Check
+                  type={type}
+                  // id={`default-${type}`}
+                  label={`Stress`}
+                />
+                <Form.Check
+                  type={type}
+                  // id={`default-${type}`}
+                  label={`Nervousness`}
+                />
+                <Form.Check
+                  type={type}
+                  // id={`default-${type}`}
+                  label={`Nostalgia`}
+                />
+                <Form.Check
+                  type={type}
+                  // id={`default-${type}`}
+                  label={`Grief`}
+                />
+                <Form.Check
+                  type={type}
+                  // id={`default-${type}`}
+                  label={`Panic`}
+                />
+                <Form.Check
+                  type={type}
+                  // id={`default-${type}`}
+                  label={`Others`}
+                />
+              </div>
+            ))}
+          </Form> */}
+          {/* categories */}
+
+          {/* {console.log("category?")}
+          {console.log(this.state.categories[1])}
+          {console.log("category!")} */}
           <button
             disabled={!this.state.formValid}
             className="submit"
