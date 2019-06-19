@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 var category = new Schema({
-  categoryID: String,
-  category: [],
+  categoryName: String,
   description: String
 });
 
@@ -15,7 +14,6 @@ module.exports = {
   addCategory: function (data) {
     return new Promise(function (resolve, reject) {
       var category_data = new categoryModel({
-        categoryID: data.categoryID,
         categoryName: data.categoryName,
         description: data.description
       });

@@ -18,7 +18,7 @@ module.exports = {
     // console.log(data);
     return new Promise(function (resolve, reject) {
       var quote_data = new quoteModel({
-        text: data.quote,
+        text: data.text,
         author: data.author,
         datePosted: data.currentDate,
         category: data.category

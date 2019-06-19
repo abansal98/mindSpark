@@ -23,7 +23,7 @@ class AddQuote extends Component {
       url: "/db/addQuote",
       method: "POST",
       data: {
-        quote: this.state.quote,
+        text: this.state.quote,
         author: this.state.author,
         currentDate:
           this.state.currentDate.getFullYear() +
