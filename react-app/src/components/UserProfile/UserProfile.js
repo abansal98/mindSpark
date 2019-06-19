@@ -6,6 +6,7 @@ import ReminderForm from "./ReminderForm";
 import "./UserProfile.css";
 import { Tab, Row, Col, ListGroup } from "react-bootstrap";
 import Quotelist from "../Quoteboard/Quotelist";
+import $ from "jquery";
 
 class UserProfile extends Component {
   render() {
@@ -66,8 +67,8 @@ class UserProfile extends Component {
             <Col sm={10} className="up_rightside">
               <Tab.Content>
                 <Tab.Pane eventKey="#addquote">
-                  <AddQuote username={this.props.username}/>
-                  <PersonalQuote username={this.props.username}/>
+                  <AddQuote username={this.props.username} />
+                  <PersonalQuote username={this.props.username} />
                 </Tab.Pane>
                 <Tab.Pane eventKey="#userinformation">
                   <ProfileForm username={this.props.username} />
