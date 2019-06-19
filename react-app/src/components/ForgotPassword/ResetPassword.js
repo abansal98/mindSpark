@@ -33,11 +33,13 @@ class ResetPassword extends Component {
       .then(msg => {
         // alert(msg);
         this.state.trueToken = "true";
-        alert("The Account is Verified");
+        this.forceUpdate();
+        // alert("The Account is Verified");
         // console.log(this.state.trueToken + "then");
       })
       .fail(err => {
         this.state.trueToken = "false";
+        this.forceUpdate();
         return <Error />;
       });
   }

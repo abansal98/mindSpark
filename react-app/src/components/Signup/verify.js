@@ -24,10 +24,12 @@ class Verify extends Component {
       .then(msg => {
         // alert(msg);
         this.state.trueToken = "true";
+        this.forceUpdate();
         //console.log(this.state.trueToken + "then");
       })
       .fail(err => {
         this.state.trueToken = "false";
+        this.forceUpdate();
         return <Error />;
       });
   }
