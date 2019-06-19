@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import $ from "jquery";
 import { Form } from "react-bootstrap";
+import "./AddQuote.css";
 
 const quoteRegex = RegExp(/^[a-zA-Z0-9#,!?_. ]{10,500}$/);
 
@@ -108,20 +109,23 @@ class AddQuote extends Component {
 
   render() {
     return (
-      <div className="upload">
+      <div className="addquoteBody">
         <h2>AddQuote</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <textarea
             className={`form-control ${
               this.state.error.quote ? "invalid" : ""
             }`}
+            className="addquoteTextareaBody"
             onChange={this.handleUserInput.bind(this)}
             name="quote"
             placeholder="Enter Quote"
             value={this.state.quote}
           />
           <div className="invalid-name">{this.state.error.quote}</div>
-          <h1>by... {this.props.username}</h1>
+          <div className="addquoteUserId">
+            <h1>by... {this.props.username}</h1>
+          </div>
 
           {/* categories */}
           {/* <h1>Select categories</h1>
