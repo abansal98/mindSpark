@@ -1,0 +1,35 @@
+.addquoteBody {
+  margin-bottom: 10rem;
+  /* padding-right: 10rem; */
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.addquoteUserId {
+  text-align: right;
+}
+.addquoteTextareaBody {
+  /* min-width: 55rem;
+  min-height: 10rem; */
+  min-width: 100%;
+  min-height: 10rem;
+}
+
+@media only screen and (max-width: 992px) {
+  .up_leftside {
+    min-height: 100%;
+    padding-bottom: 5%;
+  }
+  .up_rightside {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .userprofileUserinformationBody {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  .userprofileReminderBody {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
