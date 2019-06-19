@@ -51,7 +51,7 @@ class UserProfile extends Component {
           defaultActiveKey="#addquote"
         >
           <Row>
-            <Col sm={2} className="up_leftside">
+            <Col lg={2} className="up_leftside">
               <ListGroup>
                 <ListGroup.Item action href="#addquote">
                   Add Quote
@@ -64,16 +64,22 @@ class UserProfile extends Component {
                 </ListGroup.Item>
               </ListGroup>
             </Col>
-            <Col sm={10} className="up_rightside">
+            <Col lg={10} className="up_rightside">
               <Tab.Content>
                 <Tab.Pane eventKey="#addquote">
                   <AddQuote username={this.props.username} />
                   <PersonalQuote username={this.props.username} />
                 </Tab.Pane>
-                <Tab.Pane eventKey="#userinformation">
+                <Tab.Pane
+                  eventKey="#userinformation"
+                  className="userprofileUserinformationBody"
+                >
                   <ProfileForm username={this.props.username} />
                 </Tab.Pane>
-                <Tab.Pane eventKey="#reminder">
+                <Tab.Pane
+                  eventKey="#reminder"
+                  className="userprofileReminderBody"
+                >
                   <ReminderForm />
                 </Tab.Pane>
               </Tab.Content>
