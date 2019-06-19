@@ -14,7 +14,6 @@ module.exports = {
   addCategory: function(data) {
     return new Promise(function(resolve, reject) {
       var category_data = new categoryModel({
-        categoryID: data.categoryID,
         categoryName: data.categoryName,
         description: data.description
       });
