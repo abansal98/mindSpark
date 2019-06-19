@@ -24,8 +24,25 @@ class Quotelist extends Component {
   }
 
   componentDidMount() {
-    this.getQuotes();
+    //console.log("Category value from quoteList: " + this.props.category);
+    //this.getQuotes();
   }
+
+  componentWillReceiveProps(props) {
+    const { category } = this.props;
+    if (props.category !== category) {
+      this.setState({
+        category: category
+      }, () => {
+        this.getQuotes();
+      });
+    }
+  }
+
+  // componentDidUpdate() {
+  //   console.log("componentDidUpdate called");
+  //   this.getQuotes();
+  // }
 
   render() {
     return (
