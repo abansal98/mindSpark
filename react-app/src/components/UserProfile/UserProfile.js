@@ -12,6 +12,7 @@ class UserProfile extends Component {
   render() {
     return (
       <div className="userprofileBody">
+        <img src={this.props.avatar} className="img-responsive">Avatar</img>
         {/* <Tab.Container id="left-tabs-example" defaultActiveKey="addquote">
           <Row>
             <Col md={2}>
