@@ -17,7 +17,8 @@ class AddQuote extends Component {
         quote: ""
       },
       categories: [],
-      selectedCategories: []
+      selectedCategories: [],
+      rating: 0
     };
   }
 
@@ -52,7 +53,8 @@ class AddQuote extends Component {
           this.state.currentDate.getMinutes() +
           ":" +
           this.state.currentDate.getSeconds(),
-        categories: this.state.selectedCategories
+        categories: this.state.selectedCategories,
+        rating: this.state.rating
       }
     })
       .then(msg => {
