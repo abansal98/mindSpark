@@ -15,13 +15,14 @@ module.exports = {
   quoteModel,
 
   addQuote: function (data) {
-    // console.log(data);
+     console.log(data);
     return new Promise(function (resolve, reject) {
       var quote_data = new quoteModel({
         text: data.text,
         author: data.author,
         datePosted: data.currentDate,
-        category: data.category
+        category: data.category,
+        rating: data.rating
       });
       quote_data.save(err => {
         if (err) {
