@@ -4,6 +4,7 @@ var bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 const randomstring = require("randomstring");
 const crypto = require("crypto");
+const gravatar = require("gravatar");
 
 var user = new Schema({
   username: {
@@ -31,6 +32,9 @@ var user = new Schema({
   role: {
     type: String,
     enum: ["admin", "user"]
+  },
+  avatar: {
+    type: String
   }
 });
 
@@ -72,7 +76,12 @@ module.exports = {
               role: data.role,
               secretToken: foo,
               active: data.active,
-              resetPasswordToken: data.resetPasswordToken
+              resetPasswordToken: data.resetPasswordToken,
+              avatar: gravatar.url(data.email, {
+                s: '200',
+                r: 'pg',
+                d: 'mm'
+              })
             });
             user_data.save(err => {
               if (err) {
