@@ -20,6 +20,7 @@ class App extends Component {
       username: "",
       isLoggedIn: false,
       email: "",
+      avatar: "",
       didLoad: false
     };
   }
@@ -94,8 +95,10 @@ class App extends Component {
       method: "GET"
     })
       .then(data => {
+       
         this.setState({
-          email: data
+          email: data,
+          avatar: data
         });
       })
       .fail(err => {
@@ -130,7 +133,7 @@ class App extends Component {
               />
               <Route
                 path="/userProfile"
-                component={() => <UserProfile username={this.state.username} />}
+                component={() => <UserProfile avatar={this.state.avatar} username={this.state.username} />}
               />
               <Route path="/reset/:token" component={ResetPassword} />
               <Route path="/verify/:token" component={Verify} />
