@@ -119,7 +119,7 @@ class AddQuote extends Component {
             className="addquoteTextareaBody"
             onChange={this.handleUserInput.bind(this)}
             name="quote"
-            placeholder="Enter Quote"
+            placeholder="Tell us what you think"
             value={this.state.quote}
           />
           <div className="invalid-name">{this.state.error.quote}</div>
