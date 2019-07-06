@@ -59,10 +59,10 @@ module.exports = {
   user,
   userModel,
 
-  addUser: function (data) {
+  addUser: function(data) {
     return new Promise((resolve, reject) => {
-      bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(data.password, salt, function (err, hash) {
+      bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(data.password, salt, function(err, hash) {
           if (err) {
             reject("There was an error encrypting the password");
           } else {
@@ -78,9 +78,9 @@ module.exports = {
               active: data.active,
               resetPasswordToken: data.resetPasswordToken,
               avatar: gravatar.url(data.email, {
-                s: '200',
-                r: 'pg',
-                d: 'mm'
+                s: "200",
+                r: "pg",
+                d: "mm"
               })
             });
             user_data.save(err => {
@@ -113,8 +113,8 @@ module.exports = {
     });
   },
 
-  userLogin: function (data) {
-    return new Promise(function (resolve, reject) {
+  userLogin: function(data) {
+    return new Promise(function(resolve, reject) {
       userModel
         .findOne({
           username: data.username
@@ -141,8 +141,8 @@ module.exports = {
     });
   },
 
-  checkForgotPasswordToken: function (data) {
-    return new Promise(function (resolve, reject) {
+  checkForgotPasswordToken: function(data) {
+    return new Promise(function(resolve, reject) {
       userModel
         .findOne({
           resetPasswordToken: data.resetPasswordToken
@@ -158,9 +158,9 @@ module.exports = {
     });
   },
 
-  checkRegistrationToken: function (data) {
+  checkRegistrationToken: function(data) {
     //console.log(data);
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       userModel
         .findOne({
           secretToken: data.secretToken
@@ -211,10 +211,10 @@ module.exports = {
   //   });
   // },
 
-  forgotPassword: function (data) {
+  forgotPassword: function(data) {
     console.log(data);
     var token = "";
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       userModel
         .findOne({
           email: data.email
@@ -226,7 +226,7 @@ module.exports = {
               if (err) {
                 reject("Cannot submit: " + err.message);
               } else {
-                crypto.randomBytes(20, function (err, buf) {
+                crypto.randomBytes(20, function(err, buf) {
                   token = buf.toString("hex");
                   console.log(token);
                   user.resetPasswordToken = token;
@@ -261,9 +261,9 @@ module.exports = {
     });
   },
 
-  updatePassword: function (data) {
+  updatePassword: function(data) {
     //console.log(data);
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       userModel
         .findOne({
           resetPasswordToken: data.resetPasswordToken
@@ -271,8 +271,8 @@ module.exports = {
         .exec()
         .then(user => {
           if (user) {
-            bcrypt.genSalt(10, function (err, salt) {
-              bcrypt.hash(data.password, salt, function (err, hash) {
+            bcrypt.genSalt(10, function(err, salt) {
+              bcrypt.hash(data.password, salt, function(err, hash) {
                 if (err) {
                   reject("There was an error encrypting the password");
                 } else {
@@ -294,8 +294,41 @@ module.exports = {
     });
   },
 
-  getUsers: function () {
-    return new Promise(function (resolve, reject) {
+  changePassword: function(data) {
+    console.log(data);
+    return new Promise(function(resolve, reject) {
+      userModel
+        .findOne({
+          username: data.username
+        })
+        .exec()
+        .then(user => {
+          if (user) {
+            bcrypt.genSalt(10, function(err, salt) {
+              bcrypt.hash(data.password, salt, function(err, hash) {
+                if (err) {
+                  reject("There was an error encrypting the password");
+                } else {
+                  user.password = hash;
+                  user.save(err => {
+                    if (err) {
+                      reject("Cannot change password: " + err.message);
+                    } else {
+                      resolve();
+                    }
+                  });
+                }
+              });
+            });
+          } else {
+            reject("No username found!");
+          }
+        });
+    });
+  },
+
+  getUsers: function() {
+    return new Promise(function(resolve, reject) {
       userModel
         .find({})
         .exec()
@@ -309,8 +342,8 @@ module.exports = {
     });
   },
 
-  getUser: function (data) {
-    return new Promise(function (resolve, reject) {
+  getUser: function(data) {
+    return new Promise(function(resolve, reject) {
       userModel
         .find({
           username: data
