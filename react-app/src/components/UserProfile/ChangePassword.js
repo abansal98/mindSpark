@@ -9,12 +9,13 @@ class ChangePassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      oldpassword: "",
       password: "",
       confirmPassword: "",
       passwordValid: false,
       formValid: false,
       show: false,
-      error: { password: "", confirmPassword: "" }
+      error: { password: "", confirmPassword: "", oldpassword: "" }
     };
 
     this.handleShow = this.handleShow.bind(this);
@@ -30,11 +31,13 @@ class ChangePassword extends Component {
   }
 
   handlePasswordSubmit(e) {
+    console.log(this.state.oldpassword);
     e.preventDefault();
     $.ajax({
       url: "/db/changePassword",
       method: "POST",
       data: {
+        oldpassword: this.state.oldpassword,
         password: this.state.password,
         username: this.props.username
       }
@@ -53,6 +56,10 @@ class ChangePassword extends Component {
     this.setState({ [name]: value }, () => {
       this.validateField(name, value);
     });
+  }
+
+  handleOldInput(e) {
+    this.setState({ oldpassword: e.target.oldpassword });
   }
 
   validateField(fieldName, value) {
@@ -124,13 +131,27 @@ class ChangePassword extends Component {
             <form onSubmit={this.handlePasswordSubmit.bind(this)}>
               <div className="form-group">
                 <div className="password">
+                  <label htmlFor="password">Enter Old Password</label>
+                  <input
+                    id="oldpassword"
+                    onChange={this.handleOldInput.bind(this)}
+                    name="password"
+                    className="form-control"
+                    type="password"
+                    value={this.state.oldpassword}
+                    placeholder="Old Password"
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <div className="password">
                   <label htmlFor="password">Enter New Password</label>
                   <input
                     id="signupPassword"
                     className={`form-control ${
                       this.state.error.password ? "invalid" : ""
                     }`}
-                    placeholder="Password"
+                    placeholder="New Password"
                     type="password"
                     name="password"
                     onChange={this.handleUserInput.bind(this)}
@@ -144,12 +165,12 @@ class ChangePassword extends Component {
 
               <div className="form-group">
                 <div className="confirmPassword">
-                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <label htmlFor="confirmPassword">Confirm New Password</label>
                   <input
                     className={`form-control ${
                       this.state.error.e_confirm ? "invalid" : ""
                     }`}
-                    placeholder="Confirm"
+                    placeholder="Confirm New Password"
                     type="password"
                     name="confirmPassword"
                     onChange={this.handleUserInput.bind(this)}
