@@ -25,12 +25,12 @@ class App extends Component {
     };
   }
 
-  UNSAFE_componentWillMount() {
-    //make a request
-    this.getLoginStatus();
-    this.getUserInfo();
-    console.log("componentWillMount called");
-  }
+  // UNSAFE_componentWillMount() {
+  //   //make a request
+  //   this.getLoginStatus();
+  //   // this.getUserInfo();
+  //   console.log("componentWillMount called");
+  // }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.username !== prevState.username) {
@@ -40,6 +40,7 @@ class App extends Component {
           didLoad: !prevState.didLoad
         };
       });
+      this.getUserInfo();
     }
   }
 
@@ -95,7 +96,10 @@ class App extends Component {
       method: "GET"
     })
       .then(data => {
-       
+
+        console.log("GetUserInfo was called!!");
+        console.log(data);
+
         this.setState({
           email: data,
           avatar: data
@@ -109,7 +113,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // this.getLoginStatus();
+    this.getLoginStatus();
     // this.getUserInfo();
     // this.quoteboardAccess();
   }

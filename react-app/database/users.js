@@ -314,6 +314,11 @@ module.exports = {
       userModel
         .find({
           username: data
+        },
+        {
+          username: 1,
+          email: 1,
+          avatar: 1
         })
         .exec()
         .then(data => {
