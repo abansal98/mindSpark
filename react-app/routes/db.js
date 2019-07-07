@@ -173,4 +173,17 @@ router.route("/updatePassword").post((req, res) => {
     });
 });
 
+router.route("/changePassword").post((req, res) => {
+  console.log(req.body);
+  user
+    .changePassword(req.body)
+    .then(() => {
+      res.status(200).send("Password Changed successfully!");
+      //res.status(200).redirect("/reset");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
 module.exports = router;

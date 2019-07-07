@@ -7,12 +7,13 @@ import "./UserProfile.css";
 import { Tab, Row, Col, ListGroup } from "react-bootstrap";
 import Quotelist from "../Quoteboard/Quotelist";
 import $ from "jquery";
+import ChangePassword from "./ChangePassword";
 
 class UserProfile extends Component {
   render() {
     return (
       <div className="userprofileBody">
-        <img src={this.props.avatar} className="img-responsive">Avatar</img>
+        {/* <img src={this.props.avatar} className="img-responsive">Avatar</img> */}
         {/* <Tab.Container id="left-tabs-example" defaultActiveKey="addquote">
           <Row>
             <Col md={2}>
@@ -76,6 +77,7 @@ class UserProfile extends Component {
                   className="userprofileUserinformationBody"
                 >
                   <ProfileForm username={this.props.username} />
+                  <ChangePassword username={this.props.username} />
                 </Tab.Pane>
                 <Tab.Pane
                   eventKey="#reminder"
