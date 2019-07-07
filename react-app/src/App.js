@@ -96,13 +96,9 @@ class App extends Component {
       method: "GET"
     })
       .then(data => {
-
-        console.log("GetUserInfo was called!!");
-        console.log(data);
-
         this.setState({
-          email: data,
-          avatar: data
+          email: data.email,
+          avatar: data.avatar
         });
       })
       .fail(err => {
