@@ -32,18 +32,6 @@ class App extends Component {
   //   console.log("componentWillMount called");
   // }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.username !== prevState.username) {
-      console.log("getSnapshotBeforeUpdate called");
-      this.setState(prevState => {
-        return {
-          didLoad: !prevState.didLoad
-        };
-      });
-      this.getUserInfo();
-    }
-  }
-
   quoteboardAccess() {
     if (this.state.isLoggedIn) {
       // this.quoteboardOrSignup = "Quoteboard";
@@ -79,13 +67,15 @@ class App extends Component {
       .then(user => {
         this.setState({
           username: user,
-          isLoggedIn: true
+          isLoggedIn: true,
+          didLoad: !this.state.didLoad
         });
       })
       .fail(err => {
         this.setState({
           username: "",
-          isLoggedIn: false
+          isLoggedIn: false,
+          didLoad: !this.state.didLoad
         });
       });
   }
@@ -116,6 +106,18 @@ class App extends Component {
     // this.quoteboardAccess();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.username !== prevState.username) {
+      console.log("getSnapshotBeforeUpdate called");
+      this.setState(prevState => {
+        return {
+          didLoad: prevState.didLoad == true ? prevState.didLoad : !prevState.didLoad
+        };
+      });
+      this.getUserInfo();
+    }
+  }
+
   render() {
     console.log("render called");
     return (
@@ -123,24 +125,24 @@ class App extends Component {
         {this.navbarSelect()}
         <BrowserRouter>
           <Switch>
-            (this.state.didLoad &&
-            <>
-              <Route path="/" component={About} exact />
-              <Route path="/signup" component={this.signupAccess()} />
-              <Route path="/verify" component={Verify} exact />
-              <Route path="/quoteboard" component={this.quoteboardAccess()} />
-              <Route
-                path="/signin"
-                component={() => <SignUpSignIn signValue="signin" />}
-              />
-              <Route
-                path="/userProfile"
-                component={() => <UserProfile avatar={this.state.avatar} username={this.state.username} />}
-              />
-              <Route path="/reset/:token" component={ResetPassword} />
-              <Route path="/verify/:token" component={Verify} />
-            </>
-            )
+            {this.state.didLoad &&
+              <>
+                <Route path="/" component={About} exact />
+                <Route path="/signup" component={this.signupAccess()} />
+                <Route path="/verify" component={Verify} exact />
+                <Route path="/quoteboard" component={this.quoteboardAccess()} />
+                <Route
+                  path="/signin"
+                  component={() => <SignUpSignIn signValue="signin" />}
+                />
+                <Route
+                  path="/userProfile"
+                  component={() => <UserProfile avatar={this.state.avatar} username={this.state.username} />}
+                />
+                <Route path="/reset/:token" component={ResetPassword} />
+                <Route path="/verify/:token" component={Verify} />
+              </>
+            }
             <Route component={Error} />
           </Switch>
         </BrowserRouter>

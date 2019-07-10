@@ -7,7 +7,8 @@ class PersonalQuote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quote: []
+      quote: [],
+      didLoad: false
     };
   }
 
@@ -17,11 +18,16 @@ class PersonalQuote extends Component {
       method: "GET"
     })
       .then(data => {
-        this.setState({ quote: data });
+        this.setState(
+          {
+            quote: data,
+            didLoad: true
+          });
       })
       .fail(err => {
         this.setState({
-          quote: []
+          quote: [],
+          didLoad: false
         });
       });
   }
@@ -34,20 +40,21 @@ class PersonalQuote extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="personalquoteBody">
-          <div className="quotelistBody">
-            {this.state.quote.map((quoteObj, index) => {
-              return (
-                <PersonalQuoteBox
-                  quote={quoteObj.text}
-                  author={quoteObj.author}
-                  rating={quoteObj.rating}
-                />
-              );
-            })}
-            {/* <QuoteBox quote={quotes[0]} author={authors[0]} rating={ratings[2]} /> */}
+        {this.state.didLoad &&
+          <div className="personalquoteBody">
+            <div className="quotelistBody">
+              {this.state.quote.map((quoteObj, index) => {
+                return (
+                  <PersonalQuoteBox
+                    quote={quoteObj.text}
+                    author={quoteObj.author}
+                    rating={quoteObj.rating}
+                  />
+                );
+              })}
+            </div>
           </div>
-        </div>
+        }
       </React.Fragment>
     );
   }
