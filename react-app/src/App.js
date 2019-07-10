@@ -96,9 +96,11 @@ class App extends Component {
       method: "GET"
     })
       .then(data => {
+        // console.log(data[0].avatar);
+        // console.log(data[0].email);
         this.setState({
-          email: data.email,
-          avatar: data.avatar
+          email: data[0].email,
+          avatar: data[0].avatar
         });
       })
       .fail(err => {
