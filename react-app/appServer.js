@@ -18,7 +18,8 @@ if (args[0] == 'PROD' || args[0] == 'prod') {
   console.log("Application will be deployed in PRODUCTION mode!");
   mongoose.connect(
     "mongodb://localhost:10016/mindSpark",
-    { useNewUrlParser: true }
+    { useNewUrlParser: true,
+      useCreateIndex: true}
   );
 }
 else {

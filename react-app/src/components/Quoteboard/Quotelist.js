@@ -20,14 +20,29 @@ class Quotelist extends Component {
       this.setState({
         quotes: data
       });
-      console.log(this.state.quotes);
     });
   }
 
   componentDidMount() {
-    console.log(this.props);
-    this.getQuotes();
+    //console.log("Category value from quoteList: " + this.props.category);
+    //this.getQuotes();
   }
+
+  componentWillReceiveProps(props) {
+    const { category } = this.props;
+    if (props.category !== category) {
+      this.setState({
+        category: category
+      }, () => {
+        this.getQuotes();
+      });
+    }
+  }
+
+  // componentDidUpdate() {
+  //   console.log("componentDidUpdate called");
+  //   this.getQuotes();
+  // }
 
   render() {
     return (

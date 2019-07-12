@@ -4,6 +4,7 @@ var bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 const randomstring = require("randomstring");
 const crypto = require("crypto");
+const gravatar = require("gravatar");
 
 var user = new Schema({
   username: {
@@ -31,6 +32,9 @@ var user = new Schema({
   role: {
     type: String,
     enum: ["admin", "user"]
+  },
+  avatar: {
+    type: String
   }
 });
 
@@ -72,12 +76,17 @@ module.exports = {
               role: data.role,
               secretToken: foo,
               active: data.active,
-              resetPasswordToken: data.resetPasswordToken
+              resetPasswordToken: data.resetPasswordToken,
+              avatar: gravatar.url(data.email, {
+                s: "200",
+                r: "pg",
+                d: "mm"
+              })
             });
             user_data.save(err => {
               if (err) {
                 if (err.code == 11000) {
-                  reject("Username already taken");
+                  reject("Username or Email already taken");
                 } else {
                   reject("Cannot create a new user: " + err.message);
                 }
@@ -285,6 +294,39 @@ module.exports = {
     });
   },
 
+  changePassword: function(data) {
+    console.log(data);
+    return new Promise(function(resolve, reject) {
+      userModel
+        .findOne({
+          username: data.username
+        })
+        .exec()
+        .then(user => {
+          if (user) {
+            bcrypt.genSalt(10, function(err, salt) {
+              bcrypt.hash(data.password, salt, function(err, hash) {
+                if (err) {
+                  reject("There was an error encrypting the password");
+                } else {
+                  user.password = hash;
+                  user.save(err => {
+                    if (err) {
+                      reject("Cannot change password: " + err.message);
+                    } else {
+                      resolve();
+                    }
+                  });
+                }
+              });
+            });
+          } else {
+            reject("No username found!");
+          }
+        });
+    });
+  },
+
   getUsers: function() {
     return new Promise(function(resolve, reject) {
       userModel
@@ -305,6 +347,11 @@ module.exports = {
       userModel
         .find({
           username: data
+        },
+        {
+          username: 1,
+          email: 1,
+          avatar: 1
         })
         .exec()
         .then(data => {

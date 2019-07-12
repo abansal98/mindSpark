@@ -1,6 +1,7 @@
 import React, { Button, Component } from "react";
 import "./signup.css";
 import $ from "jquery";
+import gravatar from 'gravatar';
 
 const passwordRegex = RegExp(/((?=.*\d)(?=.*[A-Z])(?=.*\W).{6,15})$/);
 const usernameRegex = RegExp(/^[A-Za-z0-9_]{6,24}$/);

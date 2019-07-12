@@ -50,6 +50,12 @@ Team Members:
 |:-------------:| :-------------: |-------------|
 ||Footer||
 
+### ForgotPassword Component
+|Note|Componenet name|Explanation|
+|:-------------:| :-------------: |-------------|
+||ForgotPassword.js||
+||ResetPassword.js||
+
 ### Navbar Component
 |Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
@@ -73,10 +79,23 @@ Team Members:
 |:-------------:| :-------------: |-------------|
 ||Signup|Let user signup|
 
+### SignUpSignIn Component
+|Note| Component name        | Explanation           |
+|:-------------:| :-------------: |-------------|
+||SignUpSignIn.js||
+
 ### Userprofile Component
 |Note| Component name        | Explanation           |
 |:-------------:| :-------------: |-------------|
 ||Userprofile|Let user see or modify their profile|
+||AddQuote.js||
+||PersonalQuote.js||
+||PersonalQuoteBox.js||
+||ProfileForm.js||
+||ReminderForm.js||
+||||
+
+
 
 
 

@@ -19,9 +19,18 @@ class App extends Component {
     this.state = {
       username: "",
       isLoggedIn: false,
-      email: ""
+      email: "",
+      avatar: "",
+      didLoad: false
     };
   }
+
+  // UNSAFE_componentWillMount() {
+  //   //make a request
+  //   this.getLoginStatus();
+  //   // this.getUserInfo();
+  //   console.log("componentWillMount called");
+  // }
 
   quoteboardAccess() {
     if (this.state.isLoggedIn) {
@@ -58,13 +67,15 @@ class App extends Component {
       .then(user => {
         this.setState({
           username: user,
-          isLoggedIn: true
+          isLoggedIn: true,
+          didLoad: !this.state.didLoad
         });
       })
       .fail(err => {
         this.setState({
           username: "",
-          isLoggedIn: false
+          isLoggedIn: false,
+          didLoad: !this.state.didLoad
         });
       });
   }
@@ -75,8 +86,11 @@ class App extends Component {
       method: "GET"
     })
       .then(data => {
+        // console.log(data[0].avatar);
+        // console.log(data[0].email);
         this.setState({
-          email: data
+          email: data[0].email,
+          avatar: data[0].avatar
         });
       })
       .fail(err => {
@@ -88,30 +102,47 @@ class App extends Component {
 
   componentDidMount() {
     this.getLoginStatus();
-    this.getUserInfo();
+    // this.getUserInfo();
     // this.quoteboardAccess();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.username !== prevState.username) {
+      console.log("getSnapshotBeforeUpdate called");
+      this.setState(prevState => {
+        return {
+          didLoad: prevState.didLoad == true ? prevState.didLoad : !prevState.didLoad
+        };
+      });
+      this.getUserInfo();
+    }
+  }
+
   render() {
+    console.log("render called");
     return (
       <div id="root">
         {this.navbarSelect()}
         <BrowserRouter>
           <Switch>
-            <Route path="/" component={About} exact />
-            <Route path="/signup" component={this.signupAccess()} />
-            {/* <Route path="/verify" component={Verify} exact /> */}
-            <Route path="/quoteboard" component={this.quoteboardAccess()} />
-            <Route
-              path="/signin"
-              component={() => <SignUpSignIn signValue="signin" />}
-            />
-            <Route
-              path="/userProfile"
-              component={() => <UserProfile username={this.state.username} />}
-            />
-            <Route path="/reset/:token" component={ResetPassword} />} />
-            <Route path="/verify/:token" component={Verify} />
+            {this.state.didLoad &&
+              <>
+                <Route path="/" component={About} exact />
+                <Route path="/signup" component={this.signupAccess()} />
+                <Route path="/verify" component={Verify} exact />
+                <Route path="/quoteboard" component={this.quoteboardAccess()} />
+                <Route
+                  path="/signin"
+                  component={() => <SignUpSignIn signValue="signin" />}
+                />
+                <Route
+                  path="/userProfile"
+                  component={() => <UserProfile avatar={this.state.avatar} username={this.state.username} />}
+                />
+                <Route path="/reset/:token" component={ResetPassword} />
+                <Route path="/verify/:token" component={Verify} />
+              </>
+            }
             <Route component={Error} />
           </Switch>
         </BrowserRouter>

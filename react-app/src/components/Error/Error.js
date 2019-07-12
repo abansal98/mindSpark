@@ -10,7 +10,7 @@ class Error extends Component {
     return (
       // <div className={className}>
       <div className="errorBody">
-        <div className="menu ">
+        <div className="menu">
           <h1>404</h1>
         </div>
       </div>

@@ -6,11 +6,14 @@ import ReminderForm from "./ReminderForm";
 import "./UserProfile.css";
 import { Tab, Row, Col, ListGroup } from "react-bootstrap";
 import Quotelist from "../Quoteboard/Quotelist";
+import $ from "jquery";
+import ChangePassword from "./ChangePassword";
 
 class UserProfile extends Component {
   render() {
     return (
       <div className="userprofileBody">
+        {/* <img src={this.props.avatar} className="img-responsive">Avatar</img> */}
         {/* <Tab.Container id="left-tabs-example" defaultActiveKey="addquote">
           <Row>
             <Col md={2}>
@@ -50,7 +53,7 @@ class UserProfile extends Component {
           defaultActiveKey="#addquote"
         >
           <Row>
-            <Col sm={2} className="up_leftside">
+            <Col lg={2} className="up_leftside">
               <ListGroup>
                 <ListGroup.Item action href="#addquote">
                   Add Quote
@@ -63,16 +66,23 @@ class UserProfile extends Component {
                 </ListGroup.Item>
               </ListGroup>
             </Col>
-            <Col sm={10} className="up_rightside">
+            <Col lg={10} className="up_rightside">
               <Tab.Content>
                 <Tab.Pane eventKey="#addquote">
-                  <AddQuote username={this.props.username}/>
-                  <PersonalQuote username={this.props.username}/>
+                  <AddQuote username={this.props.username} />
+                  <PersonalQuote username={this.props.username} />
                 </Tab.Pane>
-                <Tab.Pane eventKey="#userinformation">
+                <Tab.Pane
+                  eventKey="#userinformation"
+                  className="userprofileUserinformationBody"
+                >
                   <ProfileForm username={this.props.username} />
+                  <ChangePassword username={this.props.username} />
                 </Tab.Pane>
-                <Tab.Pane eventKey="#reminder">
+                <Tab.Pane
+                  eventKey="#reminder"
+                  className="userprofileReminderBody"
+                >
                   <ReminderForm />
                 </Tab.Pane>
               </Tab.Content>

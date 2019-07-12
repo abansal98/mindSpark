@@ -6,11 +6,27 @@
 .up_leftside {
   padding-top: 4.5rem;
   padding-left: 1.7rem;
+  padding-right: 1.7rem;
   min-height: 100vh;
   background-color: #e6ecf0;
 }
 .up_rightside {
   padding-top: 4.5rem;
+  /* padding-left: 1.7rem;
+  padding-right: 1.7rem; */
+  padding-left: 5rem;
+  padding-right: 5rem;
   min-height: 100vh;
   background-color: #e6ecf0;
+}
+
+@media only screen and (max-width: 992px) {
+  .up_leftside {
+    min-height: 100%;
+    padding-bottom: 5%;
+  }
+  .up_rightside {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
