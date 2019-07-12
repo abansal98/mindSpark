@@ -66,6 +66,16 @@ router.route("/quoteList/:authorName").get((req, res) => {
     });
 });
 
+router.route("/quote/rating/:quoteId").get((req, res) => {
+  quote.rateQuote(req.params.id)
+  .then(data => {
+    res.status(200).send(data);
+  })
+  .catch(err => {
+    res.status(301).send(err);
+  })
+})
+
 router.route("/getCategories").get((req, res) => {
   category
     .fetchCategoryList()
