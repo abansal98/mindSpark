@@ -69,7 +69,13 @@ module.exports = {
     });
   },
 
-  rateQuote: function (data) { },
+  rateQuote: function (quoteId) {
+    return new Promise((resolve, reject) => {
+      quoteModel.findById(quoteId)
+    })
+    .exec()
+    .then(data)
+   },
 
   removeQuote: function (data) { }
 };
