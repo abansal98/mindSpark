@@ -49,6 +49,7 @@ class PersonalQuote extends Component {
                     quote={quoteObj.text}
                     author={quoteObj.author}
                     rating={quoteObj.rating}
+                    quoteId={quoteObj._id}
                   />
                 );
               })}
