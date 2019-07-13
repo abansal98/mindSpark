@@ -194,7 +194,7 @@ class AddQuote extends Component {
           {console.log("category!")} */}
           <button
             disabled={!this.state.formValid}
-            className="submit"
+            className="btn btn-primary"
             type="submit"
           >
             Submit
