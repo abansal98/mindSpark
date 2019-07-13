@@ -3,7 +3,9 @@ import $ from "jquery";
 import { Form } from "react-bootstrap";
 import "./AddQuote.css";
 
-const quoteRegex = RegExp(/^[a-zA-Z0-9#,!?_. ]{10,500}$/);
+const quoteRegex = RegExp(
+  /^[a-zA-Z0-9_#,!?_.][a-zA-Z0-9#,!?_._ ]*[a-zA-Z0-9#,!?_._]$/
+);
 
 class AddQuote extends Component {
   constructor(props) {
@@ -79,10 +81,13 @@ class AddQuote extends Component {
 
     switch (fieldName) {
       case "quote":
-        quoteValid = quoteRegex.test(value);
+        quoteValid =
+          quoteRegex.test(value) &&
+          this.state.quote.length > 5 &&
+          this.state.quote.length < 500;
         errors.quote = quoteValid
           ? ""
-          : " Quote has a limit of 5 to 750 characters.";
+          : "Quote has a limit of 5 to 750 characters and no leading/trailing allowed!";
         break;
       default:
         break;
@@ -124,7 +129,9 @@ class AddQuote extends Component {
             placeholder="Tell us what you think"
             value={this.state.quote}
           />
-          <div className="invalid-name">{this.state.error.quote}</div>
+          <div className="invalid-name text-danger">
+            {this.state.error.quote}
+          </div>
           <div className="addquoteUserId">
             <h1>by... {this.props.username}</h1>
           </div>
