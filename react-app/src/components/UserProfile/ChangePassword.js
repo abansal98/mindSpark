@@ -112,16 +112,17 @@ class ChangePassword extends Component {
   render() {
     return (
       <React.Fragment>
+        <br />
         <button
-          className="btn btn-primary"
+          className="btn btn-dark"
           type="submit"
           onClick={this.handleShow}
         >
-          Reset Password
+          Change Password
         </button>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Reset Password</Modal.Title>
+            <Modal.Title>Change Password</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={this.handlePasswordSubmit.bind(this)}>
