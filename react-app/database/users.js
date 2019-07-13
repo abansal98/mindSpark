@@ -185,32 +185,6 @@ module.exports = {
     });
   },
 
-  // verifyToken: function(data) {
-  //   // console.log(data);
-  //   return new Promise(function(resolve, reject) {
-  //     userModel
-  //       .findOne({
-  //         secretToken: data.secretToken
-  //       })
-  //       .exec()
-  //       .then(user => {
-  //         if (user) {
-  //           //console.log(user.active);
-  //           user.active = "true";
-  //           user.save(err => {
-  //             if (err) {
-  //               reject("Cannot save verification: " + err.message);
-  //             } else {
-  //               resolve();
-  //             }
-  //           });
-  //         } else {
-  //           reject("Incorrect Token!");
-  //         }
-  //       });
-  //   });
-  // },
-
   forgotPassword: function(data) {
     console.log(data);
     var token = "";
@@ -295,7 +269,7 @@ module.exports = {
   },
 
   changePassword: function(data) {
-    console.log(data);
+    //console.log(data);
     return new Promise(function(resolve, reject) {
       userModel
         .findOne({
@@ -304,21 +278,27 @@ module.exports = {
         .exec()
         .then(user => {
           if (user) {
-            bcrypt.genSalt(10, function(err, salt) {
-              bcrypt.hash(data.password, salt, function(err, hash) {
-                if (err) {
-                  reject("There was an error encrypting the password");
-                } else {
-                  user.password = hash;
-                  user.save(err => {
+            bcrypt.compare(data.oldpassword, user.password).then(res => {
+              if (res) {
+                bcrypt.genSalt(10, function(err, salt) {
+                  bcrypt.hash(data.password, salt, function(err, hash) {
                     if (err) {
-                      reject("Cannot change password: " + err.message);
+                      reject("There was an error encrypting the password");
                     } else {
-                      resolve();
+                      user.password = hash;
+                      user.save(err => {
+                        if (err) {
+                          reject("Cannot change password: " + err.message);
+                        } else {
+                          resolve();
+                        }
+                      });
                     }
                   });
-                }
-              });
+                });
+              } else {
+                reject("Old Password Incorrect!");
+              }
             });
           } else {
             reject("No username found!");
@@ -345,14 +325,16 @@ module.exports = {
   getUser: function(data) {
     return new Promise(function(resolve, reject) {
       userModel
-        .find({
-          username: data
-        },
-        {
-          username: 1,
-          email: 1,
-          avatar: 1
-        })
+        .find(
+          {
+            username: data
+          },
+          {
+            username: 1,
+            email: 1,
+            avatar: 1
+          }
+        )
         .exec()
         .then(data => {
           if (data.length > 0) {

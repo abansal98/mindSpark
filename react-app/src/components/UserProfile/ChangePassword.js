@@ -31,7 +31,7 @@ class ChangePassword extends Component {
   }
 
   handlePasswordSubmit(e) {
-    console.log(this.state.oldpassword);
+    //console.log(this.state.oldpassword);
     e.preventDefault();
     $.ajax({
       url: "/db/changePassword",
@@ -56,10 +56,6 @@ class ChangePassword extends Component {
     this.setState({ [name]: value }, () => {
       this.validateField(name, value);
     });
-  }
-
-  handleOldInput(e) {
-    this.setState({ oldpassword: e.target.oldpassword });
   }
 
   validateField(fieldName, value) {
@@ -134,8 +130,8 @@ class ChangePassword extends Component {
                   <label htmlFor="password">Enter Old Password</label>
                   <input
                     id="oldpassword"
-                    onChange={this.handleOldInput.bind(this)}
-                    name="password"
+                    onChange={this.handleUserInput.bind(this)}
+                    name="oldpassword"
                     className="form-control"
                     type="password"
                     value={this.state.oldpassword}

@@ -174,7 +174,7 @@ router.route("/updatePassword").post((req, res) => {
 });
 
 router.route("/changePassword").post((req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   user
     .changePassword(req.body)
     .then(() => {
