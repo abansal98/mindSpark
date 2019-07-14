@@ -66,8 +66,21 @@ router.route("/quoteList/:authorName").get((req, res) => {
     });
 });
 
+//RATING
 router.route("/quote/rating/:quoteId").get((req, res) => {
-  quote.rateQuote(req.params.id)
+  console.log(req.body);
+  quote.rateQuote(req.body, req.params.quoteId)
+  .then(data => {
+    res.status(200).send(data);
+  })
+  .catch(err => {
+    res.status(301).send(err);
+  })
+})
+
+// COMMENT
+router.route("/quote/comment/:quoteId").get((req, res) => {
+  quote.addComment(req.body, req.params.quoteId)
   .then(data => {
     res.status(200).send(data);
   })

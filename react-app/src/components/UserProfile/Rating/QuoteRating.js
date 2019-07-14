@@ -14,7 +14,9 @@ class QuoteRating extends Component {
     }
 
     changeRating(newRating) {
-        this.setState({rating: newRating});
+        this.setState({rating: newRating}, () => {
+            console.log(this.state.rating);
+        });
         console.log("changeRating called");
     };
 
@@ -22,7 +24,7 @@ class QuoteRating extends Component {
         e.preventDefault();
         console.log("handleSubmit called");
         $.ajax({
-            url: "db/quote/rating/" + this.props.quoteId,
+            url: "/db/quote/rating/" + this.props.quoteId,
             method: "POST",
             data: {
                 rating: this.state.rating
@@ -40,10 +42,10 @@ class QuoteRating extends Component {
     render() {
         return (
             <React.Fragment>
-                <StarRatings starRatedColor="blue" rating={this.state.rating} changeRating={this.changeRating} name='rating' />
-                <div>{this.props.quoteId}</div>
                 <form onSubmit={this.handleSubmit}>
-                    <button className="btn btn-primary" type="submit" onSubmit={this.handleSubmit}>Submit</button>
+                    <StarRatings starRatedColor="blue" rating={this.state.rating} changeRating={this.changeRating} name='rating' />
+                    <div>{this.props.quoteId}</div>
+                    <button className="btn btn-primary" type="submit">Submit</button>
                 </form>
             </React.Fragment>
         )
