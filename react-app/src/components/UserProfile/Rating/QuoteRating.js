@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import StarRatings from 'react-star-ratings';
 import $ from 'jquery';
 
@@ -14,7 +14,7 @@ class QuoteRating extends Component {
     }
 
     changeRating(newRating) {
-        this.setState({rating: newRating}, () => {
+        this.setState({ rating: newRating }, () => {
             console.log(this.state.rating);
         });
         console.log("changeRating called");
@@ -30,14 +30,13 @@ class QuoteRating extends Component {
                 rating: this.state.rating
             }
         })
-        .then(msg => {
-            alert(msg);
-        })
-        .fail(err => {
-            alert(err.reponseText);
-        })
+            .then(msg => {
+                alert(msg);
+            })
+            .fail(err => {
+                alert(err.reponseText);
+            })
     }
-
 
     render() {
         return (

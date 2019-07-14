@@ -67,7 +67,7 @@ router.route("/quoteList/:authorName").get((req, res) => {
 });
 
 //RATING
-router.route("/quote/rating/:quoteId").get((req, res) => {
+router.route("/quote/rating/:quoteId").post((req, res) => {
   console.log(req.body);
   quote.rateQuote(req.body, req.params.quoteId)
   .then(data => {

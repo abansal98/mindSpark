@@ -37,7 +37,7 @@ module.exports = {
   quoteModel,
 
   addQuote: function (data) {
-     console.log(data);
+    console.log(data);
     return new Promise(function (resolve, reject) {
       var quote_data = new quoteModel({
         text: data.text,
@@ -65,7 +65,7 @@ module.exports = {
         comment: data.commentText,
         date: data.dateComment
       };
-      
+
       Quote.comments.unshift(newComment);
 
       Quote.save(err => {
@@ -77,7 +77,7 @@ module.exports = {
       });
 
     })
-    
+
   },
 
   fetchQuote: function (authorName) {
@@ -117,21 +117,24 @@ module.exports = {
 
   rateQuote: function (data, quoteId) {
     console.log(data);
-      return new Promise((resolve, reject) => {
-        quoteModel.findOneAndUpdate({_id: quoteId })
-      .exec()
-      .then(quoteData => {
-        quoteData.rating = data.rating;
-        quoteData.save(err => {
-          if (err) {
-            reject("No quote");
-          } else {
-            resolve();
+    return new Promise((resolve, reject) => {
+      quoteModel.findOneAndUpdate(
+        {
+          _id: quoteId
+        },
+        {
+          rating: data.rating
+        },
+        function(err, doc){
+          if(err){
+            console.log("Following error occured when updating the rating:", err);
           }
-        }) 
-      })
+          else{
+            console.log("Record updated!", doc);
+          }
+        })
     })
-   },
+  },
 
   removeQuote: function (data) { }
 };
