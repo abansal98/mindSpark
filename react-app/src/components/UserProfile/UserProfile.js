@@ -18,7 +18,13 @@ class UserProfile extends Component {
   }
 
   refresh(){
-    (this.state.needToReload == true)
+    console.log("Refresh() was called!!");
+    this.setState({
+      needToReload: true
+    }, console.log(this.state));
+  }
+
+  componentDidUpdate(){
   }
 
   render() {
@@ -80,8 +86,8 @@ class UserProfile extends Component {
             <Col lg={10} className="up_rightside">
               <Tab.Content>
                 <Tab.Pane eventKey="#addquote">
-                  <AddQuote username={this.props.username} needToReload={this.props.needToReload} />
-                  <PersonalQuote username={this.props.username} />
+                  <AddQuote username={this.props.username} refresh={this.refresh.bind(this)} />
+                  <PersonalQuote username={this.props.username} needToReload={this.state.needToReload}/>
                 </Tab.Pane>
                 <Tab.Pane
                   eventKey="#userinformation"

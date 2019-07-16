@@ -12,6 +12,12 @@ class PersonalQuote extends Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.needToReload == true) {
+      this.fetchPersonalQuotes(this.props.username);
+    }
+  }
+
   fetchPersonalQuotes(author) {
     $.ajax({
       url: "db/quoteList/" + author,

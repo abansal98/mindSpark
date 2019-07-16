@@ -14,7 +14,6 @@ class AddQuote extends Component {
     this.state = {
       author: "",
       quote: "",
-      currentDate: new Date(),
       quoteValid: false,
       error: {
         quote: ""
@@ -40,6 +39,7 @@ class AddQuote extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    let currentDate = new Date();
     $.ajax({
       url: "/db/addQuote",
       method: "POST",
@@ -47,27 +47,29 @@ class AddQuote extends Component {
         text: this.state.quote,
         author: this.state.author,
         currentDate:
-          this.state.currentDate.getFullYear() +
+          currentDate.getFullYear() +
           "-" +
-          (this.state.currentDate.getMonth() + 1) +
+          (currentDate.getMonth() + 1) +
           "-" +
-          this.state.currentDate.getDate() +
+          currentDate.getDate() +
           " " +
-          this.state.currentDate.getHours() +
+          currentDate.getHours() +
           ":" +
-          this.state.currentDate.getMinutes() +
+          currentDate.getMinutes() +
           ":" +
-          this.state.currentDate.getSeconds(),
+          currentDate.getSeconds(),
         categories: this.state.selectedCategories,
         rating: this.state.rating
-        
+
       }
     })
       .then(msg => {
         alert(msg);
+        this.props.refresh();
       })
       .fail(err => {
         alert(err.responseText);
+        this.props.refresh();
       });
   }
 
@@ -126,7 +128,7 @@ class AddQuote extends Component {
           <textarea
             className={`form-control ${
               this.state.error.quote ? "invalid" : ""
-            }`}
+              }`}
             className="addquoteTextareaBody"
             onChange={this.handleUserInput.bind(this)}
             name="quote"

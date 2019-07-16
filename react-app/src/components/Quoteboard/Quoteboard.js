@@ -5,7 +5,6 @@ import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
 import $ from 'jquery';
 import Quotelist from "./Quotelist";
 import Quoteboardguide from "./Quoteboardguide";
-import QuoteRating from "../Rating/QuoteRating";
 
 class Quoteboard extends Component {
   constructor(props, context) {
