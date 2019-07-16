@@ -6,7 +6,29 @@ var quote = new Schema({
   author: String,
   datePosted: Date,
   rating: Number,
-  category: []
+  category: [],
+  comments: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+      },
+      commentText: {
+        type: String,
+        require: true
+      },
+      name: {
+        type: String
+      },
+      avatar: {
+        type: String
+      },
+      date: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ]
 });
 
 var quoteModel = mongoose.model("quotes", quote);
@@ -15,7 +37,7 @@ module.exports = {
   quoteModel,
 
   addQuote: function (data) {
-     console.log(data);
+    console.log(data);
     return new Promise(function (resolve, reject) {
       var quote_data = new quoteModel({
         text: data.text,
@@ -32,6 +54,30 @@ module.exports = {
         }
       });
     });
+  },
+
+
+  addComment: function (data, quoteId) {
+    return new Promise((resolve, reject) => {
+      var Quote = quoteModel.findById(quoteId);
+
+      var newComment = {
+        comment: data.commentText,
+        date: data.dateComment
+      };
+
+      Quote.comments.unshift(newComment);
+
+      Quote.save(err => {
+        if (err) {
+          reject("Errors");
+        } else {
+          resolve();
+        }
+      });
+
+    })
+
   },
 
   fetchQuote: function (authorName) {
@@ -69,7 +115,26 @@ module.exports = {
     });
   },
 
-  rateQuote: function (data) { },
+  rateQuote: function (data, quoteId) {
+    console.log(data);
+    return new Promise((resolve, reject) => {
+      quoteModel.findOneAndUpdate(
+        {
+          _id: quoteId
+        },
+        {
+          rating: data.rating
+        },
+        function(err, doc){
+          if(err){
+            console.log("Following error occured when updating the rating:", err);
+          }
+          else{
+            console.log("Record updated!", doc);
+          }
+        })
+    })
+  },
 
   removeQuote: function (data) { }
 };
