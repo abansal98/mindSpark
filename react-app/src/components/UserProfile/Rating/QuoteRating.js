@@ -14,15 +14,11 @@ class QuoteRating extends Component {
     }
 
     changeRating(newRating) {
-        this.setState({ rating: newRating }, () => {
-            console.log(this.state.rating);
-        });
-        console.log("changeRating called");
+        this.setState({ rating: newRating });
     };
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log("handleSubmit called");
         $.ajax({
             url: "/db/quote/rating/" + this.props.quoteId,
             method: "POST",

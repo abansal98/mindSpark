@@ -38,7 +38,6 @@ module.exports = {
   quoteModel,
 
   addQuote: function (data) {
-    console.log(data);
     return new Promise(function (resolve, reject) {
       var quote_data = new quoteModel({
         text: data.text,
@@ -117,7 +116,6 @@ module.exports = {
   },
 
   rateQuote: function (data, quoteId) {
-    console.log(data);
     return new Promise((resolve, reject) => {
       quoteModel.findOneAndUpdate(
         {

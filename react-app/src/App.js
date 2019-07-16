@@ -108,7 +108,6 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.username !== prevState.username) {
-      console.log("getSnapshotBeforeUpdate called");
       this.setState(prevState => {
         return {
           didLoad: prevState.didLoad == true ? prevState.didLoad : !prevState.didLoad
@@ -119,7 +118,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("render called");
     return (
       <div id="root">
         {this.navbarSelect()}

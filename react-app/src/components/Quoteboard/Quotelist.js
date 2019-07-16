@@ -8,7 +8,8 @@ class Quotelist extends Component {
     super(props);
     this.state = {
       category: "",
-      quotes: []
+      quotes: [],
+      didLoad: false
     };
   }
 
@@ -18,46 +19,36 @@ class Quotelist extends Component {
       method: "GET"
     }).then(data => {
       this.setState({
-        quotes: data
+        quotes: data,
+        didLoad: true
       });
     });
   }
 
-  componentDidMount() {
-    //console.log("Category value from quoteList: " + this.props.category);
-    //this.getQuotes();
-  }
-
-  componentWillReceiveProps(props) {
-    const { category } = this.props;
-    if (props.category !== category) {
-      this.setState({
-        category: category
-      }, () => {
-        this.getQuotes();
-      });
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.category !== this.props.category) {
+      this.getQuotes();
     }
   }
 
-  // componentDidUpdate() {
-  //   console.log("componentDidUpdate called");
-  //   this.getQuotes();
-  // }
-
   render() {
     return (
-      <div className="quotelistBody">
-        {this.state.quotes.map((quoteObj, index) => {
-          return (
-            <QuoteBox
-              quote={quoteObj.text}
-              author={quoteObj.author}
-              rating={quoteObj.rating}
-            />
-          );
-        })}
-        {/* <QuoteBox quote={quotes[0]} author={authors[0]} rating={ratings[2]} /> */}
-      </div>
+      <React.Fragment>
+        {this.state.didLoad &&
+          <div className="quotelistBody">
+            {this.state.quotes.map((quoteObj, index) => {
+              return (
+                <QuoteBox
+                  quote={quoteObj.text}
+                  author={quoteObj.author}
+                  rating={quoteObj.rating}
+                />
+              );
+            })}
+            {/* <QuoteBox quote={quotes[0]} author={authors[0]} rating={ratings[2]} /> */}
+          </div>
+        }
+      </React.Fragment>
     );
   }
 }

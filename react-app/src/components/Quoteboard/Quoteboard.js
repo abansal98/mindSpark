@@ -19,15 +19,14 @@ class Quoteboard extends Component {
   }
 
   getCategories() {
-    // this.setState((prevState) => {didLoad: !prevState.didLoad});
     $.ajax({
       url: "/db/getCategories",
       method: "GET"
     }).then(data => {
+      console.log(data);
       this.setState({
         categories: data,
         didLoad: true,
-        //category: data[0].categoryName
       });
     });
   }
@@ -35,10 +34,6 @@ class Quoteboard extends Component {
   componentDidMount() {
     this.getCategories();
   }
-
-  // shouldComponentUpdate(nextState) {
-  //   return true;
-  // }
 
   //set the state of QuoteBoard so that it gets re-rendered with the updated data
   // if I select "Laziness" this would gather the data and setState with new Quotes
@@ -50,6 +45,14 @@ class Quoteboard extends Component {
   };
 
   // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.category !== this.state.category) {
+  //     this.setState({
+  //       didLoad: false
+  //     })
+  //   }
+  // }
+
+  // componentDidUpdate(prevProps, prevState) {
   //   console.log('Component did update!!');
   //   console.log(prevProps);
   //   console.log(prevState);
@@ -59,43 +62,44 @@ class Quoteboard extends Component {
     return (
       (this.state.didLoad &&
         <>
-          <div className="quoteboardBody">
-            <Container fluid={true}>
-              <Tab.Container
-                id="list-group-tabs-example"
-                defaultActiveKey="#categoryHome"
-              >
-                <Row>
-                  <Col md={2} className="quoteboardleftside">
-                    <ListGroup>
-                      <ListGroup.Item action href="#categoryHome" variant="success">
-                        Home
+        <div className="quoteboardBody">
+          <Container fluid={true}>
+            <Tab.Container
+              id="list-group-tabs-example"
+              defaultActiveKey="#categoryHome"
+            >
+              <Row>
+                <Col md={2} className="quoteboardleftside">
+                  <ListGroup>
+                    <ListGroup.Item action href="#categoryHome" variant="success">
+                      Home
                   </ListGroup.Item>
-                      {/* </ListGroup> */}
-                      {/* temporary for CATEGORY HOME */}
-                      {/* <ListGroup> */}
-                      {this.state.categories.map((value, index) => {
-                        return (
-                          <Category categoryName={value.categoryName} categoryID={value.categoryID} onClick={this.handleOnClick.bind(this)} />
-                        );
-                      })}
-                    </ListGroup>
-                  </Col>
-                  <Col md={10} className="quoteboardrightside">
-                    {/* <Quotelist /> */}
-                    <Tab.Content>
-                      <Tab.Pane eventKey="#categoryHome">
-                        <Quoteboardguide />
-                      </Tab.Pane>
-                      <Tab.Pane eventKey={`#${this.state.category}`}>
-                        <Quotelist category={this.state.category} />
-                      </Tab.Pane>
-                    </Tab.Content>
-                  </Col>
-                </Row>
-              </Tab.Container>
-            </Container>
-          </div>
+                    {/* </ListGroup> */}
+                    {/* temporary for CATEGORY HOME */}
+                    {/* <ListGroup> */}
+                    {this.state.categories.map((value, index) => {
+                      return (
+                        <Category categoryName={value.categoryName} categoryID={value.categoryID} onClick={this.handleOnClick.bind(this)} />
+                      );
+                    })}
+                  </ListGroup>
+                </Col>
+                <Col md={10} className="quoteboardrightside">
+                  {/* <Quotelist /> */}
+                  <Tab.Content>
+                    <Tab.Pane eventKey="#categoryHome" >
+                      <Quoteboardguide />
+                    </Tab.Pane>
+
+                    <Tab.Pane eventKey={`#${this.state.category}`}>
+                      <Quotelist category={this.state.category} />
+                    </Tab.Pane>
+                  </Tab.Content>
+                </Col>
+              </Row>
+            </Tab.Container>
+          </Container>
+        </div>
         </>)
     );
   }
