@@ -6,6 +6,7 @@ var quote = new Schema({
   author: String,
   datePosted: Date,
   rating: Number,
+  ratings: Number,
   category: [],
   comments: [
     {
@@ -124,6 +125,9 @@ module.exports = {
         },
         {
           rating: data.rating
+        },
+        {
+          new: true
         },
         function(err, doc){
           if(err){

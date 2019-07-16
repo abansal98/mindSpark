@@ -20,7 +20,8 @@ class AddQuote extends Component {
       },
       categories: [],
       selectedCategories: [],
-      rating: 0
+      rating: 0,
+      refresh: false
     };
   }
 

@@ -10,6 +10,17 @@ import $ from "jquery";
 import ChangePassword from "./ChangePassword";
 
 class UserProfile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      needToReload: false
+    }
+  }
+
+  refresh(){
+    (this.state.needToReload == true)
+  }
+
   render() {
     return (
       <div className="userprofileBody">
@@ -69,7 +80,7 @@ class UserProfile extends Component {
             <Col lg={10} className="up_rightside">
               <Tab.Content>
                 <Tab.Pane eventKey="#addquote">
-                  <AddQuote username={this.props.username} />
+                  <AddQuote username={this.props.username} needToReload={this.props.needToReload} />
                   <PersonalQuote username={this.props.username} />
                 </Tab.Pane>
                 <Tab.Pane
