@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import $ from "jquery";
 import { Form } from "react-bootstrap";
 import "./AddQuote.css";
+import UserProfile from "./UserProfile";
 
 const quoteRegex = RegExp(
   /^[a-zA-Z0-9_#,!?_.][a-zA-Z0-9#,!?_._ ]*[a-zA-Z0-9#,!?_._]$/
@@ -36,6 +37,7 @@ class AddQuote extends Component {
     });
   }
 
+
   handleSubmit(e) {
     e.preventDefault();
     $.ajax({
@@ -58,6 +60,7 @@ class AddQuote extends Component {
           this.state.currentDate.getSeconds(),
         categories: this.state.selectedCategories,
         rating: this.state.rating
+        
       }
     })
       .then(msg => {
