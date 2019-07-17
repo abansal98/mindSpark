@@ -4,11 +4,21 @@ import $ from "jquery";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
+const reportRegex = RegExp(
+  /^[a-zA-Z0-9_#,!?_.][a-zA-Z0-9#,!?_._ ]*[a-zA-Z0-9#,!?_._]$/
+);
+
 class ReportQuote extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      show: false
+      show: false,
+      report: "",
+      reportValid: false,
+      error: {
+        report: ""
+      },
+      formValid: false
     };
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -20,6 +30,41 @@ class ReportQuote extends Component {
 
   handleShow() {
     this.setState({ show: true });
+  }
+
+  handleUserInput(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({ [name]: value }, () => {
+      this.validateField(name, value);
+    });
+  }
+
+  validateField(fieldName, value) {
+    let errors = this.state.error;
+    let reportValid = this.state.reportValid;
+
+    switch (fieldName) {
+      case "report":
+        reportValid = reportRegex.test(value);
+        errors.report = reportValid ? "" : "No leading/trailing allowed!";
+        break;
+      default:
+        break;
+    }
+    this.setState(
+      {
+        error: errors,
+        reportValid: reportValid
+      },
+      this.validateForm
+    );
+  }
+
+  validateForm() {
+    this.setState({
+      formValid: this.state.reportValid
+    });
   }
 
   render() {
@@ -38,7 +83,35 @@ class ReportQuote extends Component {
             <Modal.Title>Report Quote</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Body</h4>
+            {/* <form onSubmit={this.handlePasswordSubmit.bind(this)}> */}
+            <form>
+              <div className="form-group">
+                <div className="report">
+                  <textarea
+                    className={`form-control ${
+                      this.state.error.report ? "invalid" : ""
+                    }`}
+                    onChange={this.handleUserInput.bind(this)}
+                    name="report"
+                    placeholder="Enter Description"
+                    value={this.state.report}
+                    id="report"
+                  />
+                  <div className="invalid-name text-danger">
+                    {this.state.error.report}
+                  </div>
+                </div>
+              </div>
+              <div class="createAccount">
+                <button
+                  disabled={!this.state.formValid}
+                  type="submit"
+                  className="btn btn-primary btn-sm"
+                >
+                  Submit Report
+                </button>
+              </div>
+            </form>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
