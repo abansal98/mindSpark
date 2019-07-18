@@ -34,7 +34,7 @@ class Quotelist extends Component {
   render() {
     return (
       <React.Fragment>
-        {this.state.didLoad &&
+        {this.state.didLoad && (
           <div className="quotelistBody">
             {this.state.quotes.map((quoteObj, index) => {
               return (
@@ -42,12 +42,14 @@ class Quotelist extends Component {
                   quote={quoteObj.text}
                   author={quoteObj.author}
                   rating={quoteObj.rating}
+                  username={this.props.username}
+                  quoteId={quoteObj._id}
                 />
               );
             })}
             {/* <QuoteBox quote={quotes[0]} author={authors[0]} rating={ratings[2]} /> */}
           </div>
-        }
+        )}
       </React.Fragment>
     );
   }
