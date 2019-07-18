@@ -24,6 +24,26 @@ class ReportQuote extends Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
+  handleReportSubmit(e) {
+    // console.log(e);
+    e.preventDefault();
+    $.ajax({
+      url: "/db/submitReport",
+      method: "POST",
+      data: {
+        username: this.props.username,
+        quoteId: this.props.quoteId,
+        description: this.state.report
+      }
+    })
+      .then(msg => {
+        alert(msg);
+      })
+      .fail(err => {
+        alert(err.responseText);
+      });
+  }
+
   handleClose() {
     this.setState({ show: false });
   }
@@ -83,8 +103,7 @@ class ReportQuote extends Component {
             <Modal.Title>Report Quote</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {/* <form onSubmit={this.handlePasswordSubmit.bind(this)}> */}
-            <form>
+            <form onSubmit={this.handleReportSubmit.bind(this)}>
               <div className="form-group">
                 <div className="report">
                   <textarea

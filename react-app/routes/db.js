@@ -4,6 +4,7 @@ const express = require("express"),
   user = require("../database/users"),
   quote = require("../database/quote"),
   reminder = require("../database/reminder");
+report = require("../database/report");
 
 router.route("/signin").post((req, res) => {
   user
@@ -68,25 +69,27 @@ router.route("/quoteList/:authorName").get((req, res) => {
 
 //RATING
 router.route("/quote/rating/:quoteId").post((req, res) => {
-  quote.rateQuote(req.body, req.params.quoteId)
-  .then(data => {
-    res.status(200).send(data);
-  })
-  .catch(err => {
-    res.status(301).send(err);
-  })
-})
+  quote
+    .rateQuote(req.body, req.params.quoteId)
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
 
 // COMMENT
 router.route("/quote/comment/:quoteId").get((req, res) => {
-  quote.addComment(req.body, req.params.quoteId)
-  .then(data => {
-    res.status(200).send(data);
-  })
-  .catch(err => {
-    res.status(301).send(err);
-  })
-})
+  quote
+    .addComment(req.body, req.params.quoteId)
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
 
 router.route("/getCategories").get((req, res) => {
   category
@@ -202,6 +205,18 @@ router.route("/changePassword").post((req, res) => {
     .then(() => {
       res.status(200).send("Password Changed successfully!");
       //res.status(200).redirect("/reset");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/submitReport").post((req, res) => {
+  // console.log(req.body);
+  report
+    .submitReport(req.body)
+    .then(data => {
+      res.status(200).send("Report Submitted!");
     })
     .catch(err => {
       res.status(301).send(err);

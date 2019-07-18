@@ -13,7 +13,10 @@ class QuoteBox extends Component {
               <h3 className="quoteBoxQuoteH3">{this.props.quote}</h3>
             </Row>
             <Row className="quoteBoxAuthorStar justify-content-end">
-              <ReportQuote username={this.props.author} />
+              <ReportQuote
+                username={this.props.username}
+                quoteId={this.props.quoteId}
+              />
               <span>{this.props.author}</span>
               <span>&nbsp;</span>
               <span>{this.props.rating} </span>
