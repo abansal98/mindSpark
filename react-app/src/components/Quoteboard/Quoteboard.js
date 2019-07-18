@@ -23,7 +23,7 @@ class Quoteboard extends Component {
       url: "/db/getCategories",
       method: "GET"
     }).then(data => {
-      console.log(data);
+      // console.log(data);
       this.setState({
         categories: data,
         didLoad: true
