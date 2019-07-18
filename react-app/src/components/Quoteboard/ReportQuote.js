@@ -178,7 +178,7 @@ class ReportQuote extends Component {
           </Modal>
         </React.Fragment>
       );
-    } else if (this.state.status) {
+    } else {
       return (
         <div class="alert alert-dark" role="alert">
           Quote Reported!

@@ -38,6 +38,7 @@ class ProfileForm extends Component {
                     type="email"
                     name="email"
                     class="form-control"
+                    value={this.props.email}
                   />
                 </div>
               </div>
