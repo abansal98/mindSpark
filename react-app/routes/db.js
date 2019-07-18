@@ -236,4 +236,15 @@ router.route("/reportIncrement").post((req, res) => {
     });
 });
 
+router.route("/checkReport/:username/:quoteId").get((req, res) => {
+  report
+    .checkReport(req.params.username, req.params.quoteId)
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
 module.exports = router;

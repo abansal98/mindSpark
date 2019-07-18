@@ -36,5 +36,23 @@ module.exports = {
         }
       });
     });
+  },
+
+  checkReport: function(duser, dquoteId) {
+    return new Promise(function(resolve, reject) {
+      reportModel
+        .findOne({
+          username: duser,
+          quoteId: dquoteId
+        })
+        .exec()
+        .then(user => {
+          if (user) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        });
+    });
   }
 };
