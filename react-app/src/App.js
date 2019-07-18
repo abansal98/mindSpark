@@ -140,6 +140,7 @@ class App extends Component {
                     <UserProfile
                       avatar={this.state.avatar}
                       username={this.state.username}
+                      email={this.state.email}
                     />
                   )}
                 />

@@ -127,8 +127,8 @@ class ChangePassword extends Component {
           <Modal.Body>
             <form onSubmit={this.handlePasswordSubmit.bind(this)}>
               <div className="form-group">
-                <div className="password">
-                  <label htmlFor="password">Enter Old Password</label>
+                <div className="oldpassword">
+                  <label htmlFor="oldpassword">Enter Old Password</label>
                   <input
                     id="oldpassword"
                     onChange={this.handleUserInput.bind(this)}
@@ -136,7 +136,6 @@ class ChangePassword extends Component {
                     className="form-control"
                     type="password"
                     value={this.state.oldpassword}
-                    placeholder="Old Password"
                   />
                 </div>
               </div>

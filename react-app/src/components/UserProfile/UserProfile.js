@@ -14,7 +14,7 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       needToReload: false
-    }
+    };
   }
 
   refresh() {
@@ -23,8 +23,7 @@ class UserProfile extends Component {
     });
   }
 
-  componentDidUpdate() {
-  }
+  componentDidUpdate() {}
 
   render() {
     return (
@@ -85,14 +84,23 @@ class UserProfile extends Component {
             <Col lg={10} className="up_rightside">
               <Tab.Content>
                 <Tab.Pane eventKey="#addquote">
-                  <AddQuote username={this.props.username} refresh={this.refresh.bind(this)} />
-                  <PersonalQuote username={this.props.username} needToReload={this.state.needToReload} />
+                  <AddQuote
+                    username={this.props.username}
+                    refresh={this.refresh.bind(this)}
+                  />
+                  <PersonalQuote
+                    username={this.props.username}
+                    needToReload={this.state.needToReload}
+                  />
                 </Tab.Pane>
                 <Tab.Pane
                   eventKey="#userinformation"
                   className="userprofileUserinformationBody"
                 >
-                  <ProfileForm username={this.props.username} />
+                  <ProfileForm
+                    username={this.props.username}
+                    email={this.props.email}
+                  />
                   <ChangePassword username={this.props.username} />
                 </Tab.Pane>
                 <Tab.Pane
