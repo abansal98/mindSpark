@@ -8,11 +8,15 @@ var quote = new Schema({
   rating: Number,
   ratings: Number,
   category: [],
+  reportNum: {
+    type: Number,
+    default: 0
+  },
   comments: [
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: 'user'
+        ref: "user"
       },
       commentText: {
         type: String,
@@ -37,8 +41,8 @@ var quoteModel = mongoose.model("quotes", quote);
 module.exports = {
   quoteModel,
 
-  addQuote: function (data) {
-    return new Promise(function (resolve, reject) {
+  addQuote: function(data) {
+    return new Promise(function(resolve, reject) {
       var quote_data = new quoteModel({
         text: data.text,
         author: data.author,
@@ -56,8 +60,7 @@ module.exports = {
     });
   },
 
-
-  addComment: function (data, quoteId) {
+  addComment: function(data, quoteId) {
     return new Promise((resolve, reject) => {
       var Quote = quoteModel.findById(quoteId);
 
@@ -75,17 +78,17 @@ module.exports = {
           resolve();
         }
       });
-
-    })
-
+    });
   },
 
-  fetchQuote: function (authorName) {
+  fetchQuote: function(authorName) {
     var sortDate = { datePosted: -1 };
-    return new Promise(function (resolve, reject) {
-      quoteModel.find({
-        author: authorName
-      }).sort(sortDate)
+    return new Promise(function(resolve, reject) {
+      quoteModel
+        .find({
+          author: authorName
+        })
+        .sort(sortDate)
         .exec()
         .then(data => {
           if (data.length > 0) {
@@ -97,9 +100,9 @@ module.exports = {
     });
   },
 
-  fetchQuoteList: function (categoryName) {
+  fetchQuoteList: function(categoryName) {
     // console.log(categoryName);
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       quoteModel
         .find({
           category: categoryName
@@ -115,7 +118,7 @@ module.exports = {
     });
   },
 
-  rateQuote: function (data, quoteId) {
+  rateQuote: function(data, quoteId) {
     return new Promise((resolve, reject) => {
       quoteModel.findOneAndUpdate(
         {
@@ -127,16 +130,43 @@ module.exports = {
         {
           new: true
         },
-        function(err, doc){
-          if(err){
-            console.log("Following error occured when updating the rating:", err);
-          }
-          else{
+        function(err, doc) {
+          if (err) {
+            console.log(
+              "Following error occured when updating the rating:",
+              err
+            );
+          } else {
             console.log("Record updated!", doc);
           }
-        })
-    })
+        }
+      );
+    });
   },
 
-  removeQuote: function (data) { }
+  reportIncrement: function(data) {
+    return new Promise(function(resolve, reject) {
+      quoteModel
+        .findOne({
+          _id: data.quoteId
+        })
+        .exec()
+        .then(user => {
+          if (user) {
+            user.reportNum++;
+            user.save(err => {
+              if (err) {
+                reject("Cannot increament reportNum: " + err.message);
+              } else {
+                resolve();
+              }
+            });
+          } else {
+            reject("QuoteId Not Found!");
+          }
+        });
+    });
+  },
+
+  removeQuote: function(data) {}
 };

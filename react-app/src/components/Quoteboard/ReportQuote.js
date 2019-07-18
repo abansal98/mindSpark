@@ -24,6 +24,23 @@ class ReportQuote extends Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
+  reportIncrement() {
+    // console.log(e);
+    $.ajax({
+      url: "/db/reportIncrement",
+      method: "POST",
+      data: {
+        quoteId: this.props.quoteId
+      }
+    })
+      .then(msg => {
+        alert(msg);
+      })
+      .fail(err => {
+        alert(err.responseText);
+      });
+  }
+
   handleReportSubmit(e) {
     // console.log(e);
     e.preventDefault();
@@ -38,6 +55,7 @@ class ReportQuote extends Component {
     })
       .then(msg => {
         alert(msg);
+        this.reportIncrement(this.props.quoteId);
       })
       .fail(err => {
         alert(err.responseText);

@@ -223,4 +223,17 @@ router.route("/submitReport").post((req, res) => {
     });
 });
 
+router.route("/reportIncrement").post((req, res) => {
+  // console.log(req.body);
+  quote
+    .reportIncrement(req.body)
+    .then(data => {
+      console.log("Increament success!");
+      res.status(200);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
 module.exports = router;
