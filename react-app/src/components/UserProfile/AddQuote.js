@@ -140,18 +140,16 @@ class AddQuote extends Component {
             value={this.state.quote}
           />
 
-          <ToggleButtonGroup type="checkbox">
-            <span className="mkTempDiv">
-              {this.state.categories.map((value, index) => {
-                return (
-                  <ToggleButton variant="outline-primary" value={index}>
-                    {value.categoryName}
-                    {console.log({ value })}
-                    {console.log(index)}
-                  </ToggleButton>
-                );
-              })}
-            </span>
+          <ToggleButtonGroup className="mkTempDiv" type="checkbox">
+            {this.state.categories.map((value, index) => {
+              return (
+                <ToggleButton variant="outline-primary" value={index}>
+                  {value.categoryName}
+                  {console.log({ value })}
+                  {console.log(index)}
+                </ToggleButton>
+              );
+            })}
           </ToggleButtonGroup>
 
           {/* <ButtonGroup type="checkbox" className="btn-toolbar">
