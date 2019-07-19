@@ -18,7 +18,17 @@ class ValidationQuoteList extends Component {
             <Row>
               <h3 className="personalquoteBoxQuoteH3">{this.props.quote}</h3>
             </Row>
-            <Row className="personalquoteBoxAuthorStar justify-content-end" />
+            <Row>
+              <span>{this.props.author}</span>
+            </Row>
+            <Row className="personalquoteBoxAuthorStar justify-content-end">
+              <button type="button" class="btn btn-success">
+                Keep
+              </button>
+              <button type="button" class="btn btn-danger">
+                Delete
+              </button>
+            </Row>
           </div>
         </div>
       </Container>
