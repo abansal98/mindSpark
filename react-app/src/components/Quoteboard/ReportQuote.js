@@ -63,22 +63,22 @@ class ReportQuote extends Component {
       });
   }
 
-  checkReport() {
-    console.log("checkReport Called");
-    $.ajax({
-      url: "/db/checkReport/" + this.props.username + "/" + this.props.quoteId,
-      method: "GET"
-    }).then(data => {
-      this.setState({
-        status: data
-      });
-      console.log(data);
-    });
-  }
+  // checkReport() {
+  //   console.log("checkReport Called");
+  //   $.ajax({
+  //     url: "/db/checkReport/" + this.props.username + "/" + this.props.quoteId,
+  //     method: "GET"
+  //   }).then(data => {
+  //     this.setState({
+  //       status: data
+  //     });
+  //     console.log(data);
+  //   });
+  // }
 
-  componentDidMount() {
-    this.checkReport();
-  }
+  // componentDidMount() {
+  //   this.checkReport();
+  // }
 
   handleClose() {
     this.setState({ show: false });
