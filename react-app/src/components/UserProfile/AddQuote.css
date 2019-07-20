@@ -15,8 +15,13 @@
   min-height: 10rem;
 }
 
-.mkTempDiv {
+.addquoteCategoryGroup {
   display: block;
+}
+.addquoteCategoryButton {
+  margin-right: 1rem;
+  margin-bottom: 10rem;
+  border-radius: 9px;
 }
 
 @media only screen and (max-width: 992px) {
