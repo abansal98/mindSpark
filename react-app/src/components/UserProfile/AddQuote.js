@@ -140,10 +140,15 @@ class AddQuote extends Component {
             value={this.state.quote}
           />
 
-          <ToggleButtonGroup className="mkTempDiv" type="checkbox">
+          <ToggleButtonGroup className="addquoteCategoryGroup" type="checkbox">
             {this.state.categories.map((value, index) => {
               return (
-                <ToggleButton variant="outline-primary" value={index}>
+                <ToggleButton
+                  variant="outline-primary"
+                  value={index}
+                  size="lg"
+                  className="addquoteCategoryButton"
+                >
                   {value.categoryName}
                   {console.log({ value })}
                   {console.log(index)}
