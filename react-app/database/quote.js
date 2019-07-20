@@ -21,6 +21,9 @@ var quote = new Schema({
       name: {
         type: String
       },
+      avatar: {
+        type: String
+      },
       date: {
         type: Date,
         default: Date.now
@@ -65,7 +68,8 @@ module.exports = {
             comments: {
               $each: [{
                 commentText: data.commentText,
-                name: data.name
+                name: data.name,
+                avatar: data.avatar
               }],
               $position: 0
             }

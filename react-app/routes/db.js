@@ -87,6 +87,7 @@ router.route("/quote/comment/:quoteId").post((req, res) => {
   const newComment = {
     commentText: req.body.commentText,
     name: req.session.user.username,
+    avatar: req.session.user.avatar
   };
 
   quote.addComment(newComment, req.params.quoteId)

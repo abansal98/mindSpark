@@ -50,8 +50,17 @@ class ShowComment extends Component
                     <div className="showComment">
                         {this.state.comment.map(text => {
                             return (
-                                <div key={text._id}>
-                                    {text.commentText}
+                                <div key={text._id} className="comment">
+                                    <div style={{display: 'inline-block'}}>
+                                        <img className="round-img" src={text.avatar} alt=''/>
+                                        <h5>{text.name}</h5>
+                                    </div>
+                                    <div style={{display: 'inline-block'}}>
+                                        <p className="idontknow">
+                                            {text.commentText}
+                                        </p>
+                                        <p>Posted on {text.date}</p>
+                                    </div>
                                 </div>
                             )
                         })}

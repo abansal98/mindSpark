@@ -88,7 +88,7 @@ module.exports = {
               active: data.active,
               resetPasswordToken: data.resetPasswordToken,
               avatar: gravatar.url(data.email, {
-                s: "200",
+                s: "100",
                 r: "pg",
                 d: "mm"
               })
