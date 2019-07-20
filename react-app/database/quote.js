@@ -141,7 +141,26 @@ module.exports = {
     });
   },
 
+<<<<<<< HEAD
   rateQuote: function (data, quoteId) {
+=======
+  fetchPendingQuoteList: function() {
+    return new Promise(function(resolve, reject) {
+      quoteModel
+        .find({})
+        .exec()
+        .then(data => {
+          if (data) {
+            resolve(data);
+          } else {
+            reject("No quotes found that required approval!");
+          }
+        });
+    });
+  },
+
+  rateQuote: function(data, quoteId) {
+>>>>>>> dd4e4297b7773f65d7542239d7278031d09ff224
     return new Promise((resolve, reject) => {
       quoteModel.findOneAndUpdate(
         {

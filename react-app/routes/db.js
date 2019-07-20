@@ -255,4 +255,15 @@ router.route("/checkReport/:username/:quoteId").get((req, res) => {
     });
 });
 
+router.route("/getPendingQuotes").get((req, res) => {
+  quote
+    .fetchPendingQuoteList()
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
 module.exports = router;
