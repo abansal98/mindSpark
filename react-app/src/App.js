@@ -89,8 +89,8 @@ class App extends Component {
         // console.log(data[0].avatar);
         // console.log(data[0].email);
         this.setState({
-          email: data[0].email,
-          avatar: data[0].avatar
+          email: data.email,
+          avatar: data.avatar
         });
       })
       .fail(err => {
