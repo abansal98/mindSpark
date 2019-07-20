@@ -6,6 +6,7 @@ const express = require("express"),
   reminder = require("../database/reminder");
 report = require("../database/report");
 
+//*******************User authorization and authentication*******************//
 router.route("/signin").post((req, res) => {
   user
     .userLogin(req.body)
@@ -44,7 +45,78 @@ router.route("/ensureLogin").get((req, res) => {
   if (req.session.user) res.status(200).send(req.session.user.username);
   else res.status(401).send("0");
 });
+//*******************User authorization and authentication*******************//
 
+
+//****************************Passwords and Tokens***************************//
+router.route("/forgotPassword").post((req, res) => {
+  //console.log(req.body);
+  user
+    .forgotPassword(req.body)
+    .then(() => {
+      res.status(200).send("Forgot Password verfication sent");
+      //  res.redirect('/signin')
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/updatePassword").post((req, res) => {
+  //console.log(req.body);
+  user
+    .updatePassword(req.body)
+    .then(() => {
+      res.status(200).send("Password Updated successfully!");
+      //res.status(200).redirect("/reset");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/changePassword").post((req, res) => {
+  //console.log(req.body);
+  user
+    .changePassword(req.body)
+    .then(() => {
+      res.status(200).send("Password Changed successfully!");
+      //res.status(200).redirect("/reset");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/checkToken").post((req, res) => {
+  //console.log(req.body);
+  user
+    .checkForgotPasswordToken(req.body)
+    .then(() => {
+      res.status(200).send("Token exist");
+      //res.status(200).redirect("/reset");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/checkRegistrationToken").post((req, res) => {
+  // console.log(req.body);
+  user
+    .checkRegistrationToken(req.body)
+    .then(() => {
+      res.status(200).send("Token exist");
+      //res.status(200).redirect("/reset");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+//****************************Passwords and Tokens***************************//
+
+
+//**************************Quotes and comments******************************//
 router.route("/addQuote").post((req, res) => {
   quote
     .addQuote(req.body)
@@ -79,32 +151,10 @@ router.route("/quote/rating/:quoteId").post((req, res) => {
     });
 });
 
-// COMMENT
+//COMMENT
 router.route("/quote/comment/:quoteId").get((req, res) => {
   quote
     .addComment(req.body, req.params.quoteId)
-    .then(data => {
-      res.status(200).send(data);
-    })
-    .catch(err => {
-      res.status(301).send(err);
-    });
-});
-
-router.route("/getCategories").get((req, res) => {
-  category
-    .fetchCategoryList()
-    .then(data => {
-      res.status(200).send(data);
-    })
-    .catch(err => {
-      res.status(301).send(err);
-    });
-});
-
-router.route("/getUserInfo/:username").get((req, res) => {
-  user
-    .getUser(req.params.username)
     .then(data => {
       res.status(200).send(data);
     })
@@ -123,94 +173,10 @@ router.route("/getQuotes/:categoryName").get((req, res) => {
       res.status(301).send(err);
     });
 });
+//**************************Quotes and comments******************************//
 
-router.route("/addCategory").post((req, res) => {
-  category
-    .addCategory(req.body)
-    .then(data => {
-      res.status(200).send(data);
-    })
-    .catch(err => {
-      res.status(301).send(err);
-    });
-});
 
-router.route("/submitReminder").post((req, res) => {
-  reminder
-    .submitReminder(req.body)
-    .then(data => {
-      res.status(200).send("Reminder set successfully!");
-    })
-    .catch(err => {
-      res.status(301).send(err);
-    });
-});
-
-router.route("/forgotPassword").post((req, res) => {
-  //console.log(req.body);
-  user
-    .forgotPassword(req.body)
-    .then(() => {
-      res.status(200).send("Forgot Password verfication sent");
-      //  res.redirect('/signin')
-    })
-    .catch(err => {
-      res.status(301).send(err);
-    });
-});
-
-router.route("/checkToken").post((req, res) => {
-  //console.log(req.body);
-  user
-    .checkForgotPasswordToken(req.body)
-    .then(() => {
-      res.status(200).send("Token exist");
-      //res.status(200).redirect("/reset");
-    })
-    .catch(err => {
-      res.status(301).send(err);
-    });
-});
-
-router.route("/checkRegistrationToken").post((req, res) => {
-  // console.log(req.body);
-  user
-    .checkRegistrationToken(req.body)
-    .then(() => {
-      res.status(200).send("Token exist");
-      //res.status(200).redirect("/reset");
-    })
-    .catch(err => {
-      res.status(301).send(err);
-    });
-});
-
-router.route("/updatePassword").post((req, res) => {
-  //console.log(req.body);
-  user
-    .updatePassword(req.body)
-    .then(() => {
-      res.status(200).send("Password Updated successfully!");
-      //res.status(200).redirect("/reset");
-    })
-    .catch(err => {
-      res.status(301).send(err);
-    });
-});
-
-router.route("/changePassword").post((req, res) => {
-  //console.log(req.body);
-  user
-    .changePassword(req.body)
-    .then(() => {
-      res.status(200).send("Password Changed successfully!");
-      //res.status(200).redirect("/reset");
-    })
-    .catch(err => {
-      res.status(301).send(err);
-    });
-});
-
+//******************************Quote Reporting******************************//
 router.route("/submitReport").post((req, res) => {
   // console.log(req.body);
   report
@@ -235,6 +201,45 @@ router.route("/reportIncrement").post((req, res) => {
       res.status(301).send(err);
     });
 });
+//******************************Quote Reporting******************************//
+
+
+//*******************************Category************************************//
+router.route("/getCategories").get((req, res) => {
+  category
+    .fetchCategoryList()
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/addCategory").post((req, res) => {
+  category
+    .addCategory(req.body)
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+//*******************************Category************************************//
+
+
+//*****************************Admin only routes*****************************//
+router.route("/getPendingQuotes").get((req, res) => {
+  quote
+    .fetchPendingQuoteList()
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
 
 router.route("/checkReport/:username/:quoteId").get((req, res) => {
   report
@@ -246,10 +251,24 @@ router.route("/checkReport/:username/:quoteId").get((req, res) => {
       res.status(301).send(err);
     });
 });
+//*****************************Admin only routes*****************************//
 
-router.route("/getPendingQuotes").get((req, res) => {
-  quote
-    .fetchPendingQuoteList()
+
+//**************************UserProfile and Reminder*************************//
+router.route("/submitReminder").post((req, res) => {
+  reminder
+    .submitReminder(req.body)
+    .then(data => {
+      res.status(200).send("Reminder set successfully!");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/getUserInfo/:username").get((req, res) => {
+  user
+    .getUser(req.params.username)
     .then(data => {
       res.status(200).send(data);
     })
@@ -257,5 +276,6 @@ router.route("/getPendingQuotes").get((req, res) => {
       res.status(301).send(err);
     });
 });
+//**************************UserProfile and Reminder*************************//
 
 module.exports = router;
