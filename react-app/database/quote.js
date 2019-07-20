@@ -92,13 +92,16 @@ module.exports = {
 
   getQuote: function (quoteId) {
     return new Promise((resolve, reject) => {
-      quoteModel.findById(quoteId, function (err, quote) {
-        if (err) {
-          console.log("Some errors ", err);
+      quoteModel.find({
+        _id: quoteId
+      })
+      .exec()
+      .then(data => {
+        if (data.length > 0) {
+          resolve(data[0]);
         } else {
-          console.log("QuoteId ", quote);
+          reject("No quote with this id ", quoteId);
         }
-
       });
     })
   },
@@ -141,9 +144,6 @@ module.exports = {
     });
   },
 
-<<<<<<< HEAD
-  rateQuote: function (data, quoteId) {
-=======
   fetchPendingQuoteList: function() {
     return new Promise(function(resolve, reject) {
       quoteModel
@@ -159,8 +159,7 @@ module.exports = {
     });
   },
 
-  rateQuote: function(data, quoteId) {
->>>>>>> dd4e4297b7773f65d7542239d7278031d09ff224
+  rateQuote: function (data, quoteId) {
     return new Promise((resolve, reject) => {
       quoteModel.findOneAndUpdate(
         {

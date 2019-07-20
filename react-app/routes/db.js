@@ -99,6 +99,16 @@ router.route("/quote/comment/:quoteId").post((req, res) => {
 
 });
 
+router.route("/getQuotes/:quoteId").get((req, res) => {
+  quote.getQuote(req.params.quoteId)
+  .then(data => {
+    res.status(200).send(data);
+  })
+  .catch(err => {
+    res.status(301).send(err);
+  })
+})
+
 router.route("/getCategories").get((req, res) => {
   category
     .fetchCategoryList()
