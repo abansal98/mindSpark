@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Quoteboard.css";
 import Category from "./Category";
 import { Container, Row, Col, Tab, ListGroup } from "react-bootstrap";
-import $ from 'jquery';
+import $ from "jquery";
 import Quotelist from "./Quotelist";
 import Quoteboardguide from "./Quoteboardguide";
 
@@ -14,20 +14,19 @@ class Quoteboard extends Component {
       category: "",
       categories: [],
       isLoggedIn: false,
-      didLoad: false,
+      didLoad: false
     };
   }
 
   getCategories() {
-    // this.setState((prevState) => {didLoad: !prevState.didLoad});
     $.ajax({
       url: "/db/getCategories",
       method: "GET"
     }).then(data => {
+      // console.log(data);
       this.setState({
         categories: data,
-        didLoad: true,
-        //category: data[0].categoryName
+        didLoad: true
       });
     });
   }
@@ -36,18 +35,22 @@ class Quoteboard extends Component {
     this.getCategories();
   }
 
-  // shouldComponentUpdate(nextState) {
-  //   return true;
-  // }
-
   //set the state of QuoteBoard so that it gets re-rendered with the updated data
   // if I select "Laziness" this would gather the data and setState with new Quotes
   // once that gets updated your component will be rerendered by reacts lifecycle hooks
   handleOnClick = id => {
     this.setState({
       category: id
-    })
+    });
   };
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.category !== this.state.category) {
+  //     this.setState({
+  //       didLoad: false
+  //     })
+  //   }
+  // }
 
   // componentDidUpdate(prevProps, prevState) {
   //   console.log('Component did update!!');
@@ -57,7 +60,7 @@ class Quoteboard extends Component {
 
   render() {
     return (
-      (this.state.didLoad &&
+      this.state.didLoad && (
         <>
           <div className="quoteboardBody">
             <Container fluid={true}>
@@ -68,15 +71,23 @@ class Quoteboard extends Component {
                 <Row>
                   <Col md={2} className="quoteboardleftside">
                     <ListGroup>
-                      <ListGroup.Item action href="#categoryHome" variant="success">
+                      <ListGroup.Item
+                        action
+                        href="#categoryHome"
+                        variant="success"
+                      >
                         Home
-                  </ListGroup.Item>
+                      </ListGroup.Item>
                       {/* </ListGroup> */}
                       {/* temporary for CATEGORY HOME */}
                       {/* <ListGroup> */}
                       {this.state.categories.map((value, index) => {
                         return (
-                          <Category categoryName={value.categoryName} categoryID={value.categoryID} onClick={this.handleOnClick.bind(this)} />
+                          <Category
+                            categoryName={value.categoryName}
+                            categoryID={value.categoryID}
+                            onClick={this.handleOnClick.bind(this)}
+                          />
                         );
                       })}
                     </ListGroup>
@@ -87,8 +98,12 @@ class Quoteboard extends Component {
                       <Tab.Pane eventKey="#categoryHome">
                         <Quoteboardguide />
                       </Tab.Pane>
+
                       <Tab.Pane eventKey={`#${this.state.category}`}>
-                        <Quotelist category={this.state.category} />
+                        <Quotelist
+                          category={this.state.category}
+                          username={this.props.username}
+                        />
                       </Tab.Pane>
                     </Tab.Content>
                   </Col>
@@ -96,7 +111,8 @@ class Quoteboard extends Component {
               </Tab.Container>
             </Container>
           </div>
-        </>)
+        </>
+      )
     );
   }
 }
