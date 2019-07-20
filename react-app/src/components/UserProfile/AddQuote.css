@@ -15,6 +15,10 @@
   min-height: 10rem;
 }
 
+.mkTempDiv {
+  display: block;
+}
+
 @media only screen and (max-width: 992px) {
   .up_leftside {
     min-height: 100%;

@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import $ from "jquery";
-import { Form } from "react-bootstrap";
+import {
+  Form,
+  ButtonGroup,
+  ToggleButton,
+  ToggleButtonGroup,
+  ButtonToolbar
+} from "react-bootstrap";
 import "./AddQuote.css";
 import UserProfile from "./UserProfile";
 
@@ -36,7 +42,6 @@ class AddQuote extends Component {
     });
   }
 
-
   handleSubmit(e) {
     e.preventDefault();
     let currentDate = new Date();
@@ -60,7 +65,6 @@ class AddQuote extends Component {
           currentDate.getSeconds(),
         categories: this.state.selectedCategories,
         rating: this.state.rating
-
       }
     })
       .then(msg => {
@@ -128,18 +132,66 @@ class AddQuote extends Component {
           <textarea
             className={`form-control ${
               this.state.error.quote ? "invalid" : ""
-              }`}
+            }`}
             className="addquoteTextareaBody"
             onChange={this.handleUserInput.bind(this)}
             name="quote"
             placeholder="Tell us what you think"
             value={this.state.quote}
           />
+
+          <ToggleButtonGroup className="mkTempDiv" type="checkbox">
+            {this.state.categories.map((value, index) => {
+              return (
+                <ToggleButton variant="outline-primary" value={index}>
+                  {value.categoryName}
+                  {console.log({ value })}
+                  {console.log(index)}
+                </ToggleButton>
+              );
+            })}
+          </ToggleButtonGroup>
+
+          {/* <ButtonGroup type="checkbox" className="btn-toolbar">
+            <ToggleButton variant="outline-primary" value={1}>
+              Depressed
+            </ToggleButton>
+            <ToggleButton variant="outline-primary" value={2}>
+              Weariness
+            </ToggleButton>
+            <ToggleButton variant="outline-primary" value={3}>
+              Laziness
+            </ToggleButton>
+            <ToggleButton variant="outline-primary" value={4}>
+              Loneliness
+            </ToggleButton>
+            <ToggleButton variant="outline-primary" value={5}>
+              Stress
+            </ToggleButton>
+            <ToggleButton variant="outline-primary" value={6}>
+              Nervousness
+            </ToggleButton>
+            <ToggleButton variant="outline-primary" value={7}>
+              Nostalgia
+            </ToggleButton>
+            <ToggleButton variant="outline-primary" value={8}>
+              Grief
+            </ToggleButton>
+            <ToggleButton variant="outline-primary" value={9}>
+              Panic
+            </ToggleButton>
+            <ToggleButton variant="outline-primary" value={10}>
+              Others
+            </ToggleButton>
+          </ButtonGroup> */}
+
+          {/* Depressed Weariness Laziness Loneliness Stress Nervousness Nostalgia Grief Panic Others */}
+
           <div className="invalid-name text-danger">
             {this.state.error.quote}
           </div>
           <div className="addquoteUserId">
-            <h1>by... {this.props.username}</h1>
+            <h1>by {this.props.username}</h1>
           </div>
           <button
             disabled={!this.state.formValid}
