@@ -5,11 +5,26 @@ import AddQuote from "./AddQuote";
 import ReminderForm from "./ReminderForm";
 import "./UserProfile.css";
 import { Tab, Row, Col, ListGroup } from "react-bootstrap";
-import Quotelist from "../Quoteboard/Quotelist";
 import $ from "jquery";
 import ChangePassword from "./ChangePassword";
+import AdminValidation from "./Admin/ValidationQuoteList";
 
 class UserProfile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      needToReload: false
+    };
+  }
+
+  refresh() {
+    this.setState({
+      needToReload: true
+    });
+  }
+
+  componentDidUpdate() {}
+
   render() {
     return (
       <div className="userprofileBody">
@@ -64,19 +79,31 @@ class UserProfile extends Component {
                 <ListGroup.Item action href="#reminder">
                   Set Reminder Schedule
                 </ListGroup.Item>
+                <ListGroup.Item action href="#quoteapproval">
+                  Quote Approvals
+                </ListGroup.Item>
               </ListGroup>
             </Col>
             <Col lg={10} className="up_rightside">
               <Tab.Content>
                 <Tab.Pane eventKey="#addquote">
-                  <AddQuote username={this.props.username} />
-                  <PersonalQuote username={this.props.username} />
+                  <AddQuote
+                    username={this.props.username}
+                    refresh={this.refresh.bind(this)}
+                  />
+                  <PersonalQuote
+                    username={this.props.username}
+                    needToReload={this.state.needToReload}
+                  />
                 </Tab.Pane>
                 <Tab.Pane
                   eventKey="#userinformation"
                   className="userprofileUserinformationBody"
                 >
-                  <ProfileForm username={this.props.username} />
+                  <ProfileForm
+                    username={this.props.username}
+                    email={this.props.email}
+                  />
                   <ChangePassword username={this.props.username} />
                 </Tab.Pane>
                 <Tab.Pane
@@ -84,6 +111,12 @@ class UserProfile extends Component {
                   className="userprofileReminderBody"
                 >
                   <ReminderForm />
+                </Tab.Pane>
+                <Tab.Pane
+                  eventKey="#quoteapproval"
+                  className="userprofileReminderBody"
+                >
+                  <AdminValidation />
                 </Tab.Pane>
               </Tab.Content>
             </Col>

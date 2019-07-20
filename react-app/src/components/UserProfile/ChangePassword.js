@@ -31,7 +31,7 @@ class ChangePassword extends Component {
   }
 
   handlePasswordSubmit(e) {
-    console.log(this.state.oldpassword);
+    //console.log(this.state.oldpassword);
     e.preventDefault();
     $.ajax({
       url: "/db/changePassword",
@@ -56,10 +56,6 @@ class ChangePassword extends Component {
     this.setState({ [name]: value }, () => {
       this.validateField(name, value);
     });
-  }
-
-  handleOldInput(e) {
-    this.setState({ oldpassword: e.target.oldpassword });
   }
 
   validateField(fieldName, value) {
@@ -116,30 +112,30 @@ class ChangePassword extends Component {
   render() {
     return (
       <React.Fragment>
+        <br />
         <button
-          className="btn btn-primary"
+          className="btn btn-dark"
           type="submit"
           onClick={this.handleShow}
         >
-          Reset Password
+          Change Password
         </button>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Reset Password</Modal.Title>
+            <Modal.Title>Change Password</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={this.handlePasswordSubmit.bind(this)}>
               <div className="form-group">
-                <div className="password">
-                  <label htmlFor="password">Enter Old Password</label>
+                <div className="oldpassword">
+                  <label htmlFor="oldpassword">Enter Old Password</label>
                   <input
                     id="oldpassword"
-                    onChange={this.handleOldInput.bind(this)}
-                    name="password"
+                    onChange={this.handleUserInput.bind(this)}
+                    name="oldpassword"
                     className="form-control"
                     type="password"
                     value={this.state.oldpassword}
-                    placeholder="Old Password"
                   />
                 </div>
               </div>

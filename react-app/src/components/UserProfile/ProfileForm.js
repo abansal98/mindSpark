@@ -24,6 +24,7 @@ class ProfileForm extends Component {
                     placeholder="UserName"
                     type="text"
                     name="username"
+                    class="form-control"
                     value={this.props.username}
                   />
                 </div>
@@ -32,7 +33,13 @@ class ProfileForm extends Component {
               <div className="form-group">
                 <div className="email">
                   <label htmlFor="email">Email</label>
-                  <input placeholder="Email" type="email" name="email" />
+                  <input
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    value={this.props.email}
+                  />
                 </div>
               </div>
               <button className="btn btn-primary" type="submit">

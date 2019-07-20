@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import $ from "jquery";
 import { Form } from "react-bootstrap";
 import "./AddQuote.css";
+import UserProfile from "./UserProfile";
 
-const quoteRegex = RegExp(/^[a-zA-Z0-9#,!?_. ]{10,500}$/);
+const quoteRegex = RegExp(
+  /^[a-zA-Z0-9_#,!?_.][a-zA-Z0-9#,!?_._ ]*[a-zA-Z0-9#,!?_._]$/
+);
 
 class AddQuote extends Component {
   constructor(props) {
@@ -11,14 +14,14 @@ class AddQuote extends Component {
     this.state = {
       author: "",
       quote: "",
-      currentDate: new Date(),
       quoteValid: false,
       error: {
         quote: ""
       },
       categories: [],
       selectedCategories: [],
-      rating: 0
+      rating: 0,
+      refresh: false
     };
   }
 
@@ -33,8 +36,10 @@ class AddQuote extends Component {
     });
   }
 
+
   handleSubmit(e) {
     e.preventDefault();
+    let currentDate = new Date();
     $.ajax({
       url: "/db/addQuote",
       method: "POST",
@@ -42,26 +47,29 @@ class AddQuote extends Component {
         text: this.state.quote,
         author: this.state.author,
         currentDate:
-          this.state.currentDate.getFullYear() +
+          currentDate.getFullYear() +
           "-" +
-          (this.state.currentDate.getMonth() + 1) +
+          (currentDate.getMonth() + 1) +
           "-" +
-          this.state.currentDate.getDate() +
+          currentDate.getDate() +
           " " +
-          this.state.currentDate.getHours() +
+          currentDate.getHours() +
           ":" +
-          this.state.currentDate.getMinutes() +
+          currentDate.getMinutes() +
           ":" +
-          this.state.currentDate.getSeconds(),
+          currentDate.getSeconds(),
         categories: this.state.selectedCategories,
         rating: this.state.rating
+
       }
     })
       .then(msg => {
         alert(msg);
+        this.props.refresh();
       })
       .fail(err => {
         alert(err.responseText);
+        this.props.refresh();
       });
   }
 
@@ -79,10 +87,13 @@ class AddQuote extends Component {
 
     switch (fieldName) {
       case "quote":
-        quoteValid = quoteRegex.test(value);
+        quoteValid =
+          quoteRegex.test(value) &&
+          this.state.quote.length > 5 &&
+          this.state.quote.length < 500;
         errors.quote = quoteValid
           ? ""
-          : " Quote has a limit of 5 to 750 characters.";
+          : "Quote has a limit of 5 to 750 characters and no leading/trailing allowed!";
         break;
       default:
         break;
@@ -117,84 +128,22 @@ class AddQuote extends Component {
           <textarea
             className={`form-control ${
               this.state.error.quote ? "invalid" : ""
-            }`}
+              }`}
             className="addquoteTextareaBody"
             onChange={this.handleUserInput.bind(this)}
             name="quote"
             placeholder="Tell us what you think"
             value={this.state.quote}
           />
-          <div className="invalid-name">{this.state.error.quote}</div>
+          <div className="invalid-name text-danger">
+            {this.state.error.quote}
+          </div>
           <div className="addquoteUserId">
             <h1>by... {this.props.username}</h1>
           </div>
-
-          {/* categories */}
-          {/* <h1>Select categories</h1>
-          <Form>
-            {["checkbox"].map(type => (
-              <div key={`default-${type}`} className="mb-3">
-                <Form.Check
-                  type={type}
-                  id={this.state.categories}
-                  label={`Depressed`}
-                />
-                <Form.Check
-                  type={type}
-                  // id={`default-${type}`}
-                  label={`Weariness`}
-                />
-                <Form.Check
-                  type={type}
-                  // id={`default-${type}`}
-                  label={`Laziness`}
-                />
-                <Form.Check
-                  type={type}
-                  // id={`default-${type}`}
-                  label={`Loneliness`}
-                />
-                <Form.Check
-                  type={type}
-                  // id={`default-${type}`}
-                  label={`Stress`}
-                />
-                <Form.Check
-                  type={type}
-                  // id={`default-${type}`}
-                  label={`Nervousness`}
-                />
-                <Form.Check
-                  type={type}
-                  // id={`default-${type}`}
-                  label={`Nostalgia`}
-                />
-                <Form.Check
-                  type={type}
-                  // id={`default-${type}`}
-                  label={`Grief`}
-                />
-                <Form.Check
-                  type={type}
-                  // id={`default-${type}`}
-                  label={`Panic`}
-                />
-                <Form.Check
-                  type={type}
-                  // id={`default-${type}`}
-                  label={`Others`}
-                />
-              </div>
-            ))}
-          </Form> */}
-          {/* categories */}
-
-          {/* {console.log("category?")}
-          {console.log(this.state.categories[1])}
-          {console.log("category!")} */}
           <button
             disabled={!this.state.formValid}
-            className="submit"
+            className="btn btn-primary"
             type="submit"
           >
             Submit
