@@ -18,6 +18,7 @@ class Quotelist extends Component {
       url: "/db/getQuotes/" + this.props.category,
       method: "GET"
     }).then(data => {
+      console.log(data);
       this.setState({
         quotes: data,
         didLoad: true
