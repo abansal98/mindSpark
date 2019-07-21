@@ -94,6 +94,31 @@ module.exports = {
     });
   },
 
+  deleteComment: function (quoteId, commentId) {
+    return new Promise((resolve, reject) => {
+      quoteModel.update({
+        _id: quoteId
+      }, {
+        $pull: {
+          comments: {
+            _id: commentId
+          }
+        }
+      }, function(err, doc) {
+        if (err) {
+          console.log(
+            "Following error occured when deleting the comment:",
+            err
+          );
+          reject();
+        } else {
+          console.log("Record updated!", doc);
+          resolve();
+        }
+      })
+    })
+  },
+
   getQuote: function (quoteId) {
     return new Promise((resolve, reject) => {
       quoteModel.find({

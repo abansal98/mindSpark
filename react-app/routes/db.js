@@ -169,8 +169,17 @@ router.route("/quote/comment/:quoteId").post((req, res) => {
   .catch(err => {
     res.status(301).send(err);
   });
-
 });
+
+router.route("/quote/comment/remove/:quoteId/:commentId").delete((req, res) => {
+  quote.deleteComment(req.params.quoteId, req.params.commentId)
+  .then(data => {
+    res.status(200).send("Delete successfully!");
+  })
+  .catch(err => {
+    res.status(301).send(err);
+  })
+})
 
 //Get all quotes for a category
 router.route("/getQuotes/:categoryName").get((req, res) => {
