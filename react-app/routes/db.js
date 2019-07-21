@@ -10,9 +10,11 @@ report = require("../database/report");
 router.route("/signin").post((req, res) => {
   user
     .userLogin(req.body)
-    .then(() => {
+    .then((data) => {
       req.session.user = {
-        username: req.body.username
+        username: req.body.username,
+        avatar: data.avatar,
+        email: data.email
       };
       res.status(200).redirect("/");
     })
@@ -20,6 +22,7 @@ router.route("/signin").post((req, res) => {
       res.status(301).send(err);
     });
 });
+
 
 router.route("/signup").post((req, res) => {
   user
@@ -152,17 +155,24 @@ router.route("/quote/rating/:quoteId").post((req, res) => {
 });
 
 //COMMENT
-router.route("/quote/comment/:quoteId").get((req, res) => {
-  quote
-    .addComment(req.body, req.params.quoteId)
-    .then(data => {
-      res.status(200).send(data);
-    })
-    .catch(err => {
-      res.status(301).send(err);
-    });
+router.route("/quote/comment/:quoteId").post((req, res) => {
+  const newComment = {
+    commentText: req.body.commentText,
+    name: req.session.user.username,
+    avatar: req.session.user.avatar
+  };
+
+  quote.addComment(newComment, req.params.quoteId)
+  .then(() => {
+    res.status(200).send(data);
+  })
+  .catch(err => {
+    res.status(301).send(err);
+  });
+
 });
 
+//Get all quotes for a category
 router.route("/getQuotes/:categoryName").get((req, res) => {
   quote
     .fetchQuoteList(req.params.categoryName)

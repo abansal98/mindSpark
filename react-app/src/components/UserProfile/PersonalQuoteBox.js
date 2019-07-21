@@ -1,19 +1,29 @@
 import React, { Component } from "react";
 import "./PersonalQuoteBox.css";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Accordion, Card, Button } from "react-bootstrap";
 import StarRatings from 'react-star-ratings';
 import QuoteRating from './Rating/QuoteRating';
 import Modal from 'react-bootstrap/Modal';
+import Comment from '../Quoteboard/Comment/Comment';
+import ShowComment from '../Quoteboard/Comment/ShowComment';
+
 
 class PersonalQuoteBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false
+      show: false,
+      needToReload: false
     }
 
     this.handleClose = this.handleClose.bind(this);
     this.handleShow = this.handleShow.bind(this);
+  }
+
+  refresh() {
+    this.setState({
+      needToReload: true
+    })
   }
 
   handleClose() {
@@ -33,6 +43,7 @@ class PersonalQuoteBox extends Component {
               <h3 className="personalquoteBoxQuoteH3">{this.props.quote}</h3>
             </Row>
             <Row className="personalquoteBoxAuthorStar justify-content-end">
+
             <button className="btn btn-primary" type="submit" onClick={this.handleShow}>Rate</button>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
@@ -52,6 +63,22 @@ class PersonalQuoteBox extends Component {
               <StarRatings rating={this.props.rating} numberOfStars={5} name='rating'/>
               
             </Row>
+            <Accordion>
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                    Comment
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>
+                    <Comment quoteId={this.props.quoteId} refresh={this.refresh.bind(this)}/>
+                    <ShowComment quoteId={this.props.quoteId} needToReload={this.state.needToReload} />
+                  </Card.Body>
+                  
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
           </div>
         </div>
       </Container>
