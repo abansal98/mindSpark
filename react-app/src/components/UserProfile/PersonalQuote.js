@@ -15,7 +15,7 @@ class PersonalQuote extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.props.needToReload == true) {
       this.fetchPersonalQuotes(this.props.username);
-      this.props.needToReload = false;
+      this.props.toggleRefresh();
     }
   }
 

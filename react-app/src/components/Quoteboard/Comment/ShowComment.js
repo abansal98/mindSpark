@@ -50,7 +50,7 @@ class ShowComment extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (this.props.needToReload == true) {
             this.fetchQuote(this.props.quoteId);
-            this.props.needToReload = false;
+            this.props.toggleRefresh();
         }
     }
 
