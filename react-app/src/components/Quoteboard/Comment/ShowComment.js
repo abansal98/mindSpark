@@ -61,6 +61,11 @@ class ShowComment extends Component
                                         </p>
                                         <p>Posted on {text.date}</p>
                                     </div>
+                                    <div style={{display: 'inline-block'}}>
+                                        <form onSubmit={}>
+
+                                        </form>
+                                    </div>
                                 </div>
                             )
                         })}

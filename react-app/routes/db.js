@@ -100,6 +100,16 @@ router.route("/quote/comment/:quoteId").post((req, res) => {
 
 });
 
+router.route("/quote/comment/remove/:quoteId/:commentId").delete((req, res) => {
+  quote.deleteComment(req.params.quoteId, req.params.commentId)
+  .then(data => {
+    res.status(200).send("Delete successfully!");
+  })
+  .catch(err => {
+    res.status(301).send(err);
+  })
+})
+
 router.route("/getQuotes/:quoteId").get((req, res) => {
   quote.getQuote(req.params.quoteId)
   .then(data => {
