@@ -29,8 +29,10 @@ class PersonalQuote extends Component {
             quote: data,
             didLoad: true
           });
+        this.props.toggleRefresh();
       })
       .fail(err => {
+        alert("Failed to load the list of personal quotes!", err);
         this.setState({
           quote: [],
           didLoad: false

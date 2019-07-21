@@ -17,9 +17,9 @@ class UserProfile extends Component {
     };
   }
 
-  refresh() {
+  toggleRefresh() {
     this.setState({
-      needToReload: true
+      needToReload: !needToReload
     });
   }
 
@@ -89,11 +89,12 @@ class UserProfile extends Component {
                 <Tab.Pane eventKey="#addquote">
                   <AddQuote
                     username={this.props.username}
-                    refresh={this.refresh.bind(this)}
+                    toggleRefresh={this.toggleRefresh.bind(this)}
                   />
                   <PersonalQuote
                     username={this.props.username}
                     needToReload={this.state.needToReload}
+                    toggleRefresh={this.toggleRefresh.bind(this)}
                   />
                 </Tab.Pane>
                 <Tab.Pane

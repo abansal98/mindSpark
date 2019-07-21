@@ -21,7 +21,6 @@ class AddQuote extends Component {
       categories: [],
       selectedCategories: [],
       rating: 0,
-      refresh: false
     };
   }
 
@@ -65,11 +64,11 @@ class AddQuote extends Component {
     })
       .then(msg => {
         alert(msg);
-        this.props.refresh();
+        this.props.toggleRefresh();
       })
       .fail(err => {
         alert(err.responseText);
-        this.props.refresh();
+        this.props.toggleRefresh();
       });
   }
 
