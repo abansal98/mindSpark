@@ -25,16 +25,15 @@ class PersonalQuote extends Component {
       method: "GET"
     })
       .then(data => {
-        console.log(data);
+        // console.log(data);
         this.setState(
           {
             quote: data,
             didLoad: true
           });
-        this.props.toggleRefresh();
       })
       .fail(err => {
-        alert("Failed to load the list of personal quotes!", err);
+        // alert("Failed to load the list of personal quotes!", err);
         this.setState({
           quote: [],
           didLoad: false

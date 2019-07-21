@@ -19,7 +19,7 @@ class UserProfile extends Component {
 
   toggleRefresh() {
     this.setState({
-      needToReload: !needToReload
+      needToReload: !this.state.needToReload
     });
   }
 

@@ -40,8 +40,8 @@ class ShowComment extends Component {
                             didLoad: false
                         });
                     });
-            }
-        }
+            });
+    }
 
     componentDidMount() {
         this.fetchQuote(this.props.quoteId);
