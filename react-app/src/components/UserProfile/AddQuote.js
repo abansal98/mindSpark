@@ -92,7 +92,7 @@ class AddQuote extends Component {
           this.state.quote.length < 500;
         errors.quote = quoteValid
           ? ""
-          : "Quote has a limit of 5 to 750 characters and no leading/trailing allowed!";
+          : "Quote has a limit of 5 to 500 characters and no leading/trailing allowed!";
         break;
       default:
         break;
