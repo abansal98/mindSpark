@@ -1,46 +1,36 @@
-// import React, {Component} from 'react';
+import React, {Component} from 'react';
+import {Modal} from 'react-bootstrap';
+import $ from 'jquery';
 
-// class DeleteComment extends Component
-// {
-//     constructor(props)
-//     {
-//         super(props);
-//         this.state = {
-//             show: false
-//         }
+class DeleteComment extends Component
+{
+    handleDelete(e)
+    {
+        e.preventDefault();
+        $.ajax({
+            url: "db/quote/comment/remove/" + this.props.quoteId + "/" + this.props.commentId,
+            method: "DELETE"
+        })
+        .then(() => {
+            console.log("Delete successfully");
+        })
+        .catch(err => {
+            console.log(err);
+        })
 
-//         this.handleClose = this.handleClose.bind(this);
-//         this.handleShow = this.handleShow.bind(this);
-//     }
+        this.props.handleClose();
+    }
 
-//     handleClose() {
-//         this.setState({ show: false });
-//     }
+    render() {
+        // have problem with commentId and author
+        return (
+            
+            <form onSubmit={this.handleDelete.bind(this)}>
+                {this.props.commentId}
+                <button type="submit" className="btn btn-primary">Yes</button>
+            </form>
+        )
+    }
+}
 
-//     handleShow() {
-//         this.setState({ show: true });
-//     }
-
-//     render() {
-//         return (
-//             <Modal show={this.state.show} onHide={this.handleClose}>
-//                 <Modal.Header closeButton>
-//                     <Modal.Title>Do you really want to delete this?</Modal.Title>
-//                 </Modal.Header>
-//                 <Modal.Body>
-//                     Hi
-//                 </Modal.Body>
-//                 <Modal.Footer>
-//                     <button variant="primary" onClick={this.handleClose}>
-//                         Yes
-//                     </button>
-//                     <button variant="secondary" onClick={this.handleClose}>
-//                         No
-//                     </button>
-//                 </Modal.Footer>
-//             </Modal>
-//         )
-//     }
-// }
-
-// export default DeleteComment;
+export default DeleteComment;

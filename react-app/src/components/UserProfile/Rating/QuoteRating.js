@@ -32,6 +32,8 @@ class QuoteRating extends Component {
             .fail(err => {
                 alert(err.reponseText);
             })
+
+        this.props.handleClose(); 
     }
 
     render() {
