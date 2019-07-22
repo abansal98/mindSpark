@@ -164,6 +164,7 @@ class ReportQuote extends Component {
                     disabled={!this.state.formValid}
                     type="submit"
                     className="btn btn-primary btn-sm"
+                    onClick={this.handleClose}
                   >
                     Submit Report
                   </button>
