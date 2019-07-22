@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import { Modal } from 'react-bootstrap';
+import DeleteComment from './DeleteComment';
 
 class ShowComment extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class ShowComment extends Component {
 
     fetchQuote(id) {
         $.ajax({
-            url: "/db/getQuotes/" + id,
+            url: "/db/getQuote/" + id,
             method: "GET"
         })
             .then(data => {
@@ -44,6 +45,7 @@ class ShowComment extends Component {
     }
 
     componentDidMount() {
+        console.log("ShowComment called");
         this.fetchQuote(this.props.quoteId);
     }
 
@@ -54,26 +56,18 @@ class ShowComment extends Component {
         }
     }
 
-    // handleDelete(e)
-    // {
-    //     e.preventDefault();
-    //     $.ajax({
-    //         url: "db/quote/comment/remove/" + this.props.quoteId + "/" + this.state.comment._id,
-
-    //     })
-    // }
-
     render() {
         return (
             <React.Fragment>
                 {this.state.didLoad &&
                     <div className="showComment">
-                        {this.state.comment.map(text => {
+                        {this.state.comment.map((text, index) => {
                             return (
                                 <div key={text._id} className="comment">
                                     <div style={{ display: 'inline-block' }}>
                                         <img className="round-img" src={text.avatar} alt='' />
                                         <h5>{text.name}</h5>
+                                        
                                     </div>
                                     <div style={{ display: 'inline-block' }}>
                                         <p className="idontknow">
@@ -81,16 +75,17 @@ class ShowComment extends Component {
                                         </p>
                                         <p>Posted on {text.date}</p>
                                     </div>
-                                    <div>
+                                    <div style={{display: 'inline-block'}}> 
                                         <button className="btn btn-primary" type="submit" onClick={this.handleShow}>Delete</button>
                                         <Modal show={this.state.show} onHide={this.handleClose}>
                                             <Modal.Header closeButton>
                                                 <Modal.Title>Do you really want to delete this?</Modal.Title>
                                             </Modal.Header>
                                             <Modal.Body>
-                                                Hi
+                                                
                                             </Modal.Body>
                                             <Modal.Footer>
+                                                <DeleteComment author={this.props.author} quoteId={this.props.quoteId} commentId={text._id} handleClose={this.handleClose}/>
                                                 <button variant="secondary" onClick={this.handleClose}>
                                                     Close
                                                 </button>

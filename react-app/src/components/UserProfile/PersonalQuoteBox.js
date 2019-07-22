@@ -20,6 +20,12 @@ class PersonalQuoteBox extends Component {
     this.handleShow = this.handleShow.bind(this);
   }
 
+  toggleRefresh() {
+    this.setState({
+      needToReload: !this.state.needToReload
+    });
+  }
+
   refresh() {
     this.setState({
       needToReload: true
@@ -50,10 +56,10 @@ class PersonalQuoteBox extends Component {
             <Modal.Title>How do you feel about this quote?</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <QuoteRating quoteId={this.props.quoteId} />
+            <QuoteRating quoteId={this.props.quoteId} handleClose={this.handleClose}/>
           </Modal.Body>
           <Modal.Footer>
-            <button variant="secondary" onClick={this.handleClose}>
+          <button variant="secondary" onClick={this.handleClose}>
               Close
             </button>
           </Modal.Footer>
@@ -73,7 +79,7 @@ class PersonalQuoteBox extends Component {
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
                     <Comment quoteId={this.props.quoteId} refresh={this.refresh.bind(this)}/>
-                    <ShowComment quoteId={this.props.quoteId} needToReload={this.state.needToReload} />
+                    <ShowComment quoteId={this.props.quoteId} needToReload={this.state.needToReload} toggleRefresh={this.toggleRefresh.bind(this)}/>
                   </Card.Body>
                   
                 </Accordion.Collapse>

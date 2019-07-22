@@ -20,6 +20,12 @@ class QuoteBox extends Component {
     this.handleShow = this.handleShow.bind(this);
   }
 
+  toggleRefresh() {
+    this.setState({
+      needToReload: !this.state.needToReload
+    });
+  }
+
   refresh() {
     this.setState({
       needToReload: true
@@ -35,6 +41,7 @@ class QuoteBox extends Component {
   }
 
   render() {
+    console.log("Change", this.props.quoteId);
     return (
       <React.Fragment>
         <Container className="quoteboxContainer">
@@ -56,7 +63,7 @@ class QuoteBox extends Component {
                       <Modal.Title>How do you feel about this quote?</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                      <QuoteRating quoteId={this.props.quoteId} />
+                      <QuoteRating quoteId={this.props.quoteId} handleClose={this.handleClose}/>
                     </Modal.Body>
                     <Modal.Footer>
                       <button variant="secondary" onClick={this.handleClose}>
@@ -78,7 +85,7 @@ class QuoteBox extends Component {
                   <Accordion.Collapse eventKey="0">
                     <Card.Body>
                       <Comment quoteId={this.props.quoteId} refresh={this.refresh.bind(this)}/>
-                      <ShowComment quoteId={this.props.quoteId} needToReload={this.state.needToReload} />
+                      <ShowComment author={this.props.author} quoteId={this.props.quoteId} needToReload={this.state.needToReload} toggleRefresh={this.toggleRefresh.bind(this)}/>
                     </Card.Body>
                     
                   </Accordion.Collapse>
