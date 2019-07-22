@@ -131,6 +131,16 @@ router.route("/addQuote").post((req, res) => {
     });
 });
 
+router.route("/getQuote/:quoteId").get((req, res) => {
+  quote.getQuote(req.params.quoteId)
+  .then(data => {
+    res.status(200).send(data);
+  })
+  .catch(err => {
+    res.status(301).send(err);
+  })
+})
+
 router.route("/quoteList/:authorName").get((req, res) => {
   quote
     .fetchQuote(req.params.authorName)
