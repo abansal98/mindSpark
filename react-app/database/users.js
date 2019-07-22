@@ -68,6 +68,7 @@ module.exports = {
   user,
   userModel,
 
+
   addUser: function (data) {
     return new Promise((resolve, reject) => {
       bcrypt.genSalt(10, function (err, salt) {
@@ -87,7 +88,7 @@ module.exports = {
               active: data.active,
               resetPasswordToken: data.resetPasswordToken,
               avatar: gravatar.url(data.email, {
-                s: "200",
+                s: "100",
                 r: "pg",
                 d: "mm"
               })
@@ -135,7 +136,7 @@ module.exports = {
               if (res) {
                 //console.log(user.active);
                 if (user.active === "true") {
-                  resolve();
+                  resolve(user);
                 } else {
                   reject("Please verify the email first!");
                 }
@@ -347,11 +348,12 @@ module.exports = {
         .exec()
         .then(data => {
           if (data.length > 0) {
-            resolve(data);
+            resolve(data[0]);
           } else {
             reject("No users available!");
           }
         });
     });
-  }
+  },
+
 };

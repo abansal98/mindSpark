@@ -15,6 +15,7 @@ class PersonalQuote extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.props.needToReload == true) {
       this.fetchPersonalQuotes(this.props.username);
+      this.props.toggleRefresh();
     }
   }
 
@@ -24,6 +25,7 @@ class PersonalQuote extends Component {
       method: "GET"
     })
       .then(data => {
+        // console.log(data);
         this.setState(
           {
             quote: data,
@@ -31,6 +33,7 @@ class PersonalQuote extends Component {
           });
       })
       .fail(err => {
+        // alert("Failed to load the list of personal quotes!", err);
         this.setState({
           quote: [],
           didLoad: false

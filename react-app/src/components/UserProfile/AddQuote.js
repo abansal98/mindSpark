@@ -27,7 +27,6 @@ class AddQuote extends Component {
       categories: [],
       selectedCategories: [],
       rating: 0,
-      refresh: false
     };
   }
 
@@ -69,11 +68,11 @@ class AddQuote extends Component {
     })
       .then(msg => {
         alert(msg);
-        this.props.refresh();
+        this.props.toggleRefresh();
       })
       .fail(err => {
         alert(err.responseText);
-        this.props.refresh();
+        this.props.toggleRefresh();
       });
   }
 
@@ -97,7 +96,7 @@ class AddQuote extends Component {
           this.state.quote.length < 500;
         errors.quote = quoteValid
           ? ""
-          : "Quote has a limit of 5 to 750 characters and no leading/trailing allowed!";
+          : "Quote has a limit of 5 to 500 characters and no leading/trailing allowed!";
         break;
       default:
         break;
