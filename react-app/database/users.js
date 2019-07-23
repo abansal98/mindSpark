@@ -31,7 +31,8 @@ var user = new Schema({
   active: false,
   role: {
     type: String,
-    enum: ["admin", "user"]
+    enum: ["admin", "user"],
+    default: "user"
   },
   avatar: {
     type: String
@@ -367,7 +368,8 @@ module.exports = {
           {
             username: 1,
             email: 1,
-            avatar: 1
+            avatar: 1,
+            role: 1
           }
         )
         .exec()
