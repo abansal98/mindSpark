@@ -29,11 +29,7 @@ class ShowComment extends Component {
       url: "/db/getQuote/" + id,
       method: "GET"
     }).then(data => {
-<<<<<<< HEAD
       console.log(data.comments);
-=======
-      // console.log(data.comments);
->>>>>>> f3bcda16622f3f8d1c6b9f52c1e1bb5520f10ccb
       this.setState({
         comment: data.comments,
         didLoad: true
