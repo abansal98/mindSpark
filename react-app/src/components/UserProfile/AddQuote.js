@@ -26,12 +26,7 @@ class AddQuote extends Component {
       },
       categories: [],
       selectedCategories: [],
-<<<<<<< HEAD
-      rating: 0,
-      mkTempVal: "ahh plz1"
-=======
       rating: 0
->>>>>>> 2079e22a2aeaefd39691bebb2bcbe877a2365a72
     };
   }
 
