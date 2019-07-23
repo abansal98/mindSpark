@@ -27,6 +27,7 @@ class AddQuote extends Component {
       categories: [],
       selectedCategories: [],
       rating: 0,
+      mkTempVal: "ahh plz1"
     };
   }
 
@@ -126,23 +127,38 @@ class AddQuote extends Component {
   render() {
     return (
       <div className="addquoteBody">
-        <h2>AddQuote</h2>
+        <h1 className="addQuoteTitle mb-3">AddQuote</h1>
+        <div>
+          <p className="userguide">
+            1. Share your thought to inspirit other people
+          </p>
+        </div>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <textarea
             className={`form-control ${
               this.state.error.quote ? "invalid" : ""
             }`}
-            className="addquoteTextareaBody"
+            className="addquoteTextareaBody mb-3"
             onChange={this.handleUserInput.bind(this)}
             name="quote"
             placeholder="Tell us what you think"
             value={this.state.quote}
           />
 
-          <ToggleButtonGroup className="addquoteCategoryGroup" type="checkbox">
+          <div>
+            <p className="userguide">
+              2. Select corresponding categories for your quote.
+            </p>
+          </div>
+
+          <ToggleButtonGroup
+            className="addquoteCategoryGroup mb-3"
+            type="checkbox"
+          >
             {this.state.categories.map((value, index) => {
               return (
                 <ToggleButton
+                  key={`addquoteCategoryButton-${index}`}
                   variant="outline-primary"
                   value={index}
                   size="lg"
@@ -155,6 +171,10 @@ class AddQuote extends Component {
               );
             })}
           </ToggleButtonGroup>
+
+          {/* <div>
+            <h1>{this.state.mkTempVal}</h1>
+          </div> */}
 
           {/* <ButtonGroup type="checkbox" className="btn-toolbar">
             <ToggleButton variant="outline-primary" value={1}>
@@ -194,9 +214,13 @@ class AddQuote extends Component {
           <div className="invalid-name text-danger">
             {this.state.error.quote}
           </div>
-          <div className="addquoteUserId">
+          <div className="addquoteUserId mb-5">
             <h1>by {this.props.username}</h1>
           </div>
+          <p className="userguide">
+            3. Click 'Submit' button and you are done! Your quote will be public
+            after reviewing process. Thank you for participating.
+          </p>
           <button
             disabled={!this.state.formValid}
             className="btn btn-primary"
