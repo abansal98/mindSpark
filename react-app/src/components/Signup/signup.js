@@ -1,7 +1,7 @@
 import React, { Button, Component } from "react";
 import "./signup.css";
 import $ from "jquery";
-import gravatar from 'gravatar';
+import gravatar from "gravatar";
 
 const passwordRegex = RegExp(/((?=.*\d)(?=.*[A-Z])(?=.*\W).{6,15})$/);
 const usernameRegex = RegExp(/^[A-Za-z0-9_]{6,24}$/);
@@ -20,7 +20,7 @@ class SignUp extends Component {
       confirm: false,
       formValid: false,
       active: false,
-      secretToken : "",
+      secretToken: "",
       error: {
         email: "",
         password: "",
@@ -80,15 +80,18 @@ class SignUp extends Component {
         errors.password = passValid ? (
           ""
         ) : (
-            <div className="alert alert-warning">Password must have atleast 6 characters, a capital letter, a numeric & a special character</div>
-          );
+          <div className="alert alert-warning">
+            Password must be between 6 and 15 characters, a capital letter, a
+            number & a special character
+          </div>
+        );
 
         confirm = this.state.confirmPassword === this.state.password;
         errors.e_confirm = confirm ? (
           ""
         ) : (
-            <div className="error">Passwords do not match</div>
-          );
+          <div className="error">Passwords do not match</div>
+        );
 
         break;
       case "username":
@@ -96,8 +99,11 @@ class SignUp extends Component {
         errors.username = usrValid ? (
           ""
         ) : (
-            <div className="alert alert-warning">Username must be atleast 6 characters. Only 1 special character, '_' is allowed.</div>
-          );
+          <div className="alert alert-warning">
+            Username must be atleast 6 characters. Only 1 special character, '_'
+            is allowed.
+          </div>
+        );
         // usrValid =
         //   value.match("^[A-Za-z0-9_]{6,24}$") &&
         //     errors.username === usrValid ? "" : "Username is too short";
@@ -107,8 +113,8 @@ class SignUp extends Component {
         errors.e_confirm = confirm ? (
           ""
         ) : (
-            <div className="error">Passwords do not match</div>
-          );
+          <div className="error">Passwords do not match</div>
+        );
         break;
       default:
         break;
@@ -135,7 +141,6 @@ class SignUp extends Component {
     });
   }
 
-
   render() {
     return (
       <div className="signupBody">
@@ -152,7 +157,7 @@ class SignUp extends Component {
                     id="signupUserName"
                     className={`form-control ${
                       this.state.error.username ? "invalid" : ""
-                      }`}
+                    }`}
                     placeholder="UserName"
                     type="text"
                     name="username"
@@ -170,7 +175,7 @@ class SignUp extends Component {
                   <input
                     className={`form-control ${
                       this.state.error.email ? "invalid" : ""
-                      }`}
+                    }`}
                     placeholder="Email"
                     type="email"
                     name="email"
@@ -187,7 +192,7 @@ class SignUp extends Component {
                     id="signupPassword"
                     className={`form-control ${
                       this.state.error.password ? "invalid" : ""
-                      }`}
+                    }`}
                     placeholder="Password"
                     type="password"
                     name="password"
@@ -206,7 +211,7 @@ class SignUp extends Component {
                   <input
                     className={`form-control ${
                       this.state.error.e_confirm ? "invalid" : ""
-                      }`}
+                    }`}
                     placeholder="Confirm"
                     type="password"
                     name="confirmPassword"
@@ -219,7 +224,11 @@ class SignUp extends Component {
               </div>
 
               <div className="createAccount">
-                <button disabled={!this.state.formValid} className="btn btn-primary mb-2" type="submit">
+                <button
+                  disabled={!this.state.formValid}
+                  className="btn btn-primary mb-2"
+                  type="submit"
+                >
                   Create Account
                 </button>
               </div>
