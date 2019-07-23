@@ -161,7 +161,6 @@ module.exports = {
   },
 
   fetchQuoteList: function(categoryName) {
-    // console.log(categoryName);
     return new Promise(function(resolve, reject) {
       quoteModel
         .find({

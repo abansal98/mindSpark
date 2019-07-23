@@ -165,8 +165,8 @@ class AddQuote extends Component {
                   className="addquoteCategoryButton"
                 >
                   {value.categoryName}
-                  {console.log({ value })}
-                  {console.log(index)}
+                  {/* {console.log({ value })} */}
+                  {/* {console.log(index)} */}
                 </ToggleButton>
               );
             })}
