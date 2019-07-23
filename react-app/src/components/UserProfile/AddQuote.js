@@ -26,8 +26,10 @@ class AddQuote extends Component {
       },
       categories: [],
       selectedCategories: [],
-      rating: 0
+      rating: 0,
+      isSelected: false
     };
+    this.clickCatgeory = this.clickCatgeory.bind(this);
   }
 
   getAllCategories() {
@@ -62,7 +64,7 @@ class AddQuote extends Component {
           currentDate.getMinutes() +
           ":" +
           currentDate.getSeconds(),
-        categories: this.state.selectedCategories,
+        category: this.state.selectedCategories,
         rating: this.state.rating
       }
     })
@@ -123,6 +125,30 @@ class AddQuote extends Component {
     this.getAllCategories();
   }
 
+  clickCatgeory(e) {
+    if (e.target.checked) {
+      this.setState(
+        {
+          selectedCategories: [...this.state.selectedCategories, e.target.value]
+        } // ,
+        // () => {
+        //    console.log(this.state.selectedCategories);
+        // }
+      );
+    } else {
+      this.setState(
+        {
+          selectedCategories: this.state.selectedCategories.filter(function(
+            person
+          ) {
+            return person !== e.target.value;
+          })
+        }
+        // console.log(this.state.selectedCategories)
+      );
+    }
+  }
+
   render() {
     return (
       <div className="addquoteBody">
@@ -157,15 +183,15 @@ class AddQuote extends Component {
             {this.state.categories.map((value, index) => {
               return (
                 <ToggleButton
-                  key={`addquoteCategoryButton-${index}`}
+                  // key={`addquoteCategoryButton-${index}`}
                   variant="outline-primary"
-                  value={index}
+                  value={value.categoryName}
                   size="lg"
                   className="addquoteCategoryButton"
+                  checked={this.state.isSelected}
+                  onClick={this.clickCatgeory}
                 >
                   {value.categoryName}
-                  {/* {console.log({ value })} */}
-                  {/* {console.log(index)} */}
                 </ToggleButton>
               );
             })}

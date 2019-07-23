@@ -65,7 +65,7 @@ class ReportQuote extends Component {
   }
 
   checkReport() {
-    console.log("checkReport Called");
+    // console.log("checkReport Called");
     $.ajax({
       url: "/db/checkReport/" + this.props.username + "/" + this.props.quoteId,
       method: "GET"
@@ -74,7 +74,7 @@ class ReportQuote extends Component {
         status: data,
         quoteId: this.props.quoteId
       });
-      console.log(data);
+      // console.log(data);
     });
   }
 
