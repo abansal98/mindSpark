@@ -142,11 +142,7 @@ class AddQuote extends Component {
             className={`form-control ${
               this.state.error.quote ? "invalid" : ""
             }`}
-<<<<<<< HEAD
             className="addquoteTextareaBody mb-3"
-=======
-            className="addquoteTextareaBody"
->>>>>>> 2079e22a2aeaefd39691bebb2bcbe877a2365a72
             onChange={this.handleUserInput.bind(this)}
             name="quote"
             placeholder="Tell us what you think"
