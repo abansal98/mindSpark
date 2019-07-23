@@ -13,7 +13,7 @@ class UserProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      needToReload: false,
+      needToReload: false
     };
   }
 
@@ -69,7 +69,7 @@ class UserProfile extends Component {
         >
           <Row>
             <Col lg={2} className="up_leftside">
-              <ListGroup>
+              <ListGroup className="up_leftside_listgroup">
                 <ListGroup.Item action href="#addquote">
                   Add Quote
                 </ListGroup.Item>
@@ -79,12 +79,11 @@ class UserProfile extends Component {
                 <ListGroup.Item action href="#reminder">
                   Set Reminder Schedule
                 </ListGroup.Item>
-                { this.props.role == "admin" &&
-
-                <ListGroup.Item action href="#quoteapproval">
-                  Quote Approvals
-                </ListGroup.Item>
-                }
+                {this.props.role == "admin" && (
+                  <ListGroup.Item action href="#quoteapproval">
+                    Quote Approvals
+                  </ListGroup.Item>
+                )}
               </ListGroup>
             </Col>
             <Col lg={10} className="up_rightside">
@@ -116,11 +115,11 @@ class UserProfile extends Component {
                 >
                   <ReminderForm />
                 </Tab.Pane>
-                  <Tab.Pane
+                <Tab.Pane
                   eventKey="#quoteapproval"
                   className="userprofileReminderBody"
                 >
-                  <ValidationQuoteList  />
+                  <ValidationQuoteList />
                 </Tab.Pane>
               </Tab.Content>
             </Col>

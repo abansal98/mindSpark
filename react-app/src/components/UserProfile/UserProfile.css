@@ -10,6 +10,9 @@
   min-height: 100vh;
   background-color: #e6ecf0;
 }
+.up_leftside_listgroup {
+  position: absolute;
+}
 .up_rightside {
   padding-top: 4.5rem;
   /* padding-left: 1.7rem;
