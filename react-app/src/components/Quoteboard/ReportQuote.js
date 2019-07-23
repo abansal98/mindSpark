@@ -19,7 +19,8 @@ class ReportQuote extends Component {
         report: ""
       },
       formValid: false,
-      status: false
+      status: false,
+      quoteId: ""
     };
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -63,22 +64,25 @@ class ReportQuote extends Component {
       });
   }
 
-  // checkReport() {
-  //   console.log("checkReport Called");
-  //   $.ajax({
-  //     url: "/db/checkReport/" + this.props.username + "/" + this.props.quoteId,
-  //     method: "GET"
-  //   }).then(data => {
-  //     this.setState({
-  //       status: data
-  //     });
-  //     console.log(data);
-  //   });
-  // }
+  checkReport() {
+    console.log("checkReport Called");
+    $.ajax({
+      url: "/db/checkReport/" + this.props.username + "/" + this.props.quoteId,
+      method: "GET"
+    }).then(data => {
+      this.setState({
+        status: data,
+        quoteId: this.props.quoteId
+      });
+      console.log(data);
+    });
+  }
 
-  // componentDidMount() {
-  //   this.checkReport();
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.quoteId != this.props.quoteId) {
+      this.checkReport();
+    }
+  }
 
   handleClose() {
     this.setState({ show: false });
