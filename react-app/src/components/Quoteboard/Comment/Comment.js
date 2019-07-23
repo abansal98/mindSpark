@@ -12,7 +12,6 @@ class Comment extends Component
     }
 
     handleInput(e) {
-        console.log("handleInput called");
         this.setState({text: e.target.value});
     }
 
