@@ -14,7 +14,6 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       needToReload: false,
-      isAdmin: false
     };
   }
 

@@ -8,8 +8,23 @@ class ValidationQuoteList extends Component {
     super(props);
     this.state = {
       category: "",
-      quotes: []
+      quotes: [],
+      needToReload: false,
+      didLoad: false
     };
+  }
+
+  toggleRefresh() {
+    this.setState({
+      needToReload: !this.state.needToReload
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.needToReload == true) {
+      this.getQuotes();
+      this.toggleRefresh();
+    }
   }
 
   getQuotes() {
@@ -19,12 +34,14 @@ class ValidationQuoteList extends Component {
     })
       .then(data => {
         this.setState({
-          quotes: data
+          quotes: data,
+          didLoad: true
         });
       })
       .fail(err => {
         this.setState({
-          quotes: []
+          quotes: [],
+          didLoad: false
         });
       });
   }
@@ -36,6 +53,8 @@ class ValidationQuoteList extends Component {
   render() {
     return (
       <React.Fragment>
+        {this.state.didLoad &&
+          <div>
         <h2>Quote Approval</h2>
         <div className="quotelistBody">
           {this.state.quotes.map((quoteObj, index) => {
@@ -45,11 +64,14 @@ class ValidationQuoteList extends Component {
                   quote={quoteObj.text}
                   author={quoteObj.author}
                   quoteId={quoteObj._id}
+                  toggleRefresh={this.toggleRefresh.bind(this)}
                 />
               );
             }
           })}
         </div>
+        </div>
+        }
       </React.Fragment>
     );
   }
