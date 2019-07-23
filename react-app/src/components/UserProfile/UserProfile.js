@@ -7,13 +7,13 @@ import "./UserProfile.css";
 import { Tab, Row, Col, ListGroup } from "react-bootstrap";
 import $ from "jquery";
 import ChangePassword from "./ChangePassword";
-import AdminValidation from "./Admin/ValidationQuoteList";
+import ValidationQuoteList from "./Admin/ValidationQuoteList";
 
 class UserProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      needToReload: false
+      needToReload: false,
     };
   }
 
@@ -79,9 +79,12 @@ class UserProfile extends Component {
                 <ListGroup.Item action href="#reminder">
                   Set Reminder Schedule
                 </ListGroup.Item>
+                { this.props.role == "admin" &&
+
                 <ListGroup.Item action href="#quoteapproval">
                   Quote Approvals
                 </ListGroup.Item>
+                }
               </ListGroup>
             </Col>
             <Col lg={10} className="up_rightside">
@@ -113,11 +116,11 @@ class UserProfile extends Component {
                 >
                   <ReminderForm />
                 </Tab.Pane>
-                <Tab.Pane
+                  <Tab.Pane
                   eventKey="#quoteapproval"
                   className="userprofileReminderBody"
                 >
-                  <AdminValidation />
+                  <ValidationQuoteList  />
                 </Tab.Pane>
               </Tab.Content>
             </Col>

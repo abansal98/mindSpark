@@ -10,7 +10,7 @@ report = require("../database/report");
 router.route("/signin").post((req, res) => {
   user
     .userLogin(req.body)
-    .then((data) => {
+    .then(data => {
       req.session.user = {
         username: req.body.username,
         avatar: data.avatar,
@@ -22,7 +22,6 @@ router.route("/signin").post((req, res) => {
       res.status(301).send(err);
     });
 });
-
 
 router.route("/signup").post((req, res) => {
   user
@@ -49,7 +48,6 @@ router.route("/ensureLogin").get((req, res) => {
   else res.status(401).send("0");
 });
 //*******************User authorization and authentication*******************//
-
 
 //****************************Passwords and Tokens***************************//
 router.route("/forgotPassword").post((req, res) => {
@@ -118,13 +116,23 @@ router.route("/checkRegistrationToken").post((req, res) => {
 });
 //****************************Passwords and Tokens***************************//
 
-
 //**************************Quotes and comments******************************//
 router.route("/addQuote").post((req, res) => {
   quote
     .addQuote(req.body)
     .then(() => {
       res.status(200).send("Quote Added!");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/getQuote/:quoteId").get((req, res) => {
+  quote
+    .getQuote(req.params.quoteId)
+    .then(data => {
+      res.status(200).send(data);
     })
     .catch(err => {
       res.status(301).send(err);
@@ -162,24 +170,26 @@ router.route("/quote/comment/:quoteId").post((req, res) => {
     avatar: req.session.user.avatar
   };
 
-  quote.addComment(newComment, req.params.quoteId)
-  .then(() => {
-    res.status(200).send(data);
-  })
-  .catch(err => {
-    res.status(301).send(err);
-  });
+  quote
+    .addComment(newComment, req.params.quoteId)
+    .then(() => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
 });
 
 router.route("/quote/comment/remove/:quoteId/:commentId").delete((req, res) => {
-  quote.deleteComment(req.params.quoteId, req.params.commentId)
-  .then(data => {
-    res.status(200).send("Delete successfully!");
-  })
-  .catch(err => {
-    res.status(301).send(err);
-  })
-})
+  quote
+    .deleteComment(req.params.quoteId, req.params.commentId)
+    .then(data => {
+      res.status(200).send("Delete successfully!");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
 
 //Get all quotes for a category
 router.route("/getQuotes/:categoryName").get((req, res) => {
@@ -193,7 +203,6 @@ router.route("/getQuotes/:categoryName").get((req, res) => {
     });
 });
 //**************************Quotes and comments******************************//
-
 
 //******************************Quote Reporting******************************//
 router.route("/submitReport").post((req, res) => {
@@ -213,7 +222,7 @@ router.route("/reportIncrement").post((req, res) => {
   quote
     .reportIncrement(req.body)
     .then(data => {
-      console.log("Increament success!");
+      // console.log("Increament success!");
       res.status(200);
     })
     .catch(err => {
@@ -221,7 +230,6 @@ router.route("/reportIncrement").post((req, res) => {
     });
 });
 //******************************Quote Reporting******************************//
-
 
 //*******************************Category************************************//
 router.route("/getCategories").get((req, res) => {
@@ -247,7 +255,6 @@ router.route("/addCategory").post((req, res) => {
 });
 //*******************************Category************************************//
 
-
 //*****************************Admin only routes*****************************//
 router.route("/getPendingQuotes").get((req, res) => {
   quote
@@ -270,8 +277,40 @@ router.route("/checkReport/:username/:quoteId").get((req, res) => {
       res.status(301).send(err);
     });
 });
-//*****************************Admin only routes*****************************//
 
+router.route("/keepQuote").post((req, res) => {
+  quote
+    .keepQuote(req.body)
+    .then(data => {
+      res.status(200).send("Quote Kept!");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/deleteQuote").post((req, res) => {
+  quote
+    .deleteQuote(req.body)
+    .then(data => {
+      res.status(200).send("Quote Deleted!");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/sendMessage").post((req, res) => {
+  user
+    .sendMessage(req.body)
+    .then(data => {
+      res.status(200).send("Message sent to Author!");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+//*****************************Admin only routes*****************************//
 
 //**************************UserProfile and Reminder*************************//
 router.route("/submitReminder").post((req, res) => {

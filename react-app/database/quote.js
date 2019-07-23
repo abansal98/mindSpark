@@ -37,9 +37,8 @@ var quoteModel = mongoose.model("quotes", quote);
 module.exports = {
   quoteModel,
 
-
-  addQuote: function (data) {
-    return new Promise(function (resolve, reject) {
+  addQuote: function(data) {
+    return new Promise(function(resolve, reject) {
       var quote_data = new quoteModel({
         text: data.text,
         author: data.author,
@@ -57,7 +56,7 @@ module.exports = {
     });
   },
 
-  addComment: function (data, quoteId) {
+  addComment: function(data, quoteId) {
     return new Promise((resolve, reject) => {
       quoteModel.findOneAndUpdate(
         {
@@ -66,11 +65,13 @@ module.exports = {
         {
           $push: {
             comments: {
-              $each: [{
-                commentText: data.commentText,
-                name: data.name,
-                avatar: data.avatar
-              }],
+              $each: [
+                {
+                  commentText: data.commentText,
+                  name: data.name,
+                  avatar: data.avatar
+                }
+              ],
               $position: 0
             }
           }
@@ -78,7 +79,7 @@ module.exports = {
         {
           new: true
         },
-        function (err, doc) {
+        function(err, doc) {
           if (err) {
             console.log(
               "Following error occured when updating the rating:",
@@ -94,51 +95,55 @@ module.exports = {
     });
   },
 
-  deleteComment: function (quoteId, commentId) {
+  deleteComment: function(quoteId, commentId) {
     return new Promise((resolve, reject) => {
-      quoteModel.update({
-        _id: quoteId
-      }, {
-        $pull: {
-          comments: {
-            _id: commentId
+      quoteModel.update(
+        {
+          _id: quoteId
+        },
+        {
+          $pull: {
+            comments: {
+              _id: commentId
+            }
+          }
+        },
+        function(err, doc) {
+          if (err) {
+            console.log(
+              "Following error occured when deleting the comment:",
+              err
+            );
+            reject();
+          } else {
+            console.log("Record updated!", doc);
+            resolve();
           }
         }
-      }, function(err, doc) {
-        if (err) {
-          console.log(
-            "Following error occured when deleting the comment:",
-            err
-          );
-          reject();
-        } else {
-          console.log("Record updated!", doc);
-          resolve();
-        }
-      })
-    })
+      );
+    });
   },
 
-  getQuote: function (quoteId) {
+  getQuote: function(quoteId) {
     return new Promise((resolve, reject) => {
-      quoteModel.find({
-        _id: quoteId
-      })
-      .exec()
-      .then(data => {
-        if (data.length > 0) {
-          resolve(data[0]);
-        } else {
-          reject("No quote with this id ", quoteId);
-        }
-      });
-    })
+      quoteModel
+        .find({
+          _id: quoteId
+        })
+        .exec()
+        .then(data => {
+          if (data.length > 0) {
+            resolve(data[0]);
+          } else {
+            reject("No quote with this id ", quoteId);
+          }
+        });
+    });
   },
 
-
-  fetchQuote: function (authorName) {
+  fetchQuote: function(authorName) {
     var sortDate = { datePosted: -1 };
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       quoteModel
         .find({
           author: authorName
@@ -155,9 +160,9 @@ module.exports = {
     });
   },
 
-  fetchQuoteList: function (categoryName) {
+  fetchQuoteList: function(categoryName) {
     // console.log(categoryName);
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       quoteModel
         .find({
           category: categoryName
@@ -188,7 +193,7 @@ module.exports = {
     });
   },
 
-  rateQuote: function (data, quoteId) {
+  rateQuote: function(data, quoteId) {
     return new Promise((resolve, reject) => {
       quoteModel.findOneAndUpdate(
         {
@@ -200,7 +205,7 @@ module.exports = {
         {
           new: true
         },
-        function (err, doc) {
+        function(err, doc) {
           if (err) {
             console.log(
               "Following error occured when updating the rating:",
@@ -214,8 +219,8 @@ module.exports = {
     });
   },
 
-  reportIncrement: function (data) {
-    return new Promise(function (resolve, reject) {
+  reportIncrement: function(data) {
+    return new Promise(function(resolve, reject) {
       quoteModel
         .findOne({
           _id: data.quoteId
@@ -238,5 +243,36 @@ module.exports = {
     });
   },
 
-  removeQuote: function (data) { }
+  keepQuote: function(data) {
+    return new Promise(function(resolve, reject) {
+      quoteModel
+        .findOne({
+          _id: data.quoteId
+        })
+        .exec()
+        .then(user => {
+          if (user) {
+            user.reportNum = 0;
+            user.save(err => {
+              if (err) {
+                reject("Cannot save changes: " + err.message);
+              } else {
+                resolve();
+              }
+            });
+          } else {
+            reject("QuoteId Not Found!");
+          }
+        });
+    });
+  },
+
+  deleteQuote: function(data) {
+    console.log("DeleteQuote called");
+    return new Promise(function(resolve, reject) {
+      quoteModel.deleteOne({ _id: data.quoteId }).exec();
+    });
+  },
+
+  removeQuote: function(data) {}
 };
