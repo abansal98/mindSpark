@@ -47,11 +47,7 @@ class ShowComment extends Component {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
     console.log("ShowComment called");
-=======
-    // console.log("ShowComment called");
->>>>>>> f3bcda16622f3f8d1c6b9f52c1e1bb5520f10ccb
     this.fetchQuote(this.props.quoteId);
   }
 
