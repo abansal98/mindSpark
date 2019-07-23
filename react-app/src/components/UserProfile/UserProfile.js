@@ -7,7 +7,7 @@ import "./UserProfile.css";
 import { Tab, Row, Col, ListGroup } from "react-bootstrap";
 import $ from "jquery";
 import ChangePassword from "./ChangePassword";
-import AdminValidation from "./Admin/ValidationQuoteList";
+import ValidationQuoteList from "./Admin/ValidationQuoteList";
 
 class UserProfile extends Component {
   constructor(props) {
@@ -117,7 +117,7 @@ class UserProfile extends Component {
                   eventKey="#quoteapproval"
                   className="userprofileReminderBody"
                 >
-                  <AdminValidation />
+                  <ValidationQuoteList />
                 </Tab.Pane>
               </Tab.Content>
             </Col>

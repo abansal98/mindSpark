@@ -20,7 +20,7 @@ class AddQuote extends Component {
       },
       categories: [],
       selectedCategories: [],
-      rating: 0,
+      rating: 0
     };
   }
 
@@ -34,7 +34,6 @@ class AddQuote extends Component {
       });
     });
   }
-
 
   handleSubmit(e) {
     e.preventDefault();
@@ -59,7 +58,6 @@ class AddQuote extends Component {
           currentDate.getSeconds(),
         categories: this.state.selectedCategories,
         rating: this.state.rating
-
       }
     })
       .then(msg => {
@@ -127,7 +125,7 @@ class AddQuote extends Component {
           <textarea
             className={`form-control ${
               this.state.error.quote ? "invalid" : ""
-              }`}
+            }`}
             className="addquoteTextareaBody"
             onChange={this.handleUserInput.bind(this)}
             name="quote"
