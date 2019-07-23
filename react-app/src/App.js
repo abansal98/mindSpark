@@ -21,7 +21,8 @@ class App extends Component {
       isLoggedIn: false,
       email: "",
       avatar: "",
-      didLoad: false
+      didLoad: false,
+      role: ""
     };
   }
 
@@ -90,7 +91,8 @@ class App extends Component {
         // console.log(data[0].email);
         this.setState({
           email: data.email,
-          avatar: data.avatar
+          avatar: data.avatar,
+          role: data.role
         });
       })
       .fail(err => {
@@ -141,6 +143,7 @@ class App extends Component {
                       avatar={this.state.avatar}
                       username={this.state.username}
                       email={this.state.email}
+                      role={this.state.role}
                     />
                   )}
                 />
