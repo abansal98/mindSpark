@@ -16,11 +16,17 @@ class ValidationQuoteList extends Component {
     $.ajax({
       url: "/db/getPendingQuotes/",
       method: "GET"
-    }).then(data => {
-      this.setState({
-        quotes: data
+    })
+      .then(data => {
+        this.setState({
+          quotes: data
+        });
+      })
+      .fail(err => {
+        this.setState({
+          quotes: []
+        });
       });
-    });
   }
 
   componentDidMount() {

@@ -293,7 +293,18 @@ router.route("/deleteQuote").post((req, res) => {
   quote
     .deleteQuote(req.body)
     .then(data => {
-      res.status(200).send("Quote Kept!");
+      res.status(200).send("Quote Deleted!");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/sendMessage").post((req, res) => {
+  user
+    .sendMessage(req.body)
+    .then(data => {
+      res.status(200).send("Message sent to Author!");
     })
     .catch(err => {
       res.status(301).send(err);

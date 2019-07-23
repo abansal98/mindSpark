@@ -51,6 +51,19 @@ class ValidationQuoteList extends Component {
 
   handleDeleteSubmit() {
     $.ajax({
+      url: "/db/sendMessage",
+      method: "POST",
+      data: {
+        author: this.props.author,
+        message: this.state.message
+      }
+    });
+  }
+
+  deleteQuote(e) {
+    e.preventDefault();
+    this.handleDeleteSubmit();
+    $.ajax({
       url: "/db/deleteQuote",
       method: "POST",
       data: {
@@ -131,7 +144,7 @@ class ValidationQuoteList extends Component {
                   <Modal.Title>Delete Quote</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <form onSubmit={this.handleDeleteSubmit.bind(this)}>
+                  <form onSubmit={this.deleteQuote.bind(this)}>
                     <div className="form-group">
                       <div className="report">
                         <textarea

@@ -40,7 +40,7 @@ var user = new Schema({
     {
       quoteId: {
         type: Schema.Types.ObjectId,
-        ref: 'quote'
+        ref: "quote"
       },
       rating: Number
     }
@@ -68,11 +68,10 @@ module.exports = {
   user,
   userModel,
 
-
-  addUser: function (data) {
+  addUser: function(data) {
     return new Promise((resolve, reject) => {
-      bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(data.password, salt, function (err, hash) {
+      bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(data.password, salt, function(err, hash) {
           if (err) {
             reject("There was an error encrypting the password");
           } else {
@@ -123,8 +122,8 @@ module.exports = {
     });
   },
 
-  userLogin: function (data) {
-    return new Promise(function (resolve, reject) {
+  userLogin: function(data) {
+    return new Promise(function(resolve, reject) {
       userModel
         .findOne({
           username: data.username
@@ -151,8 +150,8 @@ module.exports = {
     });
   },
 
-  checkForgotPasswordToken: function (data) {
-    return new Promise(function (resolve, reject) {
+  checkForgotPasswordToken: function(data) {
+    return new Promise(function(resolve, reject) {
       userModel
         .findOne({
           resetPasswordToken: data.resetPasswordToken
@@ -168,9 +167,9 @@ module.exports = {
     });
   },
 
-  checkRegistrationToken: function (data) {
+  checkRegistrationToken: function(data) {
     //console.log(data);
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       userModel
         .findOne({
           secretToken: data.secretToken
@@ -195,10 +194,10 @@ module.exports = {
     });
   },
 
-  forgotPassword: function (data) {
+  forgotPassword: function(data) {
     console.log(data);
     var token = "";
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       userModel
         .findOne({
           email: data.email
@@ -210,7 +209,7 @@ module.exports = {
               if (err) {
                 reject("Cannot submit: " + err.message);
               } else {
-                crypto.randomBytes(20, function (err, buf) {
+                crypto.randomBytes(20, function(err, buf) {
                   token = buf.toString("hex");
                   console.log(token);
                   user.resetPasswordToken = token;
@@ -245,9 +244,9 @@ module.exports = {
     });
   },
 
-  updatePassword: function (data) {
+  updatePassword: function(data) {
     //console.log(data);
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       userModel
         .findOne({
           resetPasswordToken: data.resetPasswordToken
@@ -255,8 +254,8 @@ module.exports = {
         .exec()
         .then(user => {
           if (user) {
-            bcrypt.genSalt(10, function (err, salt) {
-              bcrypt.hash(data.password, salt, function (err, hash) {
+            bcrypt.genSalt(10, function(err, salt) {
+              bcrypt.hash(data.password, salt, function(err, hash) {
                 if (err) {
                   reject("There was an error encrypting the password");
                 } else {
@@ -278,9 +277,9 @@ module.exports = {
     });
   },
 
-  changePassword: function (data) {
+  changePassword: function(data) {
     //console.log(data);
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       userModel
         .findOne({
           username: data.username
@@ -290,8 +289,8 @@ module.exports = {
           if (user) {
             bcrypt.compare(data.oldpassword, user.password).then(res => {
               if (res) {
-                bcrypt.genSalt(10, function (err, salt) {
-                  bcrypt.hash(data.password, salt, function (err, hash) {
+                bcrypt.genSalt(10, function(err, salt) {
+                  bcrypt.hash(data.password, salt, function(err, hash) {
                     if (err) {
                       reject("There was an error encrypting the password");
                     } else {
@@ -317,8 +316,34 @@ module.exports = {
     });
   },
 
-  getUsers: function () {
-    return new Promise(function (resolve, reject) {
+  sendMessage: function(data) {
+    // console.log(data);
+    return new Promise(function(resolve, reject) {
+      userModel
+        .findOne({
+          username: data.author
+        })
+        .exec()
+        .then(user => {
+          if (user) {
+            const html = `Your Quote was removed from MindSpark because of inappropriate content, Message from admisitrator: 
+            "${data.message}"`;
+            mailer.sendEmail(
+              "donotreply@mindspark.com",
+              user.email,
+              "MindSpark Quote Deleted",
+              html
+            );
+            resolve();
+          } else {
+            reject("Email Address Not Found!");
+          }
+        });
+    });
+  },
+
+  getUsers: function() {
+    return new Promise(function(resolve, reject) {
       userModel
         .find({})
         .exec()
@@ -332,18 +357,18 @@ module.exports = {
     });
   },
 
-  getUser: function (data) {
-    return new Promise(function (resolve, reject) {
+  getUser: function(data) {
+    return new Promise(function(resolve, reject) {
       userModel
         .find(
-        {
-          username: data
-        },
-        {
-          username: 1,
-          email: 1,
-          avatar: 1
-        }
+          {
+            username: data
+          },
+          {
+            username: 1,
+            email: 1,
+            avatar: 1
+          }
         )
         .exec()
         .then(data => {
@@ -354,6 +379,5 @@ module.exports = {
           }
         });
     });
-  },
-
+  }
 };
