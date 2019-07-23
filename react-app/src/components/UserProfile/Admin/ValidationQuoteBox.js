@@ -59,6 +59,14 @@ class ValidationQuoteList extends Component {
         author: this.props.author,
         message: this.state.message
       }
+    })
+    .then(msg => {
+      alert(msg);
+      this.props.toggleRefresh();
+    })
+    .fail(err => {
+      alert(err.responseText);
+      this.props.toggleRefresh();
     });
   }
 
