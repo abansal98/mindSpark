@@ -126,10 +126,11 @@ class AddQuote extends Component {
   render() {
     return (
       <div className="addquoteBody">
-        <h1 className="addQuoteTitle mb-3">AddQuote</h1>
+        <h1 className="addQuoteTitle mb-5">AddQuote</h1>
         <div>
           <p className="userguide">
-            1. Share your thought to inspirit other people
+            1. Tell us what you think! Share your thought to inspirit other
+            people
           </p>
         </div>
         <form onSubmit={this.handleSubmit.bind(this)}>
@@ -137,10 +138,10 @@ class AddQuote extends Component {
             className={`form-control ${
               this.state.error.quote ? "invalid" : ""
             }`}
-            className="addquoteTextareaBody mb-3"
+            className="addquoteTextareaBody mb-5"
             onChange={this.handleUserInput.bind(this)}
             name="quote"
-            placeholder="Tell us what you think"
+            placeholder={"writing a quote as " + this.props.username}
             value={this.state.quote}
           />
 
@@ -151,13 +152,13 @@ class AddQuote extends Component {
           </div>
 
           <ToggleButtonGroup
-            className="addquoteCategoryGroup mb-3"
+            className="addquoteCategoryGroup mb-5"
             type="checkbox"
           >
             {this.state.categories.map((value, index) => {
               return (
                 <ToggleButton
-                  key={`addquoteCategoryButton-${index}`}
+                  // key={`addquoteCategoryButton-${index}`}
                   variant="outline-primary"
                   value={index}
                   size="lg"
@@ -213,9 +214,9 @@ class AddQuote extends Component {
           <div className="invalid-name text-danger">
             {this.state.error.quote}
           </div>
-          <div className="addquoteUserId mb-5">
+          {/* <div className="addquoteUserId mb-5">
             <h1>by {this.props.username}</h1>
-          </div>
+          </div> */}
           <p className="userguide">
             3. Click 'Submit' button and you are done! Your quote will be public
             after reviewing process. Thank you for participating.
