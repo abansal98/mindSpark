@@ -20,7 +20,7 @@
 }
 .addquoteCategoryButton {
   margin-right: 1rem;
-  margin-bottom: 10rem;
+  margin-bottom: 1rem !important;
   border-radius: 9px !important;
 }
 
