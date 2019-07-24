@@ -25,7 +25,7 @@ class SignIn extends Component {
       }
     })
       .then(() => {
-        window.location.href = "/";
+        window.location.href = "/quoteboard";
       })
       .fail(err => {
         alert(err.responseText);
