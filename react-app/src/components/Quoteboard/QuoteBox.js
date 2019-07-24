@@ -69,7 +69,9 @@ class QuoteBox extends Component {
                 />
               </Row>
               <Row>
-                <h3 className="quoteBoxQuoteH3">{this.props.quote}</h3>
+                <div className="qbox">
+                  <h3 className="quoteBoxQuoteH3">{this.props.quote}</h3>
+                </div>
               </Row>
               <Row className="quoteBoxAuthorStar justify-content-end">
                 <span className="quoteboxAuthor">{this.props.author}</span>
