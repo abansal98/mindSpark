@@ -29,13 +29,14 @@ class ShowComment extends Component {
         comment: data.comments,
         didLoad: true,
         needToReload: false
-      }).fail(err => {
-        this.setState({
-          comment: [],
-          didLoad: false,
-          needToReload: false
-        });
-      });
+      })
+      // .fail(err => {
+      //   this.setState({
+      //     comment: [],
+      //     didLoad: false,
+      //     needToReload: false
+      //   });
+      // });
     });
   }
 

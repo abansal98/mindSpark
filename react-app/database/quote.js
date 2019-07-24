@@ -161,11 +161,13 @@ module.exports = {
   },
 
   fetchQuoteList: function(categoryName) {
+    var sortDate = {datePosted: -1};
     return new Promise(function(resolve, reject) {
       quoteModel
         .find({
           category: categoryName
         })
+        .sort(sortDate)
         .exec()
         .then(data => {
           if (data.length > 0) {

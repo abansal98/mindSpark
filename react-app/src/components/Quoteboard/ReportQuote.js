@@ -90,6 +90,11 @@ class ReportQuote extends Component {
     });
   }
 
+  componentDidMount(){
+    this.checkReport();
+
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state.quoteId != this.props.quoteId) {
       this.checkReport();
