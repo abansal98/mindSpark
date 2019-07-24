@@ -42,9 +42,9 @@ class ProfileForm extends Component {
                   />
                 </div>
               </div>
-              <button className="btn btn-primary" type="submit">
+              {/* <button className="btn btn-primary" type="submit">
                 Update
-              </button>
+              </button> */}
             </form>
           </div>
         </div>
