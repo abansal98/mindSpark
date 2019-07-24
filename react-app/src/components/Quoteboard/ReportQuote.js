@@ -20,7 +20,9 @@ class ReportQuote extends Component {
       },
       formValid: false,
       status: false,
-      quoteId: ""
+      quoteId: "",
+      needToReload: false,
+      didLoad: false
     };
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -58,9 +60,11 @@ class ReportQuote extends Component {
       .then(msg => {
         alert(msg);
         this.reportIncrement(this.props.quoteId);
+        this.toggleRefresh();
       })
       .fail(err => {
         alert(err.responseText);
+        this.toggleRefresh();
       });
   }
 
@@ -72,15 +76,26 @@ class ReportQuote extends Component {
     }).then(data => {
       this.setState({
         status: data,
-        quoteId: this.props.quoteId
+        quoteId: this.props.quoteId,
+        didLoad: true
       });
       // console.log(data);
+    });
+  }
+
+  toggleRefresh() {
+    this.setState({
+      needToReload: !this.state.needToReload
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.quoteId != this.props.quoteId) {
       this.checkReport();
+    }
+    if (this.state.needToReload == true) {
+      this.checkReport();
+      this.toggleRefresh();
     }
   }
 
@@ -128,66 +143,73 @@ class ReportQuote extends Component {
   }
 
   render() {
-    // console.log(this.state.status);
     if (!this.state.status) {
       return (
         <React.Fragment>
-          <br />
-          <button
-            className="btn btn-dark"
-            type="submit"
-            onClick={this.handleShow}
-          >
-            Report
-          </button>
-          <Modal show={this.state.show} onHide={this.handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Report Quote</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <form onSubmit={this.handleReportSubmit.bind(this)}>
-                <div className="form-group">
-                  <div className="report">
-                    <textarea
-                      className={`form-control ${
-                        this.state.error.report ? "invalid" : ""
-                      }`}
-                      onChange={this.handleUserInput.bind(this)}
-                      name="report"
-                      placeholder="Enter Description"
-                      value={this.state.report}
-                      id="report"
-                    />
-                    <div className="invalid-name text-danger">
-                      {this.state.error.report}
+          {this.state.didLoad && (
+            <div>
+              <br />
+              <button
+                className="btn btn-dark"
+                type="submit"
+                onClick={this.handleShow}
+              >
+                Report
+              </button>
+              <Modal show={this.state.show} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Report Quote</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <form onSubmit={this.handleReportSubmit.bind(this)}>
+                    <div className="form-group">
+                      <div className="report">
+                        <textarea
+                          className={`form-control ${
+                            this.state.error.report ? "invalid" : ""
+                          }`}
+                          onChange={this.handleUserInput.bind(this)}
+                          name="report"
+                          placeholder="Enter Description"
+                          value={this.state.report}
+                          id="report"
+                        />
+                        <div className="invalid-name text-danger">
+                          {this.state.error.report}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="createAccount">
-                  <button
-                    disabled={!this.state.formValid}
-                    type="submit"
-                    className="btn btn-primary btn-sm"
-                    onClick={this.handleClose}
-                  >
-                    Submit Report
-                  </button>
-                </div>
-              </form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleClose}>
-                Close
-              </Button>
-            </Modal.Footer>
-          </Modal>
+                    <div class="createAccount">
+                      <button
+                        disabled={!this.state.formValid}
+                        type="submit"
+                        className="btn btn-primary btn-sm"
+                        onClick={this.handleClose}
+                      >
+                        Submit Report
+                      </button>
+                    </div>
+                  </form>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={this.handleClose}>
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </div>
+          )}
         </React.Fragment>
       );
     } else {
       return (
-        <div class="alert alert-dark" role="alert">
-          Quote Reported!
-        </div>
+        <React.Fragment>
+          {this.state.didLoad && (
+            <div class="alert alert-dark" role="alert">
+              Quote Reported!
+            </div>
+          )}
+        </React.Fragment>
       );
     }
   }
