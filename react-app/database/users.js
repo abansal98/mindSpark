@@ -43,25 +43,10 @@ var user = new Schema({
         type: Schema.Types.ObjectId,
         ref: "quote"
       },
-      rating: Number
+      ratingNum: Number
     }
   ]
 });
-
-// function encrpytPass(pass) {
-//     console.log("This function was called for password encryption!");
-//     bcrypt.genSalt(10, function (err, salt) {
-//         bcrypt.hash(pass, salt, function (err, hash) {
-//             console.log(hash);
-//         });
-//     });
-// }
-
-// function comparePass(pass, hash) {
-//     bcrypt.compare(pass, hash).then((res) => {
-//         return res;
-//     });
-// }
 
 var userModel = mongoose.model("users", user);
 
@@ -69,10 +54,10 @@ module.exports = {
   user,
   userModel,
 
-  addUser: function(data) {
+  addUser: function (data) {
     return new Promise((resolve, reject) => {
-      bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(data.password, salt, function(err, hash) {
+      bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(data.password, salt, function (err, hash) {
           if (err) {
             reject("There was an error encrypting the password");
           } else {
@@ -123,8 +108,8 @@ module.exports = {
     });
   },
 
-  userLogin: function(data) {
-    return new Promise(function(resolve, reject) {
+  userLogin: function (data) {
+    return new Promise(function (resolve, reject) {
       userModel
         .findOne({
           username: data.username
@@ -151,8 +136,8 @@ module.exports = {
     });
   },
 
-  checkForgotPasswordToken: function(data) {
-    return new Promise(function(resolve, reject) {
+  checkForgotPasswordToken: function (data) {
+    return new Promise(function (resolve, reject) {
       userModel
         .findOne({
           resetPasswordToken: data.resetPasswordToken
@@ -168,9 +153,9 @@ module.exports = {
     });
   },
 
-  checkRegistrationToken: function(data) {
+  checkRegistrationToken: function (data) {
     //console.log(data);
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       userModel
         .findOne({
           secretToken: data.secretToken
@@ -195,10 +180,10 @@ module.exports = {
     });
   },
 
-  forgotPassword: function(data) {
+  forgotPassword: function (data) {
     console.log(data);
     var token = "";
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       userModel
         .findOne({
           email: data.email
@@ -210,7 +195,7 @@ module.exports = {
               if (err) {
                 reject("Cannot submit: " + err.message);
               } else {
-                crypto.randomBytes(20, function(err, buf) {
+                crypto.randomBytes(20, function (err, buf) {
                   token = buf.toString("hex");
                   console.log(token);
                   user.resetPasswordToken = token;
@@ -245,9 +230,9 @@ module.exports = {
     });
   },
 
-  updatePassword: function(data) {
+  updatePassword: function (data) {
     //console.log(data);
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       userModel
         .findOne({
           resetPasswordToken: data.resetPasswordToken
@@ -255,8 +240,8 @@ module.exports = {
         .exec()
         .then(user => {
           if (user) {
-            bcrypt.genSalt(10, function(err, salt) {
-              bcrypt.hash(data.password, salt, function(err, hash) {
+            bcrypt.genSalt(10, function (err, salt) {
+              bcrypt.hash(data.password, salt, function (err, hash) {
                 if (err) {
                   reject("There was an error encrypting the password");
                 } else {
@@ -278,9 +263,9 @@ module.exports = {
     });
   },
 
-  changePassword: function(data) {
+  changePassword: function (data) {
     //console.log(data);
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       userModel
         .findOne({
           username: data.username
@@ -290,8 +275,8 @@ module.exports = {
           if (user) {
             bcrypt.compare(data.oldpassword, user.password).then(res => {
               if (res) {
-                bcrypt.genSalt(10, function(err, salt) {
-                  bcrypt.hash(data.password, salt, function(err, hash) {
+                bcrypt.genSalt(10, function (err, salt) {
+                  bcrypt.hash(data.password, salt, function (err, hash) {
                     if (err) {
                       reject("There was an error encrypting the password");
                     } else {
@@ -317,9 +302,9 @@ module.exports = {
     });
   },
 
-  sendMessage: function(data) {
+  sendMessage: function (data) {
     // console.log(data);
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       userModel
         .findOne({
           username: data.author
@@ -343,8 +328,8 @@ module.exports = {
     });
   },
 
-  getUsers: function() {
-    return new Promise(function(resolve, reject) {
+  getUsers: function () {
+    return new Promise(function (resolve, reject) {
       userModel
         .find({})
         .exec()
@@ -358,8 +343,8 @@ module.exports = {
     });
   },
 
-  getUser: function(data) {
-    return new Promise(function(resolve, reject) {
+  getUser: function (data) {
+    return new Promise(function (resolve, reject) {
       userModel
         .find(
           {
@@ -381,5 +366,40 @@ module.exports = {
           }
         });
     });
+  },
+
+  addRating: function (data, quoteId) {
+    return new Promise(function (resolve, reject) {
+      userModel.findOneAndUpdate(
+        {
+          username: data.name
+        },
+        {
+          $push: {
+            rating: {
+              $each: [
+                {
+                  quoteId: quoteId,
+                  ratingNum: data.rating
+                }
+              ]
+            }
+          }
+        },
+        function (err, doc) {
+          if (err) {
+            console.log(
+              "Following error occured when updating the rating:",
+              err
+            );
+            reject();
+          } else {
+            console.log("Record updated!", doc);
+            resolve();
+          }
+        }
+      )
+    })
   }
+
 };
