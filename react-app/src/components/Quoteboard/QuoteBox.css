@@ -27,7 +27,7 @@
 
 .quoteBox h1,
 .quoteBox h2,
-.quoteBox .quoteBoxQuoteH3{
+.quoteBox .quoteBoxQuoteH3 {
   opacity: 1;
   position: relative;
   text-transform: uppercase;
@@ -35,8 +35,8 @@
   color: #ffffff;
   overflow-x: hidden;
   font-size: 1.7em;
+  margin-bottom: 0rem !important;
 }
-
 
 .quoteBoxAuthorStar {
   text-align: right;
