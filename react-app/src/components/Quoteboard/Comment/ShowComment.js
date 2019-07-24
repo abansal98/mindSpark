@@ -29,13 +29,14 @@ class ShowComment extends Component {
         comment: data.comments,
         didLoad: true,
         needToReload: false
-      }).fail(err => {
-        this.setState({
-          comment: [],
-          didLoad: false,
-          needToReload: false
-        });
-      });
+      })
+      // .fail(err => {
+      //   this.setState({
+      //     comment: [],
+      //     didLoad: false,
+      //     needToReload: false
+      //   });
+      // });
     });
   }
 
@@ -70,6 +71,7 @@ class ShowComment extends Component {
                     <p className="idontknow">{text.commentText}</p>
                     <p>Posted on {text.date}</p>
                   </div>
+                  {this.props.username == text.name && (
                   <div style={{ display: "inline-block" }}>
                     <DeleteComment
                       author={this.props.author}
@@ -79,6 +81,7 @@ class ShowComment extends Component {
                       reload={this.setReload.bind(this)}
                     />
                   </div>
+                  )}
                 </div>
               );
             })}
