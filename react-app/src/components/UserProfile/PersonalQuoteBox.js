@@ -50,24 +50,24 @@ class PersonalQuoteBox extends Component {
             </Row>
             <Row className="personalquoteBoxAuthorStar justify-content-end">
 
-            <button className="btn btn-primary" type="submit" onClick={this.handleShow}>Rate</button>
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>How do you feel about this quote?</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <QuoteRating quoteId={this.props.quoteId} handleClose={this.handleClose}/>
-          </Modal.Body>
-          <Modal.Footer>
-          <button variant="secondary" onClick={this.handleClose}>
-              Close
+              <button className="btn btn-primary" type="submit" onClick={this.handleShow}>Rate</button>
+              <Modal show={this.state.show} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>How do you feel about this quote?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <QuoteRating quoteId={this.props.quoteId} handleClose={this.handleClose} />
+                </Modal.Body>
+                <Modal.Footer>
+                  <button variant="secondary" onClick={this.handleClose}>
+                    Close
             </button>
-          </Modal.Footer>
-          </Modal>
+                </Modal.Footer>
+              </Modal>
               <span>{this.props.author}</span>
               <span>&nbsp;</span>
-              <StarRatings rating={this.props.rating} numberOfStars={5} name='rating'/>
-              
+              <StarRatings rating={this.props.rating} numberOfStars={5} name='rating' />
+
             </Row>
             <Accordion>
               <Card>
@@ -78,10 +78,10 @@ class PersonalQuoteBox extends Component {
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
-                    <Comment quoteId={this.props.quoteId} refresh={this.refresh.bind(this)}/>
-                    <ShowComment quoteId={this.props.quoteId} needToReload={this.state.needToReload} toggleRefresh={this.toggleRefresh.bind(this)}/>
+                    <Comment quoteId={this.props.quoteId} refresh={this.refresh.bind(this)} />
+                    <ShowComment quoteId={this.props.quoteId} />
                   </Card.Body>
-                  
+
                 </Accordion.Collapse>
               </Card>
             </Accordion>

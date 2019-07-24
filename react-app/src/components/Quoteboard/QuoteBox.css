@@ -24,14 +24,20 @@
 
 .quoteBox h1,
 .quoteBox h2,
-.quoteBox h3 {
+.quoteBox .quoteBoxQuoteH3{
   opacity: 1;
   position: relative;
   text-transform: uppercase;
   z-index: 2;
   color: #ffffff;
+  overflow-x: hidden;
   font-size: 1.7em;
 }
+
+.quoteBoxQuoteH3 {
+  overflow-x: hidden;
+}
+
 .quoteBoxAuthorStar {
   text-align: right;
 }

@@ -95,18 +95,18 @@ class QuoteBox extends Component {
                 />
               </Row>
 
-              <Accordion>
+              <Accordion defaultActiveKey="0">
                 <Card>
                   <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                    <Accordion.Toggle as={Button} variant="link" eventKey={this.props.quoteId}>
                       Comment
                     </Accordion.Toggle>
                   </Card.Header>
-                  <Accordion.Collapse eventKey="0">
+                  <Accordion.Collapse eventKey={this.props.quoteId}>
                     <Card.Body>
                       <Comment
                         quoteId={this.props.quoteId}
-                        refresh={this.refresh.bind(this)}
+                        refresh={this.toggleRefresh.bind(this)}
                       />
                       <ShowComment
                         author={this.props.author}
