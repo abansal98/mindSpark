@@ -41,6 +41,13 @@
 .quoteBox .quoteBoxAuthorStar span {
   color: #ffffff;
 }
+.quoteboxratebtn {
+  margin-right: 0.5rem;
+}
+
+.quoteboxAuthor {
+  margin-right: 0.5rem;
+}
 
 /* 
 filter: blur(8px);

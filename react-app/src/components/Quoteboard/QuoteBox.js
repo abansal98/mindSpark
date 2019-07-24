@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./QuoteBox.css";
 import {
   Container,
+  Col,
   Row,
   Modal,
   Accordion,
@@ -55,6 +56,13 @@ class QuoteBox extends Component {
           <div className="quoteBoxBg">
             <div className="quoteBox">
               <Row className="justify-content-end">
+                <button
+                  className="btn btn-primary btn-sm quoteboxratebtn"
+                  type="submit"
+                  onClick={this.handleShow}
+                >
+                  Rate
+                </button>
                 <ReportQuote
                   username={this.props.username}
                   quoteId={this.props.quoteId}
@@ -64,13 +72,8 @@ class QuoteBox extends Component {
                 <h3 className="quoteBoxQuoteH3">{this.props.quote}</h3>
               </Row>
               <Row className="quoteBoxAuthorStar justify-content-end">
-                <button
-                  className="btn btn-primary"
-                  type="submit"
-                  onClick={this.handleShow}
-                >
-                  Rate
-                </button>
+                <span className="quoteboxAuthor">{this.props.author}</span>
+
                 <Modal show={this.state.show} onHide={this.handleClose}>
                   <Modal.Header closeButton>
                     <Modal.Title>How do you feel about this quote?</Modal.Title>
@@ -88,36 +91,43 @@ class QuoteBox extends Component {
                   </Modal.Footer>
                 </Modal>
 
-                <StarRatings
-                  rating={this.props.rating}
-                  numberOfStars={5}
-                  name="rating"
-                />
+                <span>
+                  <StarRatings
+                    rating={this.props.rating}
+                    numberOfStars={5}
+                    starDimension="20px"
+                    starSpacing="0px"
+                    name="rating"
+                    starRatedColor="rgb(255, 255, 255)"
+                    starEmptyColor="rgb(47,79,79)"
+                  />
+                </span>
               </Row>
-
-              <Accordion>
-                <Card>
-                  <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                      Comment
-                    </Accordion.Toggle>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="0">
-                    <Card.Body>
-                      <Comment
-                        quoteId={this.props.quoteId}
-                        refresh={this.refresh.bind(this)}
-                      />
-                      <ShowComment
-                        author={this.props.author}
-                        quoteId={this.props.quoteId}
-                        needToReload={this.state.needToReload}
-                        toggleRefresh={this.toggleRefresh.bind(this)}
-                      />
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>
+              <Row className="justify-content-end">
+                <Accordion>
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                        Comment
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey="0">
+                      <Card.Body>
+                        <Comment
+                          quoteId={this.props.quoteId}
+                          refresh={this.refresh.bind(this)}
+                        />
+                        <ShowComment
+                          author={this.props.author}
+                          quoteId={this.props.quoteId}
+                          needToReload={this.state.needToReload}
+                          toggleRefresh={this.toggleRefresh.bind(this)}
+                        />
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                </Accordion>
+              </Row>
             </div>
           </div>
         </Container>
