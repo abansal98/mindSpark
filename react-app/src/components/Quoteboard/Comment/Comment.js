@@ -15,7 +15,6 @@ class Comment extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
     $.ajax({
       url: "db/quote/comment/" + this.props.quoteId,
       method: "POST",
@@ -24,11 +23,9 @@ class Comment extends Component {
       }
     })
       .then(msg => {
-        alert(msg);
         this.props.refresh();
       })
       .fail(err => {
-        alert(err.responseText);
         this.props.refresh();
       });
   };

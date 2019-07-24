@@ -9,48 +9,48 @@ class ShowComment extends Component {
     this.state = {
       comment: [],
       didLoad: false,
-      show: false
+      show: false,
+      needToReload: false
     };
-
-    // this.handleClose = this.handleClose.bind(this);
-    // this.handleShow = this.handleShow.bind(this);
   }
 
-  handleClose = () => {
-    this.setState({ show: false });
-  };
-
-  handleShow = () => {
-    this.setState({ show: true });
-  };
+  setReload() {
+    this.setState({
+      needToReload: true
+    })
+  }
 
   fetchQuote(id) {
     $.ajax({
       url: "/db/getQuote/" + id,
       method: "GET"
     }).then(data => {
-      // console.log(data.comments);
       this.setState({
         comment: data.comments,
-        didLoad: true
+        didLoad: true,
+        needToReload: false
       }).fail(err => {
         this.setState({
           comment: [],
-          didLoad: false
+          didLoad: false,
+          needToReload: false
         });
       });
     });
   }
 
   componentDidMount() {
-    // console.log("ShowComment called");
     this.fetchQuote(this.props.quoteId);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.needToReload == true) {
+    if (prevProps.quoteId != this.props.quoteId
+      || this.state.needToReload == true
+      || this.props.needToReload == true) {
       this.fetchQuote(this.props.quoteId);
-      this.props.toggleRefresh();
+      if (this.props.needToReload == true) {
+        this.props.toggleRefresh();
+      }
     }
   }
 
@@ -71,32 +71,13 @@ class ShowComment extends Component {
                     <p>Posted on {text.date}</p>
                   </div>
                   <div style={{ display: "inline-block" }}>
-                    <button
-                      className="btn btn-primary"
-                      type="submit"
-                      onClick={this.handleShow}
-                    >
-                      Delete
-                    </button>
-                    <Modal show={this.state.show} onHide={this.handleClose}>
-                      <Modal.Header closeButton>
-                        <Modal.Title>
-                          Do you really want to delete this?
-                        </Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body />
-                      <Modal.Footer>
-                        <DeleteComment
-                          author={this.props.author}
-                          quoteId={this.props.quoteId}
-                          commentId={text._id}
-                          handleClose={this.handleClose}
-                        />
-                        <button variant="secondary" onClick={this.handleClose}>
-                          Close
-                        </button>
-                      </Modal.Footer>
-                    </Modal>
+                    <DeleteComment
+                      author={this.props.author}
+                      quoteId={this.props.quoteId}
+                      commentId={text._id}
+                      handleClose={this.handleClose}
+                      reload={this.setReload.bind(this)}
+                    />
                   </div>
                 </div>
               );

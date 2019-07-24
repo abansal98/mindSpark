@@ -92,11 +92,7 @@ class PersonalQuoteBox extends Component {
                       quoteId={this.props.quoteId}
                       refresh={this.refresh.bind(this)}
                     />
-                    <ShowComment
-                      quoteId={this.props.quoteId}
-                      needToReload={this.state.needToReload}
-                      toggleRefresh={this.toggleRefresh.bind(this)}
-                    />
+                    <ShowComment quoteId={this.props.quoteId} />
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
