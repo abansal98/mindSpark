@@ -9,11 +9,11 @@ class Comment extends Component {
     };
   }
 
-  handleInput(e) {
+  handleInput = e => {
     this.setState({ text: e.target.value });
-  }
+  };
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);
     $.ajax({
@@ -31,16 +31,16 @@ class Comment extends Component {
         alert(err.responseText);
         this.props.refresh();
       });
-  }
+  };
 
   render() {
     return (
       <div class="Comment">
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit}>
           <textarea
             name="comment"
             className="addComment"
-            onChange={this.handleInput.bind(this)}
+            onChange={this.handleInput}
             value={this.state.text}
             placeholder="What do you think about this Quote?"
           />
