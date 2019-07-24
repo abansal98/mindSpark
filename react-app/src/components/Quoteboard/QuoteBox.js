@@ -89,11 +89,6 @@ class QuoteBox extends Component {
                     </div>
                   </Modal.Body>
                   <Modal.Footer>
-                    <div className="d-flex justify-content-end">
-                      <button className="btn btn-primary" type="submit">
-                        Submit
-                      </button>
-                    </div>
                     {/* <button variant="secondary" onClick={this.handleClose}>
                       Close
                     </button> */}

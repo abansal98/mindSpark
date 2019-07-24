@@ -48,6 +48,11 @@ class QuoteRating extends Component {
               name="rating"
             />
           </div>
+          <div className="d-flex justify-content-end">
+                      <button className="btn btn-primary" type="submit">
+                        Submit
+                      </button>
+                    </div>
         </form>
       </React.Fragment>
     );

@@ -47,7 +47,7 @@ class ReportQuote extends Component {
   }
 
   handleReportSubmit(e) {
-    // console.log(e);
+    //  console.log("HandleReportSbmited");
     e.preventDefault();
     $.ajax({
       url: "/db/submitReport",
@@ -70,7 +70,7 @@ class ReportQuote extends Component {
   }
 
   checkReport() {
-    // console.log("checkReport Called");
+  // console.log("checkReport Called");
     $.ajax({
       url: "/db/checkReport/" + this.props.username + "/" + this.props.quoteId,
       method: "GET"
@@ -184,10 +184,7 @@ class ReportQuote extends Component {
                         </div>
                       </div>
                     </div>
-                  </form>
-                </Modal.Body>
-                <Modal.Footer>
-                  <div className="createAccount submitreportbutton">
+                    <div className="createAccount submitreportbutton">
                     <button
                       disabled={!this.state.formValid}
                       type="submit"
@@ -197,7 +194,11 @@ class ReportQuote extends Component {
                       Submit Report
                     </button>
                   </div>
-                </Modal.Footer>
+                  </form>
+                </Modal.Body>
+                {/* <Modal.Footer> */}
+
+                {/* </Modal.Footer> */}
               </Modal>
             </div>
           )}
