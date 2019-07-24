@@ -79,15 +79,22 @@ class QuoteBox extends Component {
                     <Modal.Title>How do you feel about this quote?</Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
-                    <QuoteRating
-                      quoteId={this.props.quoteId}
-                      handleClose={this.handleClose}
-                    />
+                    <div className="d-flex justify-content-center">
+                      <QuoteRating
+                        quoteId={this.props.quoteId}
+                        handleClose={this.handleClose}
+                      />
+                    </div>
                   </Modal.Body>
                   <Modal.Footer>
-                    <button variant="secondary" onClick={this.handleClose}>
+                    <div className="d-flex justify-content-end">
+                      <button className="btn btn-primary" type="submit">
+                        Submit
+                      </button>
+                    </div>
+                    {/* <button variant="secondary" onClick={this.handleClose}>
                       Close
-                    </button>
+                    </button> */}
                   </Modal.Footer>
                 </Modal>
 

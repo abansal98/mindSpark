@@ -90,9 +90,8 @@ class ReportQuote extends Component {
     });
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.checkReport();
-
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -185,23 +184,20 @@ class ReportQuote extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="createAccount submitreportbutton">
-                      <button
-                        disabled={!this.state.formValid}
-                        type="submit"
-                        className="btn btn-danger btn-sm"
-                        onClick={this.handleClose}
-                      >
-                        Submit Report
-                      </button>
-                    </div>
                   </form>
                 </Modal.Body>
-                {/* <Modal.Footer>
-                  <Button variant="secondary" onClick={this.handleClose}>
-                    Close
-                  </Button>
-                </Modal.Footer> */}
+                <Modal.Footer>
+                  <div className="createAccount submitreportbutton">
+                    <button
+                      disabled={!this.state.formValid}
+                      type="submit"
+                      className="btn btn-danger btn-sm"
+                      onClick={this.handleClose}
+                    >
+                      Submit Report
+                    </button>
+                  </div>
+                </Modal.Footer>
               </Modal>
             </div>
           )}
