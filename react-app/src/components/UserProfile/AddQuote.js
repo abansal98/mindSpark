@@ -11,7 +11,7 @@ import "./AddQuote.css";
 import UserProfile from "./UserProfile";
 
 const quoteRegex = RegExp(
-  /^[a-zA-Z0-9_#,!?_.][a-zA-Z0-9#,!?_._ ]*[a-zA-Z0-9#,!?_._]$/
+  /^[a-zA-Z0-9_#'",!?_.][a-zA-Z0-9#'",!?_._ ]*[a-zA-Z0-9#'",!?_._]$/
 );
 
 class AddQuote extends Component {
