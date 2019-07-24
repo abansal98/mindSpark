@@ -130,6 +130,7 @@ class QuoteBox extends Component {
                         />
                         <ShowComment
                           author={this.props.author}
+                          username={this.props.username}
                           quoteId={this.props.quoteId}
                           needToReload={this.state.needToReload}
                           toggleRefresh={this.toggleRefresh.bind(this)}
