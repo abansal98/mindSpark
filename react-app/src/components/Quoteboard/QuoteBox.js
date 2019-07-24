@@ -95,7 +95,7 @@ class QuoteBox extends Component {
                 />
               </Row>
 
-              <Accordion defaultActiveKey="0">
+              <Accordion>
                 <Card>
                   <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey={this.props.quoteId}>
