@@ -29,7 +29,7 @@ class ShowComment extends Component {
       url: "/db/getQuote/" + id,
       method: "GET"
     }).then(data => {
-      console.log(data.comments);
+      // console.log(data.comments);
       this.setState({
         comment: data.comments,
         didLoad: true
@@ -43,7 +43,7 @@ class ShowComment extends Component {
   }
 
   componentDidMount() {
-    console.log("ShowComment called");
+    // console.log("ShowComment called");
     this.fetchQuote(this.props.quoteId);
   }
 
