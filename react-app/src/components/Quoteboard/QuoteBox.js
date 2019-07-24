@@ -104,7 +104,34 @@ class QuoteBox extends Component {
                 </span>
               </Row>
               <Row className="justify-content-end">
-                <Accordion>
+                <Accordion defaultActiveKey="0">
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle
+                        as={Button}
+                        variant="link"
+                        eventKey={this.props.quoteId}
+                      >
+                        Comment
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey={this.props.quoteId}>
+                      <Card.Body>
+                        <Comment
+                          quoteId={this.props.quoteId}
+                          refresh={this.toggleRefresh.bind(this)}
+                        />
+                        <ShowComment
+                          author={this.props.author}
+                          quoteId={this.props.quoteId}
+                          needToReload={this.state.needToReload}
+                          toggleRefresh={this.toggleRefresh.bind(this)}
+                        />
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                </Accordion>
+                {/* <Accordion>
                   <Card>
                     <Card.Header>
                       <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -126,36 +153,8 @@ class QuoteBox extends Component {
                       </Card.Body>
                     </Accordion.Collapse>
                   </Card>
-                </Accordion>
+                </Accordion> */}
               </Row>
-
-              <Accordion defaultActiveKey="0">
-                <Card>
-                  <Card.Header>
-                    <Accordion.Toggle
-                      as={Button}
-                      variant="link"
-                      eventKey={this.props.quoteId}
-                    >
-                      Comment
-                    </Accordion.Toggle>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey={this.props.quoteId}>
-                    <Card.Body>
-                      <Comment
-                        quoteId={this.props.quoteId}
-                        refresh={this.toggleRefresh.bind(this)}
-                      />
-                      <ShowComment
-                        author={this.props.author}
-                        quoteId={this.props.quoteId}
-                        needToReload={this.state.needToReload}
-                        toggleRefresh={this.toggleRefresh.bind(this)}
-                      />
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>
             </div>
           </div>
         </Container>
