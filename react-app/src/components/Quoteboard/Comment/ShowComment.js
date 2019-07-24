@@ -12,17 +12,17 @@ class ShowComment extends Component {
       show: false
     };
 
-    this.handleClose = this.handleClose.bind(this);
-    this.handleShow = this.handleShow.bind(this);
+    // this.handleClose = this.handleClose.bind(this);
+    // this.handleShow = this.handleShow.bind(this);
   }
 
-  handleClose() {
+  handleClose = () => {
     this.setState({ show: false });
-  }
+  };
 
-  handleShow() {
+  handleShow = () => {
     this.setState({ show: true });
-  }
+  };
 
   fetchQuote(id) {
     $.ajax({
