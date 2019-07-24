@@ -23,7 +23,7 @@
 }
 
 .quoteBoxQuoteH3 {
-  overflow-wrap: break-word;
+  overflow-wrap: break-all;
 }
 
 .quoteBox h1,
