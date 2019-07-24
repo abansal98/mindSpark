@@ -3,6 +3,7 @@ import "./Quoteboard.css";
 import $ from "jquery";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import "./ReportQuote.css";
 
 const reportRegex = RegExp(
   /^[a-zA-Z0-9_#,!?_.][a-zA-Z0-9#,!?_._ ]*[a-zA-Z0-9#,!?_._]$/
@@ -148,9 +149,9 @@ class ReportQuote extends Component {
         <React.Fragment>
           {this.state.didLoad && (
             <div>
-              <br />
+              {/* <br /> */}
               <button
-                className="btn btn-dark"
+                className="btn btn-danger btn-sm"
                 type="submit"
                 onClick={this.handleShow}
               >
@@ -179,11 +180,11 @@ class ReportQuote extends Component {
                         </div>
                       </div>
                     </div>
-                    <div class="createAccount">
+                    <div className="createAccount submitreportbutton">
                       <button
                         disabled={!this.state.formValid}
                         type="submit"
-                        className="btn btn-primary btn-sm"
+                        className="btn btn-danger btn-sm"
                         onClick={this.handleClose}
                       >
                         Submit Report
@@ -191,11 +192,11 @@ class ReportQuote extends Component {
                     </div>
                   </form>
                 </Modal.Body>
-                <Modal.Footer>
+                {/* <Modal.Footer>
                   <Button variant="secondary" onClick={this.handleClose}>
                     Close
                   </Button>
-                </Modal.Footer>
+                </Modal.Footer> */}
               </Modal>
             </div>
           )}
