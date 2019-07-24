@@ -23,7 +23,7 @@
 }
 .personalquoteBoxQuoteH3 {
   /* overflow-x: hidden; */
-  overflow-wrap: break-all;
+  word-break: break-all;
 }
 
 .personalquoteBox h1,
