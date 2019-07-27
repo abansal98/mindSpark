@@ -46,6 +46,7 @@ class Quotelist extends Component {
                     rating={quoteObj.rating}
                     username={this.props.username}
                     quoteId={quoteObj._id}
+                    newauthor={quoteObj.newauthor}
                   />
                 );
               }

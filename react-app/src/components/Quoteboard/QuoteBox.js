@@ -21,7 +21,8 @@ class QuoteBox extends Component {
     super(props);
     this.state = {
       show: false,
-      needToReload: false
+      needToReload: false,
+      authorCheck: false
     };
 
     this.handleClose = this.handleClose.bind(this);
@@ -46,6 +47,16 @@ class QuoteBox extends Component {
 
   handleShow() {
     this.setState({ show: true });
+  }
+
+  authorCheck() {
+    if (this.props.newauthor != "") {
+      this.state.authorCheck = true;
+    }
+  }
+
+  componentDidMount() {
+    this.authorCheck();
   }
 
   render() {
@@ -74,7 +85,10 @@ class QuoteBox extends Component {
                 </div>
               </Row>
               <Row className="quoteBoxAuthorStar justify-content-end">
-                <span className="quoteboxAuthor">{this.props.author}</span>
+                {this.state.authorCheck == true && (
+                  <span className="quoteboxAuthor">{this.props.newauthor}</span>
+                )}
+                <span className="quoteboxAuthor">({this.props.author})</span>
 
                 <Modal show={this.state.show} onHide={this.handleClose}>
                   <Modal.Header closeButton>
