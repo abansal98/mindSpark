@@ -26,11 +26,10 @@ class PersonalQuote extends Component {
     })
       .then(data => {
         // console.log(data);
-        this.setState(
-          {
-            quote: data,
-            didLoad: true
-          });
+        this.setState({
+          quote: data,
+          didLoad: true
+        });
       })
       .fail(err => {
         // alert("Failed to load the list of personal quotes!", err);
@@ -49,7 +48,7 @@ class PersonalQuote extends Component {
   render() {
     return (
       <React.Fragment>
-        {this.state.didLoad &&
+        {this.state.didLoad && (
           <div className="personalquoteBody">
             <div className="quotelistBody">
               {this.state.quote.map((quoteObj, index) => {
@@ -59,12 +58,13 @@ class PersonalQuote extends Component {
                     author={quoteObj.author}
                     rating={quoteObj.rating}
                     quoteId={quoteObj._id}
+                    newauthor={quoteObj.newauthor}
                   />
                 );
               })}
             </div>
           </div>
-        }
+        )}
       </React.Fragment>
     );
   }
