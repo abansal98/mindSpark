@@ -27,9 +27,12 @@ class AddQuote extends Component {
       categories: [],
       selectedCategories: [],
       rating: 0,
-      isSelected: false
+      isSelected: false,
+      isChecked: false,
+      newauthor: ""
     };
     this.clickCatgeory = this.clickCatgeory.bind(this);
+    this.showTextField = this.showTextField.bind(this);
   }
 
   getAllCategories() {
@@ -52,6 +55,7 @@ class AddQuote extends Component {
       data: {
         text: this.state.quote,
         author: this.state.author,
+        newauthor: this.state.newauthor,
         currentDate:
           currentDate.getFullYear() +
           "-" +
@@ -81,7 +85,7 @@ class AddQuote extends Component {
   handleUserInput(e) {
     const name = e.target.name;
     const value = e.target.value;
-    this.setState({ quote: e.target.value }, () => {
+    this.setState({ [name]: value }, () => {
       this.validateField(name, value);
     });
   }
@@ -123,6 +127,10 @@ class AddQuote extends Component {
       author: this.props.username
     });
     this.getAllCategories();
+  }
+
+  showTextField() {
+    this.setState({ isChecked: !this.state.isChecked });
   }
 
   clickCatgeory(e) {
@@ -170,6 +178,27 @@ class AddQuote extends Component {
             placeholder={"writing a quote as " + this.props.username}
             value={this.state.quote}
           />
+          <label class="form-check-label">Please select Author:</label>
+          <label class="form-check-label">Default: {this.props.username}</label>
+          <br />
+          <label class="form-check-label">
+            <input type="checkbox" onChange={this.showTextField} />
+            Other
+          </label>
+          {this.state.isChecked == true && (
+            <div class="form-group">
+              <div className="newauthor">
+                <input
+                  placeholder="Enter Author Name"
+                  type="text"
+                  name="newauthor"
+                  class="form-control"
+                  value={this.state.newauthor}
+                  onChange={this.handleUserInput.bind(this)}
+                />
+              </div>
+            </div>
+          )}
 
           <div>
             <p className="userguide">
@@ -197,45 +226,6 @@ class AddQuote extends Component {
               );
             })}
           </ToggleButtonGroup>
-
-          {/* <div>
-            <h1>{this.state.mkTempVal}</h1>
-          </div> */}
-
-          {/* <ButtonGroup type="checkbox" className="btn-toolbar">
-            <ToggleButton variant="outline-primary" value={1}>
-              Depressed
-            </ToggleButton>
-            <ToggleButton variant="outline-primary" value={2}>
-              Weariness
-            </ToggleButton>
-            <ToggleButton variant="outline-primary" value={3}>
-              Laziness
-            </ToggleButton>
-            <ToggleButton variant="outline-primary" value={4}>
-              Loneliness
-            </ToggleButton>
-            <ToggleButton variant="outline-primary" value={5}>
-              Stress
-            </ToggleButton>
-            <ToggleButton variant="outline-primary" value={6}>
-              Nervousness
-            </ToggleButton>
-            <ToggleButton variant="outline-primary" value={7}>
-              Nostalgia
-            </ToggleButton>
-            <ToggleButton variant="outline-primary" value={8}>
-              Grief
-            </ToggleButton>
-            <ToggleButton variant="outline-primary" value={9}>
-              Panic
-            </ToggleButton>
-            <ToggleButton variant="outline-primary" value={10}>
-              Others
-            </ToggleButton>
-          </ButtonGroup> */}
-
-          {/* Depressed Weariness Laziness Loneliness Stress Nervousness Nostalgia Grief Panic Others */}
 
           <div className="invalid-name text-danger">
             {this.state.error.quote}
