@@ -3,8 +3,8 @@ const express = require("express"),
   category = require("../database/category"),
   user = require("../database/users"),
   quote = require("../database/quote"),
-  reminder = require("../database/reminder");
-report = require("../database/report");
+  reminder = require("../database/reminder"),
+  report = require("../database/report");
 
 //*******************User authorization and authentication*******************//
 router.route("/signin").post((req, res) => {
@@ -30,7 +30,7 @@ router.route("/signup").post((req, res) => {
       res
         .status(200)
         .send(
-          "User registration complete, please check your email for verification!"
+        "User registration complete, please check your email for verification!"
         );
     })
     .catch(err => {
@@ -206,7 +206,7 @@ router.route("/getQuotes/:categoryName").get((req, res) => {
 
 //******************************Quote Reporting******************************//
 router.route("/submitReport").post((req, res) => {
-  // console.log(req.body);
+  console.log(req.body);
   report
     .submitReport(req.body)
     .then(data => {

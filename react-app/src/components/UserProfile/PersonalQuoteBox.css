@@ -43,6 +43,9 @@
   color: #444444;
 }
 
+.quoteBoxAuthorStar {
+  text-align: right;
+}
 /* 
   filter: blur(8px);
   -webkit-filter: blur(8px);

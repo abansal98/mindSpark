@@ -9,6 +9,7 @@ var quote = new Schema({
   datePosted: Date,
   rating: Number,
   category: [],
+  newauthor: String,
   reportNum: {
     type: Number,
     default: 0
@@ -46,7 +47,8 @@ module.exports = {
         author: data.author,
         datePosted: data.currentDate,
         category: data.category,
-        rating: data.rating
+        rating: data.rating,
+        newauthor: data.newauthor
       });
       quote_data.save(err => {
         if (err) {
@@ -167,9 +169,9 @@ module.exports = {
     });
   },
 
-  fetchQuoteList: function(categoryName) {
-    var sortDate = {datePosted: -1};
-    return new Promise(function(resolve, reject) {
+  fetchQuoteList: function (categoryName) {
+    var sortDate = { datePosted: -1 };
+    return new Promise(function (resolve, reject) {
       quoteModel
         .find({
           category: categoryName
