@@ -73,6 +73,9 @@ class UserProfile extends Component {
                 <ListGroup.Item action href="#addquote">
                   Add Quote
                 </ListGroup.Item>
+                <ListGroup.Item action href="#personalquote">
+                  Personal Quote
+                </ListGroup.Item>
                 <ListGroup.Item action href="#userinformation">
                   User Information
                 </ListGroup.Item>
@@ -93,6 +96,16 @@ class UserProfile extends Component {
                     username={this.props.username}
                     toggleRefresh={this.toggleRefresh.bind(this)}
                   />
+                  <PersonalQuote
+                    username={this.props.username}
+                    needToReload={this.state.needToReload}
+                    toggleRefresh={this.toggleRefresh.bind(this)}
+                  />
+                </Tab.Pane>
+                <Tab.Pane
+                  eventKey="#personalquote"
+                  className="userprofileUserinformationBody"
+                >
                   <PersonalQuote
                     username={this.props.username}
                     needToReload={this.state.needToReload}

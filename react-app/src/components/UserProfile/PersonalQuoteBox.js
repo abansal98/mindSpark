@@ -2,21 +2,19 @@ import React, { Component } from "react";
 import "./PersonalQuoteBox.css";
 import { Container, Row, Accordion, Card, Button } from "react-bootstrap";
 import StarRatings from "react-star-ratings";
-import QuoteRating from "./Rating/QuoteRating";
 import Modal from "react-bootstrap/Modal";
 import Comment from "../Quoteboard/Comment/Comment";
 import ShowComment from "../Quoteboard/Comment/ShowComment";
+import DeleteQuote from "./DeleteQuote";
+import EditQuote from "./EditQuote";
 
 class PersonalQuoteBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
-      needToReload: false
+      needToReload: false,
+      authorCheck: false
     };
-
-    this.handleClose = this.handleClose.bind(this);
-    this.handleShow = this.handleShow.bind(this);
   }
 
   toggleRefresh() {
@@ -31,75 +29,80 @@ class PersonalQuoteBox extends Component {
     });
   }
 
-  handleClose() {
-    this.setState({ show: false });
+  authorCheck() {
+    if (this.props.newauthor != "") {
+      // console.log(this.props.newauthor);
+      this.state.authorCheck = true;
+      // console.log(this.state.authorCheck);
+    }
   }
 
-  handleShow() {
-    this.setState({ show: true });
+  componentDidMount() {
+    this.authorCheck();
   }
 
   render() {
     return (
-      <Container className="personalquoteboxContainer">
-        <div className="personalquoteBoxBg">
-          <div className="personalquoteBox">
-            <Row>
-              <h3 className="personalquoteBoxQuoteH3">{this.props.quote}</h3>
-            </Row>
-            <Row className="personalquoteBoxAuthorStar justify-content-end">
-              <button
-                className="btn btn-primary"
-                type="submit"
-                onClick={this.handleShow}
-              >
-                Rate
-              </button>
-              <Modal show={this.state.show} onHide={this.handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>How do you feel about this quote?</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <QuoteRating
-                    quoteId={this.props.quoteId}
-                    handleClose={this.handleClose}
+      <React.Fragment>
+        <Container className="personalquoteboxContainer">
+          <div className="personalquoteBoxBg">
+            <div className="personalquoteBox">
+              <Row className="justify-content-end">
+                <EditQuote
+                  quoteId={this.props.quoteId}
+                  quote={this.props.quote}
+                />
+                <DeleteQuote
+                  quoteId={this.props.quoteId}
+                  deleteRefresh={this.props.deleteRefresh}
+                />
+              </Row>
+              <Row>
+                <div className="qbox">
+                  <h3 className="quoteBoxQuoteH3">{this.props.quote}</h3>
+                </div>
+              </Row>
+              <Row className="personalquoteBoxAuthorStar justify-content-end">
+                {this.state.authorCheck == true && (
+                  <span className="quoteboxAuthor">{this.props.newauthor}</span>
+                )}
+                <span className="quoteboxAuthor">({this.props.author})</span>
+                <span>
+                  <StarRatings
+                    rating={this.props.rating}
+                    numberOfStars={5}
+                    starDimension="20px"
+                    starSpacing="0px"
+                    name="rating"
+                    starRatedColor="rgb(255, 255, 255)"
+                    starEmptyColor="rgb(47,79,79)"
                   />
-                </Modal.Body>
-                <Modal.Footer>
-                  <button variant="secondary" onClick={this.handleClose}>
-                    Close
-                  </button>
-                </Modal.Footer>
-              </Modal>
-              <span>{this.props.author}</span>
-              <span>&nbsp;</span>
-              <StarRatings
-                rating={this.props.rating}
-                numberOfStars={5}
-                name="rating"
-              />
-            </Row>
-            <Accordion>
-              <Card>
-                <Card.Header>
-                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                    Comment
-                  </Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey="0">
-                  <Card.Body>
-                    <Comment
-                      quoteId={this.props.quoteId}
-                      refresh={this.refresh.bind(this)}
-                    />
-                    <ShowComment quoteId={this.props.quoteId} />
-                  </Card.Body>
-                </Accordion.Collapse>
-              </Card>
-            </Accordion>
+                </span>
+              </Row>
+              <Row className="justify-content-end">
+                <Accordion>
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                        Comment
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey="0">
+                      <Card.Body>
+                        <Comment
+                          quoteId={this.props.quoteId}
+                          refresh={this.refresh.bind(this)}
+                        />
+                        <ShowComment quoteId={this.props.quoteId} />
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                </Accordion>
+              </Row>
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </React.Fragment>
     );
   }
 }
