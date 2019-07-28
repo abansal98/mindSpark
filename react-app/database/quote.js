@@ -271,7 +271,14 @@ module.exports = {
   },
 
   deleteQuote: function(data) {
-    console.log("DeleteQuote called");
+    // console.log("DeleteQuote called");
+    return new Promise(function(resolve, reject) {
+      quoteModel.deleteOne({ _id: data.quoteId }).exec();
+    });
+  },
+
+  deletePersonalQuote: function(data) {
+    // console.log("DeletePersonalQuote called");
     return new Promise(function(resolve, reject) {
       quoteModel.deleteOne({ _id: data.quoteId }).exec();
     });
