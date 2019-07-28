@@ -32,6 +32,18 @@ var quote = new Schema({
   ]
 });
 
+quote.index({
+  author: 'text',
+  text: 'text',
+  category: 'text'
+}, {
+  weights: {
+    text: 5,
+    author: 3,
+    category: 1
+  }
+});
+
 var quoteModel = mongoose.model("quotes", quote);
 
 module.exports = {
@@ -51,6 +63,22 @@ module.exports = {
           reject("Quote already exists!");
         } else {
           resolve();
+        }
+      });
+    });
+  },
+
+  SearchQuote: function(data) {
+    return new Promise((resolve, reject) => {
+      quoteModel.find({
+        $text: { $search: data} 
+      })
+      .exec()
+      .then(data => {
+        if (data.length > 0) {
+          resolve(data);
+        } else {
+          reject("No quote bro");
         }
       });
     });

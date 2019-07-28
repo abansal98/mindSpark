@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import logoIcon from "../../icons/logo.png";
 import { Navbar, Nav } from "react-bootstrap";
 import "./Navbar.css";
+import Search from '../Search/Search';
 
 class NavBar extends Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class NavBar extends Component {
             <Nav>
               <Nav.Link href="/quoteboard">Quotes</Nav.Link>
               <Nav.Link href="/">About</Nav.Link>
+              <Search />
             </Nav>
             
           </Navbar.Collapse>
