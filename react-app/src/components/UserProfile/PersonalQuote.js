@@ -8,13 +8,20 @@ class PersonalQuote extends Component {
     super(props);
     this.state = {
       quote: [],
-      didLoad: false
+      didLoad: false,
+      deleteReload: false
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.needToReload == true) {
       this.fetchPersonalQuotes(this.props.username);
+      this.props.toggleRefresh();
+    }
+
+    if (this.state.deleteReload == true) {
+      this.fetchPersonalQuotes(this.props.username);
+      this.deleteRefresh();
       this.props.toggleRefresh();
     }
   }
@@ -26,11 +33,10 @@ class PersonalQuote extends Component {
     })
       .then(data => {
         // console.log(data);
-        this.setState(
-          {
-            quote: data,
-            didLoad: true
-          });
+        this.setState({
+          quote: data,
+          didLoad: true
+        });
       })
       .fail(err => {
         // alert("Failed to load the list of personal quotes!", err);
@@ -46,10 +52,16 @@ class PersonalQuote extends Component {
     this.fetchPersonalQuotes(this.props.username);
   }
 
+  deleteRefresh() {
+    this.setState({
+      deleteReload: !this.state.deleteReload
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
-        {this.state.didLoad &&
+        {this.state.didLoad && (
           <div className="personalquoteBody">
             <div className="quotelistBody">
               {this.state.quote.map((quoteObj, index) => {
@@ -59,12 +71,14 @@ class PersonalQuote extends Component {
                     author={quoteObj.author}
                     rating={quoteObj.rating}
                     quoteId={quoteObj._id}
+                    newauthor={quoteObj.newauthor}
+                    deleteRefresh={this.deleteRefresh.bind(this)}
                   />
                 );
               })}
             </div>
           </div>
-        }
+        )}
       </React.Fragment>
     );
   }

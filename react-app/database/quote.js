@@ -8,6 +8,7 @@ var quote = new Schema({
   rating: Number,
   ratings: Number,
   category: [],
+  newauthor: String,
   reportNum: {
     type: Number,
     default: 0
@@ -32,6 +33,18 @@ var quote = new Schema({
   ]
 });
 
+quote.index({
+  author: 'text',
+  text: 'text',
+  category: 'text'
+}, {
+  weights: {
+    text: 5,
+    author: 3,
+    category: 1
+  }
+});
+
 var quoteModel = mongoose.model("quotes", quote);
 
 module.exports = {
@@ -44,13 +57,30 @@ module.exports = {
         author: data.author,
         datePosted: data.currentDate,
         category: data.category,
-        rating: data.rating
+        rating: data.rating,
+        newauthor: data.newauthor
       });
       quote_data.save(err => {
         if (err) {
           reject("Quote already exists!");
         } else {
           resolve();
+        }
+      });
+    });
+  },
+
+  SearchQuote: function(data) {
+    return new Promise((resolve, reject) => {
+      quoteModel.find({
+        $text: { $search: data} 
+      })
+      .exec()
+      .then(data => {
+        if (data.length > 0) {
+          resolve(data);
+        } else {
+          reject("No quote bro");
         }
       });
     });
@@ -269,7 +299,14 @@ module.exports = {
   },
 
   deleteQuote: function(data) {
-    console.log("DeleteQuote called");
+    // console.log("DeleteQuote called");
+    return new Promise(function(resolve, reject) {
+      quoteModel.deleteOne({ _id: data.quoteId }).exec();
+    });
+  },
+
+  deletePersonalQuote: function(data) {
+    // console.log("DeletePersonalQuote called");
     return new Promise(function(resolve, reject) {
       quoteModel.deleteOne({ _id: data.quoteId }).exec();
     });

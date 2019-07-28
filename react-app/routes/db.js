@@ -3,8 +3,8 @@ const express = require("express"),
   category = require("../database/category"),
   user = require("../database/users"),
   quote = require("../database/quote"),
-  reminder = require("../database/reminder");
-report = require("../database/report");
+  reminder = require("../database/reminder"),
+  report = require("../database/report");
 
 //*******************User authorization and authentication*******************//
 router.route("/signin").post((req, res) => {
@@ -139,6 +139,16 @@ router.route("/getQuote/:quoteId").get((req, res) => {
     });
 });
 
+router.route("/search/suggest/:searchText").get((req, res) => {
+  quote.SearchQuote(req.params.searchText)
+  .then(data => {
+    res.status(200).send(data);
+  })
+  .catch(err => {
+    res.status(301).send(err);
+  });
+})
+
 router.route("/quoteList/:authorName").get((req, res) => {
   quote
     .fetchQuote(req.params.authorName)
@@ -204,9 +214,13 @@ router.route("/getQuotes/:categoryName").get((req, res) => {
 });
 //**************************Quotes and comments******************************//
 
+//**************************Edit and Delete Quotes******************************//
+
+//**************************Edit and Delete Quotes******************************//
+
 //******************************Quote Reporting******************************//
 router.route("/submitReport").post((req, res) => {
-  // console.log(req.body);
+  console.log(req.body);
   report
     .submitReport(req.body)
     .then(data => {
@@ -230,7 +244,16 @@ router.route("/reportIncrement").post((req, res) => {
     });
 });
 //******************************Quote Reporting******************************//
-
+router.route("/deletePersonalQuote").post((req, res) => {
+  quote
+    .deletePersonalQuote(req.body)
+    .then(data => {
+      res.status(200).send("Quote Deleted!");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
 //*******************************Category************************************//
 router.route("/getCategories").get((req, res) => {
   category

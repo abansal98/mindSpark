@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./QuoteBox.css";
 import {
   Container,
+  Col,
   Row,
   Modal,
   Accordion,
@@ -20,7 +21,8 @@ class QuoteBox extends Component {
     super(props);
     this.state = {
       show: false,
-      needToReload: false
+      needToReload: false,
+      authorCheck: false
     };
 
     this.handleClose = this.handleClose.bind(this);
@@ -47,6 +49,16 @@ class QuoteBox extends Component {
     this.setState({ show: true });
   }
 
+  authorCheck() {
+    if (this.props.newauthor != "") {
+      this.state.authorCheck = true;
+    }
+  }
+
+  componentDidMount() {
+    this.authorCheck();
+  }
+
   render() {
     // console.log("Change", this.props.quoteId);
     return (
@@ -55,69 +67,113 @@ class QuoteBox extends Component {
           <div className="quoteBoxBg">
             <div className="quoteBox">
               <Row className="justify-content-end">
+                <button
+                  className="btn btn-primary btn-sm quoteboxratebtn"
+                  type="submit"
+                  onClick={this.handleShow}
+                >
+                  Rate
+                </button>
                 <ReportQuote
                   username={this.props.username}
                   quoteId={this.props.quoteId}
                 />
               </Row>
               <Row>
-                <h3 className="quoteBoxQuoteH3">{this.props.quote}</h3>
+                <div className="qbox">
+                  <h3 className="quoteBoxQuoteH3">{this.props.quote}</h3>
+                </div>
               </Row>
               <Row className="quoteBoxAuthorStar justify-content-end">
-                <button
-                  className="btn btn-primary"
-                  type="submit"
-                  onClick={this.handleShow}
-                >
-                  Rate
-                </button>
+                {this.state.authorCheck == true && (
+                  <span className="quoteboxAuthor">{this.props.newauthor}</span>
+                )}
+                <span className="quoteboxAuthor">({this.props.author})</span>
+
                 <Modal show={this.state.show} onHide={this.handleClose}>
                   <Modal.Header closeButton>
                     <Modal.Title>How do you feel about this quote?</Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
-                    <QuoteRating
-                      quoteId={this.props.quoteId}
-                      handleClose={this.handleClose}
-                    />
+                    <div className="d-flex justify-content-center">
+                      <QuoteRating
+                        quoteId={this.props.quoteId}
+                        handleClose={this.handleClose}
+                      />
+                    </div>
                   </Modal.Body>
                   <Modal.Footer>
-                    <button variant="secondary" onClick={this.handleClose}>
+                    {/* <button variant="secondary" onClick={this.handleClose}>
                       Close
-                    </button>
+                    </button> */}
                   </Modal.Footer>
                 </Modal>
 
-                <StarRatings
-                  rating={this.props.rating}
-                  numberOfStars={5}
-                  name="rating"
-                />
+                <span>
+                  <StarRatings
+                    rating={this.props.rating}
+                    numberOfStars={5}
+                    starDimension="20px"
+                    starSpacing="0px"
+                    name="rating"
+                    starRatedColor="rgb(255, 255, 255)"
+                    starEmptyColor="rgb(47,79,79)"
+                  />
+                </span>
               </Row>
-
-              <Accordion>
-                <Card>
-                  <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                      Comment
-                    </Accordion.Toggle>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="0">
-                    <Card.Body>
-                      <Comment
-                        quoteId={this.props.quoteId}
-                        refresh={this.refresh.bind(this)}
-                      />
-                      <ShowComment
-                        author={this.props.author}
-                        quoteId={this.props.quoteId}
-                        needToReload={this.state.needToReload}
-                        toggleRefresh={this.toggleRefresh.bind(this)}
-                      />
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>
+              <Row className="justify-content-end">
+                <Accordion defaultActiveKey="0">
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle
+                        as={Button}
+                        variant="link"
+                        eventKey={this.props.quoteId}
+                      >
+                        Comment
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey={this.props.quoteId}>
+                      <Card.Body>
+                        <Comment
+                          quoteId={this.props.quoteId}
+                          refresh={this.toggleRefresh.bind(this)}
+                        />
+                        <ShowComment
+                          author={this.props.author}
+                          username={this.props.username}
+                          quoteId={this.props.quoteId}
+                          needToReload={this.state.needToReload}
+                          toggleRefresh={this.toggleRefresh.bind(this)}
+                        />
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                </Accordion>
+                {/* <Accordion>
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                        Comment
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey="0">
+                      <Card.Body>
+                        <Comment
+                          quoteId={this.props.quoteId}
+                          refresh={this.refresh.bind(this)}
+                        />
+                        <ShowComment
+                          author={this.props.author}
+                          quoteId={this.props.quoteId}
+                          needToReload={this.state.needToReload}
+                          toggleRefresh={this.toggleRefresh.bind(this)}
+                        />
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                </Accordion> */}
+              </Row>
             </div>
           </div>
         </Container>
