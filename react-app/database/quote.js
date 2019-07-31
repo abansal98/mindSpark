@@ -77,10 +77,10 @@ module.exports = {
       })
       .exec()
       .then(data => {
-        if (data.length > 0) {
+        if (data.length >= 0) {
           resolve(data);
         } else {
-          reject("No quote bro");
+          reject("No quote with this input ", data);
         }
       });
     });
@@ -178,7 +178,7 @@ module.exports = {
         .find({
           author: authorName
         })
-        .sort(sortDate)
+        .sort({rating: -1, datePosted: -1})
         .exec()
         .then(data => {
           if (data.length > 0) {
@@ -197,7 +197,7 @@ module.exports = {
         .find({
           category: categoryName
         })
-        .sort(sortDate)
+        .sort({rating: -1, datePosted: -1})
         .exec()
         .then(data => {
           if (data.length > 0) {
