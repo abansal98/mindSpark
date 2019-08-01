@@ -5,6 +5,8 @@ import StarRatings from "react-star-ratings";
 import Modal from "react-bootstrap/Modal";
 import Comment from "../Quoteboard/Comment/Comment";
 import ShowComment from "../Quoteboard/Comment/ShowComment";
+import DeleteQuote from "./DeleteQuote";
+import EditQuote from "./EditQuote";
 
 class PersonalQuoteBox extends Component {
   constructor(props) {
@@ -45,6 +47,16 @@ class PersonalQuoteBox extends Component {
         <Container className="personalquoteboxContainer">
           <div className="personalquoteBoxBg">
             <div className="personalquoteBox">
+              <Row className="justify-content-end">
+                <EditQuote
+                  quoteId={this.props.quoteId}
+                  quote={this.props.quote}
+                />
+                <DeleteQuote
+                  quoteId={this.props.quoteId}
+                  deleteRefresh={this.props.deleteRefresh}
+                />
+              </Row>
               <Row>
                 <div className="qbox">
                   <h3 className="quoteBoxQuoteH3">{this.props.quote}</h3>

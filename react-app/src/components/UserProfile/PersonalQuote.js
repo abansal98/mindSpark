@@ -8,13 +8,20 @@ class PersonalQuote extends Component {
     super(props);
     this.state = {
       quote: [],
-      didLoad: false
+      didLoad: false,
+      deleteReload: false
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.needToReload == true) {
       this.fetchPersonalQuotes(this.props.username);
+      this.props.toggleRefresh();
+    }
+
+    if (this.state.deleteReload == true) {
+      this.fetchPersonalQuotes(this.props.username);
+      this.deleteRefresh();
       this.props.toggleRefresh();
     }
   }
@@ -45,6 +52,12 @@ class PersonalQuote extends Component {
     this.fetchPersonalQuotes(this.props.username);
   }
 
+  deleteRefresh() {
+    this.setState({
+      deleteReload: !this.state.deleteReload
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -59,6 +72,7 @@ class PersonalQuote extends Component {
                     rating={quoteObj.rating}
                     quoteId={quoteObj._id}
                     newauthor={quoteObj.newauthor}
+                    deleteRefresh={this.deleteRefresh.bind(this)}
                   />
                 );
               })}

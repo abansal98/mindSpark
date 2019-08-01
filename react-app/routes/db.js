@@ -30,7 +30,7 @@ router.route("/signup").post((req, res) => {
       res
         .status(200)
         .send(
-        "User registration complete, please check your email for verification!"
+          "User registration complete, please check your email for verification!"
         );
     })
     .catch(err => {
@@ -139,6 +139,16 @@ router.route("/getQuote/:quoteId").get((req, res) => {
     });
 });
 
+router.route("/search/suggest/:searchText").get((req, res) => {
+  quote.SearchQuote(req.params.searchText)
+  .then(data => {
+    res.status(200).send(data);
+  })
+  .catch(err => {
+    res.status(301).send(err);
+  });
+})
+
 router.route("/quoteList/:authorName").get((req, res) => {
   quote
     .fetchQuote(req.params.authorName)
@@ -204,6 +214,10 @@ router.route("/getQuotes/:categoryName").get((req, res) => {
 });
 //**************************Quotes and comments******************************//
 
+//**************************Edit and Delete Quotes******************************//
+
+//**************************Edit and Delete Quotes******************************//
+
 //******************************Quote Reporting******************************//
 router.route("/submitReport").post((req, res) => {
   console.log(req.body);
@@ -230,7 +244,16 @@ router.route("/reportIncrement").post((req, res) => {
     });
 });
 //******************************Quote Reporting******************************//
-
+router.route("/deletePersonalQuote").post((req, res) => {
+  quote
+    .deletePersonalQuote(req.body)
+    .then(data => {
+      res.status(200).send("Quote Deleted!");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
 //*******************************Category************************************//
 router.route("/getCategories").get((req, res) => {
   category

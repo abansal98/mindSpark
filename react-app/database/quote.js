@@ -35,6 +35,18 @@ var quote = new Schema({
   ]
 });
 
+quote.index({
+  author: 'text',
+  text: 'text',
+  category: 'text'
+}, {
+  weights: {
+    text: 5,
+    author: 3,
+    category: 1
+  }
+});
+
 var quoteModel = mongoose.model("quotes", quote);
 
 module.exports = {
@@ -60,7 +72,23 @@ module.exports = {
     });
   },
 
-  addComment: function (data, quoteId) {
+  SearchQuote: function(data) {
+    return new Promise((resolve, reject) => {
+      quoteModel.find({
+        $text: { $search: data} 
+      })
+      .exec()
+      .then(data => {
+        if (data.length >= 0) {
+          resolve(data);
+        } else {
+          reject("No quote with this input ", data);
+        }
+      });
+    });
+  },
+
+  addComment: function(data, quoteId) {
     return new Promise((resolve, reject) => {
       quoteModel.findOneAndUpdate(
         {
@@ -157,7 +185,7 @@ module.exports = {
         .find({
           author: authorName
         })
-        .sort(sortDate)
+        .sort({rating: -1, datePosted: -1})
         .exec()
         .then(data => {
           if (data.length > 0) {
@@ -176,7 +204,7 @@ module.exports = {
         .find({
           category: categoryName
         })
-        .sort(sortDate)
+        .sort({rating: -1, datePosted: -1})
         .exec()
         .then(data => {
           if (data.length > 0) {
@@ -280,9 +308,16 @@ module.exports = {
     });
   },
 
-  deleteQuote: function (data) {
-    console.log("DeleteQuote called");
-    return new Promise(function (resolve, reject) {
+  deleteQuote: function(data) {
+    // console.log("DeleteQuote called");
+    return new Promise(function(resolve, reject) {
+      quoteModel.deleteOne({ _id: data.quoteId }).exec();
+    });
+  },
+
+  deletePersonalQuote: function(data) {
+    // console.log("DeletePersonalQuote called");
+    return new Promise(function(resolve, reject) {
       quoteModel.deleteOne({ _id: data.quoteId }).exec();
     });
   },
