@@ -7,3 +7,7 @@
 .userProfileIcon {
   margin-right: 10%;
 }
+
+.bg-custom {
+  background-color: rgba(0, 0, 0, 0.2);
+}

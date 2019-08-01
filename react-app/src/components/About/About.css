@@ -11,6 +11,7 @@
   /* min-height: 300vh; */
   /* filter: blur(8px);
   -webkit-filter: blur(8px); */
+  position: static;
 }
 
 .aboutBlurBgBody {
@@ -25,5 +26,7 @@
   -webkit-filter: blur(9px); */
   background-repeat: no-repeat;
   /* min-height: 100vh; */
-  /* transform: scale(1.04); */
+
+  /* i put CSS: transform property for solving that 'top margin or position issue' */
+  transform: scale(1.1);
 }
