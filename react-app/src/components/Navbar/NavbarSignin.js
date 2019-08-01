@@ -13,7 +13,7 @@ class NavBarSignin extends Component {
           // bg="secondary"
           variant="dark"
           fixed="top"
-          className="bg-custom"
+          className="bg-custom-navbarsignin"
         >
           <Navbar.Brand href="/signin">
             <img

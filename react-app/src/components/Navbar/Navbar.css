@@ -8,6 +8,9 @@
   margin-right: 10%;
 }
 
-.bg-custom {
-  background-color: rgba(0, 0, 0, 0.2);
+.bg-custom-navbarsignin {
+  background-color: rgba(0, 0, 0, 0);
+}
+.bg-custom-navbar {
+  background-color: rgba(0, 0, 0, 0.5);
 }

@@ -15,9 +15,10 @@ class NavBar extends Component {
         <Navbar
           collapseOnSelect
           expand="md"
-          bg="light"
-          variant="light"
+          // bg="light"
+          variant="dark"
           fixed="top"
+          className="bg-custom-navbar"
         >
           <Navbar.Brand href="/quoteboard">
             <img
