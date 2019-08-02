@@ -68,7 +68,7 @@ class UserProfile extends Component {
           defaultActiveKey="#addquote"
         >
           <Row>
-            <Col lg={2} className="up_leftside">
+            <Col md={2} className="up_leftside">
               <ListGroup className="up_leftside_listgroup">
                 <ListGroup.Item action href="#addquote">
                   Add Quote
@@ -89,7 +89,7 @@ class UserProfile extends Component {
                 )}
               </ListGroup>
             </Col>
-            <Col lg={10} className="up_rightside">
+            <Col md={10} className="up_rightside">
               <Tab.Content>
                 <Tab.Pane eventKey="#addquote">
                   <AddQuote
