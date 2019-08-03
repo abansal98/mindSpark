@@ -33,17 +33,20 @@ var quote = new Schema({
   ]
 });
 
-quote.index({
-  author: 'text',
-  text: 'text',
-  category: 'text'
-}, {
-  weights: {
-    text: 5,
-    author: 3,
-    category: 1
+quote.index(
+  {
+    author: "text",
+    text: "text",
+    category: "text"
+  },
+  {
+    weights: {
+      text: 5,
+      author: 3,
+      category: 1
+    }
   }
-});
+);
 
 var quoteModel = mongoose.model("quotes", quote);
 
@@ -72,17 +75,18 @@ module.exports = {
 
   SearchQuote: function(data) {
     return new Promise((resolve, reject) => {
-      quoteModel.find({
-        $text: { $search: data} 
-      })
-      .exec()
-      .then(data => {
-        if (data.length >= 0) {
-          resolve(data);
-        } else {
-          reject("No quote with this input ", data);
-        }
-      });
+      quoteModel
+        .find({
+          $text: { $search: data }
+        })
+        .exec()
+        .then(data => {
+          if (data.length >= 0) {
+            resolve(data);
+          } else {
+            reject("No quote with this input ", data);
+          }
+        });
     });
   },
 
@@ -178,7 +182,7 @@ module.exports = {
         .find({
           author: authorName
         })
-        .sort({rating: -1, datePosted: -1})
+        .sort({ rating: -1, datePosted: -1 })
         .exec()
         .then(data => {
           if (data.length > 0) {
@@ -197,7 +201,7 @@ module.exports = {
         .find({
           category: categoryName
         })
-        .sort({rating: -1, datePosted: -1})
+        .sort({ rating: -1, datePosted: -1 })
         .exec()
         .then(data => {
           if (data.length > 0) {
@@ -284,6 +288,31 @@ module.exports = {
         .then(user => {
           if (user) {
             user.reportNum = 0;
+            user.save(err => {
+              if (err) {
+                reject("Cannot save changes: " + err.message);
+              } else {
+                resolve();
+              }
+            });
+          } else {
+            reject("QuoteId Not Found!");
+          }
+        });
+    });
+  },
+
+  editQuote: function(data) {
+    // console.log(data);
+    return new Promise(function(resolve, reject) {
+      quoteModel
+        .findOne({
+          _id: data.quoteid
+        })
+        .exec()
+        .then(user => {
+          if (user) {
+            user.text = data.quote;
             user.save(err => {
               if (err) {
                 reject("Cannot save changes: " + err.message);

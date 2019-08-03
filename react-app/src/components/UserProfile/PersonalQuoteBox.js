@@ -49,7 +49,7 @@ class PersonalQuoteBox extends Component {
             <div className="personalquoteBox">
               <Row className="justify-content-end">
                 <EditQuote
-                  quoteId={this.props.quoteId}
+                  quoteid={this.props.quoteId}
                   quote={this.props.quote}
                 />
                 <DeleteQuote
