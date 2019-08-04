@@ -30,17 +30,17 @@ class PersonalQuoteBox extends Component {
     });
   }
 
-  authorCheck() {
-    if (this.props.newauthor != "") {
-      // console.log(this.props.newauthor);
-      this.state.authorCheck = true;
-      // console.log(this.state.authorCheck);
-    }
-  }
+  // authorCheck() {
+  //   if (this.props.newauthor != "") {
+  //     // console.log(this.props.newauthor);
+  //     this.state.authorCheck = true;
+  //     // console.log(this.state.authorCheck);
+  //   }
+  // }
 
-  componentDidMount() {
-    this.authorCheck();
-  }
+  // componentDidMount() {
+  //   this.authorCheck();
+  // }
 
   render() {
     return (
@@ -65,9 +65,9 @@ class PersonalQuoteBox extends Component {
                 </div>
               </Row>
               <Row className="personalquoteBoxAuthorStar justify-content-end">
-                {this.state.authorCheck == true && (
-                  <span className="quoteboxAuthor">{this.props.newauthor}</span>
-                )}
+                {/* {this.state.authorCheck == true && ( */}
+                <span className="quoteboxAuthor">{this.props.newauthor}</span>
+                {/* )} */}
                 <span className="quoteboxAuthor">({this.props.author})</span>
                 <span>
                   <StarRatings
