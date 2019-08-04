@@ -140,14 +140,15 @@ router.route("/getQuote/:quoteId").get((req, res) => {
 });
 
 router.route("/search/suggest/:searchText").get((req, res) => {
-  quote.SearchQuote(req.params.searchText)
-  .then(data => {
-    res.status(200).send(data);
-  })
-  .catch(err => {
-    res.status(301).send(err);
-  });
-})
+  quote
+    .SearchQuote(req.params.searchText)
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
 
 router.route("/quoteList/:authorName").get((req, res) => {
   quote
@@ -220,6 +221,18 @@ router.route("/deletePersonalQuote").post((req, res) => {
     .deletePersonalQuote(req.body)
     .then(data => {
       res.status(200).send("Quote Deleted!");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/editQuote").post((req, res) => {
+  // console.log(req.body);
+  quote
+    .editQuote(req.body)
+    .then(data => {
+      res.status(200).send("Quote Edited!");
     })
     .catch(err => {
       res.status(301).send(err);

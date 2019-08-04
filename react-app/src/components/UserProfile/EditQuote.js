@@ -2,50 +2,60 @@ import React, { Component } from "react";
 import $ from "jquery";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import {
+  Form,
+  ButtonGroup,
+  ToggleButton,
+  ToggleButtonGroup,
+  ButtonToolbar
+} from "react-bootstrap";
 
-const reportRegex = RegExp(
-  /^[a-zA-Z0-9_#,!?_.][a-zA-Z0-9#,!?_._ ]*[a-zA-Z0-9#,!?_._]$/
+const quoteRegex = RegExp(
+  /^[a-zA-Z0-9_#'",!?_.][a-zA-Z0-9#'",!?_._ ]*[a-zA-Z0-9#'",!?_._]$/
 );
 
 class EditQuote extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      show: false
-      //   report: "",
-      //   reportValid: false,
-      //   error: {
-      //     report: ""
-      //   },
-      //   formValid: false,
-      //   status: false,
-      //   quoteId: "",
-      //   needToReload: false,
-      //   didLoad: false
+      show: false,
+      quote: "",
+      quoteValid: false,
+      error: {
+        quote: ""
+      },
+      categories: [],
+      selectedCategories: [],
+      isSelected: false,
+      isChecked: false,
+      quoteid: "",
+      categories: []
     };
+    this.clickCatgeory = this.clickCatgeory.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
 
-  handleReportSubmit(e) {
-    //  console.log("HandleReportSbmited");
+  handleSubmit(e) {
     e.preventDefault();
     $.ajax({
       url: "/db/editQuote",
       method: "POST",
       data: {
-        quoteId: this.props.quoteId,
-        quote: this.state.quote
+        quote: this.state.quote,
+        // category: this.state.selectedCategories,
+        quoteid: this.props.quoteid
       }
     })
       .then(msg => {
         alert(msg);
-        // this.toggleRefresh();
+        this.props.editRefresh();
       })
       .fail(err => {
-        alert(err.responseText);
-        // this.toggleRefresh();
+        alert(err);
+        this.props.editRefresh();
       });
+    this.props.editRefresh();
   }
 
   handleClose() {
@@ -56,40 +66,80 @@ class EditQuote extends Component {
     this.setState({ show: true });
   }
 
-  //   handleUserInput(e) {
-  //     const name = e.target.name;
-  //     const value = e.target.value;
-  //     this.setState({ [name]: value }, () => {
-  //       this.validateField(name, value);
-  //     });
-  //   }
+  getAllCategories() {
+    $.ajax({
+      url: "/db/getCategories",
+      method: "GET"
+    }).then(data => {
+      this.setState({
+        categories: data
+      });
+    });
+  }
 
-  //   validateField(fieldName, value) {
-  //     let errors = this.state.error;
-  //     let reportValid = this.state.reportValid;
+  handleUserInput(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({ quote: e.target.value });
+    this.setState({ [name]: value }, () => {
+      this.validateField(name, value);
+    });
+  }
 
-  //     switch (fieldName) {
-  //       case "report":
-  //         reportValid = reportRegex.test(value);
-  //         errors.report = reportValid ? "" : "No leading/trailing allowed!";
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //     this.setState(
-  //       {
-  //         error: errors,
-  //         reportValid: reportValid
-  //       },
-  //       this.validateForm
-  //     );
-  //   }
+  validateField(fieldName, value) {
+    let errors = this.state.error;
+    let quoteValid = this.state.quoteValid;
 
-  //   validateForm() {
-  //     this.setState({
-  //       formValid: this.state.reportValid
-  //     });
-  //   }
+    switch (fieldName) {
+      case "quote":
+        quoteValid =
+          quoteRegex.test(value) &&
+          this.state.quote.length > 5 &&
+          this.state.quote.length < 500;
+        errors.quote = quoteValid
+          ? ""
+          : "Quote has a limit of 5 to 500 characters and no leading/trailing allowed!";
+        break;
+      default:
+        break;
+    }
+    this.setState(
+      {
+        error: errors,
+        quoteValid: quoteValid
+      },
+      this.validateForm
+    );
+  }
+
+  clickCatgeory(e) {
+    if (e.target.checked) {
+      this.setState({
+        selectedCategories: [...this.state.selectedCategories, e.target.value]
+      });
+    } else {
+      this.setState({
+        selectedCategories: this.state.selectedCategories.filter(function(
+          person
+        ) {
+          return person !== e.target.value;
+        })
+      });
+    }
+  }
+
+  validateForm() {
+    this.setState({
+      formValid: this.state.quoteValid
+    });
+  }
+
+  componentDidMount() {
+    this.setState({
+      quote: this.props.quote
+    });
+    this.getAllCategories();
+  }
 
   render() {
     return (
@@ -107,28 +157,49 @@ class EditQuote extends Component {
               <Modal.Title>Edit Quote</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <form>
-                {/* <form onSubmit={this.handleReportSubmit.bind(this)}> */}
+              <form onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
                   <div className="report">
                     <textarea
-                      //   className={`form-control ${
-                      //     this.state.error.report ? "invalid" : ""
-                      //   }`}
-                      //   onChange={this.handleUserInput.bind(this)}
+                      className={`form-control ${
+                        this.state.error.quote ? "invalid" : ""
+                      }`}
+                      onChange={this.handleUserInput.bind(this)}
                       name="quote"
-                      placeholder="Enter Description"
-                      value={this.props.quote}
+                      placeholder="Edit Quote"
+                      value={this.state.quote}
                       id="quote"
                     />
-                    {/* <div className="invalid-name text-danger">
-                      {this.state.error.report}
-                    </div> */}
+                    <div className="invalid-name text-danger">
+                      {this.state.error.quote}
+                    </div>
                   </div>
                 </div>
+                {/* <div className="form-group">
+                  <ToggleButtonGroup
+                    className="addquoteCategoryGroup mb-5"
+                    type="checkbox"
+                  >
+                    {this.state.categories.map((value, index) => {
+                      return (
+                        <ToggleButton
+                          variant="outline-primary"
+                          value={value.categoryName}
+                          size="lg"
+                          className="addquoteCategoryButton"
+                          checked={this.state.isSelected}
+                          onClick={this.clickCatgeory}
+                        >
+                          {value.categoryName}
+                        </ToggleButton>
+                      );
+                    })}
+                  </ToggleButtonGroup>
+                </div> */}
+
                 <div className="createAccount submitreportbutton">
                   <button
-                    // disabled={!this.state.formValid}
+                    disabled={!this.state.formValid}
                     type="submit"
                     className="btn btn-danger btn-sm"
                     onClick={this.handleClose}

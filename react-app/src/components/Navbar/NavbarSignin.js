@@ -10,9 +10,10 @@ class NavBarSignin extends Component {
         <Navbar
           collapseOnSelect
           expand="md"
-          bg="dark"
+          // bg="secondary"
           variant="dark"
           fixed="top"
+          className="bg-custom-navbarsignin"
         >
           <Navbar.Brand href="/signin">
             <img

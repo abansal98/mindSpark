@@ -306,7 +306,32 @@ module.exports = {
     });
   },
 
-  deleteQuote: function (data) {
+  editQuote: function(data) {
+    // console.log(data);
+    return new Promise(function(resolve, reject) {
+      quoteModel
+        .findOne({
+          _id: data.quoteid
+        })
+        .exec()
+        .then(user => {
+          if (user) {
+            user.text = data.quote;
+            user.save(err => {
+              if (err) {
+                reject("Cannot save changes: " + err.message);
+              } else {
+                resolve();
+              }
+            });
+          } else {
+            reject("QuoteId Not Found!");
+          }
+        });
+    });
+  },
+
+  deleteQuote: function(data) {
     // console.log("DeleteQuote called");
     return new Promise(function (resolve, reject) {
       quoteModel.deleteOne({ _id: data.quoteId }).exec();

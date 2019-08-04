@@ -49,15 +49,15 @@ class QuoteBox extends Component {
     this.setState({ show: true });
   }
 
-  authorCheck() {
-    if (this.props.newauthor != "") {
-      this.state.authorCheck = true;
-    }
-  }
+  // authorCheck() {
+  //   if (this.props.newauthor != "") {
+  //     this.state.authorCheck = true;
+  //   }
+  // }
 
-  componentDidMount() {
-    this.authorCheck();
-  }
+  // componentDidMount() {
+  //   this.authorCheck();
+  // }
 
   render() {
     // console.log("Change", this.props.quoteId);
@@ -85,9 +85,9 @@ class QuoteBox extends Component {
                 </div>
               </Row>
               <Row className="quoteBoxAuthorStar justify-content-end">
-                {this.state.authorCheck == true && (
-                  <span className="quoteboxAuthor">{this.props.newauthor}</span>
-                )}
+                {/* {this.state.authorCheck == true && ( */}
+                <span className="quoteboxAuthor">{this.props.newauthor}</span>
+                {/* )} */}
                 <span className="quoteboxAuthor">({this.props.author})</span>
 
                 <Modal show={this.state.show} onHide={this.handleClose}>

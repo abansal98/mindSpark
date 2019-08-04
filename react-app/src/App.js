@@ -154,7 +154,7 @@ class App extends Component {
             <Route component={Error} />
           </Switch>
         </BrowserRouter>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }
