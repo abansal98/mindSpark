@@ -13,7 +13,8 @@ class PersonalQuoteBox extends Component {
     super(props);
     this.state = {
       needToReload: false,
-      authorCheck: false
+      authorCheck: false,
+      quote: ""
     };
   }
 
@@ -51,6 +52,7 @@ class PersonalQuoteBox extends Component {
                 <EditQuote
                   quoteid={this.props.quoteId}
                   quote={this.props.quote}
+                  editRefresh={this.props.deleteRefresh}
                 />
                 <DeleteQuote
                   quoteId={this.props.quoteId}
