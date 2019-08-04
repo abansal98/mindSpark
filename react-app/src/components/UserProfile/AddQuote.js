@@ -178,12 +178,12 @@ class AddQuote extends Component {
             placeholder="Enter Quote Here.."
             value={this.state.quote}
           />
-          <label class="form-check-label">Please select Author:</label>
-          <label class="form-check-label">Default: {this.props.username}</label>
+          <label class="form-check-label">Please select author:</label>
           <br />
+          <label class="form-check-label">Default: {this.props.username}</label>
           <label class="form-check-label">
-            <input type="checkbox" onChange={this.showTextField} />
-            Other
+            ,
+            <input type="checkbox" onChange={this.showTextField} /> Other
           </label>
           {this.state.isChecked == true && (
             <div class="form-group">

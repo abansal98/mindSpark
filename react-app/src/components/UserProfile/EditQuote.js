@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import $ from "jquery";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import {
+  Form,
+  ButtonGroup,
+  ToggleButton,
+  ToggleButtonGroup,
+  ButtonToolbar
+} from "react-bootstrap";
 
 const quoteRegex = RegExp(
   /^[a-zA-Z0-9_#'",!?_.][a-zA-Z0-9#'",!?_._ ]*[a-zA-Z0-9#'",!?_._]$/
@@ -21,8 +28,10 @@ class EditQuote extends Component {
       selectedCategories: [],
       isSelected: false,
       isChecked: false,
-      quoteid: ""
+      quoteid: "",
+      categories: []
     };
+    this.clickCatgeory = this.clickCatgeory.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
@@ -55,6 +64,17 @@ class EditQuote extends Component {
 
   handleShow() {
     this.setState({ show: true });
+  }
+
+  getAllCategories() {
+    $.ajax({
+      url: "/db/getCategories",
+      method: "GET"
+    }).then(data => {
+      this.setState({
+        categories: data
+      });
+    });
   }
 
   handleUserInput(e) {
@@ -92,6 +112,22 @@ class EditQuote extends Component {
     );
   }
 
+  clickCatgeory(e) {
+    if (e.target.checked) {
+      this.setState({
+        selectedCategories: [...this.state.selectedCategories, e.target.value]
+      });
+    } else {
+      this.setState({
+        selectedCategories: this.state.selectedCategories.filter(function(
+          person
+        ) {
+          return person !== e.target.value;
+        })
+      });
+    }
+  }
+
   validateForm() {
     this.setState({
       formValid: this.state.quoteValid
@@ -102,6 +138,7 @@ class EditQuote extends Component {
     this.setState({
       quote: this.props.quote
     });
+    this.getAllCategories();
   }
 
   render() {
@@ -138,6 +175,28 @@ class EditQuote extends Component {
                     </div>
                   </div>
                 </div>
+                {/* <div className="form-group">
+                  <ToggleButtonGroup
+                    className="addquoteCategoryGroup mb-5"
+                    type="checkbox"
+                  >
+                    {this.state.categories.map((value, index) => {
+                      return (
+                        <ToggleButton
+                          variant="outline-primary"
+                          value={value.categoryName}
+                          size="lg"
+                          className="addquoteCategoryButton"
+                          checked={this.state.isSelected}
+                          onClick={this.clickCatgeory}
+                        >
+                          {value.categoryName}
+                        </ToggleButton>
+                      );
+                    })}
+                  </ToggleButtonGroup>
+                </div> */}
+
                 <div className="createAccount submitreportbutton">
                   <button
                     disabled={!this.state.formValid}
