@@ -14,7 +14,7 @@ import $ from "jquery";
 import ShowComment from "./Comment/ShowComment";
 import Comment from "./Comment/Comment";
 import StarRatings from "react-star-ratings";
-import QuoteRating from "../UserProfile/Rating/QuoteRating";
+import QuoteRating from "../Rating/QuoteRating";
 
 class QuoteBox extends Component {
   constructor(props) {
@@ -150,29 +150,6 @@ class QuoteBox extends Component {
                     </Accordion.Collapse>
                   </Card>
                 </Accordion>
-                {/* <Accordion>
-                  <Card>
-                    <Card.Header>
-                      <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                        Comment
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                        <Comment
-                          quoteId={this.props.quoteId}
-                          refresh={this.refresh.bind(this)}
-                        />
-                        <ShowComment
-                          author={this.props.author}
-                          quoteId={this.props.quoteId}
-                          needToReload={this.state.needToReload}
-                          toggleRefresh={this.toggleRefresh.bind(this)}
-                        />
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion> */}
               </Row>
             </div>
           </div>

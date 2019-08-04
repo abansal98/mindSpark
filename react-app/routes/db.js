@@ -215,7 +215,16 @@ router.route("/getQuotes/:categoryName").get((req, res) => {
 //**************************Quotes and comments******************************//
 
 //**************************Edit and Delete Quotes******************************//
-
+router.route("/deletePersonalQuote").post((req, res) => {
+  quote
+    .deletePersonalQuote(req.body)
+    .then(data => {
+      res.status(200).send("Quote Deleted!");
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
 //**************************Edit and Delete Quotes******************************//
 
 //******************************Quote Reporting******************************//
@@ -244,16 +253,7 @@ router.route("/reportIncrement").post((req, res) => {
     });
 });
 //******************************Quote Reporting******************************//
-router.route("/deletePersonalQuote").post((req, res) => {
-  quote
-    .deletePersonalQuote(req.body)
-    .then(data => {
-      res.status(200).send("Quote Deleted!");
-    })
-    .catch(err => {
-      res.status(301).send(err);
-    });
-});
+
 //*******************************Category************************************//
 router.route("/getCategories").get((req, res) => {
   category
