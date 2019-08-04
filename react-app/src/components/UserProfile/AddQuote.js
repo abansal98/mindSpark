@@ -175,7 +175,7 @@ class AddQuote extends Component {
             className="addquoteTextareaBody mb-5"
             onChange={this.handleUserInput.bind(this)}
             name="quote"
-            placeholder={"writing a quote as " + this.props.username}
+            placeholder="Enter Quote Here.."
             value={this.state.quote}
           />
           <label class="form-check-label">Please select Author:</label>

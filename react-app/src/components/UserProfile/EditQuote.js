@@ -12,7 +12,7 @@ class EditQuote extends Component {
     super(props, context);
     this.state = {
       show: false,
-      quote: this.props.quote,
+      quote: "",
       quoteValid: false,
       error: {
         quote: ""
@@ -21,7 +21,7 @@ class EditQuote extends Component {
       selectedCategories: [],
       isSelected: false,
       isChecked: false,
-      quoteid: this.props.quoteid
+      quoteid: ""
     };
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -35,17 +35,18 @@ class EditQuote extends Component {
       data: {
         quote: this.state.quote,
         // category: this.state.selectedCategories,
-        quoteid: this.state.quoteid
+        quoteid: this.props.quoteid
       }
     })
       .then(msg => {
         alert(msg);
-        // this.props.toggleRefresh();
+        this.props.editRefresh();
       })
       .fail(err => {
-        alert(err.responseText);
-        // this.props.toggleRefresh();
+        alert(err);
+        this.props.editRefresh();
       });
+    this.props.editRefresh();
   }
 
   handleClose() {
@@ -97,6 +98,12 @@ class EditQuote extends Component {
     });
   }
 
+  componentDidMount() {
+    this.setState({
+      quote: this.props.quote
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -122,7 +129,7 @@ class EditQuote extends Component {
                       }`}
                       onChange={this.handleUserInput.bind(this)}
                       name="quote"
-                      placeholder="Enter Description"
+                      placeholder="Edit Quote"
                       value={this.state.quote}
                       id="quote"
                     />
