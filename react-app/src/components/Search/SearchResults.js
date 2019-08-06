@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-import QuoteBox from '../Quoteboard/QuoteBox';
+import "searchResult.css";
 
 class SearchResults extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class SearchResults extends Component {
 
     getQuote() {
         $.ajax({
-            url: "db/getQuoteSearch/" + this.props.match.params.data,
+            url: "/db/getQuoteSearch/" + this.props.match.params.data,
             method: "GET"
         })
         .then(data => {
@@ -34,8 +34,10 @@ class SearchResults extends Component {
        
         return (
             <React.Fragment>
+                <br/>
+                <br/>
                 {this.state.didLoad && (
-                <div className="quoteSearch">
+                <div className="searchResult">
                     {this.state.result.map((quoteObj, index) => {
                         if (quoteObj.reportNum <= 5) {
                             return (
@@ -51,7 +53,6 @@ class SearchResults extends Component {
                     })}
                 </div>
                 )}
-                {this.props.match.params.data}
             </React.Fragment>
         )
     }

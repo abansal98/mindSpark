@@ -52,7 +52,7 @@ class Search extends Component {
             <React.Fragment>
                 <form>
                     <input onChange={this.handleInputChange} value={this.state.search} placeholder="Search for.."/>
-                    <Suggestions results={this.state.searchInfo}/>
+                    <Suggestions results={this.state.searchInfo} username={this.props.username}/>
                 </form>
 
             </React.Fragment>
