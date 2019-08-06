@@ -13,7 +13,8 @@ class PersonalQuoteBox extends Component {
     super(props);
     this.state = {
       needToReload: false,
-      authorCheck: false
+      authorCheck: false,
+      quote: ""
     };
   }
 
@@ -29,17 +30,17 @@ class PersonalQuoteBox extends Component {
     });
   }
 
-  authorCheck() {
-    if (this.props.newauthor != "") {
-      // console.log(this.props.newauthor);
-      this.state.authorCheck = true;
-      // console.log(this.state.authorCheck);
-    }
-  }
+  // authorCheck() {
+  //   if (this.props.newauthor != "") {
+  //     // console.log(this.props.newauthor);
+  //     this.state.authorCheck = true;
+  //     // console.log(this.state.authorCheck);
+  //   }
+  // }
 
-  componentDidMount() {
-    this.authorCheck();
-  }
+  // componentDidMount() {
+  //   this.authorCheck();
+  // }
 
   render() {
     return (
@@ -49,8 +50,9 @@ class PersonalQuoteBox extends Component {
             <div className="personalquoteBox">
               <Row className="justify-content-end">
                 <EditQuote
-                  quoteId={this.props.quoteId}
+                  quoteid={this.props.quoteId}
                   quote={this.props.quote}
+                  editRefresh={this.props.deleteRefresh}
                 />
                 <DeleteQuote
                   quoteId={this.props.quoteId}
@@ -63,9 +65,9 @@ class PersonalQuoteBox extends Component {
                 </div>
               </Row>
               <Row className="personalquoteBoxAuthorStar justify-content-end">
-                {this.state.authorCheck == true && (
-                  <span className="quoteboxAuthor">{this.props.newauthor}</span>
-                )}
+                {/* {this.state.authorCheck == true && ( */}
+                <span className="quoteboxAuthor">{this.props.newauthor}</span>
+                {/* )} */}
                 <span className="quoteboxAuthor">({this.props.author})</span>
                 <span>
                   <StarRatings
