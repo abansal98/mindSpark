@@ -16,7 +16,7 @@ const Suggestions = (props) => {
         </ListGroup>
     ))
 
-    return <ul>{options}</ul>
+    return <ul className="abc">{options}</ul>
 } 
 
 export default Suggestions;
