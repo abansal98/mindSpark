@@ -12,6 +12,7 @@ import $ from "jquery";
 import NavBar from "./components/Navbar/Navbar";
 import Verify from "./components/Signup/verify";
 import ResetPassword from "./components/ForgotPassword/ResetPassword";
+import SearchResults from './components/Search/SearchResults';
 
 class App extends Component {
   constructor(props, context) {
@@ -149,6 +150,7 @@ class App extends Component {
                 />
                 <Route path="/reset/:token" component={ResetPassword} />
                 <Route path="/verify/:token" component={Verify} />
+                <Route path="/search/:data" component={SearchResults}/>
               </>
             )}
             <Route component={Error} />

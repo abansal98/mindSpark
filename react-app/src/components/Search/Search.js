@@ -36,7 +36,8 @@ class Search extends Component {
             const abc = data.map(obj => ({
                 quote: obj.text,
                 author: obj.author,
-                category: obj.category
+                category: obj.category,
+                quoteId: obj._id
             }));
 
             this.setState({
@@ -51,8 +52,9 @@ class Search extends Component {
             <React.Fragment>
                 <form>
                     <input onChange={this.handleInputChange} value={this.state.search} placeholder="Search for.."/>
+                    <Suggestions results={this.state.searchInfo}/>
                 </form>
-                <Suggestions results={this.state.searchInfo}/>
+
             </React.Fragment>
         )
     }
