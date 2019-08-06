@@ -21,8 +21,10 @@ class AddQuote extends Component {
       author: "",
       quote: "",
       quoteValid: false,
+      newauthorValid: true,
       error: {
-        quote: ""
+        quote: "",
+        newauthor: ""
       },
       categories: [],
       selectedCategories: [],
@@ -93,6 +95,7 @@ class AddQuote extends Component {
   validateField(fieldName, value) {
     let errors = this.state.error;
     let quoteValid = this.state.quoteValid;
+    let newauthorValid = this.state.newauthorValid;
 
     switch (fieldName) {
       case "quote":
@@ -104,13 +107,26 @@ class AddQuote extends Component {
           ? ""
           : "Quote has a limit of 5 to 500 characters and no leading/trailing allowed!";
         break;
+        case "newauthor":
+        newauthorValid =
+          quoteRegex.test(value) &&
+          this.state.newauthor.length < 25;
+        errors.newauthor = newauthorValid
+          ? ""
+          : "Author has a limit of 2 to 25 characters and no leading/trailing allowed!";
+        break;
+        case "checkauthor":
+          errors.newauthor = ""
+          newauthorValid = true
+        break;
       default:
         break;
     }
     this.setState(
       {
         error: errors,
-        quoteValid: quoteValid
+        quoteValid: quoteValid,
+        newauthorValid: newauthorValid
       },
       this.validateForm
     );
@@ -118,7 +134,7 @@ class AddQuote extends Component {
 
   validateForm() {
     this.setState({
-      formValid: this.state.quoteValid
+      formValid: this.state.quoteValid && this.state.newauthorValid
     });
   }
 
@@ -130,7 +146,8 @@ class AddQuote extends Component {
   }
 
   showTextField() {
-    this.setState({ isChecked: !this.state.isChecked, newauthor: "" });
+    this.setState({ isChecked: !this.state.isChecked, newauthor: ""});
+    this.validateField("checkauthor", "")
   }
 
   clickCatgeory(e) {
@@ -183,7 +200,7 @@ class AddQuote extends Component {
           <label class="form-check-label">Default: {this.props.username}</label>
           <label class="form-check-label">
             ,
-            <input type="checkbox" onChange={this.showTextField} /> Other
+            <input type="checkbox" name="check" onChange={this.showTextField} /> Other
           </label>
           {this.state.isChecked == true && (
             <div class="form-group">
@@ -229,6 +246,9 @@ class AddQuote extends Component {
 
           <div className="invalid-name text-danger">
             {this.state.error.quote}
+          </div>
+          <div className="invalid-name text-danger">
+            {this.state.error.newauthor}
           </div>
           {/* <div className="addquoteUserId mb-5">
             <h1>by {this.props.username}</h1>
