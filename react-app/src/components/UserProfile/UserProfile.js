@@ -14,6 +14,7 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       needToReload: false
+      // linkValue: this.props.linkValue
     };
   }
 
@@ -65,19 +66,19 @@ class UserProfile extends Component {
 
         <Tab.Container
           id="list-group-tabs-example"
-          defaultActiveKey="#addquote"
+          defaultActiveKey="#userinformation"
         >
           <Row>
             <Col md={2} className="up_leftside">
               <ListGroup className="up_leftside_listgroup">
+                <ListGroup.Item action href="#userinformation">
+                  User Information
+                </ListGroup.Item>
                 <ListGroup.Item action href="#addquote">
                   Add Quote
                 </ListGroup.Item>
                 <ListGroup.Item action href="#personalquote">
                   Personal Quote
-                </ListGroup.Item>
-                <ListGroup.Item action href="#userinformation">
-                  User Information
                 </ListGroup.Item>
                 <ListGroup.Item action href="#reminder">
                   Set Reminder Schedule
