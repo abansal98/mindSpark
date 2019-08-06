@@ -22,7 +22,7 @@ class Aboutteam extends Component {
         </Row>
         <Row className="justify-content-center">
           <p className="lead text-center">
-            MindSpark is a web application that let’s users share quotes that
+            MindSpark is a web application that lets users share quotes that
             inspirit one another
             {/* “mindSpark” is an app that encourages people through quotes and
               messages. It helps people who are having tough time with emotional
