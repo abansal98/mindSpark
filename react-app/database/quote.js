@@ -175,6 +175,23 @@ module.exports = {
     });
   },
 
+  getQuoteSearch: function(quoteId) {
+    return new Promise((resolve, reject) => {
+      quoteModel
+        .find({
+          _id: quoteId
+        })
+        .exec()
+        .then(data => {
+          if (data.length > 0) {
+            resolve(data);
+          } else {
+            reject("No quote with this id ", quoteId);
+          }
+        });
+    });
+  },
+
   fetchQuote: function(authorName) {
     var sortDate = { datePosted: -1 };
     return new Promise(function(resolve, reject) {
