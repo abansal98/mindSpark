@@ -14,7 +14,7 @@ class NavBar extends Component {
       <nav>
         <Navbar
           collapseOnSelect
-          expand="md"
+          expand="lg"
           // bg="light"
           variant="dark"
           fixed="top"
