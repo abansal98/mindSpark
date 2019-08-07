@@ -77,7 +77,7 @@ class Quoteboard extends Component {
                         href="#categoryHome"
                         variant="success"
                       >
-                        How to use
+                        Home
                       </ListGroup.Item>
                       {/* </ListGroup> */}
                       {/* temporary for CATEGORY HOME */}

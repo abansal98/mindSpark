@@ -1,0 +1,28 @@
+.aboutteamBody {
+  position: relative;
+  top: 4em;
+  /* margin-top: 5%; */
+  /* border: 2px solid white; */
+}
+.aboutteamBody h1 {
+  font-weight: lighter;
+}
+.aboutteamBody h2,
+.aboutteamBody h3,
+.aboutteamBody h4,
+.aboutteamBody h5 {
+  width: 100%;
+  font-weight: 200;
+}
+
+.aboutteamBody p {
+  padding-left: 17%;
+  padding-right: 17%;
+  margin-bottom: 3%;
+}
+
+.cardcol {
+  /* padding: 3%; */
+}
+
+/* .aboutteamBody .container . */
