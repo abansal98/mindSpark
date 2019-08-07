@@ -43,7 +43,6 @@ db.once("open", function callback() {
 app.use(clientSessions({
   cookieName: "session", // this is the object name that will be added to 'req'
   secret: "17gnirtselbasseugnugnolasisihtlol2018", // this is a long un-guessable string.
-  duration: 5 * 60 * 1000, // duration of the session in milliseconds (5 minutes)
 }));
 
 // top level routes, for more detail, see ./routes
