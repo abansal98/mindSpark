@@ -28,11 +28,11 @@ class QuoteRating extends Component {
       }
     })
       .then(msg => {
-        alert(msg);
+        // alert(msg);
         this.props.ratingRefresh();
       })
       .fail(err => {
-        alert(err.reponseText);
+        // alert(err.reponseText);
         this.props.ratingRefresh();
       });
 

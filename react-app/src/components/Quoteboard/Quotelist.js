@@ -54,7 +54,7 @@ class Quotelist extends Component {
                   <QuoteBox
                     quote={quoteObj.text}
                     author={quoteObj.author}
-                    rating={quoteObj.ratingAggregate / quoteObj.ratingNum}
+                    rating={quoteObj.ratingNum == 0 ? 0 : quoteObj.ratingAggregate / quoteObj.ratingNum}
                     username={this.props.username}
                     quoteId={quoteObj._id}
                     newauthor={quoteObj.newauthor}

@@ -15,11 +15,11 @@ var quote = new Schema({
   },
   ratingNum: {
     type: Number,
-    default: 5
+    default: 0
   },
   ratingAggregate: {
     type: Number,
-    default: 5
+    default: 0
   },
   comments: [
     {
