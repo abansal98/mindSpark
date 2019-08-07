@@ -139,6 +139,17 @@ router.route("/getQuote/:quoteId").get((req, res) => {
     });
 });
 
+router.route("/getQuoteSearch/:quoteId").get((req, res) => {
+  quote
+    .getQuoteSearch(req.params.quoteId)
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
 router.route("/search/suggest/:searchText").get((req, res) => {
   quote
     .SearchQuote(req.params.searchText)

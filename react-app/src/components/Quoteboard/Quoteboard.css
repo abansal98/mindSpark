@@ -26,9 +26,10 @@
 
 .quoteboardrightside {
   /* background-color: #dddddd; */
+
   background-image: url("../../image/blurforest.jpg");
-  background-position: center;
-  min-height: 100vh;
+  /* background-position: center; */
+  /* min-height: 100vh; */
 
   /* min-height: 100vh; */
 }

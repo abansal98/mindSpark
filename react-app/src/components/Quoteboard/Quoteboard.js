@@ -63,6 +63,7 @@ class Quoteboard extends Component {
       this.state.didLoad && (
         <>
           <div className="quoteboardBody">
+            {/* <SignupsigninBlurBg /> */}
             <Container fluid={true}>
               <Tab.Container
                 id="list-group-tabs-example"
@@ -125,6 +126,12 @@ class LeftBlurBg extends Component {
 class RightBlurBg extends Component {
   render() {
     return <div className="rightBlurBgBody" />;
+  }
+}
+
+class SignupsigninBlurBg extends Component {
+  render() {
+    return <div className="SignupsigninBlurBgBody" />;
   }
 }
 

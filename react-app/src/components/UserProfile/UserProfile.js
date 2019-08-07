@@ -14,6 +14,7 @@ class UserProfile extends Component {
     super(props);
     this.state = {
       needToReload: false
+      // linkValue: this.props.linkValue
     };
   }
 
@@ -28,56 +29,21 @@ class UserProfile extends Component {
   render() {
     return (
       <div className="userprofileBody">
-        {/* <img src={this.props.avatar} className="img-responsive">Avatar</img> */}
-        {/* <Tab.Container id="left-tabs-example" defaultActiveKey="addquote">
-          <Row>
-            <Col md={2}>
-              <Nav variant="pills" className="flex-column">
-                <Nav.Item>
-                  <Nav.Link eventKey="addquote">Add Quote</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="userinformation">
-                    User Information
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="reminder">Set Reminder Schedule</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Col>
-            <Col md={10}>
-              <Tab.Content>
-                <Tab.Pane eventKey="addquote">
-                  <AddQuote />
-                  <PersonalQuote />
-                </Tab.Pane>
-                <Tab.Pane eventKey="userinformation">
-                  <ProfileForm username={this.props.username} />
-                </Tab.Pane>
-                <Tab.Pane eventKey="reminder">
-                  <ReminderForm />
-                </Tab.Pane>
-              </Tab.Content>
-            </Col>
-          </Row>
-        </Tab.Container> */}
-
         <Tab.Container
           id="list-group-tabs-example"
-          defaultActiveKey="#addquote"
+          defaultActiveKey={this.props.page}
         >
           <Row>
-            <Col lg={2} className="up_leftside">
+            <Col md={2} className="up_leftside">
               <ListGroup className="up_leftside_listgroup">
+                <ListGroup.Item action href="#userinformation">
+                  User Information
+                </ListGroup.Item>
                 <ListGroup.Item action href="#addquote">
                   Add Quote
                 </ListGroup.Item>
                 <ListGroup.Item action href="#personalquote">
                   Personal Quote
-                </ListGroup.Item>
-                <ListGroup.Item action href="#userinformation">
-                  User Information
                 </ListGroup.Item>
                 <ListGroup.Item action href="#reminder">
                   Set Reminder Schedule
@@ -89,7 +55,7 @@ class UserProfile extends Component {
                 )}
               </ListGroup>
             </Col>
-            <Col lg={10} className="up_rightside">
+            <Col md={10} className="up_rightside">
               <Tab.Content>
                 <Tab.Pane eventKey="#addquote">
                   <AddQuote
