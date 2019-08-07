@@ -44,7 +44,8 @@ class NavBar extends Component {
           >
             <Navbar.Brand>Hello, {this.props.username}</Navbar.Brand>
             <Nav>
-              <Nav.Link href="/userprofile">User Profile</Nav.Link>
+              <Nav.Link href="/userProfileAddQuote">Add Quote</Nav.Link>
+              <Nav.Link href="/userProfileUserProfile">User Profile</Nav.Link>
               <Nav.Link href="/db/logout">Sign Out</Nav.Link>
             </Nav>
           </Navbar.Collapse>
