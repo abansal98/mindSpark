@@ -9,8 +9,15 @@ class Quotelist extends Component {
     this.state = {
       category: "",
       quotes: [],
-      didLoad: false
+      didLoad: false,
+      needToReload: false
     };
+  }
+
+  ratingRefresh() {
+    this.setState({
+      needToReload: !this.state.needToReload
+    });
   }
 
   getQuotes() {
@@ -30,6 +37,10 @@ class Quotelist extends Component {
     if (prevProps.category !== this.props.category) {
       this.getQuotes();
     }
+    if (this.state.needToReload == true) {
+      this.getQuotes();
+      this.ratingRefresh();
+    }
   }
 
   render() {
@@ -47,6 +58,7 @@ class Quotelist extends Component {
                     username={this.props.username}
                     quoteId={quoteObj._id}
                     newauthor={quoteObj.newauthor}
+                    ratingRefresh={this.ratingRefresh.bind(this)}
                   />
                 );
               }
