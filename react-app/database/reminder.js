@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 var reminder = new Schema({
     "username": {
         type: String,
-        unique: true,
         required: true
     },
     "categoriesId": {

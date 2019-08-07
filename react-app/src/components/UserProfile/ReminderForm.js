@@ -37,7 +37,7 @@ class ReminderForm extends Component {
       url: "/db/submitReminder",
       method: "POST",
       data: {
-        // loggedUser: this.state.loggedUser,
+        loggedUser: this.props.username,
         selectedCategories: this.state.selectedCategories,
         selectedDays: this.state.selectedDays,
         selectedTimeStamp: this.state.selectedTimeStamp
@@ -47,7 +47,7 @@ class ReminderForm extends Component {
         alert(msg);
       })
       .fail(err => {
-        alert(err.responseText);
+        alert("Could not set a reminder due to an unexpected error! Please try again later!");
       });
   }
 

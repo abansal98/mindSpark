@@ -92,7 +92,7 @@ class UserProfile extends Component {
                   eventKey="#reminder"
                   className="userprofileReminderBody"
                 >
-                  <ReminderForm />
+                  <ReminderForm username={this.props.username}/>
                 </Tab.Pane>
                 <Tab.Pane
                   eventKey="#quoteapproval"
