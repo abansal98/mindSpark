@@ -63,14 +63,14 @@ class Quoteboard extends Component {
       this.state.didLoad && (
         <>
           <div className="quoteboardBody">
-            {/* <SignupsigninBlurBg /> */}
+            <SignupsigninBlurBg />
             <Container fluid={true}>
               <Tab.Container
                 id="list-group-tabs-example"
                 defaultActiveKey="#categoryHome"
               >
                 <Row>
-                  <Col md={2} className="quoteboardleftside">
+                  <Col lg={2} className="quoteboardleftside">
                     <ListGroup>
                       <ListGroup.Item
                         action
@@ -93,7 +93,7 @@ class Quoteboard extends Component {
                       })}
                     </ListGroup>
                   </Col>
-                  <Col md={10} className="quoteboardrightside">
+                  <Col lg={10} className="quoteboardrightside">
                     {/* <Quotelist /> */}
                     <Tab.Content>
                       <Tab.Pane eventKey="#categoryHome">

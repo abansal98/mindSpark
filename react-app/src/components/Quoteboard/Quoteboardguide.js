@@ -17,7 +17,7 @@ class Quoteboardguide extends Component {
           <p className="lead text-center mb-5">
             “mindSpark” is an app that inspirits people through quotes and
             messages. <br />
-            It will help people who are having tough time with emotional
+            It helps people who are having a tough time with an emotional
             problem.
           </p>
         </Row>
@@ -37,9 +37,10 @@ class Quoteboardguide extends Component {
               Help other mindSpark members
             </p>
             <h3 className="text-uppercase">help rating</h3>
-            <p>Do you like the quote? give thumb up!</p>
+            <p>Do you like the quote? Give a thumb up!</p>
           </div>
         </Row>
+        <Row />
       </Container>
     );
   }
