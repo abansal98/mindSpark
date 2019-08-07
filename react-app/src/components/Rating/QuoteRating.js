@@ -29,9 +29,11 @@ class QuoteRating extends Component {
     })
       .then(msg => {
         alert(msg);
+        this.props.ratingRefresh();
       })
       .fail(err => {
         alert(err.reponseText);
+        this.props.ratingRefresh();
       });
 
     this.props.handleClose();
@@ -50,10 +52,10 @@ class QuoteRating extends Component {
             />
           </div>
           <div className="d-flex justify-content-end">
-                      <button className="btn btn-primary" type="submit">
-                        Submit
-                      </button>
-                    </div>
+            <button className="btn btn-primary" type="submit">
+              Submit
+            </button>
+          </div>
         </form>
       </React.Fragment>
     );

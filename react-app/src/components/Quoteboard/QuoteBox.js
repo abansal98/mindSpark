@@ -100,6 +100,7 @@ class QuoteBox extends Component {
                         quoteId={this.props.quoteId}
                         username={this.props.username}
                         handleClose={this.handleClose}
+                        ratingRefresh={this.props.ratingRefresh.bind(this)}
                       />
                     </div>
                   </Modal.Body>
@@ -145,7 +146,6 @@ class QuoteBox extends Component {
                           username={this.props.username}
                           quoteId={this.props.quoteId}
                           needToReload={this.state.needToReload}
-                          toggleRefresh={this.toggleRefresh.bind(this)}
                         />
                       </Card.Body>
                     </Accordion.Collapse>
