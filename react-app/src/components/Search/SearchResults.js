@@ -30,6 +30,8 @@ class SearchResults extends Component {
     this.getQuote();
   }
 
+  ratingRefresh() {}
+
   render() {
     return (
       <React.Fragment>
@@ -49,6 +51,7 @@ class SearchResults extends Component {
                     rating={quoteObj.rating}
                     quoteId={quoteObj._id}
                     newauthor={quoteObj.newauthor}
+                    ratingRefresh={this.ratingRefresh.bind(this)}
                   />
                 );
               }
