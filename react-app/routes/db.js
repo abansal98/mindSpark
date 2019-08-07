@@ -4,7 +4,8 @@ const express = require("express"),
   user = require("../database/users"),
   quote = require("../database/quote"),
   reminder = require("../database/reminder"),
-  report = require("../database/report");
+  report = require("../database/report"),
+  reminderHandler = require("../database/reminderHandler");
 
 //*******************User authorization and authentication*******************//
 router.route("/signin").post((req, res) => {
@@ -306,6 +307,17 @@ router.route("/addCategory").post((req, res) => {
 router.route("/getPendingQuotes").get((req, res) => {
   quote
     .fetchPendingQuoteList()
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(301).send(err);
+    });
+});
+
+router.route("/triggerReminders").get((req, res) => {
+  console.log("This was called reminder!");
+  reminderHandler.getReminders()
     .then(data => {
       res.status(200).send(data);
     })

@@ -6,6 +6,7 @@ const clientSessions = require("client-sessions");
 const bodyParser = require('body-parser');
 const args = process.argv.slice(2)
 const nodemailer = require("nodemailer");
+const reminderHandler = require("./database/reminderHandler");
 
 port = normalizePort(process.env.PORT || '10002'); // setting default port
 
@@ -18,8 +19,10 @@ if (args[0] == 'PROD' || args[0] == 'prod') {
   console.log("Application will be deployed in PRODUCTION mode!");
   mongoose.connect(
     "mongodb://localhost:10016/mindSpark",
-    { useNewUrlParser: true,
-      useCreateIndex: true}
+    {
+      useNewUrlParser: true,
+      useCreateIndex: true
+    }
   );
 }
 else {
@@ -73,19 +76,17 @@ const transport = nodemailer.createTransport({
   }
 });
 
-  function sendEmail(from, to, subject, html){
-      transport.sendMail({from, subject, to, html}, (err, info)=>{
-        if(err) 
-        {
-          reject(err);
-        }
-        else
-        {
-          resolve(info);
-        }
-      });
-  }
-  module.exports.sendEmail = sendEmail;
+function sendEmail(from, to, subject, html) {
+  transport.sendMail({ from, subject, to, html }, (err, info) => {
+    if (err) {
+      reject(err);
+    }
+    else {
+      resolve(info);
+    }
+  });
+}
+module.exports.sendEmail = sendEmail;
 
 // var mailOptions = {
 //   from: 'youremail@gmail.com',
