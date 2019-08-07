@@ -14,6 +14,7 @@ var quote = new Schema({
     default: 0
   },
   ratingNum: Number,
+  ratingAggregate: Number,
   comments: [
     {
       commentText: {
@@ -232,7 +233,10 @@ module.exports = {
         },
         {
           rating: data.rating,
-          $inc: { ratingNum: 1 }
+          $inc: {
+            ratingNum: 1,
+            ratingAggregate: data.rating
+          },
         },
         {
           new: true
@@ -246,7 +250,6 @@ module.exports = {
             reject();
           } else {
             userjs.addRating(data, quoteId).then(() => {
-              console.log("Record updated!", doc);
               resolve();
             })
               .catch((err) => {
@@ -306,9 +309,9 @@ module.exports = {
     });
   },
 
-  editQuote: function(data) {
+  editQuote: function (data) {
     // console.log(data);
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       quoteModel
         .findOne({
           _id: data.quoteid
@@ -331,7 +334,7 @@ module.exports = {
     });
   },
 
-  deleteQuote: function(data) {
+  deleteQuote: function (data) {
     // console.log("DeleteQuote called");
     return new Promise(function (resolve, reject) {
       quoteModel.deleteOne({ _id: data.quoteId }).exec();

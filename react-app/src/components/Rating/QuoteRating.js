@@ -23,7 +23,8 @@ class QuoteRating extends Component {
       url: "/db/quote/rating/" + this.props.quoteId,
       method: "POST",
       data: {
-        rating: this.state.rating
+        rating: this.state.rating,
+        username: this.props.username
       }
     })
       .then(msg => {

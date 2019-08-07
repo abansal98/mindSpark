@@ -18,7 +18,7 @@ class Quotelist extends Component {
       url: "/db/getQuotes/" + this.props.category,
       method: "GET"
     }).then(data => {
-      // console.log(data);
+      console.log(data);
       this.setState({
         quotes: data,
         didLoad: true
@@ -43,7 +43,7 @@ class Quotelist extends Component {
                   <QuoteBox
                     quote={quoteObj.text}
                     author={quoteObj.author}
-                    rating={quoteObj.rating}
+                    rating={quoteObj.ratingAggregate / quoteObj.ratingNum}
                     username={this.props.username}
                     quoteId={quoteObj._id}
                     newauthor={quoteObj.newauthor}

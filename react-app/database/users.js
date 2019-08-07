@@ -40,8 +40,8 @@ var user = new Schema({
   rating: [
     {
       quoteId: {
-        type: Schema.Types.ObjectId,
-        ref: "quote"
+        unique: true,
+        type: String
       },
       ratingNum: Number
     }
@@ -312,7 +312,7 @@ module.exports = {
         .exec()
         .then(user => {
           if (user) {
-            const html = `Your Quote was removed from MindSpark because of inappropriate content, Message from admisitrator: 
+            const html = `Your Quote was removed from MindSpark because of reasons as described in this message from content moderators: 
             "${data.message}"`;
             mailer.sendEmail(
               "donotreply@mindspark.com",
@@ -372,17 +372,20 @@ module.exports = {
     return new Promise(function (resolve, reject) {
       userModel.findOneAndUpdate(
         {
-          username: data.name
+          username: data.username
         },
         {
-          $push: {
-            rating: {
-              $each: [
-                {
-                  quoteId: quoteId,
-                  ratingNum: data.rating
-                }
-              ]
+          $set: {
+            $push: {
+              rating: {
+                $each: [
+                  {
+                    quoteId: quoteId,
+                    ratingNum: data.rating
+                  }
+                ],
+                $position: 0
+              }
             }
           }
         },
@@ -394,7 +397,6 @@ module.exports = {
             );
             reject();
           } else {
-            console.log("Record updated!", doc);
             resolve();
           }
         }

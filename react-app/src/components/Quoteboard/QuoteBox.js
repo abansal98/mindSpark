@@ -98,6 +98,7 @@ class QuoteBox extends Component {
                     <div className="d-flex justify-content-center">
                       <QuoteRating
                         quoteId={this.props.quoteId}
+                        username={this.props.username}
                         handleClose={this.handleClose}
                       />
                     </div>
