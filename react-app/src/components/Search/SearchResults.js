@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import $ from "jquery";
-import "./searchResult.css";
+import "./SearchResults.css";
 import QuoteBox from "../Quoteboard/QuoteBox";
 
 class SearchResults extends Component {
@@ -33,6 +33,9 @@ class SearchResults extends Component {
   render() {
     return (
       <React.Fragment>
+        <SignupsigninBlurBg />
+        <br />
+        <br />
         <br />
         <br />
         {this.state.didLoad && (
@@ -54,6 +57,12 @@ class SearchResults extends Component {
         )}
       </React.Fragment>
     );
+  }
+}
+
+class SignupsigninBlurBg extends Component {
+  render() {
+    return <div className="SignupsigninBlurBgBody" />;
   }
 }
 
